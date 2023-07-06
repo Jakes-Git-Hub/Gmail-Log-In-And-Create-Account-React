@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 import { StaticElementContainer } from "./containers/StaticElementContainer";
 import { LoginFormContainer } from "./containers/LoginFormContainer";
+import { MockMailContainer } from "./containers/MockMailContainer";
 
 function App() {
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [users, setUsers] = useState([]);
-  const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
 
   const handleLogin = (username, password) => {
-    const user = users.find(
+    const correctLoginCredentials = users.find(
       (user) => user.username === username && user.password === password
     );
 
-    if(user) {
+    if(correctLoginCredentials) {
       setLoggedIn(true);
+      setCurrentLoggedInUser(correctLoginCredentials.username);
     }
   }
 
@@ -35,9 +37,12 @@ function App() {
             <LoginFormContainer
               users={users}
               handleLogin={handleLogin}
-              addUser={addUser}
             />
           </StaticElementContainer>
+          <MockMailContainer
+            loggedIn={loggedIn}
+            currentLoggedInUser={currentLoggedInUser}
+          />
     </div>
   );
 }

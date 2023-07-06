@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { LoginForm } from '../components/LoginForm';
 
-export const LoginFormContainer = ({ users, handleLogin, addUser }) => {
+export const LoginFormContainer = ({ users, handleLogin }) => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -45,7 +45,6 @@ export const LoginFormContainer = ({ users, handleLogin, addUser }) => {
                 handleUsernameClick={handleUsernameClick}
                 usernamePlaceholder={usernamePlaceholder}
                 passwordPlaceholder={passwordPlaceholder}
-                addUser={addUser}
                 handleUsernameBlur={handleUsernameBlur}
                 handlePasswordBlur={handlePasswordBlur}
             />

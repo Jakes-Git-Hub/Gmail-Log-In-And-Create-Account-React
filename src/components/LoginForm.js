@@ -11,12 +11,11 @@ export const LoginForm = ({
     handleUsernameClick,
     usernamePlaceholder,
     passwordPlaceholder,
-    addUser,
     handleUsernameBlur,
     handlePasswordBlur,
 }) => {
     return (
-        <form onSubmit={handleSubmit}>
+        <form>
 
             <h1 class="thin space">Sign In</h1>
 
@@ -46,7 +45,9 @@ export const LoginForm = ({
                 />
             </label>
             
-            <button class="space blue-button">Login</button>
+            <button class="space blue-button" onClick={handleLogin}>
+                Login   
+            </button>
 
 
             <p class="space hyper-link">Forgot Username?</p>
