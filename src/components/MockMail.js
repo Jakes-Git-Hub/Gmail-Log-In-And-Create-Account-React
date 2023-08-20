@@ -4,7 +4,9 @@ export const MockMail = ({ loggedIn, currentLoggedInUser }) => {
 
     return (
         <>
-            {loggedIn && <h1>Welcome, {currentLoggedInUser}!</h1>}
+            {loggedIn && currentLoggedInUser && (
+                <h1 className='logged-in-user'>Welcome, {currentLoggedInUser}!</h1>
+            )}
         </>
     )
 }

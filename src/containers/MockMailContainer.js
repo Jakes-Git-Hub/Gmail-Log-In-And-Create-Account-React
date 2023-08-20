@@ -1,7 +1,10 @@
-import React from 'react';
 import { MockMail } from '../components/MockMail';
 
+
 export const MockMailContainer = ({ loggedIn, currentLoggedInUser }) => {
+    console.log("loggedIn:", loggedIn);
+    console.log("currentLoggedInUser:", currentLoggedInUser);
+    
 
     return (
         <MockMail 

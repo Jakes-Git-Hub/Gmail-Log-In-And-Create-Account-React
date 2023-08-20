@@ -1,49 +1,94 @@
 import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { StaticElementContainer } from "./containers/StaticElementContainer";
 import { LoginFormContainer } from "./containers/LoginFormContainer";
 import { MockMailContainer } from "./containers/MockMailContainer";
+import { CreateAccountContainer } from "./containers/CreateAccountContainer";
+import { BirthdayAndGenderContainer } from "./containers/BirthdayAndGenderContainer";
 
 function App() {
-
   const [loggedIn, setLoggedIn] = useState(false);
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([
+    { id: 1, phone: '', firstName: '', lastName: '', dob: '', gender: '', email: 'user', password: 'pass'}
+  ]);
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
+  const [nextUserId, setNextUserId] = useState(2);
 
-  const handleLogin = (username, password) => {
+  const handleLogin = (email, password) => {
+    console.log("Attempting login with:", email, password);
     const correctLoginCredentials = users.find(
-      (user) => user.username === username && user.password === password
+      (user) => user.email === email && user.password === password
     );
 
-    if(correctLoginCredentials) {
+    if (correctLoginCredentials) {
       setLoggedIn(true);
-      setCurrentLoggedInUser(correctLoginCredentials.username);
+      setCurrentLoggedInUser(correctLoginCredentials.email);
+      console.log("Logged in as:", correctLoginCredentials.email);
+    } else {
+      console.log("Invalid credentials");
     }
-  }
+  };
 
-  const addUser = (username, password, email, phone) => {
-    const newUser = {
-      id: users.length + 1,
-      username: username,
-      password: password,
-      email: email,
-      phone: phone
-    };
-    setUsers([...users, newUser])
-  }
+  const updateNameDetails = (id, firstName, lastName) => {
+    const userIndex = users.findIndex(user => user.id === id);
+
+    if (userIndex !== -1) {
+      const updatedUsers = [...users];
+      updatedUsers[userIndex] = {
+        ...updatedUsers[userIndex],
+        firstName: firstName,
+        lastName: lastName
+      };
+      setUsers(updatedUsers);
+    }
+  };
+
+  const addUser = (user) => {
+    const newUser = { ...user, id: nextUserId };
+    setNextUserId(prevId => prevId + 1); // Increment nextUserId
+    setUsers(prevUsers => [...prevUsers, newUser]);
+  };
 
   return (
-    <div className="App">
-          <StaticElementContainer>
-            <LoginFormContainer
-              users={users}
-              handleLogin={handleLogin}
-            />
-          </StaticElementContainer>
-          <MockMailContainer
-            loggedIn={loggedIn}
-            currentLoggedInUser={currentLoggedInUser}
-          />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={
+            <StaticElementContainer>
+              <LoginFormContainer 
+                users={users}
+                handleLogin={handleLogin}
+              />
+            </StaticElementContainer>
+          } />
+        <Route 
+          path="/mockmail" 
+          element={<MockMailContainer   
+                    loggedIn={loggedIn}
+                    currentLoggedInUser={currentLoggedInUser}
+                   />} 
+        />
+        <Route path="/create-account" element={
+            <StaticElementContainer>
+              <CreateAccountContainer 
+                updateNameDetails={updateNameDetails}
+                addUser={addUser}
+                nextUserId={nextUserId}
+              />
+            </StaticElementContainer>
+          } 
+        />
+        <Route path="/birthday-and-gender" element={
+            <StaticElementContainer>
+              <BirthdayAndGenderContainer
+                updateNameDetails={updateNameDetails}
+                addUser={addUser}
+                nextUserId={nextUserId}
+              />
+            </StaticElementContainer>
+          } 
+        />
+      </Routes>
+    </Router>
   );
 }
 

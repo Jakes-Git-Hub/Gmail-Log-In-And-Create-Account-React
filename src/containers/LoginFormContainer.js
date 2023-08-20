@@ -1,29 +1,38 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { LoginForm } from '../components/LoginForm';
 
 export const LoginFormContainer = ({ users, handleLogin }) => {
 
-    const [username, setUsername] = useState("");
+    const navigate = useNavigate();
+
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [usernamePlaceholder, setUsernamePlaceholder] = useState("Username...");
+    const [emailPlaceholder, setEmailPlaceholder] = useState("Email...");
     const [passwordPlaceholder, setPasswordPlaceholder] = useState("Password...");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        handleLogin(username, password);
-      };
+        handleLogin(email, password);
+        const correctLoginCredentials = users.find(
+            (user) => user.email === email && user.password === password
+        );
+        if (correctLoginCredentials) {
+            navigate('/mockmail'); // Use Navigate.push to navigate
+        }
+    };
 
-    const handleUsernameClick = () => {
-        setUsernamePlaceholder("");
+    const handleEmailClick = () => {
+        setEmailPlaceholder("");
     };
 
     const handlePasswordClick = () => {
         setPasswordPlaceholder("");
     };
 
-    const handleUsernameBlur = () => {
-        if (username === "") {
-            setUsernamePlaceholder("Username...");
+    const handleEmailBlur = () => {
+        if (email === "") {
+            setEmailPlaceholder("Email...");
         }
     };
 
@@ -33,20 +42,25 @@ export const LoginFormContainer = ({ users, handleLogin }) => {
         }
     };
 
+    const handleCreateAccountClick = () => {
+        navigate('/create-account');
+    };
+
     return(
         <>
             <LoginForm
-                username={username}
-                setUsername={setUsername}
+                email={email}
+                setEmail={setEmail}
                 password={password}
                 setPassword={setPassword}
                 handleSubmit={handleSubmit}
                 handlePasswordClick={handlePasswordClick}
-                handleUsernameClick={handleUsernameClick}
-                usernamePlaceholder={usernamePlaceholder}
+                handleEmailClick={handleEmailClick}
+                emailPlaceholder={emailPlaceholder}
                 passwordPlaceholder={passwordPlaceholder}
-                handleUsernameBlur={handleUsernameBlur}
+                handleEmailBlur={handleEmailBlur}
                 handlePasswordBlur={handlePasswordBlur}
+                handleCreateAccountClick={handleCreateAccountClick}
             />
         </>
     );

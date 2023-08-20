@@ -1,58 +1,58 @@
 import React from "react";
 
 export const LoginForm = ({ 
-    username,
-    setUsername,
+    email,
+    setEmail,
     password,
     setPassword,
     handleSubmit,
-    handleLogin, 
     handlePasswordClick, 
-    handleUsernameClick,
-    usernamePlaceholder,
+    handleEmailClick,
+    emailPlaceholder,
     passwordPlaceholder,
-    handleUsernameBlur,
+    handleEmailBlur,
     handlePasswordBlur,
+    handleCreateAccountClick
 }) => {
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
 
             <h1 class="thin space">Sign In</h1>
 
             <h2 class='thin gap'>to continue to Gmail</h2>
 
-            <label class="space line-height">
+            <label class="space line-height label-input-width input-label">
                 <input 
                     class="input"
                     type='text' 
-                    value={username} 
-                    onChange={(e) => setUsername(e.target.value)} 
-                    placeholder={usernamePlaceholder}
-                    onFocus={handleUsernameClick}
-                    onBlur={handleUsernameBlur}
+                    value={email} 
+                    placeholder={emailPlaceholder}
+                    onFocus={handleEmailClick}
+                    onBlur={handleEmailBlur}
+                    onChange={(e) => setEmail(e.target.value)}
                 />
             </label>
      
-            <label class="space line-height">
+            <label class="space line-height label-input-width input-label">
                 <input 
                     class="input disable-eye-icon"
                     type='password'
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
                     placeholder={passwordPlaceholder}
                     onFocus={handlePasswordClick}
                     onBlur={handlePasswordBlur}
+                    onChange={(e) => setPassword(e.target.value)}
                 />
             </label>
             
-            <button class="space blue-button" onClick={handleLogin}>
+            <button class="space blue-button" type='submit'>
                 Login   
             </button>
 
 
-            <p class="space hyper-link">Forgot Username?</p>
+            <p class="space hyper-link">Forgot Email?</p>
             <p class="space hyper-link">Forgot Password?</p>
-            <button class="last grey-button">Create account</button>
+            <button class="last grey-button" onClick={handleCreateAccountClick}>Create account</button>
         </form>
   );
 }
