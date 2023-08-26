@@ -17,7 +17,7 @@ export const ChooseYourGmailAddressContainer = ({ updateUser }) => {
 
     const handleEmailBlur = () => {
         if (email === "") {
-            setEmailPlaceholder("Month");
+            setEmailPlaceholder("Username");
         }
     };
 
