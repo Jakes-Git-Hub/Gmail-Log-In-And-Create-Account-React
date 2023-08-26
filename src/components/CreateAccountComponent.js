@@ -2,9 +2,7 @@ import React from 'react';
 
 export const CreateAccountcomponent = ({ 
     firstName,
-    setFirstName,
     lastName,
-    setLastName,
     firstNamePlaceholder,
     lastNamePlaceholder,
     handleFirstNameClick,
@@ -17,7 +15,7 @@ export const CreateAccountcomponent = ({
     return (
         <form>
 
-            <h1 class="thin space">Create a Google Account</h1>
+            <h1 class="thin h1-space">Create a Google Account</h1>
 
             <h2 class='thin gap'>Enter your name</h2>
 
@@ -45,11 +43,11 @@ export const CreateAccountcomponent = ({
                 />
             </label>
             
-            <section class='button-right'>
-                <button class="space blue-button" onClick={handleNextClick}>
+            <div class='button-right'>
+                <button class="button-space blue-button" onClick={handleNextClick}>
                     Next   
                 </button>
-            </section>
+            </div>
 
         </form>
     );

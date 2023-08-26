@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { CreateAccountcomponent } from "../components/CreateAccountComponent";
 
-export const CreateAccountContainer = ({ updateNameDetails, addUser, nextUserId }) => {
+export const CreateAccountContainer = ({ updateUser }) => {
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [firstNamePlaceholder, setFirstNamePlaceholder] = useState("First Name");
-    const [lastNamePlaceholder, setLastNamePlaceholder] = useState("Last Name");
+    const [lastNamePlaceholder, setLastNamePlaceholder] = useState("Last Name (optional)");
 
     const navigate = useNavigate();
 
@@ -27,36 +27,25 @@ export const CreateAccountContainer = ({ updateNameDetails, addUser, nextUserId 
 
     const handleLastNameBlur = () => {
         if (lastName === "") {
-            setLastNamePlaceholder("Last Name");
+            setLastNamePlaceholder("Last Name (optional)");
         }
     };
 
     const handleNextClick = () => {
-        updateNameDetails(1, firstName, lastName); // Update initial user's details
-    
-        const newUser = {
-          id: nextUserId, // Assign the next unique ID
-          phone: '',
-          firstName: firstName,
-          lastName: lastName,
-          dob: '',
-          gender: '',
-          email: '',
-          password: ''
-        };
-    
-        addUser(newUser); // Add the new user to the array
-    
-        navigate('/birthday-and-gender')// Proceed with navigation or any other logic
-      };
+
+        updateUser({ firstName: firstName, lastName: lastName })
+
+        setFirstName('');
+        setLastName('');
+      
+        navigate('/basic-information')
+    };
 
  return(
     <>
         <CreateAccountcomponent
             firstName={firstName}
             lastName={lastName}
-            setFirstName={setFirstName}
-            setLastName={setLastName}
             firstNamePlaceholder={firstNamePlaceholder}
             lastNamePlaceholder={lastNamePlaceholder}
             handleFirstNameClick={handleFirstNameClick}

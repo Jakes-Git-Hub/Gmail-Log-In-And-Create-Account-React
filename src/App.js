@@ -5,14 +5,14 @@ import { LoginFormContainer } from "./containers/LoginFormContainer";
 import { MockMailContainer } from "./containers/MockMailContainer";
 import { CreateAccountContainer } from "./containers/CreateAccountContainer";
 import { BirthdayAndGenderContainer } from "./containers/BirthdayAndGenderContainer";
+import { ChooseYourGmailAddressContainer } from "./containers/ChooseYourGmailAddressContainer";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [users, setUsers] = useState([
-    { id: 1, phone: '', firstName: '', lastName: '', dob: '', gender: '', email: 'user', password: 'pass'}
-  ]);
+  const [users, setUsers] = useState([]);
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
-  const [nextUserId, setNextUserId] = useState(2);
+  const [nextUserId, setNextUserId] = useState(1);
+  const [userData, setUserData] = useState({});
 
   const handleLogin = (email, password) => {
     console.log("Attempting login with:", email, password);
@@ -29,24 +29,18 @@ function App() {
     }
   };
 
-  const updateNameDetails = (id, firstName, lastName) => {
-    const userIndex = users.findIndex(user => user.id === id);
-
-    if (userIndex !== -1) {
-      const updatedUsers = [...users];
-      updatedUsers[userIndex] = {
-        ...updatedUsers[userIndex],
-        firstName: firstName,
-        lastName: lastName
-      };
-      setUsers(updatedUsers);
-    }
+  const updateUser = (data) => {
+    setUserData(prevData => ({ ...prevData, ...data }));
   };
 
-  const addUser = (user) => {
-    const newUser = { ...user, id: nextUserId };
-    setNextUserId(prevId => prevId + 1); // Increment nextUserId
+  const addUser = () => {
+    const newUser = {
+      id: nextUserId,
+      ...userData
+    };
     setUsers(prevUsers => [...prevUsers, newUser]);
+    setUserData({}); // Clear temporary user data
+    setNextUserId(prevId => prevId + 1); // Increment nextUserId
   };
 
   return (
@@ -70,19 +64,23 @@ function App() {
         <Route path="/create-account" element={
             <StaticElementContainer>
               <CreateAccountContainer 
-                updateNameDetails={updateNameDetails}
-                addUser={addUser}
-                nextUserId={nextUserId}
+                updateUser={updateUser} 
               />
             </StaticElementContainer>
           } 
         />
-        <Route path="/birthday-and-gender" element={
+        <Route path="/basic-information" element={
             <StaticElementContainer>
               <BirthdayAndGenderContainer
-                updateNameDetails={updateNameDetails}
-                addUser={addUser}
-                nextUserId={nextUserId}
+                updateUser={updateUser} 
+              />
+            </StaticElementContainer>
+          } 
+        />
+        <Route path="/choose-your-gmail-address" element={
+            <StaticElementContainer>
+              <ChooseYourGmailAddressContainer
+                updateUser={updateUser} 
               />
             </StaticElementContainer>
           } 

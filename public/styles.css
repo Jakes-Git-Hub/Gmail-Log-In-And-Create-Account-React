@@ -25,17 +25,25 @@ body {
   border: 1px solid rgb(219, 219, 219);
   border-radius: 10px;
   flex-direction: column;
-  width: 550px;
-  min-width: 550px;
+  width: 570px;
+  min-width: 570px;
+}
+
+.button-space {
+  margin: 20px 0;
 }
 
 .space {
-  margin: 20px 0;
+  margin: 13px 0;
+}
+
+.h1-space {
+  margin: 6px;
 }
 
 .gap {
   margin-top: 10px;
-  margin-bottom: 15px;
+  margin-bottom: 22px;
 }
 
 h1 {
@@ -53,6 +61,7 @@ form {
   flex-wrap: wrap;
   flex-direction: column;
   width: 90%;
+  text-align: center;
 }
 
 #google-writing {
@@ -91,6 +100,20 @@ form {
 
 .input::placeholder {
   font-size: 20px;
+}
+
+.input::placeholder,
+.select-dropdown-options {
+  color: #5c5c5c; 
+}
+
+.select-dropdown-options::placeholder {
+  color: #5c5c5c; 
+}
+
+.dob-input-width input::placeholder,
+.gender-input-width select::placeholder {
+  color: #5c5c5c; 
 }
 
 .input:focus {
@@ -169,10 +192,90 @@ p {
 
 .button-right {
   display: flex;
-  width: 442px;
+  width: 463px;
   justify-content: flex-end;
   margin-bottom: 145px;
+  margin-top: 20px;
 }
 
-/* Basic Information */
+/* Basic Information (birthday and gender) */
+
+.input-third {
+  border-radius: 4px;
+  border: 1px solid rgb(219, 219, 219);
+  height: 63px;
+  max-height: 63px;
+  font-size: 20px;
+  padding-left: 15px;
+  width: 100%;
+  display: flex;
+}
+
+.third-container {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-label-third {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.input-third:focus {
+  outline: none !important;
+  border: 3px solid rgb(54, 122, 225);
+}
+
+.input-third-adjust{
+  border-radius: 4px;
+  border: 1px solid rgb(219, 219, 219);
+  height: 67px;
+  max-height: 67px;
+  font-size: 20px;
+  padding-left: 15px;
+  width: 100%;
+  display: flex;
+}
+
+.input-third-adjust:focus{
+  outline: none !important;
+  border: 3px solid rgb(54, 122, 225);
+}
+
+.select-color {
+  color: #5c5c5c;
+}
+
+.select-dropdown-options {
+  color: black;
+}
+
+.gender-input-width {
+  width: 90%;
+}
+
+.dob-input-width {
+  width: 95%;
+  display: flex;
+  width: calc(32.5% - 10px);
+}
+
+/* Choose Your Gmail Address */
+
+
+
+
+
+
+
 

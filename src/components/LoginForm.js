@@ -17,7 +17,7 @@ export const LoginForm = ({
     return (
         <form onSubmit={handleSubmit}>
 
-            <h1 class="thin space">Sign In</h1>
+            <h1 class="thin h1-space">Sign In</h1>
 
             <h2 class='thin gap'>to continue to Gmail</h2>
 
@@ -45,7 +45,7 @@ export const LoginForm = ({
                 />
             </label>
             
-            <button class="space blue-button" type='submit'>
+            <button class="button-space blue-button" type='submit'>
                 Login   
             </button>
 
