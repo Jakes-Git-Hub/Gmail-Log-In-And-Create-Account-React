@@ -2,7 +2,9 @@ import React from 'react';
 
 export const CreateAccountcomponent = ({ 
     firstName,
+    setFirstName,
     lastName,
+    setLastName,
     firstNamePlaceholder,
     lastNamePlaceholder,
     handleFirstNameClick,

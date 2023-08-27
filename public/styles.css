@@ -61,7 +61,6 @@ form {
   flex-wrap: wrap;
   flex-direction: column;
   width: 90%;
-  text-align: center;
 }
 
 #google-writing {
@@ -271,6 +270,39 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 /* Choose Your Gmail Address */
+
+.placeholder-satic-cohersion {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+.static-position {
+  position: absolute; 
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1em;
+}
+
+.center {
+  text-align: center;
+}
+
+#button-right-choose-email {
+  display: flex;
+  width: 463px;
+  justify-content: flex-end;
+  margin-bottom: 170px;
+  margin-top: 30px;
+}
+
+#choose-email-h2 {
+  width: 90%;
+}
 
 
 

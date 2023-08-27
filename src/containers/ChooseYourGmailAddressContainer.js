@@ -21,6 +21,8 @@ export const ChooseYourGmailAddressContainer = ({ updateUser }) => {
         }
     };
 
+    const staticDomain = '@gmail.com';
+
 // Handle Next Click
 
 const handleNextClick = () => {
@@ -29,7 +31,7 @@ const handleNextClick = () => {
 
     setEmail('');
   
-    navigate('/basic-information')
+    navigate('/create-password')
 };
 
     return (
@@ -37,6 +39,7 @@ const handleNextClick = () => {
             <ChooseYourGmailAddressComponent
                 email={email}
                 setEmail={setEmail}
+                staticDomain={staticDomain}
                 handleEmailClick={handleEmailClick}
                 handleEmailBlur={handleEmailBlur}
                 emailPlaceholder={emailPlaceholder}

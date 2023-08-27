@@ -45,6 +45,8 @@ export const CreateAccountContainer = ({ updateUser }) => {
     <>
         <CreateAccountcomponent
             firstName={firstName}
+            setFirstName={setFirstName}
+            setLastName={setLastName}
             lastName={lastName}
             firstNamePlaceholder={firstNamePlaceholder}
             lastNamePlaceholder={lastNamePlaceholder}

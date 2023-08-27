@@ -6,20 +6,19 @@ export const ChooseYourGmailAddressComponent = ({
     handleEmailClick,
     handleEmailBlur,
     emailPlaceholder,
-    handleNextClick
+    handleNextClick,
+    staticDomain
 }) => {
-
-    const staticDomain = '@gmail.com';
 
     return (
         <form>
 
             <h1 class="thin h1-space">How you'll sign in</h1>
 
-            <h2 class='thin gap'>Create a Gmail addres for signing in to your Google Account</h2>
+            <h2 class='thin gap center' id='choose-email-h2'>Create a Gmail addres for signing in to your Google Account</h2>
 
-            <label class="space line-height label-input-width input-label">
-                <div style={{ position: 'relative', display: 'flex' }}>
+            <label class="space line-height label-input-width input-label" id='username-input-width'>
+                <div class='placeholder-satic-cohersion'>
                     <input 
                         class="input"
                         type='text' 
@@ -29,13 +28,13 @@ export const ChooseYourGmailAddressComponent = ({
                         onFocus={handleEmailClick}
                         onBlur={handleEmailBlur}
                     />
-                    <span style={{ position: 'absolute', right: '8px', top: '50%', transform: 'translateY(-50%)' }}>
+                    <span class='static-position'>
                         {staticDomain}
                     </span>
                 </div>
             </label>
 
-            <div class='button-right'>
+            <div id='button-right-choose-email'>
                 <button class="button-space blue-button" onClick={handleNextClick}>
                     Next   
                 </button>
