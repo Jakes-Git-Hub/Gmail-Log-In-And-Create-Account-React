@@ -15,7 +15,7 @@ export const ChooseYourGmailAddressComponent = ({
 
             <h1 class="thin h1-space">How you'll sign in</h1>
 
-            <h2 class='thin gap center' id='choose-email-h2'>Create a Gmail addres for signing in to your Google Account</h2>
+            <h2 class='thin gap center' id='h2'>Create a Gmail addres for signing in to your Google Account</h2>
 
             <label class="space line-height label-input-width input-label" id='username-input-width'>
                 <div class='placeholder-satic-cohersion'>

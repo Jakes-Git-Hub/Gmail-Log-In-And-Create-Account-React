@@ -6,6 +6,7 @@ import { MockMailContainer } from "./containers/MockMailContainer";
 import { CreateAccountContainer } from "./containers/CreateAccountContainer";
 import { BirthdayAndGenderContainer } from "./containers/BirthdayAndGenderContainer";
 import { ChooseYourGmailAddressContainer } from "./containers/ChooseYourGmailAddressContainer";
+import { CreatePasswordContainer } from "./containers/CreatePasswordContainer";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -80,6 +81,14 @@ function App() {
         <Route path="/choose-your-gmail-address" element={
             <StaticElementContainer>
               <ChooseYourGmailAddressContainer
+                updateUser={updateUser} 
+              />
+            </StaticElementContainer>
+          } 
+        />
+        <Route path="/create-password" element={
+            <StaticElementContainer>
+              <CreatePasswordContainer
                 updateUser={updateUser} 
               />
             </StaticElementContainer>
