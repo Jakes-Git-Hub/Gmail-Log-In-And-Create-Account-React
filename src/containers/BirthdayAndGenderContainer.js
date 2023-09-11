@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { BirthdayAndGenderComponent } from '../components/BirthdayAndGenderComponent';
+import useImagePreload from "../hooks/useImagePreload";
+import errorImage from '../images/Daco_5575399.png';
 
 export const BirthdayAndGenderContainer = ({ updateUser }) => {
 
@@ -12,8 +14,13 @@ export const BirthdayAndGenderContainer = ({ updateUser }) => {
     const [dayPlaceholder, setDayPlaceholder] = useState("Day");
     const [yearPlaceholder, setYearPlaceholder] = useState("Year");
     const [genderPlaceholder, setGenderPlaceholder] = useState("Gender");
+    const [incompleteBirthday, setIncompleteBirthday] = useState(false);
+    const [genderEmpty, setGenderEmpty] = useState(false);
+    const [isMonthSelected, setIsMonthSelected] = useState(false);
 
     const navigate = useNavigate();
+
+    const isImagePreloaded = useImagePreload(errorImage);
 
 // Month
 
@@ -30,6 +37,7 @@ export const BirthdayAndGenderContainer = ({ updateUser }) => {
     const handleSelectMonth = (event) => {
         setMonth(event.target.value);
         setMonthPlaceholder("");
+        setIsMonthSelected(true);
     };
 
 // Day
@@ -65,6 +73,10 @@ export const BirthdayAndGenderContainer = ({ updateUser }) => {
         setYear(event.target.value);
     };
 
+// Incomplete Birthday
+
+    const birthdayError = () => setIncompleteBirthday(true);
+
 // Gender
 
     const handleGenderClick = () => {
@@ -81,22 +93,28 @@ export const BirthdayAndGenderContainer = ({ updateUser }) => {
         setGender(event.target.value);
     };
 
+    const genderError = () => setGenderEmpty(true);
+
 // Handle Next Click
 
-const handleNextClick = () => {
-
-    updateUser({month: month, day: day, year: year, gender: gender})
-
-    setMonth('');
-    setDay('');
-    setYear('');
-    setGender('');
-  
-    navigate('/choose-your-gmail-address')
-};
+    const handleNextClick = (e) => {
+        const isBirthdayEmpty = month === '' || day === '' || year === '';
+        const isGenderEmpty = gender === '';
+        if (isBirthdayEmpty) {
+            birthdayError();
+        } if (isGenderEmpty) {
+            genderError();
+        } if (!isBirthdayEmpty && !isGenderEmpty) {
+            updateUser({month: month, day: day, year: year, gender: gender})
+            setMonth('');
+            setDay('');
+            setYear('');
+            setGender('');
+            navigate('/choose-your-gmail-address')
+        }
+    };
 
     return (
-
         <BirthdayAndGenderComponent
             month={month}
             monthPlaceholder={monthPlaceholder}
@@ -119,8 +137,10 @@ const handleNextClick = () => {
             handleGenderClick={handleGenderClick}
             handleSelectGender={handleSelectGender}
             handleNextClick={handleNextClick}
+            incompleteBirthday={incompleteBirthday}
+            isImagePreloaded={isImagePreloaded}
+            genderEmpty={genderEmpty}
+            isMonthSelected={isMonthSelected}
         />
-
-    )
-
+    );
 }

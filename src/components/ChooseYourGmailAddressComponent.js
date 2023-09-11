@@ -1,4 +1,5 @@
 import React from 'react';
+import errorImage from '../images/Daco_5575399.png';
 
 export const ChooseYourGmailAddressComponent = ({ 
     email,
@@ -7,7 +8,9 @@ export const ChooseYourGmailAddressComponent = ({
     handleEmailBlur,
     emailPlaceholder,
     handleNextClick,
-    staticDomain
+    isUsernameEmpty,
+    isImagePreloaded,
+    isIncorrectLength
 }) => {
 
     return (
@@ -20,7 +23,8 @@ export const ChooseYourGmailAddressComponent = ({
             <label class="space line-height label-input-width input-label" id='username-input-width'>
                 <div class='placeholder-satic-cohersion'>
                     <input 
-                        class="input"
+                        id='usernameInput'
+                        class={isUsernameEmpty ? 'error' : 'input'}
                         type='text' 
                         value={email} 
                         onChange={(e) => setEmail(e.target.value)} 
@@ -29,13 +33,29 @@ export const ChooseYourGmailAddressComponent = ({
                         onBlur={handleEmailBlur}
                     />
                     <span class='static-position'>
-                        {staticDomain}
+                        @gmail.com
                     </span>
                 </div>
             </label>
 
+            {isIncorrectLength && isImagePreloaded ? (
+                <div class='long-error-div' id='error-div-space'>
+                    <img className='error-image' src={errorImage} alt='Error Image' />
+                    <p class="input-error-message">Sorry, your username must be between 6 and 30 characters long.</p>
+                </div>
+            ) : isUsernameEmpty && isImagePreloaded ? (
+                <div class='error-div' id='error-div-space'>
+                    <img className='error-image' src={errorImage} alt='Error Image' />
+                    <p class="input-error-message">Enter a Gmail address</p>
+                </div>
+            ) : (
+                <div id='choose-username-small-grey'>
+                    <p class='small-grey'>You can use letters, numbers & periods</p>
+                </div>
+            )}
+
             <div id='button-right-choose-email'>
-                <button class="button-space blue-button" onClick={handleNextClick}>
+                <button type='button' class="button-space blue-button" onClick={handleNextClick}>
                     Next   
                 </button>
             </div>

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { CreatePasswordComponent } from "../components/CreatePasswordComponent";
+import useImagePreload from "../hooks/useImagePreload";
+import errorImage from '../images/Daco_5575399.png';
+
 
 export const CreatePasswordContainer = ({ updateUser }) => {
 
@@ -10,9 +13,13 @@ export const CreatePasswordContainer = ({ updateUser }) => {
     const [confirmPlaceholder, setConfirmPlaceholder] = useState("Confirm");
     const [passwordMismatchError, setPasswordMismatchError] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
+    const [confirmPasswordEmpty, setConfirmPasswordEmpty] = useState(false);
+    const [passwordAndConfirmEmpty, setPasswordAndConfirmEmpty] = useState(false) 
 
     const navigate = useNavigate();
 
+    const isImagePreloaded = useImagePreload(errorImage);
+    
 // Password
 
     const handlePasswordClick = () => {
@@ -37,24 +44,58 @@ export const CreatePasswordContainer = ({ updateUser }) => {
 
     const handleConfirmBlur = () => {
         if (confirmPassword === "") {
-            setConfirmPlaceholder("Confirm");
+          setConfirmPlaceholder("Confirm");
         }
-};
+    };
+
+// Error messages
+
+    const confirmYourPassword = () => {
+        if (password !== '' && confirmPassword === "") {
+            setConfirmPasswordEmpty(true);
+        }
+    };
+
+    const passwordMismatch = () => {
+        if (password !== confirmPassword && confirmPassword !== '') {
+            setPasswordMismatchError(true);
+        }
+    };
+
+    const bothPasswordAndConfirmEmpty = () => {
+        if (password === '' && confirmPassword === '') {
+            setPasswordAndConfirmEmpty(true);
+        } 
+    };
+
+
 
 // Handle Next
 
-const handleNextClick = () => {
-    if (password === confirmPassword) {
+    const handleNextClick = () => {
+        if (password === confirmPassword && password !== '' && confirmPassword !== '') {
         updateUser({ password: password });
         setPassword('');
         setConfirmPassword('');
         setPasswordMismatchError(false);
-        navigate('/');
-        console.log('error');
-    } else {
-        setPasswordMismatchError(true);
-    }
-};
+        setConfirmPasswordEmpty(false);
+        navigate('/next');
+        } else if (password === '' && confirmPassword === '') {
+            bothPasswordAndConfirmEmpty();
+            const passwordInput = document.getElementById('passwordInput');
+            if (passwordInput) {
+                passwordInput.focus();
+            }
+        } else if (password !== '' && confirmPassword === "") {
+            confirmYourPassword();
+            const confirmPasswordInput = document.getElementById('confirmPasswordInput');
+            if (confirmPasswordInput) {
+                confirmPasswordInput.focus();
+            }
+        } else if (password !== confirmPassword && password !== "" && confirmPassword !== '') {
+            passwordMismatch();
+        }
+    };
 
  return(
     <>
@@ -74,7 +115,12 @@ const handleNextClick = () => {
             showPassword={showPassword}
             setShowPassword={setShowPassword}
             togglePassword={handleTogglePassword}
+            confirmPasswordEmpty={confirmPasswordEmpty}
+            confirmYourPassword={confirmYourPassword}
+            passwordMismatch={passwordMismatch}
+            passwordAndConfirmEmpty={passwordAndConfirmEmpty}
+            isImagePreloaded={isImagePreloaded}
         />
     </>
  );
-}
+};

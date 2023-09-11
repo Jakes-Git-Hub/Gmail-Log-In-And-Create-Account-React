@@ -1,4 +1,5 @@
 import React from 'react';
+import errorImage from '../images/Daco_5575399.png';
 
 export const CreateAccountcomponent = ({ 
     firstName,
@@ -11,7 +12,9 @@ export const CreateAccountcomponent = ({
     handleLastNameClick,
     handleFirstNameBlur,
     handleLastNameBlur,
-    handleNextClick
+    handleNextClick,
+    firstNameEmpty,
+    isImagePreloaded
 }) => {
 
     return (
@@ -23,7 +26,8 @@ export const CreateAccountcomponent = ({
 
             <label class="space line-height label-input-width input-label">
                 <input 
-                    class="input"
+                    id='firstNameInput'
+                    class={`${firstNameEmpty ? 'error' : "input"}`}
                     type='text' 
                     value={firstName} 
                     onChange={(e) => setFirstName(e.target.value)} 
@@ -44,9 +48,16 @@ export const CreateAccountcomponent = ({
                     onBlur={handleLastNameBlur}
                 />
             </label>
+
+            {firstNameEmpty && isImagePreloaded && (
+                <div class='error-div'>
+                    <img className='error-image' src={errorImage} alt='Error Image' />
+                    <p class="input-error-message">Enter first name</p>
+                </div>
+            )}
             
             <div class='button-right'>
-                <button class="button-space blue-button" onClick={handleNextClick}>
+                <button type='button' class="button-space blue-button" onClick={handleNextClick}>
                     Next   
                 </button>
             </div>

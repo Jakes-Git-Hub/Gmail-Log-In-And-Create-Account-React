@@ -16,6 +16,13 @@ body {
   flex-wrap: wrap;
 }
 
+.center-container {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 /* Log-in */
 
 #google-container {
@@ -25,8 +32,39 @@ body {
   border: 1px solid rgb(219, 219, 219);
   border-radius: 10px;
   flex-direction: column;
-  width: 570px;
-  min-width: 570px;
+  width: 448.18px;
+  min-width: 448.18px;
+  height: 501px
+}
+
+#google-container-front-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 10px;
+  flex-direction: column;
+  width: 448.18px;
+  min-width: 448.18px;
+  height: 550px;
+  margin-top: -10px;
+}
+
+#google-container-create-password {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(219, 219, 219);
+  border-radius: 10px;
+  flex-direction: column;
+  width: 448.18px;
+  min-width: 448.18px;
+  height: 521px;
+  margin-top: -10px;
+}
+
+.sign-in-space {
+  margin: 10px 0;
 }
 
 .button-space {
@@ -47,31 +85,47 @@ body {
 }
 
 h1 {
-  font-size: 1.75em;
+  font-size: 1.5em;
 }
 
 h2 {
-  font-size: 1.3em;
+  font-size: 1em;
+}
+
+.links-font-size {
+  font-size: 1em;
 }
 
 form {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
   flex-direction: column;
   width: 90%;
 }
 
 #google-writing {
-  margin-top: 60px;
+  margin-top: 110px;
   margin-bottom: 15px;
   height: auto;
-  width: 90px;
+  width: 72px;
+}
+
+#google-writing-front-page {
+  margin-top: 81px;
+  margin-bottom: 15px;
+  height: auto;
+  width: 72px;
+}
+
+#google-writing-create-password {
+  margin-top: 50px;
+  margin-bottom: 15px;
+  height: auto;
+  width: 72px;
 }
 
 .last {
-  margin-top: 10px;
   margin-bottom: 60px;
 }
 
@@ -86,19 +140,19 @@ form {
 .input {
   border-radius: 4px;
   border: 1px solid rgb(219, 219, 219);
-  height: 63px;
-  max-height: 63px;
-  font-size: 20px;
+  height: 53.75px;
+  max-height: 53.75px;
+  font-size: 16.75px;
   padding-left: 15px;
   width: 90%;
 }
 
 .input::target-text {
-  font-size: 20px;
+  font-size: 16.75px;
 }
 
 .input::placeholder {
-  font-size: 20px;
+  font-size: 16.75px;
 }
 
 .input::placeholder,
@@ -117,12 +171,12 @@ form {
 
 .input:focus {
   outline: none !important;
-  border: 3px solid rgb(54, 122, 225);
+  border: 2.2px solid rgb(54, 122, 225);
 }
 
 .line-height {
-  max-height: 63px;
-  height: 63px;
+  max-height: 53.75px;
+  height: 53.75px;
 }
 
 .blue-button {
@@ -130,8 +184,8 @@ form {
   border: 2px solid rgb(26,115,232);
   border-radius: 4px;
   color: white;
-  padding: 11.5px 29.25px;
-  font-size: 19px;
+  padding: 8.5px 22.475px;
+  font-size: 15px;
   cursor: pointer;
 }
 
@@ -158,7 +212,7 @@ p {
   border-radius: 4px;
   color: #4d8fe6;
   padding: 11.5px 14.625px;
-  font-size: 19px;
+  font-size: 1em;
   cursor: pointer;
   font-weight: 600;
 }
@@ -191,10 +245,9 @@ p {
 
 .button-right {
   display: flex;
-  width: 463px;
+  width: 363px;
   justify-content: flex-end;
   margin-bottom: 145px;
-  margin-top: 20px;
 }
 
 /* Basic Information (birthday and gender) */
@@ -202,9 +255,21 @@ p {
 .input-third {
   border-radius: 4px;
   border: 1px solid rgb(219, 219, 219);
-  height: 63px;
-  max-height: 63px;
-  font-size: 20px;
+  height: 53.75px;
+  max-height: 53.75px;
+  font-size: 16.75px;
+  padding-left: 15px;
+  width: 100%;
+  display: flex;
+}
+
+.error-third {
+  border-radius: 4px;
+  outline: none !important;
+  border: 1px solid rgb(225 54 54);
+  height: 53.75px;
+  max-height: 53.75px;
+  font-size: 16.75px;
   padding-left: 15px;
   width: 100%;
   display: flex;
@@ -232,27 +297,100 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .input-third:focus {
   outline: none !important;
-  border: 3px solid rgb(54, 122, 225);
+  border: 2.2px solid rgb(54, 122, 225);
+}
+
+.error-third:focus {
+  outline: none !important;
+  border: 2.2px solid rgb(225 54 54);
+}
+
+.input-third-adjust-1 {
+  border-radius: 4px;
+  border: 1px solid rgb(219, 219, 219);
+  height: 57.1px;
+  max-height: 57.1px;
+  font-size: 16.75px;
+  padding-left: 11px;
+  width: 100%;
+  display: flex;
+}
+
+.error-third-adjust-1 {
+  display: flex;
+  outline: none !important;
+  border: 1px solid rgb(225 54 54);
+  height: 57.1px;
+  max-height: 57.1px;
+  font-size: 16.75px;
+  padding-left: 11px;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.error-third-adjust-1::target-text {
+  font-size: 16.75px;
+}
+
+.error-third-adjust-1::placeholder {
+  font-size: 16.75px;
+}
+
+.error-third-adjust-1:focus {
+  outline: none !important;
+  border: 2.2px solid rgb(225 54 54);
+  border-radius: 4px;
 }
 
 .input-third-adjust{
   border-radius: 4px;
   border: 1px solid rgb(219, 219, 219);
-  height: 67px;
-  max-height: 67px;
-  font-size: 20px;
-  padding-left: 15px;
+  height: 53.75px;
+  max-height: 53.75px;
+  font-size: 16.75px;
+  padding-left: 11px;
   width: 100%;
   display: flex;
 }
 
 .input-third-adjust:focus{
   outline: none !important;
-  border: 3px solid rgb(54, 122, 225);
+  border: 2.2px solid rgb(54, 122, 225);
+}
+
+.input-third-adjust-1:focus{
+  outline: none !important;
+  border: 2.2px solid rgb(54, 122, 225);
+}
+
+.error-input-third-adjust{
+  border-radius: 4px;
+  outline: none !important;
+  border: 1px solid rgb(225 54 54);
+  height: 53.75px;
+  max-height: 53.75px;
+  font-size: 16.75px;
+  padding-left: 11px;
+  width: 100%;
+  display: flex;
+}
+
+.error-input-third-adjust:focus{
+  outline: none !important;
+  border: 2.2px solid rgb(225 54 54);
+}
+
+.error-input-third-adjust-1:focus{
+  outline: none !important;
+  border: 2.2px solid rgb(225 54 54);
 }
 
 .select-color {
   color: #5c5c5c;
+}
+
+.select-selected {
+  color: black;
 }
 
 .select-dropdown-options {
@@ -267,6 +405,10 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 95%;
   display: flex;
   width: calc(32.5% - 10px);
+}
+
+#gender-space {
+  margin: 8px 0 13px 0;
 }
 
 /* Choose Your Gmail Address */
@@ -285,7 +427,9 @@ input[type="number"]::-webkit-outer-spin-button {
   right: 30px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 1.1em;
+  font-size: 0.8em;
+  color: #5c5c5c;
+  font-weight: 200;
 }
 
 .center {
@@ -294,14 +438,32 @@ input[type="number"]::-webkit-outer-spin-button {
 
 #button-right-choose-email {
   display: flex;
-  width: 463px;
+  width: 363px;
   justify-content: flex-end;
   margin-bottom: 170px;
-  margin-top: 30px;
 }
 
 #h2 {
   width: 90%;
+}
+
+.small-grey {
+  color: #5c5c5c;
+  font-size: 0.75em;
+  font-weight: 100;
+}
+
+#choose-username-small-grey {
+  display: flex;
+  justify-content: flex-start;
+  width: 82%;
+  margin-top: -17.5px;
+}
+
+.long-error-div {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
 }
 
 /* Create Password */
@@ -312,17 +474,26 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .input-error-message {
   color: rgb(217,48,37);
-  font-size: 1rem;
+  font-size: 0.75rem;
   font-weight: 200;
-  margin: 9px 0 0;
+  margin: 1px 0 7.5px 10px;
 }
 .error-div {
   width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: -5.75px;
+}
+
+#error-div-space {
+  width: 90%;
+  margin-top: -5px;
 }
 
 .password-toggle {
-  margin-top: 16px;
-  width: 89%;
+  margin-top: 2px;
+  width: 91%;
 }
 
 .checkbox-text-colour {
@@ -332,12 +503,15 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .custom-checkbox {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  width: 15px;
+  height: 15px;
   margin-right: 20px;
-  border: 3px solid #5c5c5c;
-  border-radius: 3px;
+  border: 2px solid #5c5c5c;
+  border-radius: 2px;
   position: relative;
   margin-left: 4px;
   transition: background-color 0.3s;
@@ -354,11 +528,11 @@ input[type="number"]::-webkit-outer-spin-button {
 .custom-checkbox-label::before {
   content: "";
   display: inline-block;
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   position: absolute;
-  left: -10px;
+  left: -6px;
 }
 
 .custom-checkbox-label:hover::before {
@@ -366,7 +540,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .custom-checkbox:hover {
-  border: 3px solid #313131;
+  border: 2px solid #313131;
 }
 
 .custom-checkbox-label input[type="checkbox"] {
@@ -374,12 +548,25 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .custom-checkbox-label input[type="checkbox"]:checked + .custom-checkbox {
-  border-color: rgb(0 77 178); /* Change border color when checked */
-  background-color: rgb(0 77 178);
+  border-color: rgb(26, 115, 232);
+  background-color: rgb(26, 115, 232);
 }
 
-.password-toggle.checked .custom-checkbox-label::before {
-    background-color: rgb(226 239 255); /* Change background color to light blue when checked */
+.password-toggle.checked .custom-checkbox-label:hover::before {
+    background-color: rgb(226 239 255); 
+}
+
+.password-toggle.checked-and-click-off .custom-checkbox-label::before {
+    background-color: transparent; /* Change background color to light blue when checked */
+}
+
+.custom-checkbox-label.checked-and-click-off input[type="checkbox"]:checked + .custom-checkbox {
+  border-color: rgb(26, 115, 232); 
+  background-color: rgb(26, 115, 232);
+}
+
+.password-toggle.checked .custom-checkbox-label-after-sequence::before {
+    background-color: transparent; /* Change background color to light blue when checked */
 }
 
 .password-space {
@@ -388,9 +575,73 @@ input[type="number"]::-webkit-outer-spin-button {
 
 #create-password-next-button {
   display: flex;
-  width: 463px;
+  width: 363px;
   justify-content: flex-end;
-  margin-bottom: 57px;
-  margin-top: 30px;
+  margin-bottom: 42px;
+  margin-top: 5px;
 }
+
+.tick-white {
+  color: white;
+  transition: color 0.3s;
+}
+
+.custom-checkbox-label .custom-checkbox .tick-hidden {
+  color: transparent; /* Make the tick transparent when showPassword is not checked */
+  transition: none; /* Remove transition on color */
+}
+
+.error {
+  outline: none !important;
+  border: 1px solid rgb(225 54 54);
+  height: 53.75px;
+  max-height: 53.75px;
+  font-size: 16.75px;
+  padding-left: 15px;
+  width: 90%;
+  border-radius: 4px;
+}
+
+.error::target-text {
+  font-size: 16.75px;
+}
+
+.error::placeholder {
+  font-size: 16.75px;
+}
+
+.error:focus {
+  outline: none !important;
+  border: 2.2px solid rgb(225 54 54);
+  border-radius: 4px;
+}
+
+.error-image {
+  height: 13.33px;
+  width: 13.33px;
+  filter: hue-rotate(360deg); /* Rotate 30 degrees towards red */
+  margin-bottom: 7.5px; margin-top: 1px; 
+}
+
+#create-password-h2 {
+  width: 90%;
+}
+
+#create-password-space {
+  margin: 12.5px 0 15px 0;
+}
+
+#show-password-checkbox {
+  font-size: 0.85em;
+  font-weight: 500;
+}
+
+#create-password-error-div {
+  width: 90%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 7px;
+}
+
 

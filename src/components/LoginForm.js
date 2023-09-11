@@ -1,4 +1,5 @@
 import React from "react";
+import errorImage from '../images/Daco_5575399.png';
 
 export const LoginForm = ({ 
     email,
@@ -12,7 +13,10 @@ export const LoginForm = ({
     passwordPlaceholder,
     handleEmailBlur,
     handlePasswordBlur,
-    handleCreateAccountClick
+    handleCreateAccountClick,
+    emailIsEmpty,
+    passwordIsEmpty,
+    isImagePreloaded
 }) => {
     return (
         <form onSubmit={handleSubmit}>
@@ -23,7 +27,8 @@ export const LoginForm = ({
 
             <label class="space line-height label-input-width input-label">
                 <input 
-                    class="input"
+                    class={`${emailIsEmpty ? 'error' : "input"}`}
+                    id='emailInput'
                     type='text' 
                     value={email} 
                     placeholder={emailPlaceholder}
@@ -32,10 +37,18 @@ export const LoginForm = ({
                     onChange={(e) => setEmail(e.target.value)}
                 />
             </label>
+
+            {emailIsEmpty && isImagePreloaded && (
+                <div class='error-div'>
+                    <img className='error-image' src={errorImage} alt='Error Image' />
+                    <p class="input-error-message">Enter first name</p>
+                </div>
+            )}
      
             <label class="space line-height label-input-width input-label">
                 <input 
-                    class="input disable-eye-icon"
+                    class={`disable-eye-icon ${passwordIsEmpty ? 'error' : "input"}`}
+                    id='passwordInput'
                     type='password'
                     value={password}
                     placeholder={passwordPlaceholder}
@@ -44,15 +57,22 @@ export const LoginForm = ({
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </label>
+
+            {passwordIsEmpty && isImagePreloaded && (
+                <div class='error-div'>
+                    <img className='error-image' src={errorImage} alt='Error Image' />
+                    <p class="input-error-message">Enter first name</p>
+                </div>
+            )}
             
-            <button class="button-space blue-button" type='submit'>
+            <button class="sign-in-space blue-button">
                 Login   
             </button>
 
 
-            <p class="space hyper-link">Forgot Email?</p>
-            <p class="space hyper-link">Forgot Password?</p>
-            <button class="last grey-button" onClick={handleCreateAccountClick}>Create account</button>
+            <p class="links-font-size sign-in-space hyper-link">Forgot Email?</p>
+            <p class="links-font-size sign-in-space hyper-link">Forgot Password?</p>
+            <button type='button' class="links-font-size last grey-button" onClick={handleCreateAccountClick}>Create account</button>
         </form>
   );
 }

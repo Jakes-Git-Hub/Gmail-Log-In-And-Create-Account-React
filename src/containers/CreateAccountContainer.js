@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { CreateAccountcomponent } from "../components/CreateAccountComponent";
+import useImagePreload from "../hooks/useImagePreload";
+import errorImage from '../images/Daco_5575399.png';
 
 export const CreateAccountContainer = ({ updateUser }) => {
 
@@ -8,8 +10,15 @@ export const CreateAccountContainer = ({ updateUser }) => {
     const [lastName, setLastName] = useState("");
     const [firstNamePlaceholder, setFirstNamePlaceholder] = useState("First Name");
     const [lastNamePlaceholder, setLastNamePlaceholder] = useState("Last Name (optional)");
+    const [firstNameEmpty, setFirstNameEmpty] = useState(false);
 
     const navigate = useNavigate();
+
+// Pre-load Error Img
+
+const isImagePreloaded = useImagePreload(errorImage);
+
+// First Name
 
     const handleFirstNameClick = () => {
         setFirstNamePlaceholder("");
@@ -31,16 +40,27 @@ export const CreateAccountContainer = ({ updateUser }) => {
         }
     };
 
-    const handleNextClick = () => {
+// First Name Error Message
 
-        updateUser({ firstName: firstName, lastName: lastName })
+    const firstNameError = () => setFirstNameEmpty(true);
 
-        setFirstName('');
-        setLastName('');
-      
-        navigate('/basic-information')
+// Handle Next
+
+    const handleNextClick = (e) => {
+        if (firstName !== '') {
+            updateUser({ firstName: firstName, lastName: lastName })
+            setFirstName('');
+            setLastName('');
+            setFirstNameEmpty(false);
+            navigate('/basic-information')
+        } else if (firstName === '') {
+            firstNameError();
+            const firstNameInput = document.getElementById('firstNameInput');
+            if (firstNameInput) {
+               firstNameInput.focus(); 
+            }
+        }
     };
-
  return(
     <>
         <CreateAccountcomponent
@@ -55,6 +75,8 @@ export const CreateAccountContainer = ({ updateUser }) => {
             handleFirstNameBlur={handleFirstNameBlur}
             handleLastNameBlur={handleLastNameBlur}
             handleNextClick={handleNextClick}
+            firstNameEmpty={firstNameEmpty}
+            isImagePreloaded={isImagePreloaded}
         />
     </>
  );

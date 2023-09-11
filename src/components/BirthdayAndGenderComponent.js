@@ -1,4 +1,5 @@
 import React from 'react';
+import errorImage from '../images/Daco_5575399.png';
 
 export const BirthdayAndGenderComponent = ({
     month, 
@@ -21,7 +22,11 @@ export const BirthdayAndGenderComponent = ({
     handleGenderClick,
     handleSelectGender,
     genderPlaceholder,
-    handleNextClick
+    handleNextClick,
+    incompleteBirthday,
+    isImagePreloaded,
+    genderEmpty,
+    isMonthSelected
 }) => {
     
     return (
@@ -34,7 +39,7 @@ export const BirthdayAndGenderComponent = ({
             <div class='third-container'>
             <label class='space line-height dob-input-width'>
                 <select
-                    class='input-third-adjust select-color'
+                    class={`${incompleteBirthday ? 'error-third-adjust-1' : "input-third-adjust-1"} ${isMonthSelected ? 'select-selected' : 'select-color'}`}
                     value={month}
                     onChange={handleSelectMonth}
                     onClick={handleMonthClick}
@@ -58,7 +63,7 @@ export const BirthdayAndGenderComponent = ({
 
                 <label class="space line-height dob-input-width">
                     <input 
-                        class='input-third'
+                        class={incompleteBirthday ? 'error-third' : "input-third"}
                         type='number' 
                         value={day} 
                         onChange={handleSelectDay} 
@@ -70,7 +75,7 @@ export const BirthdayAndGenderComponent = ({
 
                 <label class="space line-height dob-input-width">
                     <input 
-                        class='input-third'
+                        class={incompleteBirthday ? 'error-third' : "input-third"}
                         type='number' 
                         value={year} 
                         onChange={handleSelectYear} 
@@ -81,11 +86,16 @@ export const BirthdayAndGenderComponent = ({
                 </label>
             </div>
 
-            
+            {incompleteBirthday && isImagePreloaded && (
+                <div class='error-div' id='error-div-space'>
+                    <img className='error-image' src={errorImage} alt='Error Image' />
+                    <p class="input-error-message">Please fill in a complete birthday</p>
+                </div>
+            )}            
      
-            <label class='space line-height gender-input-width'>
+            <label class='line-height gender-input-width' id='gender-space'>
                 <select
-                    class='input-third-adjust select-color'
+                    class={`select-color ${genderEmpty ? 'error-input-third-adjust' : 'input-third-adjust' }`}
                     value={gender}
                     onChange={handleSelectGender}
                     onClick={handleGenderClick}
@@ -98,9 +108,16 @@ export const BirthdayAndGenderComponent = ({
                     <option className="select-dropdown-options" value="Custom">Custom</option>
                 </select>
             </label>
+
+            {genderEmpty && isImagePreloaded && (
+                <div class='error-div' id='error-div-space'>
+                    <img className='error-image' src={errorImage} alt='Error Image' />
+                    <p class="input-error-message">Please select your gender</p>
+                </div>
+            )}   
             
             <section class='button-right'>
-                <button class="button-spac blue-button" onClick={handleNextClick}>
+                <button type='button' class="button-space blue-button" onClick={handleNextClick}>
                     Next   
                 </button> 
             </section>

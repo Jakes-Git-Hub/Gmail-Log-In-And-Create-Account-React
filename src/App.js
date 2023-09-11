@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { FrontPageStaticContainer } from './containers/FrontPageStaticContainer'
 import { StaticElementContainer } from "./containers/StaticElementContainer";
+import { CreatePasswordStaticElementContainer } from "./containers/CreatePasswordStaticElementContainer";
 import { LoginFormContainer } from "./containers/LoginFormContainer";
 import { MockMailContainer } from "./containers/MockMailContainer";
 import { CreateAccountContainer } from "./containers/CreateAccountContainer";
@@ -48,12 +50,12 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={
-            <StaticElementContainer>
+            <FrontPageStaticContainer>
               <LoginFormContainer 
                 users={users}
                 handleLogin={handleLogin}
               />
-            </StaticElementContainer>
+            </FrontPageStaticContainer>
           } />
         <Route 
           path="/mockmail" 
@@ -87,11 +89,12 @@ function App() {
           } 
         />
         <Route path="/create-password" element={
-            <StaticElementContainer>
+            <CreatePasswordStaticElementContainer>
               <CreatePasswordContainer
                 updateUser={updateUser} 
+                users={users}
               />
-            </StaticElementContainer>
+            </CreatePasswordStaticElementContainer>
           } 
         />
       </Routes>
