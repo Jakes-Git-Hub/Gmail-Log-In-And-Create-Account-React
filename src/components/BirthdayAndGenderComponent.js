@@ -26,7 +26,8 @@ export const BirthdayAndGenderComponent = ({
     incompleteBirthday,
     isImagePreloaded,
     genderEmpty,
-    isMonthSelected
+    isMonthSelected,
+    errorCondition
 }) => {
     
     return (
@@ -39,7 +40,7 @@ export const BirthdayAndGenderComponent = ({
             <div class='third-container'>
             <label class='space line-height dob-input-width'>
                 <select
-                    class={`${incompleteBirthday ? 'error-third-adjust-1' : "input-third-adjust-1"} ${isMonthSelected ? 'select-selected' : 'select-color'}`}
+                    class={`${errorCondition === 'incompleteBirthday' || errorCondition === 'isWrongFormat' ? 'error-third-adjust-1' : "input-third-adjust-1"} ${isMonthSelected ? 'select-selected' : 'select-color'}`}
                     value={month}
                     onChange={handleSelectMonth}
                     onClick={handleMonthClick}
@@ -63,35 +64,44 @@ export const BirthdayAndGenderComponent = ({
 
                 <label class="space line-height dob-input-width">
                     <input 
-                        class={incompleteBirthday ? 'error-third' : "input-third"}
+                        class={errorCondition === 'incompleteBirthday' || errorCondition === 'isWrongFormat' ? 'error-third' : "input-third"}
                         type='number' 
                         value={day} 
                         onChange={handleSelectDay} 
                         placeholder={dayPlaceholder}
                         onFocus={handleDayClick}
                         onBlur={handleDayBlur}
+                        maxLength="2"
                     />
                 </label>
 
                 <label class="space line-height dob-input-width">
                     <input 
-                        class={incompleteBirthday ? 'error-third' : "input-third"}
+                        class={errorCondition === 'incompleteBirthday' || errorCondition === 'isWrongFormat' ? 'error-third' : "input-third"}
                         type='number' 
                         value={year} 
                         onChange={handleSelectYear} 
                         placeholder={yearPlaceholder}
                         onFocus={handleYearClick}
                         onBlur={handleYearBlur}
+                        maxLength="4"
                     />
                 </label>
             </div>
 
-            {incompleteBirthday && isImagePreloaded && (
+            {errorCondition === 'incompleteBirthday' && isImagePreloaded && (
                 <div class='error-div' id='error-div-space'>
                     <img className='error-image' src={errorImage} alt='Error Image' />
                     <p class="input-error-message">Please fill in a complete birthday</p>
                 </div>
             )}            
+
+            {errorCondition === 'isWrongFormat' && isImagePreloaded && (
+                <div class='error-div' id='error-div-space'>
+                    <img className='error-image' src={errorImage} alt='Error Image' />
+                    <p class="input-error-message">Please enter a valid date</p>
+                </div>
+            )}  
      
             <label class='line-height gender-input-width' id='gender-space'>
                 <select

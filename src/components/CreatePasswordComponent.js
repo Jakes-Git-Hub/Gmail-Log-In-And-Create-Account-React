@@ -13,12 +13,10 @@ export const CreatePasswordComponent = ({
     handleConfirmClick,
     handleConfirmBlur,
     handleNextClick,
-    passwordMismatchError,
     showPassword,
     togglePassword,
-    confirmPasswordEmpty,
-    passwordAndConfirmEmpty,
-    isImagePreloaded
+    isImagePreloaded,
+    errorCondition
 }) => {
 
 
@@ -33,7 +31,7 @@ export const CreatePasswordComponent = ({
             <label id='create-password-space'class=" line-height label-input-width input-label">
                 <input 
                     id='passwordInput'
-                    class={passwordAndConfirmEmpty ? 'error' : 'input'}
+                    class={errorCondition === 'passwordAndConfirmEmpty' ? 'error' : 'input'}
                     type={showPassword ? 'text' : 'password'}
                     value={password} 
                     onChange={(e) => setPassword(e.target.value)} 
@@ -46,7 +44,7 @@ export const CreatePasswordComponent = ({
             <label class="space line-height label-input-width input-label" id='error-message-margin'>
                 <input 
                     id='confirmPasswordInput'
-                    class={confirmPasswordEmpty ? 'error' : 'input'}
+                    class={errorCondition === 'confirmPasswordEmpty' || errorCondition === 'passwordMismatch' ? 'error' : 'input'}
                     type={showPassword ? 'text' : 'password'}
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)} 
@@ -56,22 +54,26 @@ export const CreatePasswordComponent = ({
                 />
             </label>
 
-            {passwordAndConfirmEmpty && isImagePreloaded ? (
+            {errorCondition === 'passwordAndConfirmEmpty' && isImagePreloaded && (
                 <div class='error-div' id='create-password-error-div'>
                     <img className='error-image' src={errorImage} alt='Error Image' />
                     <p class="input-error-message">Enter a password</p>
                 </div>
-            ) : confirmPasswordEmpty && password && isImagePreloaded ? ( 
+            )}
+
+            {errorCondition === 'confirmPasswordEmpty' && isImagePreloaded && ( 
                 <div class='error-div' id='create-password-error-div'>
                     <img className='error-image' src={errorImage} alt='Error Image' />
                     <p class="input-error-message">Confirm your password</p>
                 </div>
-            ) : passwordMismatchError && !confirmPasswordEmpty ? (
+            )} 
+            
+            {errorCondition === 'passwordMismatch' && isImagePreloaded && (
                 <div class='error-div' id='create-password-error-div'>
                     <img className='error-image' src={errorImage} alt='Error Image' />
                     <p class="input-error-message">Those passwords didn’t match. Try again.</p>
                 </div>
-            ) : null}
+            )}
            
             <div className={`password-toggle ${showPassword ? 'checked' : ''}`}>
                 <label className='checkbox-text-colour custom-checkbox-label'>

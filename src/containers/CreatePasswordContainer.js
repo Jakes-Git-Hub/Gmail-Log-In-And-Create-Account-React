@@ -4,17 +4,14 @@ import { CreatePasswordComponent } from "../components/CreatePasswordComponent";
 import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 
-
 export const CreatePasswordContainer = ({ updateUser }) => {
 
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [passwordPlaceholder, setPasswordPlaceholder] = useState("Password");
     const [confirmPlaceholder, setConfirmPlaceholder] = useState("Confirm");
-    const [passwordMismatchError, setPasswordMismatchError] = useState(false);
     const [showPassword, setShowPassword] = useState(false);
-    const [confirmPasswordEmpty, setConfirmPasswordEmpty] = useState(false);
-    const [passwordAndConfirmEmpty, setPasswordAndConfirmEmpty] = useState(false) 
+    const [errorCondition, setErrorCondition] = useState(null);
 
     const navigate = useNavigate();
 
@@ -52,20 +49,26 @@ export const CreatePasswordContainer = ({ updateUser }) => {
 
     const confirmYourPassword = () => {
         if (password !== '' && confirmPassword === "") {
-            setConfirmPasswordEmpty(true);
+        setErrorCondition("confirmPasswordEmpty");
+        } else {
+        setErrorCondition(null);
         }
     };
-
+    
     const passwordMismatch = () => {
         if (password !== confirmPassword && confirmPassword !== '') {
-            setPasswordMismatchError(true);
+        setErrorCondition("passwordMismatch");
+        } else {
+        setErrorCondition(null);
         }
     };
-
+    
     const bothPasswordAndConfirmEmpty = () => {
         if (password === '' && confirmPassword === '') {
-            setPasswordAndConfirmEmpty(true);
-        } 
+        setErrorCondition("passwordAndConfirmEmpty");
+        } else {
+        setErrorCondition(null);
+        }
     };
 
 
@@ -77,9 +80,8 @@ export const CreatePasswordContainer = ({ updateUser }) => {
         updateUser({ password: password });
         setPassword('');
         setConfirmPassword('');
-        setPasswordMismatchError(false);
-        setConfirmPasswordEmpty(false);
-        navigate('/next');
+        setErrorCondition(null);
+        navigate('//confirm-youre-not-a-robot');
         } else if (password === '' && confirmPassword === '') {
             bothPasswordAndConfirmEmpty();
             const passwordInput = document.getElementById('passwordInput');
@@ -111,15 +113,13 @@ export const CreatePasswordContainer = ({ updateUser }) => {
             handleConfirmClick={handleConfirmClick}
             handleConfirmBlur={handleConfirmBlur}
             handleNextClick={handleNextClick}
-            passwordMismatchError={passwordMismatchError}
             showPassword={showPassword}
             setShowPassword={setShowPassword}
             togglePassword={handleTogglePassword}
-            confirmPasswordEmpty={confirmPasswordEmpty}
             confirmYourPassword={confirmYourPassword}
             passwordMismatch={passwordMismatch}
-            passwordAndConfirmEmpty={passwordAndConfirmEmpty}
             isImagePreloaded={isImagePreloaded}
+            errorCondition={errorCondition}
         />
     </>
  );

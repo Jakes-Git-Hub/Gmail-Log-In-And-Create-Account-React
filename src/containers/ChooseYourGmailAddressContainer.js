@@ -10,6 +10,7 @@ export const ChooseYourGmailAddressContainer = ({ updateUser, users }) => {
     const [emailPlaceholder, setEmailPlaceholder] = useState("Username");
     const [isUsernameEmpty, setIsUsernameEmpty] = useState(false);
     const [isIncorrectLength, setIsIncorrectLength] = useState(false);
+    const [usesUnallowedChars, setUsesUnallowedChars] = useState(false);
     const navigate = useNavigate();
 
     const isImagePreloaded = useImagePreload(errorImage);
@@ -26,34 +27,34 @@ export const ChooseYourGmailAddressContainer = ({ updateUser, users }) => {
         }
     };
 
-// Empty Error
+// Error Messages
 
     const usernameEmpty = () => setIsUsernameEmpty(true);
 
-
-// Incorrect Length
-
     const incorrectLength = () => setIsIncorrectLength(true);
 
+    const unallowedChars = () => setUsesUnallowedChars(true);
 
 // Handle Next Click
 
 const handleNextClick = () => {
-
+    setIsUsernameEmpty(false);
+    setIsIncorrectLength(false);
+    setUsesUnallowedChars(false);
     if (email === '') {
-        const usernameInput = document.getElementById('usernameInput');
-        usernameEmpty();
-        usernameInput.focus();
-    }
-
-    if (email.length < 6 && email.length > 0 || email.length > 30) {
-        incorrectLength();
-    }
-
-    if (email.length >= 6 && email.length <= 30) {
-        updateUser({ email: email })
-        setEmail('');
-        navigate('/create-password')
+      const usernameInput = document.getElementById('usernameInput');
+      usernameEmpty();
+      usernameInput.focus();
+    } else if (!/^[a-zA-Z0-9.]+$/.test(email)) {
+      // Check if the email contains unallowed characters
+      unallowedChars();
+      console.log('correct regex')
+    } else if (email.length < 6 || email.length > 30) {
+      incorrectLength();
+    } else {
+      updateUser({ email: email })
+      setEmail('');
+      navigate('/create-password')
     }
 };
 
@@ -69,6 +70,7 @@ const handleNextClick = () => {
                 isUsernameEmpty={isUsernameEmpty}
                 isImagePreloaded={isImagePreloaded}
                 isIncorrectLength={isIncorrectLength}
+                usesUnallowedChars={usesUnallowedChars}
             />
         </>
     )

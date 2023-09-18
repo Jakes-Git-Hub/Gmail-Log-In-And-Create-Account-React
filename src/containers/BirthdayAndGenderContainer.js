@@ -17,6 +17,7 @@ export const BirthdayAndGenderContainer = ({ updateUser }) => {
     const [incompleteBirthday, setIncompleteBirthday] = useState(false);
     const [genderEmpty, setGenderEmpty] = useState(false);
     const [isMonthSelected, setIsMonthSelected] = useState(false);
+    const [errorCondition, setErrorCondition] = useState(null);
 
     const navigate = useNavigate();
 
@@ -52,8 +53,14 @@ export const BirthdayAndGenderContainer = ({ updateUser }) => {
         }
     };
 
+    
+
     const handleSelectDay = (event) => {
-        setDay(event.target.value);
+        const inputDay = event.target.value;
+        const maxDayLength = 2;
+        if (inputDay.length <= maxDayLength) {
+            setDay(inputDay);
+        }
     };
 
 
@@ -70,12 +77,12 @@ export const BirthdayAndGenderContainer = ({ updateUser }) => {
     };
 
     const handleSelectYear = (event) => {
-        setYear(event.target.value);
+        const inputYear = event.target.value;
+        const maxYearLength = 4;
+        if (inputYear.length <= maxYearLength) {
+            setYear(inputYear);
+        }
     };
-
-// Incomplete Birthday
-
-    const birthdayError = () => setIncompleteBirthday(true);
 
 // Gender
 
@@ -93,13 +100,20 @@ export const BirthdayAndGenderContainer = ({ updateUser }) => {
         setGender(event.target.value);
     };
 
+// Error Messages
+
+    const birthdayError = () => setErrorCondition('incompleteBirthday');
+
+    const wrongFormat = () => setErrorCondition('isWrongFormat');
+    
     const genderError = () => setGenderEmpty(true);
 
 // Handle Next Click
 
-    const handleNextClick = (e) => {
+    const handleNextClick = () => {
         const isBirthdayEmpty = month === '' || day === '' || year === '';
         const isGenderEmpty = gender === '';
+        setErrorCondition(null);
         if (isBirthdayEmpty) {
             birthdayError();
         } if (isGenderEmpty) {
@@ -111,6 +125,8 @@ export const BirthdayAndGenderContainer = ({ updateUser }) => {
             setYear('');
             setGender('');
             navigate('/choose-your-gmail-address')
+        } if ((typeof day === 'string' || typeof year === 'string') && (day !== '' || year !== '')) {
+            wrongFormat();
         }
     };
 
@@ -141,6 +157,7 @@ export const BirthdayAndGenderContainer = ({ updateUser }) => {
             isImagePreloaded={isImagePreloaded}
             genderEmpty={genderEmpty}
             isMonthSelected={isMonthSelected}
+            errorCondition={errorCondition}
         />
     );
 }

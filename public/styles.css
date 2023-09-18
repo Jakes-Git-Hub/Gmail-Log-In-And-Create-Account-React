@@ -416,7 +416,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .placeholder-satic-cohersion {
   position: relative;
   display: flex;
-  width: 100%;
+  width: 94%;
   flex-wrap: wrap;
   align-content: center;
   justify-content: center;
@@ -428,7 +428,6 @@ input[type="number"]::-webkit-outer-spin-button {
   top: 50%;
   transform: translateY(-50%);
   font-size: 0.8em;
-  color: #5c5c5c;
   font-weight: 200;
 }
 
@@ -466,6 +465,11 @@ input[type="number"]::-webkit-outer-spin-button {
   align-items: center;
 }
 
+#usernameInput {
+  padding-right: 120px;
+
+}
+
 /* Create Password */
 
 #error-message-margin {
@@ -492,7 +496,6 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .password-toggle {
-  margin-top: 2px;
   width: 91%;
 }
 
@@ -528,11 +531,11 @@ input[type="number"]::-webkit-outer-spin-button {
 .custom-checkbox-label::before {
   content: "";
   display: inline-block;
-  width: 40px;
-  height: 40px;
+  width: 37.5px;
+  height: 37.5px;
   border-radius: 50%;
   position: absolute;
-  left: -6px;
+  left: -5.2px;
 }
 
 .custom-checkbox-label:hover::before {
@@ -584,6 +587,8 @@ input[type="number"]::-webkit-outer-spin-button {
 .tick-white {
   color: white;
   transition: color 0.3s;
+  position: relative;
+  bottom: 1.125px;
 }
 
 .custom-checkbox-label .custom-checkbox .tick-hidden {

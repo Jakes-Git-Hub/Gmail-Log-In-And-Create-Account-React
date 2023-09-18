@@ -9,6 +9,7 @@ import { CreateAccountContainer } from "./containers/CreateAccountContainer";
 import { BirthdayAndGenderContainer } from "./containers/BirthdayAndGenderContainer";
 import { ChooseYourGmailAddressContainer } from "./containers/ChooseYourGmailAddressContainer";
 import { CreatePasswordContainer } from "./containers/CreatePasswordContainer";
+import { ConfirmYoureNotARobotContainer } from "./containers/ConfirmYou'reNotARobotContainer"
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -95,6 +96,14 @@ function App() {
                 users={users}
               />
             </CreatePasswordStaticElementContainer>
+          } 
+        />
+        <Route path="/confirm-youre-not-a-robot" element={
+            <StaticElementContainer>
+              <ConfirmYoureNotARobotContainer
+                updateUser={updateUser} 
+              />
+            </StaticElementContainer>
           } 
         />
       </Routes>
