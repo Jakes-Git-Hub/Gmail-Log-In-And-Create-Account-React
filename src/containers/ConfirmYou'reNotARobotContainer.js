@@ -4,13 +4,13 @@ import { ConfirmYoureNotARobotComponent } from '../components/ConfirmYoureNotARo
 import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 
-export const ConfirmYoureNotARobotContainer = ({ updateUser }) => {
+export const ConfirmYoureNotARobotContainer = ({ updateUser, users }) => {
 
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [phoneNumberPlaceholder, setPhoneNumberPlaceholder] = useState("PhoneNumber");
+    const [phoneNumberPlaceholder, setPhoneNumberPlaceholder] = useState("Phone Number");
     const [isPhoneNumberEmpty, setIsPhoneNumberEmpty] = useState(false);
-    const [isIncorrectLength, setIsIncorrectLength] = useState(false);
-    const [usesUnallowedChars, setUsesUnallowedChars] = useState(false);
+    const [isIncorrectFormat, setIsIncorrectFormat] = useState(false);
+    const [isAlreadyRegistered, setIsAlreadyRegistered] = useState(false);
     const navigate = useNavigate();
 
     const isImagePreloaded = useImagePreload(errorImage);
@@ -23,7 +23,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser }) => {
 
     const handlePhoneNumberBlur = () => {
         if (phoneNumber === "") {
-            setPhoneNumberPlaceholder("PhoneNumber");
+            setPhoneNumberPlaceholder("Phone Number");
         }
     };
 
@@ -31,30 +31,33 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser }) => {
 
     const phoneNumberEmpty = () => setIsPhoneNumberEmpty(true);
 
-    const incorrectLength = () => setIsIncorrectLength(true);
+    const incorrectFormat = () => setIsIncorrectFormat(true);
 
-    const unallowedChars = () => setUsesUnallowedChars(true);
+    const alreadyRegistered = () => setIsAlreadyRegistered(true);
 
 // Handle Next Click
 
 const handleNextClick = () => {
     setIsPhoneNumberEmpty(false);
-    setIsIncorrectLength(false);
-    setUsesUnallowedChars(false);
+    setIsIncorrectFormat(false);
+    setIsAlreadyRegistered(false);
     if (phoneNumber === '') {
-      const phoneNumberInput = document.getElementById('PhoneNumberInput');
+      const phoneNumberInput = document.getElementById('phoneNumberInput');
       phoneNumberEmpty();
       phoneNumberInput.focus();
     } else if (!/^[a-zA-Z0-9.]+$/.test(phoneNumber)) {
       // Check if the phoneNumber contains unallowed characters
-      unallowedChars();
+      incorrectFormat();
       console.log('correct regex')
-    } else if (phoneNumber.length < 6 || phoneNumber.length > 30) {
-      incorrectLength();
     } else {
-      updateUser({ phoneNumber: phoneNumber })
-      setPhoneNumber('');
-      navigate('/create-password')
+            const isPhoneNumberAlreadyRegistered = users.some(user => user.phoneNumber === phoneNumber);
+            if(isPhoneNumberAlreadyRegistered) {
+                alreadyRegistered();    
+            } else {
+        updateUser({ phoneNumber: phoneNumber })
+        setPhoneNumber('');
+        navigate('/next')
+        }
     }
 };
 
@@ -69,8 +72,8 @@ const handleNextClick = () => {
                 handleNextClick={handleNextClick}
                 isPhoneNumberEmpty={isPhoneNumberEmpty}
                 isImagePreloaded={isImagePreloaded}
-                isIncorrectLength={isIncorrectLength}
-                usesUnallowedChars={usesUnallowedChars}
+                isIncorrectFormat={isIncorrectFormat}
+                isAlreadyRegistered={isAlreadyRegistered}
             />
         </>
     )

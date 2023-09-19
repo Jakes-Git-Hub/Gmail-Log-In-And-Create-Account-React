@@ -55,7 +55,7 @@ export const ChooseYourGmailAddressComponent = ({
                     <p class="input-error-message">Sorry, only letters (a-z), numbers (0-9) and periods (.) are allowed.</p>
                 </div>
             ) : (
-                <div id='choose-username-small-grey'>
+                <div class='below-input-small-grey'>
                     <p class='small-grey'>You can use letters, numbers & periods</p>
                 </div>
             )}

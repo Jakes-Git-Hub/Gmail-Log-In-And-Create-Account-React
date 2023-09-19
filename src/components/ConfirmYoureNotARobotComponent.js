@@ -2,7 +2,16 @@ import React from 'react';
 import errorImage from '../images/Daco_5575399.png';
 
 export const ConfirmYoureNotARobotComponent = ({ 
-
+    phoneNumber,
+    setPhoneNumber,
+    handlePhoneNumberClick,
+    handlePhoneNumberBlur,
+    phoneNumberPlaceholder,
+    handleNextClick,
+    isPhoneNumberEmpty,
+    isImagePreloaded,
+    isIncorrectFormat,
+    isAlreadyRegistered,
 }) => {
 
     return (
@@ -16,42 +25,37 @@ export const ConfirmYoureNotARobotComponent = ({
                 <div class='placeholder-satic-cohersion'>
                     <input 
                         id='usernameInput'
-                        class={isUsernameEmpty ? 'error' : 'input'}
+                        class={isPhoneNumberEmpty ? 'error' : 'input'}
                         type='text' 
-                        value={email} 
-                        onChange={(e) => setEmail(e.target.value)} 
-                        placeholder={emailPlaceholder}
-                        onFocus={handleEmailClick}
-                        onBlur={handleEmailBlur}
+                        value={phoneNumber} 
+                        onChange={(e) => setPhoneNumber(e.target.value)} 
+                        placeholder={phoneNumberPlaceholder}
+                        onFocus={handlePhoneNumberClick}
+                        onBlur={handlePhoneNumberBlur}
                     />
-                    <span class='static-position'>
-                        @gmail.com
-                    </span>
                 </div>
             </label>
 
-            {isIncorrectLength && isImagePreloaded ? (
+            {isPhoneNumberEmpty && isImagePreloaded ? (
                 <div class='long-error-div' id='error-div-space'>
                     <img className='error-image' src={errorImage} alt='Error Image' />
                     <p class="input-error-message">Please enter a phone number</p>
                 </div>
-            ) : isUsernameEmpty && isImagePreloaded ? (
+            ) : isIncorrectFormat && isImagePreloaded ? (
                 <div class='error-div' id='error-div-space'>
                     <img className='error-image' src={errorImage} alt='Error Image' />
                     <p class="input-error-message">This phone number format is not recognized. Please check the country and number.</p>
                 </div>
-            ) : usesUnallowedChars && isImagePreloaded ? (
-                <div class='long-error-div' id='error-div-space'>
+            ) : isAlreadyRegistered && isImagePreloaded (
+                <div class='error-div' id='error-div-space'>
                     <img className='error-image' src={errorImage} alt='Error Image' />
-                    <p class="input-error-message">Sorry, only letters (a-z), numbers (0-9) and periods (.) are allowed.</p>
-                </div>
-            ) : (
-                <div id='choose-username-small-grey'>
-                    <p class='small-grey'>You can use letters, numbers & periods</p>
+                    <p class="input-error-message">This phone number has been used too many times</p>
                 </div>
             )}
 
-            <p>Google will verify this nummber via SMS (charges may apply).</p>
+                <div class='below-input-small-grey'>
+                    <p class='small-grey'>Google will verify this number via SMS (charges may apply).</p>
+                </div>
 
             <div id='button-right-choose-email'>
                 <button type='button' class="button-space blue-button" onClick={handleNextClick}>

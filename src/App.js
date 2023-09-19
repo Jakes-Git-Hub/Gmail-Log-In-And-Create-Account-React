@@ -102,6 +102,7 @@ function App() {
             <StaticElementContainer>
               <ConfirmYoureNotARobotContainer
                 updateUser={updateUser} 
+                users={users}
               />
             </StaticElementContainer>
           } 
