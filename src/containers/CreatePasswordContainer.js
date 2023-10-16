@@ -81,7 +81,7 @@ export const CreatePasswordContainer = ({ updateUser }) => {
         setPassword('');
         setConfirmPassword('');
         setErrorCondition(null);
-        navigate('//confirm-youre-not-a-robot');
+        navigate('/add-recovery-email');
         } else if (password === '' && confirmPassword === '') {
             bothPasswordAndConfirmEmpty();
             const passwordInput = document.getElementById('passwordInput');

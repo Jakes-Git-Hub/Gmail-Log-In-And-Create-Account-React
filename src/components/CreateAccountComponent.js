@@ -1,5 +1,6 @@
 import React from 'react';
 import errorImage from '../images/Daco_5575399.png';
+import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const CreateAccountcomponent = ({ 
     firstName,
@@ -20,9 +21,9 @@ export const CreateAccountcomponent = ({
     return (
         <form>
 
-            <h1 class="thin h1-space">Create a Google Account</h1>
+                <h1 class="thin h1-space">Create a Google Account</h1>
 
-            <h2 class='thin gap'>Enter your name</h2>
+                <h2 class='thin gap'>Enter your name</h2>
 
             <label class="space line-height label-input-width input-label">
                 <input 
@@ -49,11 +50,13 @@ export const CreateAccountcomponent = ({
                 />
             </label>
 
-            {firstNameEmpty && isImagePreloaded && (
+            {firstNameEmpty && isImagePreloaded ? (
                 <div class='error-div'>
                     <img className='error-image' src={errorImage} alt='Error Image' />
                     <p class="input-error-message">Enter first name</p>
                 </div>
+            ) : (
+                <div className='hidden-error-message-container-create-account'></div>
             )}
             
             <div class='button-right'>

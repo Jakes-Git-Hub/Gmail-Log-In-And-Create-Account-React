@@ -27,7 +27,8 @@ export const BirthdayAndGenderComponent = ({
     isImagePreloaded,
     genderEmpty,
     isMonthSelected,
-    errorCondition
+    errorCondition,
+    isGenderSelected
 }) => {
     
     return (
@@ -105,7 +106,7 @@ export const BirthdayAndGenderComponent = ({
      
             <label class='line-height gender-input-width' id='gender-space'>
                 <select
-                    class={`select-color ${genderEmpty ? 'error-input-third-adjust' : 'input-third-adjust' }`}
+                    class={`select-color ${genderEmpty ? 'error-input-third-adjust' : 'input-third-adjust' } ${isGenderSelected ? 'select-selected' : 'select-color'}`}
                     value={gender}
                     onChange={handleSelectGender}
                     onClick={handleGenderClick}
@@ -127,7 +128,7 @@ export const BirthdayAndGenderComponent = ({
             )}   
             
             <section class='button-right'>
-                <button type='button' class="button-space blue-button" onClick={handleNextClick}>
+                <button type='button' class="button-space-basic-info blue-button" onClick={handleNextClick}>
                     Next   
                 </button> 
             </section>

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ConfirmYoureNotARobotComponent } from '../components/ConfirmYoureNotARobotComponent';
+import { AddPhoneNumberComponent } from '../components/AddPhoneNumberComponent';
 import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 
-export const ConfirmYoureNotARobotContainer = ({ updateUser, users }) => {
+export const AddPhoneNumberContainer = ({ updateUser, users }) => {
 
     const [phoneNumber, setPhoneNumber] = useState('');
     const [phoneNumberPlaceholder, setPhoneNumberPlaceholder] = useState("Phone Number");
@@ -63,7 +63,7 @@ const handleNextClick = () => {
 
     return (
         <>
-            <ConfirmYoureNotARobotComponent
+            <AddPhoneNumberComponent
                 phoneNumber={phoneNumber}
                 setPhoneNumber={setPhoneNumber}
                 handlePhoneNumberClick={handlePhoneNumberClick}

@@ -46,13 +46,13 @@ const isImagePreloaded = useImagePreload(errorImage);
 
 // Handle Next
 
-    const handleNextClick = (e) => {
+    const handleNextClick = () => {
         if (firstName !== '') {
-            updateUser({ firstName: firstName, lastName: lastName })
+            updateUser({ firstName: firstName, lastName: lastName });
             setFirstName('');
             setLastName('');
             setFirstNameEmpty(false);
-            navigate('/basic-information')
+            navigate('/basic-information');
         } else if (firstName === '') {
             firstNameError();
             const firstNameInput = document.getElementById('firstNameInput');

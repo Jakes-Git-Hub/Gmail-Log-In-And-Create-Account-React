@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LoginForm } from '../components/LoginForm';
+import { SignInFrontPageComponent } from '../components/SignInFrontPageComponent';
 import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 
-export const LoginFormContainer = ({ users, handleLogin }) => {
+export const SignInFrontPageContainer = ({ users, handleLogin }) => {
 
     const navigate = useNavigate();
 
@@ -79,7 +79,7 @@ export const LoginFormContainer = ({ users, handleLogin }) => {
 
     return(
         <>
-            <LoginForm
+            <SignInFrontPageComponent
                 email={email}
                 setEmail={setEmail}
                 password={password}

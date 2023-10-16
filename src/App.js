@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { FrontPageStaticContainer } from './containers/FrontPageStaticContainer'
 import { StaticElementContainer } from "./containers/StaticElementContainer";
 import { CreatePasswordStaticElementContainer } from "./containers/CreatePasswordStaticElementContainer";
-import { LoginFormContainer } from "./containers/LoginFormContainer";
+import { SignInFrontPageContainer } from "./containers/SignInFrontPageContainer";
 import { MockMailContainer } from "./containers/MockMailContainer";
 import { CreateAccountContainer } from "./containers/CreateAccountContainer";
 import { BirthdayAndGenderContainer } from "./containers/BirthdayAndGenderContainer";
 import { ChooseYourGmailAddressContainer } from "./containers/ChooseYourGmailAddressContainer";
 import { CreatePasswordContainer } from "./containers/CreatePasswordContainer";
-import { ConfirmYoureNotARobotContainer } from "./containers/ConfirmYou'reNotARobotContainer"
+import { AddPhoneNumberContainer } from "./containers/AddPhoneNumberContainer"
+import { AddRecoveryEmailContainer } from "./containers/AddRecoveryEmailContainer";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -52,7 +53,7 @@ function App() {
       <Routes>
         <Route path="/" element={
             <FrontPageStaticContainer>
-              <LoginFormContainer 
+              <SignInFrontPageContainer 
                 users={users}
                 handleLogin={handleLogin}
               />
@@ -98,9 +99,17 @@ function App() {
             </CreatePasswordStaticElementContainer>
           } 
         />
+        <Route path="/add-recovery-email" element={
+            <StaticElementContainer>
+              <AddRecoveryEmailContainer
+                updateUser={updateUser} 
+              />
+            </StaticElementContainer>
+          } 
+        />
         <Route path="/confirm-youre-not-a-robot" element={
             <StaticElementContainer>
-              <ConfirmYoureNotARobotContainer
+              <AddPhoneNumberContainer
                 updateUser={updateUser} 
                 users={users}
               />

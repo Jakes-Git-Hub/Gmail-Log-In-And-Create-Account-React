@@ -1,7 +1,7 @@
 import React from "react";
 import errorImage from '../images/Daco_5575399.png';
 
-export const LoginForm = ({ 
+export const SignInFrontPageComponent = ({ 
     email,
     setEmail,
     password,
@@ -65,14 +65,14 @@ export const LoginForm = ({
                 </div>
             )}
             
-            <button class="sign-in-space blue-button">
+            <button class="log-in-space blue-button">
                 Login   
             </button>
 
 
-            <p class="links-font-size sign-in-space hyper-link">Forgot Email?</p>
+            <p class="links-font-size sign-in-space-1 hyper-link">Forgot Email?</p>
             <p class="links-font-size sign-in-space hyper-link">Forgot Password?</p>
-            <button type='button' class="links-font-size last grey-button" onClick={handleCreateAccountClick}>Create account</button>
+            <button type='button' class="last grey-button" onClick={handleCreateAccountClick}>Create account</button>
         </form>
   );
 }

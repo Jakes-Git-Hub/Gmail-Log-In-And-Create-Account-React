@@ -1,7 +1,7 @@
 import React from 'react';
 import errorImage from '../images/Daco_5575399.png';
 
-export const ConfirmYoureNotARobotComponent = ({ 
+export const AddPhoneNumberComponent = ({ 
     phoneNumber,
     setPhoneNumber,
     handlePhoneNumberClick,
@@ -17,24 +17,24 @@ export const ConfirmYoureNotARobotComponent = ({
     return (
         <form>
 
-            <h1 class="thin h1-space">Confirm You're Not A Robot</h1>
+            <h1 class="thin h1-space">Add phone Number</h1>
 
-            <h2 class='thin gap center' id='h2'>Get a verification code sent to your phone</h2>
-
-            <label class="space line-height label-input-width input-label" id='username-input-width'>
-                <div class='placeholder-satic-cohersion'>
-                    <input 
-                        id='usernameInput'
-                        class={isPhoneNumberEmpty ? 'error' : 'input'}
-                        type='text' 
-                        value={phoneNumber} 
-                        onChange={(e) => setPhoneNumber(e.target.value)} 
-                        placeholder={phoneNumberPlaceholder}
-                        onFocus={handlePhoneNumberClick}
-                        onBlur={handlePhoneNumberBlur}
-                    />
-                </div>
-            </label>
+            <div id>
+                <label class="space line-height label-input-width input-label" id='username-input-width'>
+                    <div class='placeholder-satic-cohersion'>
+                        <input 
+                            id='usernameInput'
+                            class={isPhoneNumberEmpty ? 'error' : 'input'}
+                            type='text' 
+                            value={phoneNumber} 
+                            onChange={(e) => setPhoneNumber(e.target.value)} 
+                            placeholder={phoneNumberPlaceholder}
+                            onFocus={handlePhoneNumberClick}
+                            onBlur={handlePhoneNumberBlur}
+                        />
+                    </div>
+                </label>
+            </div>
 
             {isPhoneNumberEmpty && isImagePreloaded ? (
                 <div class='long-error-div' id='error-div-space'>

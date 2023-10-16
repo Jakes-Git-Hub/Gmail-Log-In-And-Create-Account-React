@@ -18,6 +18,7 @@ export const BirthdayAndGenderContainer = ({ updateUser }) => {
     const [genderEmpty, setGenderEmpty] = useState(false);
     const [isMonthSelected, setIsMonthSelected] = useState(false);
     const [errorCondition, setErrorCondition] = useState(null);
+    const [isGenderSelected, setIsGenderSelected] = useState(false);
 
     const navigate = useNavigate();
 
@@ -88,6 +89,7 @@ export const BirthdayAndGenderContainer = ({ updateUser }) => {
 
     const handleGenderClick = () => {
         setGenderPlaceholder("");
+        setIsGenderSelected(true);
     };
 
     const handleGenderBlur = () => {
@@ -157,6 +159,7 @@ export const BirthdayAndGenderContainer = ({ updateUser }) => {
             isImagePreloaded={isImagePreloaded}
             genderEmpty={genderEmpty}
             isMonthSelected={isMonthSelected}
+            isGenderSelected={isGenderSelected}
             errorCondition={errorCondition}
         />
     );

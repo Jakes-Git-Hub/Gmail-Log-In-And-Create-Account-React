@@ -92,7 +92,7 @@ export const CreatePasswordComponent = ({
             </div>
             
             <div id='create-password-next-button'>
-                <button class="button-space blue-button" type="button" onClick={handleNextClick}>
+                <button class="button-space-create-password blue-button" type="button" onClick={handleNextClick}>
                     Next   
                 </button>
             </div>
