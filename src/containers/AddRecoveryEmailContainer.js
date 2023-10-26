@@ -51,7 +51,7 @@ export const AddRecoveryEmailContainer = ({ updateUser }) => {
             updateUser({ recoveryEmail: recoveryEmail });
             setRecoveryEmail('');
             setErrorCondition(null);
-            navigate('/confirm-youre-not-a-robot');
+            navigate('/add-phone-number');
         } else if (recoveryEmail === '' || isEmailInvalid(recoveryEmail)) {
             setErrorCondition('enterValidEmail');
             const recoveryEmailInput = document.getElementById('recoveryEmailInput');
@@ -78,7 +78,7 @@ export const AddRecoveryEmailContainer = ({ updateUser }) => {
     const handleSkip = () => {
         setRecoveryEmail('');
         setErrorCondition(null);
-        navigate('/confirm-youre-not-a-robot');
+        navigate('/add-phone-number');
     }
 
     // Handle Submit

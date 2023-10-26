@@ -107,7 +107,7 @@ function App() {
             </StaticElementContainer>
           } 
         />
-        <Route path="/confirm-youre-not-a-robot" element={
+        <Route path="/add-phone-number" element={
             <StaticElementContainer>
               <AddPhoneNumberContainer
                 updateUser={updateUser} 

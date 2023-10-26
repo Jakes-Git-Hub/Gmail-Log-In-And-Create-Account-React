@@ -1,5 +1,7 @@
 import React from 'react';
+import Select from 'react-select';
 import errorImage from '../images/Daco_5575399.png';
+import GBSVG from '../images/flags/GBSVG.svg';
 
 export const AddPhoneNumberComponent = ({ 
     phoneNumber,
@@ -8,23 +10,35 @@ export const AddPhoneNumberComponent = ({
     handlePhoneNumberBlur,
     phoneNumberPlaceholder,
     handleNextClick,
+    handleSkip,
     isPhoneNumberEmpty,
     isImagePreloaded,
     isIncorrectFormat,
     isAlreadyRegistered,
+    customOptions,
+    customStyles
 }) => {
 
     return (
-        <form>
+        <form className='phone-number-form'>
 
-            <h1 class="thin h1-space">Add phone Number</h1>
+            <h1 class="thin h1-space-phone-number">Add phone number</h1>
 
-            <div id>
-                <label class="space line-height label-input-width input-label" id='username-input-width'>
-                    <div class='placeholder-satic-cohersion'>
+            <div id='add-phone-number-dropdown-and-input'>
+                <Select
+                    styles={customStyles}
+                    class='flag-drop-down'
+                    options={customOptions}
+                    placeholder={<img src={GBSVG} alt="Flag" width="24" height="16" />}
+                    isSearchable={false}
+                    noOptionsMessage={() => <img src={GBSVG} alt="Flag" width="24" height="16" />}
+                    isClearable={true}
+                />
+                <label class="space-phone-number-input line-height label-input-width input-label" id='phoneNumber-input-width'>
+                    <div class='placeholder-satic-cohersion-phone-number'>
                         <input 
-                            id='usernameInput'
-                            class={isPhoneNumberEmpty ? 'error' : 'input'}
+                            id='phoneNumberInput'
+                            class={isPhoneNumberEmpty ? 'short-error' : 'short-input'}
                             type='text' 
                             value={phoneNumber} 
                             onChange={(e) => setPhoneNumber(e.target.value)} 
@@ -53,13 +67,18 @@ export const AddPhoneNumberComponent = ({
                 </div>
             )}
 
-                <div class='below-input-small-grey'>
-                    <p class='small-grey'>Google will verify this number via SMS (charges may apply).</p>
+                <div class='below-input-add-phone-number'>
+                    <p class='small-grey'>Google will use this number only for account security. Your number won’t be visible to others. You can choose later whether to use it for other purposes.</p>
                 </div>
 
-            <div id='button-right-choose-email'>
-                <button type='button' class="button-space blue-button" onClick={handleNextClick}>
-                    Next   
+            
+
+                <div class='next-and-skip-button-duo'>
+                <button class="button-space-add-phone-number white-button" type="submit" onClick={handleNextClick}>
+                        Next   
+                </button>
+                <button class="button-space-add-phone-number white-button" type="button" onClick={handleSkip}>
+                        Skip   
                 </button>
             </div>
 

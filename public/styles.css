@@ -221,6 +221,11 @@ form {
   color: #5c5c5c; 
 }
 
+.input:focus {
+  outline: none !important;
+  border: 2.2px solid rgb(54, 122, 225);
+}
+
 .select-dropdown-options::placeholder {
   color: #5c5c5c; 
 }
@@ -228,11 +233,6 @@ form {
 .dob-input-width input::placeholder,
 .gender-input-width select::placeholder {
   color: #5c5c5c; 
-}
-
-.input:focus {
-  outline: none !important;
-  border: 2.2px solid rgb(54, 122, 225);
 }
 
 .line-height {
@@ -617,7 +617,6 @@ input[type="number"]::-webkit-outer-spin-button {
 
 #usernameInput {
   padding-right: 120px;
-
 }
 
 /* Create Password */
@@ -823,7 +822,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .next-and-skip-button-duo {
-  width: 360px;
+  width: 372px;
   display: flex;
   flex-wrap: nowrap;
   flex-direction: row;
@@ -851,9 +850,138 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 20px 1.5px 210px 0;
 }
 
+/* Add phone number */
 
-/* Confirm Youre Not A Robot */
+#add-phone-number-dropdown-and-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+}
 
+.flag-drop-down {
+  border-radius: 4px;
+  border: 1px solid rgb(219, 219, 219);
+  height: 29.75px;
+  max-height: 29.75px;
+  font-size: 16.75px;
+  padding-left: 15px;
+  width: 10%;
+  display: flex;
+  align-items: center;
+}
+
+.css-b62m3t-container {
+  width: 103px;
+  margin-left: 3px;
+}
+
+.css-13cymwt-control {
+  height: 33px !important;
+  min-height: 0px !important;
+  /* border-color: transparent !important; REVERT-LATER*/  
+}
+
+.css-1u9des2-indicatorSeparator {
+  width: 0px !important;
+}
+
+.css-t3ipsp-control {
+  height: 33px !important;
+  min-height: 0px !important;
+}
+
+.css-1fdsijx-ValueContainer {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-content: center !important;
+  justify-content: center !important;
+  flex-direction: row-reverse !important;
+}
+
+.placeholder-satic-cohersion-phone-number{
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+}
+
+.space-phone-number-input {
+  margin: 13px 0 13px 1px;
+}
+
+.short-input {
+  border-radius: 4px;
+  border: 1px solid rgb(219, 219, 219);
+  height: 29.75px;
+  max-height: 29.75px;
+  font-size: 16.75px;
+  padding-left: 7.5px;
+  width: 100%;
+}
+
+.short-input::target-text {
+  font-size: 16.75px;
+}
+
+.short-input::placeholder {
+  font-size: 13.75px;
+}
+
+.short-input:focus {
+  outline: none !important;
+  border: 2.2px solid rgb(54, 122, 225);
+}
+
+.short-error {
+  outline: none !important;
+  border: 1px solid rgb(225 54 54);
+  height: 29.75px;
+  max-height: 29.75px;
+  font-size: 16.75px;
+  padding-left: 15px;
+  width: 90%;
+  border-radius: 4px;
+}
+
+.short-error::target-text {
+  font-size: 16.75px;
+}
+
+.short-error::placeholder {
+  font-size: 16.75px;
+}
+
+.short-error:focus {
+  outline: none !important;
+  border: 2.2px solid rgb(225 54 54);
+  border-radius: 4px;
+}
+
+.below-input-add-phone-number {
+  display: flex;
+  justify-content: flex-start;
+  width: 89%;
+  margin-top: -23.5px;
+}
+
+.button-space-add-phone-number {
+  margin: 20px 1.5px 260px 0;
+}
+
+.h1-space-phone-number {
+  margin: 6px 0 18px 0;
+}
+
+.phone-number-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 92%;
+}
 
 
 
