@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AddPhoneNumberComponent } from '../components/AddPhoneNumberComponent';
 import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
-import customOptions from '../utils/addPhoneNumberDropDownOptionsObject'
+import { countries, customOptions } from '../utils/addPhoneNumberDropDownOptionsObject';
+import axios from 'axios';
 
-export const AddPhoneNumberContainer = ({ updateUser, users }) => {
+export const AddPhoneNumberContainer = ({ updateUser, users, userIP }) => {
 
     const [phoneNumber, setPhoneNumber] = useState('');
     const [phoneNumberPlaceholder, setPhoneNumberPlaceholder] = useState("Phone Number");
@@ -13,10 +14,35 @@ export const AddPhoneNumberContainer = ({ updateUser, users }) => {
     const [isIncorrectFormat, setIsIncorrectFormat] = useState(false);
     const [isAlreadyRegistered, setIsAlreadyRegistered] = useState(false);
     const [errorCondition, setErrorCondition] = useState(null);
-    const [selectedOption, setSelectedOption] = useState(null);
+    const [usersCountryFlagSVG, setUsersCountryFlagSVG] = useState('');
     const navigate = useNavigate();
 
+// Loads Error Image
+
     const isImagePreloaded = useImagePreload(errorImage);
+
+// Get User's Country from IP and Set SVG Based on it
+
+    useEffect(() => { 
+        if (userIP) {
+            const apiKey = 'b2ef0251b1264f88ae869467dfe144d8';
+
+            axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}&ip=200.7.98.19`)
+            .then((response) => {
+                const countryFromIP = response.data.country_name;
+                const matchingCountry = countries.find(country => country.name === countryFromIP);
+                if (matchingCountry) {
+                    setUsersCountryFlagSVG(matchingCountry.svg);
+                }
+                console.log(`User's country: ${countryFromIP}`);
+            })
+            .catch((error) => {
+                console.error('Error fetching geolocation data:', error);
+            });
+        } else {
+            console.log("didn't work, or still waiting for IP API request");
+        }
+    }, [userIP]);
 
 // phoneNumber
 
@@ -64,21 +90,53 @@ export const AddPhoneNumberContainer = ({ updateUser, users }) => {
         }
     };
 
+// Custom React Select Styles
+
+    const customStyles = {
+        menu: styles => ({
+            ...styles,
+            width: '360px',
+        }),
+        container: provided => ({
+            ...provided,
+            width: '103px',
+            marginLeft: '3px',
+        }),
+        control: provided => ({
+            ...provided,
+            height: '33px',
+            minHeight: '0px',
+            borderColor: 'transparent',
+            ':hover': {
+                borderColor: 'transparent',
+                pointer: 'cursor'
+            },
+            ':focus:': {
+                border
+            }
+        }),
+            indicatorSeparator: provided => ({
+            ...provided,
+            width: '0px',
+        }),
+        valueContainer: provided => ({
+        ...provided,
+            display: 'flex',
+            flexWrap: 'nowrap',
+            alignContent: 'center',
+            justifyContent: 'center',
+            flexDirection: 'row-reverse',
+        }),
+    };
+  
+
+
 // Handle Skip
 
     const handleSkip = () => {
         setPhoneNumber('');
         setErrorCondition(null);
         navigate('/review-your-account-info');
-    };
-
-// Custom React Select Styles
-
-    const customStyles = {
-        menu: (styles) => ({
-            ...styles,
-            width: '360px',                
-        }),
     };
 
     return (
@@ -96,7 +154,10 @@ export const AddPhoneNumberContainer = ({ updateUser, users }) => {
                 isIncorrectFormat={isIncorrectFormat}
                 isAlreadyRegistered={isAlreadyRegistered}
                 customOptions={customOptions}
+                countries={countries}
                 customStyles={customStyles}
+                userIP={userIP}
+                usersCountryFlagSVG={usersCountryFlagSVG}
             />
         </>
     )

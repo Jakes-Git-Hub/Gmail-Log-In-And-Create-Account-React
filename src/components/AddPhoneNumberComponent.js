@@ -1,9 +1,11 @@
 import React from 'react';
 import Select from 'react-select';
 import errorImage from '../images/Daco_5575399.png';
-import GBSVG from '../images/flags/GBSVG.svg';
+import GBSVG from '../images/flags/gb2.svg';
+import AddPhoneNumberReactSelect2 from './AddPhoneNumberReactSelect2';
 
 export const AddPhoneNumberComponent = ({ 
+    userIP,
     phoneNumber,
     setPhoneNumber,
     handlePhoneNumberClick,
@@ -16,24 +18,57 @@ export const AddPhoneNumberComponent = ({
     isIncorrectFormat,
     isAlreadyRegistered,
     customOptions,
-    customStyles
+    usersCountryFlagSVG,
+    countries, 
+    customStyles,
 }) => {
 
     return (
+
+        
         <form className='phone-number-form'>
 
             <h1 class="thin h1-space-phone-number">Add phone number</h1>
 
             <div id='add-phone-number-dropdown-and-input'>
+            {usersCountryFlagSVG ? (
                 <Select
                     styles={customStyles}
                     class='flag-drop-down'
                     options={customOptions}
-                    placeholder={<img src={GBSVG} alt="Flag" width="24" height="16" />}
+                    placeholder={
+                        <img
+                            src={require(`../images/flags/${usersCountryFlagSVG}`)}
+                            alt="Flag"
+                            width="24"
+                            height="16"
+                        />
+                    }
                     isSearchable={false}
-                    noOptionsMessage={() => <img src={GBSVG} alt="Flag" width="24" height="16" />}
-                    isClearable={true}
+                    noOptionsMessage={() => (
+                        <img src={GBSVG} alt="Flag" width="24" height="16" />
+                    )}
                 />
+            ) : (
+                <Select
+                    styles={customStyles}
+                    class='flag-drop-down'
+                    options={customOptions}
+                    placeholder={
+                        <img
+                            src={GBSVG}
+                            alt="Flag"
+                            width="24"
+                            height="16"
+                        />
+                    }
+                    isSearchable={false}
+                    noOptionsMessage={() => (
+                        <img src={GBSVG} alt="Flag" width="24" height="16" />
+                    )}
+                />
+            )}
+
                 <label class="space-phone-number-input line-height label-input-width input-label" id='phoneNumber-input-width'>
                     <div class='placeholder-satic-cohersion-phone-number'>
                         <input 

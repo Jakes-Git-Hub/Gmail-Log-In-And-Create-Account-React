@@ -1,10 +1,4 @@
-const sVGFlagMapping = {
-    ad: 'ad.svg',
-    ae: 'ae.svg',
-    // Add entries for all countries
-};
-
-const countries = [
+export const countries = [
     {
         name: 'Andorra',
         abbreviation: 'ad',
@@ -471,7 +465,7 @@ const countries = [
         name: 'United Kingdom (England)',
         abbreviation: 'gb-eng',
         dialingCode: '+44',
-        svg:'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 16" width="24" height="16"><clipPath id="a"><path d="M0 0v16h24V0z"/></clipPath><clipPath id="b"><path d="M12 8h12v8zv8H0zH0V0zV0h12z"/></clipPath><g clip-path="url(#a)"><path d="M0 0v16h24V0z" fill="#012169"/><path d="m0 0 24 16m0 -16L0 16" stroke="#fff" stroke-width="3.2"/><path d="m0 0 24 16m0 -16L0 16" clip-path="url(#b)" stroke="#C8102E" stroke-width="2"/><path d="M12 0v16M0 8h24" stroke="#fff" stroke-width="4.8"/><path d="M12 0v16M0 8h24" stroke="#C8102E" stroke-width="3.2"/></g></svg>',
+        svg:'',
     },
     {
         name: 'United Kingdom (Northern Ireland)',
@@ -1531,26 +1525,30 @@ const countries = [
     },
 ];
 
-countries.forEach((country) => {
-    const { abbreviation } = country;
-    if (sVGFlagMapping.hasOwnProperty(abbreviation)) {
-        country.svg = sVGFlagMapping[abbreviation];
-    } else {
-        country.svg = ''; // Set to an empty string if there's no flag image
-    }
-});
+// Quicker way of assigning the countries SVG values
 
+function populateSvgForCountries(countries) {
+    for (const country of countries) {
+      // Assuming 'abbreviation' is available and 'svg' is missing.
+      if (country.abbreviation && !country.svg) {
+        country.svg = `${country.abbreviation}.svg`;
+      }
+    }
+}
+
+countries.sort((a, b) => a.name.localeCompare(b.name));
+
+populateSvgForCountries(countries);
   
-const customOptions = countries.map(country => ({
+export const customOptions = countries.map(country => ({
     value: country.name,
     label: (
         <div>
-            <img src={'../../country-flags/svg/ad.svg'} alt={country.name} className="flag-image" />
+            <img src={require(`../images/flags/${country.svg}`)} className="flag-image" />
             <span>
-                ({country.dialingCode})
+                {country.name} ({country.dialingCode})
             </span>
         </div>
     ),
 }));
   
-export default customOptions;

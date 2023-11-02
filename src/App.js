@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import axios from 'axios';
 import { FrontPageStaticContainer } from './containers/FrontPageStaticContainer'
 import { StaticElementContainer } from "./containers/StaticElementContainer";
 import { CreatePasswordStaticElementContainer } from "./containers/CreatePasswordStaticElementContainer";
@@ -18,6 +19,23 @@ function App() {
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
   const [nextUserId, setNextUserId] = useState(1);
   const [userData, setUserData] = useState({});
+  const [userIP, setUserIP] = useState('');
+
+// Grab User's IP
+
+  useEffect(() => {
+    axios.get('http://localhost:3001/get-user-ip') // Make a request to your Express server
+      .then((response) => {
+        const ip = response.data.userIpAddress;
+        setUserIP(ip);
+        console.log(ip);
+      })
+      .catch((error) => {
+        console.error('Error fetching user IP:', error);
+      });
+  }, []);
+
+// Handle Log In
 
   const handleLogin = (email, password) => {
     console.log("Attempting login with:", email, password);
@@ -56,6 +74,7 @@ function App() {
               <SignInFrontPageContainer 
                 users={users}
                 handleLogin={handleLogin}
+                userIP={userIP}
               />
             </FrontPageStaticContainer>
           } />
@@ -112,6 +131,7 @@ function App() {
               <AddPhoneNumberContainer
                 updateUser={updateUser} 
                 users={users}
+                userIP={userIP}
               />
             </StaticElementContainer>
           } 
