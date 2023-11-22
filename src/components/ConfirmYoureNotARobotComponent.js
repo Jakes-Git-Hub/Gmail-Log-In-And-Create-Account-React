@@ -2,75 +2,67 @@ import React from 'react';
 import Select from 'react-select';
 import errorImage from '../images/Daco_5575399.png';
 import GBSVG from '../images/flags/gb2.svg';
-import dropDownImageSVG from '../images/drop-down-svg.svg';
 
-export const AddPhoneNumberComponent = ({ 
+export const ConfirmYoureNotARobotComponent = ({ 
     phoneNumber,
     setPhoneNumber,
     handlePhoneNumberClick,
     handlePhoneNumberBlur,
     phoneNumberPlaceholder,
     handleNextClick,
-    handleSkip,
     isPhoneNumberEmpty,
     isImagePreloaded,
     isIncorrectFormat,
     isAlreadyRegistered,
-    usersCountryTopSeparateOptions,
+    customOptions,
     usersCountryFlagSVG,
     customStyles,
     CustomDropdownIndicator,
-    setIsOpen,
-    isSelectionMade
 }) => {
 
     return (
+        <form>
 
-        <form className='phone-number-form'>
+            <h1 class="thin">Confirm you're not a robot</h1>
 
-            <h1 class="thin h1-space-phone-number">Add phone number</h1>
+            <h2 class='thin gap-cynar center' id='font-and-color-cynar-h2'>Get a verification code sent to your phone</h2>
 
             <div id='add-phone-number-dropdown-and-input'>
                 {usersCountryFlagSVG ? (
                     <Select
                         styles={customStyles}
-                        onMenuOpen={() => setIsOpen(true)}
-                        onMenuClose={() => setIsOpen(false)}
                         class="flag-drop-down"
-                        options={usersCountryTopSeparateOptions}
+                        options={customOptions}
                         components={{ DropdownIndicator: CustomDropdownIndicator}}
-                        placeholder={isSelectionMade ? '' : <img
-                                                                src={require(`../images/flags/${usersCountryFlagSVG}`)}
-                                                                alt="Flag"
-                                                                width="24"
-                                                                height="16"
-                                                            />
+                        placeholder={<img
+                                        src={require(`../images/flags/${usersCountryFlagSVG}`)}
+                                        alt="Flag"
+                                        width="24"
+                                        height="16"
+                                    />
                         }
-                        menuIsOpen={true}
                     />
                 ) : (
                     <Select
                         styles={customStyles}
-                        onMenuOpen={() => setIsOpen(true)}
-                        onMenuClose={() => setIsOpen(false)}
                         class="flag-drop-down"
-                        options={usersCountryTopSeparateOptions}
+                        options={customOptions}
                         components={{ DropdownIndicator: CustomDropdownIndicator}}
-                        placeholder={isSelectionMade ? '' : <img
-                                                                src={GBSVG}
-                                                                alt="Flag"
-                                                                width="24"
-                                                                height="16"
-                                                            />
+                        placeholder={<img
+                                        src={GBSVG}
+                                        alt="Flag"
+                                        width="24"
+                                        height="16"
+                                    />
                         }
                     />
                 )}
 
-                <label class="space-phone-number-input line-height label-input-width input-label" id='phoneNumber-input-width'>
+                <label class="space-phone-number-input-cynar line-height label-input-width input-label" id='phoneNumber-input-width'>
                     <div class='placeholder-satic-cohersion-phone-number'>
                         <input 
                             id='phoneNumberInput'
-                            class={isPhoneNumberEmpty ? 'short-error' : 'short-input'}
+                            class={isPhoneNumberEmpty ? 'error' : 'input'}
                             type='text' 
                             value={phoneNumber} 
                             onChange={(e) => setPhoneNumber(e.target.value)} 
@@ -99,16 +91,13 @@ export const AddPhoneNumberComponent = ({
                 </div>
             )}
 
-            <div class='below-input-add-phone-number'>
-                <p class='small-grey'>Google will use this number only for account security. Your number won’t be visible to others. You can choose later whether to use it for other purposes.</p>
+            <div class='below-input-small-grey-cynar'>
+                <p class='small-grey-cynar'>Google will verify this number via SMS (charges may apply).</p>
             </div>
 
-            <div class='next-and-skip-button-duo'>
-                <button class="button-space-add-phone-number white-button" type="submit" onClick={handleNextClick}>
-                        Next   
-                </button>
-                <button class="button-space-add-phone-number white-button" type="button" onClick={handleSkip}>
-                        Skip   
+            <div id='button-right-choose-email'>
+                <button type='button' class="button-space-confirm-youre-not-a-robot blue-button" onClick={handleNextClick}>
+                    Next   
                 </button>
             </div>
 

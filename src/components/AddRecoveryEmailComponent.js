@@ -16,7 +16,7 @@ export const AddRecoveryEmailComponent = ({
 
 
     return (
-        <form handleSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
 
             <h1 class="thin h1-space">Add recovery email</h1>
             <div id='reduce-width-h2'>

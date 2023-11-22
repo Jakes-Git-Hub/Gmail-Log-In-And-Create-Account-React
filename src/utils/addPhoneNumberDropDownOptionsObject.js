@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export const countries = [
     {
         name: 'Andorra',
@@ -459,30 +461,6 @@ export const countries = [
         name: 'Gabon',
         abbreviation: 'ga',
         dialingCode: '+241',
-        svg:'',
-    },
-    {
-        name: 'United Kingdom (England)',
-        abbreviation: 'gb-eng',
-        dialingCode: '+44',
-        svg:'',
-    },
-    {
-        name: 'United Kingdom (Northern Ireland)',
-        abbreviation: 'gb-nir',
-        dialingCode: '+44',
-        svg:'',
-    },
-    {
-        name: 'United Kingdom (Scotland)',
-        abbreviation: 'gb-sct',
-        dialingCode: '+44',
-        svg:'',
-    },
-    {
-        name: 'United Kingdom (Wales)',
-        abbreviation: 'gb-wls',
-        dialingCode: '+44',
         svg:'',
     },
     {
@@ -1525,6 +1503,8 @@ export const countries = [
     },
 ];
 
+// countries array to big to copy into question 
+
 // Quicker way of assigning the countries SVG values
 
 function populateSvgForCountries(countries) {
@@ -1539,16 +1519,21 @@ function populateSvgForCountries(countries) {
 countries.sort((a, b) => a.name.localeCompare(b.name));
 
 populateSvgForCountries(countries);
-  
-export const customOptions = countries.map(country => ({
-    value: country.name,
-    label: (
+
+export const filteredCountries = countries.filter(country => country.dialingCode !== '');
+
+export const customOptions = filteredCountries.map((country) => ({
+      value: country.dialingCode,
+      label: (
         <div>
-            <img src={require(`../images/flags/${country.svg}`)} className="flag-image" />
-            <span>
-                {country.name} ({country.dialingCode})
-            </span>
+          <img
+            src={require(`../images/flags/${country.svg}`)}
+            className="flag-image"
+            alt={`${country.name} flag`}
+          />
+          <span className='country-option'>
+            {country.name} ({country.dialingCode})
+          </span>
         </div>
-    ),
+      ),
 }));
-  

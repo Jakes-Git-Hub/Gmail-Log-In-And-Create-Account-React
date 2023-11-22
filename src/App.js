@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import axios from 'axios';
+import { useUserIP } from './utils/userIPModule';
 import { FrontPageStaticContainer } from './containers/FrontPageStaticContainer'
 import { StaticElementContainer } from "./containers/StaticElementContainer";
 import { CreatePasswordStaticElementContainer } from "./containers/CreatePasswordStaticElementContainer";
@@ -10,6 +10,7 @@ import { CreateAccountContainer } from "./containers/CreateAccountContainer";
 import { BirthdayAndGenderContainer } from "./containers/BirthdayAndGenderContainer";
 import { ChooseYourGmailAddressContainer } from "./containers/ChooseYourGmailAddressContainer";
 import { CreatePasswordContainer } from "./containers/CreatePasswordContainer";
+import { ConfirmYoureNotARobotContainer } from "./containers/ConfirmYoureNotARobotContainer"
 import { AddPhoneNumberContainer } from "./containers/AddPhoneNumberContainer"
 import { AddRecoveryEmailContainer } from "./containers/AddRecoveryEmailContainer";
 
@@ -19,21 +20,10 @@ function App() {
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
   const [nextUserId, setNextUserId] = useState(1);
   const [userData, setUserData] = useState({});
-  const [userIP, setUserIP] = useState('');
 
 // Grab User's IP
 
-  useEffect(() => {
-    axios.get('http://localhost:3001/get-user-ip') // Make a request to your Express server
-      .then((response) => {
-        const ip = response.data.userIpAddress;
-        setUserIP(ip);
-        console.log(ip);
-      })
-      .catch((error) => {
-        console.error('Error fetching user IP:', error);
-      });
-  }, []);
+const { userIP } = useUserIP()
 
 // Handle Log In
 
@@ -116,6 +106,15 @@ function App() {
                 users={users}
               />
             </CreatePasswordStaticElementContainer>
+          } 
+        />
+        <Route path="/confirm-youre-not-a-robot" element={
+            <StaticElementContainer>
+              <ConfirmYoureNotARobotContainer
+                updateUser={updateUser}
+                userIP={userIP}
+              />
+            </StaticElementContainer>
           } 
         />
         <Route path="/add-recovery-email" element={
