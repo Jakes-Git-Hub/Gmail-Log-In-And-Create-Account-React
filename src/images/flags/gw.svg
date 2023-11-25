@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="16px" viewBox="0 0 32 16" version="1.1">
+<g id="surface1">
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(80.784314%,6.666667%,14.901961%);fill-opacity:1;" d="M 0 0 L 10.667969 0 L 10.667969 16 L 0 16 Z M 0 0 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(98.823529%,81.960784%,8.627451%);fill-opacity:1;" d="M 10.667969 0 L 32 0 L 32 8 L 10.667969 8 Z M 10.667969 0 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,61.960784%,28.627451%);fill-opacity:1;" d="M 10.667969 8 L 32 8 L 32 16 L 10.667969 16 Z M 10.667969 8 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 5.332031 5.332031 L 4.507812 7.871094 L 5.777344 8.28125 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 5.332031 5.332031 L 6.15625 7.871094 L 4.890625 8.28125 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 7.871094 7.175781 L 5.203125 7.175781 L 5.203125 8.507812 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 7.871094 7.175781 L 5.710938 8.742188 L 4.929688 7.664062 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 6.902344 10.15625 L 6.078125 7.621094 L 4.808594 8.035156 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 6.902344 10.15625 L 4.742188 8.589844 L 5.527344 7.511719 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 3.765625 10.15625 L 5.921875 8.589844 L 5.140625 7.511719 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 3.765625 10.15625 L 4.589844 7.621094 L 5.859375 8.035156 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 2.796875 7.175781 L 4.953125 8.742188 L 5.738281 7.664062 "/>
+<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" d="M 2.796875 7.175781 L 5.464844 7.175781 L 5.464844 8.507812 "/>
+</g>
+</svg>
