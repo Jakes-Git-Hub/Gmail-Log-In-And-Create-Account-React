@@ -1,18 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { AddRecoveryEmailComponent } from "../components/AddRecoveryEmailComponent";
 import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
+import googleWritingSvg from "../images/google-writing-svg.svg";
 
 export const AddRecoveryEmailContainer = ({ updateUser }) => {
 
     const [recoveryEmail, setRecoveryEmail] = useState("");
     const [recoveryEmailPlaceholder, setRecoveryEmailPlaceholder] = useState("Recovery email address");
     const [errorCondition, setErrorCondition] = useState(null);
+    const [isImageLoaded, setIsImageLoaded] = useState(false);  
 
     const navigate = useNavigate();
 
     const isImagePreloaded = useImagePreload(errorImage);
+
+    useEffect(() => {
+        const image = new Image();
+        image.src = googleWritingSvg;
+        image.onload = () => {
+          setIsImageLoaded(true);
+        };
+    }, []);
     
 // Recovery Email
 
@@ -98,6 +108,7 @@ export const AddRecoveryEmailContainer = ({ updateUser }) => {
             handleRecoveryEmailBlur={handleRecoveryEmailBlur}
             handleNextClick={handleNextClick}
             isImagePreloaded={isImagePreloaded}
+            isImageLoaded={isImageLoaded}
             errorCondition={errorCondition}
             handleSkip={handleSkip}
             handleSubmit={handleSubmit}

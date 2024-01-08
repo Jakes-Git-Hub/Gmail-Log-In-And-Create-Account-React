@@ -8,8 +8,6 @@ import InputAdornment from "@mui/material/InputAdornment";
 import CodeInput from 'react-code-input';
 import CustomNextButton from './CustomNextButton';
 
-
-
 export const ConfirmYoureNotARobotComponent = ({ 
     phoneNumber,
     handleSelectPhoneNumber,
@@ -33,17 +31,17 @@ export const ConfirmYoureNotARobotComponent = ({
 
     return (
 
-        <div id='google-container-BG'>
+        <div id='google-container-cynar'>
             <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : "empty-blue-snake-loader"}>
-            <div className="blue-snake-loader"></div>
+                <div className="blue-snake-loader"></div>
             </div>
             <img src={googleWritingSvg} alt="Google Writing" id="google-writing-BG"/>
 
             <form>
 
-                <h1 class="thin">Confirm you're not a robot</h1>
+                <h1 class="thin" id="h1-cynar">Confirm you're not a robot</h1>
 
-                <h2 class='thin gap-cynar' id='font-and-color-cynar-h2'>Get a verification code sent to your phone</h2>
+                <h2 class='thin gap-cynar' id='h2-cynar'>Get a verification code sent to your phone</h2>
 
                 <div id='add-phone-number-dropdown-and-input'>
                     <Select
@@ -51,7 +49,7 @@ export const ConfirmYoureNotARobotComponent = ({
                         class="flag-drop-down"
                         options={customOptions}
                         components={{ 
-                            DropdownIndicator: customDropdownIndicator, 
+                            // DropdownIndicator: customDropdownIndicator, 
                             SingleValue: chosenCountryFlagImage, 
                         }}
                         placeholder={placeholderContent}
@@ -143,7 +141,7 @@ export const ConfirmYoureNotARobotComponent = ({
                             "borderRadius": "4px",
                             "border": "1px solid #dadce0",
                             "margin": "4px 8px 4px 8px",
-                            "paddingLeft": "10.6px",
+                            "paddingLeft": "11.3px",
                             "width": "36px",
                             "height": "42px",
                             "fontSize": "1.25rem",

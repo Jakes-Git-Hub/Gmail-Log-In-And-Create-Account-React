@@ -122,11 +122,9 @@ const { userIP } = useUserIP()
           } 
         />
         <Route path="/add-recovery-email" element={
-            <StaticElementContainer>
               <AddRecoveryEmailContainer
                 updateUser={updateUser} 
               />
-            </StaticElementContainer>
           } 
         />
         <Route path="/add-phone-number" element={

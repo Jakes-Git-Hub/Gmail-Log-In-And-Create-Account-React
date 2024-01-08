@@ -88,7 +88,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
     
         return (
         <components.DropdownIndicator {...innerProps} { ...rest }>
-            <img
+            <img class="drop-down-indicator"
                 src={dropDownImageSVG}
             />
         </components.DropdownIndicator>
@@ -119,11 +119,18 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
         menu: styles => ({
             ...styles,
             width: '360px',
+            height: '325px',
+            top: "87%",
+        }),
+        menuList: styles => ({
+            ...styles,
+            maxHeight: "325px",
+            padding: "8px 0",
         }),
         container: provided => ({
             ...provided,
             width: '103px',
-            margin: '2px 0 0 3px',
+            margin: '2px 0 0 5px',
         }),
         control: (provided, state) => ({
             ...provided,
@@ -145,6 +152,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
             transform: state.selectProps.menuIsOpen ? 'rotate(180deg)' : null,
             padding: '0px',
             justifyContent: 'center',
+            color: "red",
         }),
         indicatorSeparator: provided => ({
             ...provided,
@@ -183,9 +191,18 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
         }),
         option: (provided, state) => ({
             ...provided,
-            backgroundColor: state.isFocused ? '#deebff' : '',
+            backgroundColor: state.isFocused ? 'rgb(245 245 245)' : '',
+            ':active': {
+                backgroundColor: state.isFocused ? "#d3e4fb" :"#e8f0fe",
+            },
+            cursor: 'pointer',
+            height: "48px",
+            display: 'flex',
+            alignItems: 'center',
         }),
     };
+
+    // state.isFocused ? 'rgb(245 245 245)' : '',
 
 // Placeholder Content
 
@@ -208,9 +225,9 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
 // Custom Options
 
     useEffect(() => {
-        const newTopOption = selectedOption ? selectedOption.value : (countries.find(country => country.svg === countryFromAPI.svg) || { name: "United Kingdom" }).name;
+        const newTopOption = countries.find(country => country.svg === countryFromAPI.svg) || { name: "United Kingdom" }.name;
         setTopOption(newTopOption);
-        const newFilteredCountries = countries.filter(country => country.name !== newTopOption.name);
+        const newFilteredCountries = filteredCountries.filter(country => country.dialingCode !== '' && country.name !== newTopOption.name);
         setFilteredCountries(newFilteredCountries);
         console.log("selectedOption:", selectedOption);
     }, [selectedOption, countries, countryFromAPI]);
@@ -226,20 +243,11 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
     }, [countryFromAPI, countries]);
 
     const customOptions = [
-        // top option
+        // Top Option
         {
             value: topOption,
             label: (
                 <div>
-                {selectedOption ? (
-                    <img
-                        src={require(`../images/flags/${selectedOption.value.svg || 'gb2.svg'}`)}
-                        className="flag-image"
-                        alt={`${selectedOption.value.name} flag`}
-                        width="24"
-                        height="16"
-                    />
-                ) : (
                     <img
                         src={require(`../images/flags/${countryFromAPI.svg || 'gb2.svg'}`)}
                         className="flag-image"
@@ -247,16 +255,19 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
                         width="24"
                         height="16"
                     />
-                )}
-                <span className='country-option'>
-                    {selectedOption && selectedOption.value ? (
-                        `${selectedOption.value.name} (${selectedOption.value.dialingCode})`
-                    ) : (
-                        `${usersCountryFlagSVG ? countries.find(country => country.svg === usersCountryFlagSVG).name : 'United Kingdom'} (${usersCountryFlagSVG ? countries.find(country => country.svg === usersCountryFlagSVG).dialingCode : '+44'})`
-                    )}
-                </span>
+                    <span className='country-option'>
+                            {usersCountryFlagSVG ? countries.find(country => country.svg === usersCountryFlagSVG).name : 'United Kingdom'} ({usersCountryFlagSVG ? countries.find(country => country.svg === usersCountryFlagSVG).dialingCode : '+44'})
+                    </span>
                 </div>
             ),
+        },
+        // Separator
+        {
+            value: 'separator',
+            label: (
+                <div className="separator" />
+            ),
+            isDisabled: true,
         },
         // Add the rest of the countries
         ...filteredCountries.map((country) => ({
@@ -300,15 +311,6 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
             }
         }; 
     };
-
-    //         } else {
-    //             updateUser({ phoneNumber: phoneNumber })
-    //             setPhoneNumber('');
-    //             console.log("phoneNumber:", phoneNumber);   
-    //             navigate('/add-recovery-email');
-    //         }
-    //     }
-    // };
     
     useEffect(() => {
         const sendVerificationCode = async () => {
