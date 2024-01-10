@@ -49,7 +49,7 @@ export const ConfirmYoureNotARobotComponent = ({
                         class="flag-drop-down"
                         options={customOptions}
                         components={{ 
-                            // DropdownIndicator: customDropdownIndicator, 
+                            DropdownIndicator: customDropdownIndicator, 
                             SingleValue: chosenCountryFlagImage, 
                         }}
                         placeholder={placeholderContent}

@@ -951,10 +951,6 @@ input[type="number"]::-webkit-outer-spin-button {
   margin-top: 2.5px !important;
 }
 
-.drop-down-indicator{
-  color: red !important;
-}
-
 #button-right-robot {
   display: flex;
   width: 363px;

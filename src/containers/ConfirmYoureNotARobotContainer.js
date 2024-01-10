@@ -84,16 +84,21 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
 
 // Custom React Select Components
 
-    const customDropdownIndicator = ({ menuIsOpen, innerProps, ...rest }) => {
-    
-        return (
-        <components.DropdownIndicator {...innerProps} { ...rest }>
-            <img class="drop-down-indicator"
-                src={dropDownImageSVG}
-            />
+    const customDropdownIndicator = props => (
+        components.DropdownIndicator && (
+        <components.DropdownIndicator {...props} className="custom-dropdown-indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="24" viewBox="0 0 24 24">
+            <g transform="matrix(1.1364 0 0 1.1364 12 12)">
+                <g vectorEffect="non-scaling-stroke">
+                <g transform="matrix(0.6667 0 0 0.6667 0 2)">
+                    <path style={{fill: 'currentColor'}} transform=" translate(-12, -12.5)" d="M 7 10 l 5 5 l 5 -5" strokeLinecap="round"/>
+                </g>
+                </g>
+            </g>
+            </svg>
         </components.DropdownIndicator>
-        );
-    };
+        )
+    );
 
     const chosenCountryFlagImage = ({ children, ...props }) => {
         return (
@@ -148,11 +153,14 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
         dropdownIndicator: (provided, state)=> ({
             ...provided,
             width: '32.5px',
-            height: '20px',
+            height: '27.5px',
             transform: state.selectProps.menuIsOpen ? 'rotate(180deg)' : null,
             padding: '0px',
             justifyContent: 'center',
-            color: "red",
+            color: state.selectProps.menuIsOpen ? "#2b7bfe" : "rgb(158,158,158)",
+            ':hover': {
+                color: state.selectProps.menuIsOpen ? "#2b7bfe" : "#131313",
+            },
         }),
         indicatorSeparator: provided => ({
             ...provided,
