@@ -371,6 +371,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
     const handleUserVerificationCodeInput = (userInputtedVerificationCode) => {
         setUserInputtedVerificationCode(userInputtedVerificationCode);
         console.log("userInputtedVerificationCode:", userInputtedVerificationCode);
+        navigate('/add-recovery-email')
     }
 
     useEffect(() => {

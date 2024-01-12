@@ -11,8 +11,9 @@ import { BirthdayAndGenderContainer } from "./containers/BirthdayAndGenderContai
 import { ChooseYourGmailAddressContainer } from "./containers/ChooseYourGmailAddressContainer";
 import { CreatePasswordContainer } from "./containers/CreatePasswordContainer";
 import { ConfirmYoureNotARobotContainer } from "./containers/ConfirmYoureNotARobotContainer"
-import { AddPhoneNumberContainer } from "./containers/AddPhoneNumberContainer"
 import { AddRecoveryEmailContainer } from "./containers/AddRecoveryEmailContainer";
+import { ReviewYourAccountInfoContainer } from "./containers/ReviewYourAccountInfoContainer";
+// import { AddPhoneNumberContainer } from "./containers/AddPhoneNumberContainer"
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -24,7 +25,7 @@ function App() {
 // Test
 
 useEffect(() => { 
-  setUsers(prevUsers => [...prevUsers, { id: 0, email: 'tester@gmail.com', password: 'test', phoneNumber: "" }]);
+  setUsers(prevUsers => [...prevUsers, { name: "Test Testerson", id: 0, email: 'tester@gmail.com', password: 'test', phoneNumber: "" }]);
 }, []);
 
 // Grab User's IP
@@ -58,7 +59,6 @@ const { userIP } = useUserIP()
       ...userData
     };
     setUsers(prevUsers => [...prevUsers, newUser]);
-    setUserData({}); // Clear temporary user data
     setNextUserId(prevId => prevId + 1); // Increment nextUserId
   };
 
@@ -91,7 +91,8 @@ const { userIP } = useUserIP()
         />
         <Route path="/basic-information" element={
               <BirthdayAndGenderContainer
-                updateUser={updateUser} 
+                updateUser={updateUser}
+                userData={userData}
               />
           } 
         />
@@ -128,8 +129,9 @@ const { userIP } = useUserIP()
           } 
         />
         <Route path="/review-account-info" element={
-              <AddRecoveryEmailContainer
-                updateUser={updateUser} 
+              <ReviewYourAccountInfoContainer 
+                updateUser={updateUser}
+                userData={userData}
               />
           } 
         />

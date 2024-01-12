@@ -55,7 +55,7 @@ export const AddRecoveryEmailContainer = ({ updateUser }) => {
             updateUser({ recoveryEmail: recoveryEmail });
             setRecoveryEmail('');
             setErrorCondition(null);
-            navigate('/add-phone-number');
+            navigate('/review-account-info');
         } else if (recoveryEmail === '') {
             setErrorCondition('enterValidEmail');
             if (recoveryEmailInput) {
@@ -84,7 +84,7 @@ export const AddRecoveryEmailContainer = ({ updateUser }) => {
     const handleSkip = () => {
         setRecoveryEmail('');
         setErrorCondition(null);
-        navigate('/add-phone-number');
+        navigate('/review-account-info');
     }
 
     // Handle Submit

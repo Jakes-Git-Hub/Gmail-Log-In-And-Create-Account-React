@@ -95,7 +95,7 @@ body {
   position: relative;
 }
 
-#google-container-cynar-flexible {
+#google-container-flexible {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1155,3 +1155,82 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 92%;
 }
 
+/* Review Your Account Info */
+
+#google-container-flexible-ryai {
+  display: flex;
+  align-items: center;
+  border: 1px solid #dadce0;
+  border-radius: 10px;
+  flex-direction: column;
+  width: 448.18px;
+  min-width: 448.18px;
+  min-height: 496.219px;
+  position: relative;
+}
+
+#google-writing-recovery-ryai {
+  margin-top: 45px;
+  margin-bottom: 15px;
+  height: auto;
+  width: 72px;
+}
+
+#profile-card-container {
+  height: 40px;
+  width: 90%;
+  display: flex;
+}
+
+#profile-initial-circle-container {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#profile-initial-circle {
+  width: 28px; 
+  height: 28px;
+  background-color: #aa252b;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.875em;
+}
+
+#name-and-email-container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+#name-ryai {
+  width: 100%;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: rgb(60,64,67);
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+#email-address-ryai {
+  width: 100%;
+  font-size: 0.75rem;
+  color: rgb(95,99,104);
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+#review-your-account-next-button {
+  display: flex;
+  width: 363px;
+  justify-content: flex-end;
+  margin-bottom: 42px;
+}

@@ -5,7 +5,7 @@ import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const BirthdayAndGenderContainer = ({ updateUser }) => {
+export const BirthdayAndGenderContainer = ({ updateUser, userData }) => {
 
     const [month, setMonth] = useState('');
     const [day, setDay] = useState("");
@@ -32,6 +32,10 @@ export const BirthdayAndGenderContainer = ({ updateUser }) => {
         image.onload = () => {
           setIsImageLoaded(true);
         };
+    }, []);
+
+    useEffect(() => {
+        console.log(`userData:`, userData);
     }, []);
 
 // Month

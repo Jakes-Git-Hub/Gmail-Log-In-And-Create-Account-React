@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import InputAdornment from "@mui/material/InputAdornment";
 import CodeInput from 'react-code-input';
-import CustomNextButton from './CustomNextButton';
+import CustomNextButton from './CustomNextButtonComponent';
 
 export const ConfirmYoureNotARobotComponent = ({ 
     phoneNumber,
@@ -31,7 +31,7 @@ export const ConfirmYoureNotARobotComponent = ({
 
     return (
 
-        <div id='google-container-cynar-flexible'>
+        <div id='google-container-flexible'>
             <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : "empty-blue-snake-loader"}>
                 <div className="blue-snake-loader"></div>
             </div>

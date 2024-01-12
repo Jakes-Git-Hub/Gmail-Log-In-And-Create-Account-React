@@ -3,7 +3,7 @@ import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import CustomNextAndSkipButton from './CustomNext&SkipButton';
+import CustomNextAndSkipButton from './CustomNext&SkipButtonComponent';
 
 export const AddRecoveryEmailComponent = ({ 
     recoveryEmail,
@@ -19,7 +19,7 @@ export const AddRecoveryEmailComponent = ({
 
     return (
 
-        <div id='google-container-cynar-flexible'>
+        <div id='google-container-flexible'>
 
             <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : "empty-blue-snake-loader"}>
                 <div className="blue-snake-loader"></div>
