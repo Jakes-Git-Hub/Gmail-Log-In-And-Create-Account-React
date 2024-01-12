@@ -169,9 +169,8 @@ export const CreatePasswordComponent = ({
                 <p id='show-password-checkbox'>Show Password</p>
             </div>
 
-            <div id='create-password-next-button'>
+            <div id='create-password-next-button' class="button-space-create-password">
                 <CustomNextButton 
-                    class="button-space-create-password blue-button"
                     variant="contained" 
                     onClick={handleNextClick}
                     sx={{
@@ -181,9 +180,10 @@ export const CreatePasswordComponent = ({
                     }}
                 >
                         Next
-                </CustomNextButton>
+                </CustomNextButton>                
+                
             </div>
-
+         
         </form>
     );
 }

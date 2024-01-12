@@ -1,13 +1,13 @@
 import React from 'react';
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import CustomNextAndSkipButton from './CustomNext&SkipButton';
 
 export const AddRecoveryEmailComponent = ({ 
     recoveryEmail,
     setRecoveryEmail,
-    recoveryEmailPlaceholder,
-    handleRecoveryEmailClick,
-    handleRecoveryEmailBlur,
     handleNextClick,
     isImagePreloaded,
     errorCondition,
@@ -19,12 +19,12 @@ export const AddRecoveryEmailComponent = ({
 
     return (
 
-        <div id='google-container-cynar'>
+        <div id='google-container-cynar-flexible'>
 
             <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : "empty-blue-snake-loader"}>
                 <div className="blue-snake-loader"></div>
             </div>
-            <img src={googleWritingSvg} alt="Google Writing" id="google-writing-BG"/>
+            <img src={googleWritingSvg} alt="Google Writing" id="google-writing-recovery-email"/>
 
                 <form onSubmit={handleSubmit}>
 
@@ -33,18 +33,42 @@ export const AddRecoveryEmailComponent = ({
                         <h2 class='thin gap center'>The address where Google can contact you if there’s unusual activity in your account or if you get locked out.</h2>
                     </div>
 
-                    <label id='create-password-space'class=" line-height label-input-width input-label">
-                        <input 
-                            id='recoveryEmailInput'
-                            class={errorCondition === 'enterValidEmail' || errorCondition === 'passwordMismatch' || errorCondition === 'dontForgetAtSymbol' || errorCondition === 'enterADomainName' ? 'error' : 'input'}
-                            type='text'
-                            value={recoveryEmail} 
-                            onChange={(e) => setRecoveryEmail(e.target.value)} 
-                            placeholder={recoveryEmailPlaceholder}
-                            onFocus={handleRecoveryEmailClick}
-                            onBlur={handleRecoveryEmailBlur}
-                        />
-                    </label>
+                    <div id='create-password-space'class=" line-height label-input-width input-label-recovery-email">
+                            <Box>
+                                    <TextField
+                                        fullWidth error={errorCondition}
+                                        id='recoveryEmailInput'
+                                        value={recoveryEmail}
+                                        label="Recovery email address"
+                                        onChange={(e) => setRecoveryEmail(e.target.value)}
+                                        InputLabelProps={
+                                            errorCondition ? 
+                                            { 
+                                                sx: {
+                                                    color: recoveryEmail ? '#d32f2f' : 'rgba(0, 0, 0, 0.6) !important',
+                                                    '&.Mui-focused': {
+                                                        color: '#d32f2f !important',
+                                                    },
+                                                },
+                                            } : {}
+                                        }
+                                        sx={
+                                            errorCondition ? 
+                                            {} : 
+                                            {
+                                                "& .MuiOutlinedInput-root": {
+                                                    "&:hover:not(.Mui-focused) fieldset": {
+                                                        borderColor: "#dadce0"
+                                                    },
+                                                    "& fieldset": {
+                                                        borderColor: "#dadce0"
+                                                    },
+                                                }
+                                            }
+                                        }
+                                    />
+                            </Box>  
+                        </div>
             
                     {errorCondition === 'enterValidEmail' && isImagePreloaded && (
                         <div class='error-div-add-recovery-email'>
@@ -66,14 +90,39 @@ export const AddRecoveryEmailComponent = ({
                             <p class="input-error-message">Enter a domain name after the '@'.</p>
                         </div>
                     )}
-                    
-                    <div class='next-and-skip-button-duo'>
-                        <button class="button-space-add-recovery-email white-button" type="submit" onClick={handleNextClick}>
-                                Next   
-                        </button>
-                        <button class="button-space-add-recovery-email white-button" type="button" onClick={handleSkip}>
-                                Skip   
-                        </button>
+
+                    {errorCondition === 'emailAddressNotValid' && isImagePreloaded && (
+                        <div class='error-div-add-recovery-email'>
+                            <img className='error-image' src={errorImage} alt='Error Image' />
+                            <p class="input-error-message">This email address is not valid.</p>
+                        </div>
+                    )}  
+
+                    <div class='next-and-skip-button-duo button-space-add-recovery-email'>
+                        <CustomNextAndSkipButton 
+                            variant="contained" 
+                            onClick={handleNextClick}
+                            type="submit"
+                            sx={{
+                                '&& .MuiTouchRipple-rippleVisible': {
+                                    animationDuration: '300ms',
+                                },
+                            }}
+                        >
+                                Next
+                        </CustomNextAndSkipButton>
+                        <CustomNextAndSkipButton 
+                            variant="contained" 
+                            onClick={handleSkip}
+                            type="button"
+                            sx={{
+                                '&& .MuiTouchRipple-rippleVisible': {
+                                    animationDuration: '150ms',
+                                },
+                            }}
+                        >
+                                Skip
+                        </CustomNextAndSkipButton>
                     </div>
 
                 </form>

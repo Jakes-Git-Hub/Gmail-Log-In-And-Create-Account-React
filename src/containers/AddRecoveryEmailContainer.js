@@ -8,7 +8,6 @@ import googleWritingSvg from "../images/google-writing-svg.svg";
 export const AddRecoveryEmailContainer = ({ updateUser }) => {
 
     const [recoveryEmail, setRecoveryEmail] = useState("");
-    const [recoveryEmailPlaceholder, setRecoveryEmailPlaceholder] = useState("Recovery email address");
     const [errorCondition, setErrorCondition] = useState(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false);  
 
@@ -23,60 +22,57 @@ export const AddRecoveryEmailContainer = ({ updateUser }) => {
           setIsImageLoaded(true);
         };
     }, []);
-    
-// Recovery Email
-
-    const handleRecoveryEmailClick = () => {
-        setRecoveryEmailPlaceholder("");
-    };
-
-    const handleRecoveryEmailBlur = () => {
-        if (recoveryEmail === "") {
-            setRecoveryEmailPlaceholder("Recovery email address"); 
-        }
-    };
 
 // Handle Next
 
     const handleNextClick = (e) => {
         e.preventDefault();
-        const isEmailValid = input => {
+        const recoveryEmailInput = document.getElementById('recoveryEmailInput');
+
+        const isEmailValid = recoveryEmail => {
             const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-            return emailPattern.test(input);
+            return emailPattern.test(recoveryEmail);
         };
 
-        const isAtSymbolThere = input => {
-            return /^[A-Za-z0-9._%+-]+@$/g.test(input);
+        const isAtSymbolThere = recoveryEmail => {
+            return /^[A-Za-z0-9._%+-]+@$/g.test(recoveryEmail);
         }
 
-        const isEmailInvalid = input => {
-            return /^[A-Za-z0-9._%+-]+@+[A-Za-z0-9._%+-]+$/g.test(input);
+        const isEmailInvalid = recoveryEmail => {
+            return /^[A-Za-z0-9._%+-]+@+[A-Za-z0-9._%+-]+$/g.test(recoveryEmail);
         };
 
-        const isDomainNameNotThere = input => {
-            return /^[A-Za-z0-9._%+-]+@$/g.test(input);
+        const isDomainNameNotThere = recoveryEmail => {
+            return /^[A-Za-z0-9._%+-]+@$/g.test(recoveryEmail);
         }
+
+        const isEmailNotValid = recoveryEmail => {
+            const invalidEmailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9._%+-]+(\.[A-Za-z]{0,1})?$/;
+            return invalidEmailPattern.test(recoveryEmail);
+        };
     
         if (isEmailValid(recoveryEmail)) {
             updateUser({ recoveryEmail: recoveryEmail });
             setRecoveryEmail('');
             setErrorCondition(null);
             navigate('/add-phone-number');
-        } else if (recoveryEmail === '' || isEmailInvalid(recoveryEmail)) {
+        } else if (recoveryEmail === '') {
             setErrorCondition('enterValidEmail');
-            const recoveryEmailInput = document.getElementById('recoveryEmailInput');
             if (recoveryEmailInput) {
                 recoveryEmailInput.focus();
             }    
+        } else if (isEmailNotValid(recoveryEmail)) {
+            setErrorCondition('emailAddressNotValid');
+            if (recoveryEmailInput) {
+                recoveryEmailInput.focus();
+            }   
         } else if (!isAtSymbolThere(recoveryEmail)) {
             setErrorCondition('dontForgetAtSymbol');
-            const recoveryEmailInput = document.getElementById('recoveryEmailInput');
             if (recoveryEmailInput) {
                 recoveryEmailInput.focus();
             }   
         } else if (isDomainNameNotThere(recoveryEmail) && !isEmailInvalid(recoveryEmail)) {
             setErrorCondition('enterADomainName');
-            const recoveryEmailInput = document.getElementById('recoveryEmailInput');
             if (recoveryEmailInput) {
                 recoveryEmailInput.focus();
             }   
@@ -103,9 +99,6 @@ export const AddRecoveryEmailContainer = ({ updateUser }) => {
         <AddRecoveryEmailComponent
             recoveryEmail={recoveryEmail}
             setRecoveryEmail={setRecoveryEmail}
-            recoveryEmailPlaceholder={recoveryEmailPlaceholder}
-            handleRecoveryEmailClick={handleRecoveryEmailClick}
-            handleRecoveryEmailBlur={handleRecoveryEmailBlur}
             handleNextClick={handleNextClick}
             isImagePreloaded={isImagePreloaded}
             isImageLoaded={isImageLoaded}

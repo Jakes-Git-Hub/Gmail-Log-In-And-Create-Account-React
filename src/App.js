@@ -127,14 +127,10 @@ const { userIP } = useUserIP()
               />
           } 
         />
-        <Route path="/add-phone-number" element={
-            <StaticElementContainer>
-              <AddPhoneNumberContainer
+        <Route path="/review-account-info" element={
+              <AddRecoveryEmailContainer
                 updateUser={updateUser} 
-                users={users}
-                userIP={userIP}
               />
-            </StaticElementContainer>
           } 
         />
       </Routes>
@@ -143,3 +139,15 @@ const { userIP } = useUserIP()
 }
 
 export default App;
+
+
+{/* <Route path="/add-phone-number" element={
+            <StaticElementContainer>
+              <AddPhoneNumberContainer
+                updateUser={updateUser} 
+                users={users}
+                userIP={userIP}
+              />
+            </StaticElementContainer>
+          } 
+        /> */}

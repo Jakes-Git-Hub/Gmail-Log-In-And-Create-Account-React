@@ -31,7 +31,7 @@ export const ConfirmYoureNotARobotComponent = ({
 
     return (
 
-        <div id='google-container-cynar'>
+        <div id='google-container-cynar-flexible'>
             <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : "empty-blue-snake-loader"}>
                 <div className="blue-snake-loader"></div>
             </div>
