@@ -38,7 +38,7 @@ export const ReviewYourAccountInfoContainer = ({ userData, updateUser }) => {
 
     const handleNextClick = (e) => {
         e.preventDefault();
-        navigate('/add-phone-number'); 
+        navigate('/choose-your-settings'); 
     };
 
  return(

@@ -11,8 +11,10 @@ import { BirthdayAndGenderContainer } from "./containers/BirthdayAndGenderContai
 import { ChooseYourGmailAddressContainer } from "./containers/ChooseYourGmailAddressContainer";
 import { CreatePasswordContainer } from "./containers/CreatePasswordContainer";
 import { ConfirmYoureNotARobotContainer } from "./containers/ConfirmYoureNotARobotContainer"
+import { EnterTheCodeContainer } from "./containers/EnterTheCodeContainer";
 import { AddRecoveryEmailContainer } from "./containers/AddRecoveryEmailContainer";
 import { ReviewYourAccountInfoContainer } from "./containers/ReviewYourAccountInfoContainer";
+import { ChooseYourSettingsContainer } from "./containers/ChooseYourSettingsContainer";
 // import { AddPhoneNumberContainer } from "./containers/AddPhoneNumberContainer"
 
 function App() {
@@ -122,6 +124,14 @@ const { userIP } = useUserIP()
             />
           } 
         />
+        <Route path="/enter-the-verification-code" element={
+            <EnterTheCodeContainer
+              updateUser={updateUser}
+              userIP={userIP}
+              users={users}
+            />
+          } 
+        />
         <Route path="/add-recovery-email" element={
               <AddRecoveryEmailContainer
                 updateUser={updateUser} 
@@ -132,6 +142,12 @@ const { userIP } = useUserIP()
               <ReviewYourAccountInfoContainer 
                 updateUser={updateUser}
                 userData={userData}
+              />
+          } 
+        />
+        <Route path="/choose-your-settings" element={
+              <ChooseYourSettingsContainer
+                updateUser={updateUser}
               />
           } 
         />

@@ -977,10 +977,6 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 40px 0 68.5px 0;
 }
 
-/* #react-select-2-option-0 {
-  border-bottom: 1.5px solid #dadce0dd !important;
-} */
-
 #error-div-space-cynar {
   width: 90%;
   margin-top: 6px;
@@ -999,6 +995,65 @@ input[type="number"]::-webkit-outer-spin-button {
   border: 2px solid #1976d2 !important;
   outline: none !important;
 }
+
+/* Enter the Code */
+
+#p-enter-the-code {
+  font-weight: 400;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 0.875rem;
+  width: 90%;
+}
+
+#textfield-container-etc {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+#static-G {
+  position: absolute;
+  top: 44%;
+  left: 57.5px;
+  font-size: 0.875em;
+  font-weight: 200;
+  color: rgb(32,33,36);
+}
+
+/* .MuiInputLabel-root,
+.MuiInputLabel-root:focus {
+  padding-left: 50px !important;
+} */
+
+/* .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
+  padding-left: 50px !important;
+}  */
+
+#buttons-container-enter-the-code{
+  margin-bottom: 175px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+#secondary-button-container-etc{
+  display: flex;
+  align-items: center;
+  width: 50%;
+  justify-content: flex-start;
+}
+
+#next-button-container-etc{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 50%;
+}
+
+
 
 /* Add Recovery Email */
 
@@ -1233,4 +1288,19 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 363px;
   justify-content: flex-end;
   margin-bottom: 42px;
+}
+
+/* Choose Your Settings */
+
+#choose-your-settings-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 90%;
+}
+
+.pcys {
+  font-size: 0.875rem;
+  color: #202124;
 }

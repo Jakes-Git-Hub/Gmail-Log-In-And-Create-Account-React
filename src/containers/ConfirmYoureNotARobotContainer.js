@@ -371,16 +371,24 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
     const handleUserVerificationCodeInput = (userInputtedVerificationCode) => {
         setUserInputtedVerificationCode(userInputtedVerificationCode);
         console.log("userInputtedVerificationCode:", userInputtedVerificationCode);
-        navigate('/add-recovery-email')
     }
 
     useEffect(() => {
-        if (userInputtedVerificationCode === twilioVerificationCode) {
-            updateUser({ phoneNumber: formattedPhoneNumber });
-            setUserInputtedVerificationCode('');
-            // navigate('/add-recovery-email');
+        if (userInputtedVerificationCode !== '' && twilioVerificationCode !== '') {
+            if (userInputtedVerificationCode === twilioVerificationCode) {
+                updateUser({ phoneNumber: formattedPhoneNumber });
+                setUserInputtedVerificationCode('');
+                setTwilioVerificationCode('');
+                navigate('/add-recovery-email');
+            }
         }
     }, [userInputtedVerificationCode]);
+
+    useEffect(() => {
+        console.log("twilioVerificationCode:", twilioVerificationCode);
+    }, [twilioVerificationCode]);
+
+    
 
     return (
         <>
