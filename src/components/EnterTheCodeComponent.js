@@ -33,7 +33,7 @@ export const EnterTheCodeComponent = ({
 
                 <div class="line-height label-input-width input-label" id='username-input-width'>
                     <Box>
-                        <span id='static-G'>
+                        <span id={errorCondition ? 'static-G-error' : "static-G"}>
                             G-
                         </span>
 
@@ -48,14 +48,14 @@ export const EnterTheCodeComponent = ({
                                     errorCondition ? 
                                     { 
                                         sx: {
-                                            color: usersVerificationCodeInput ? '#d32f2f' : 'rgba(0, 0, 0, 0.6) !important',
+                                            color: usersVerificationCodeInput ? '#d32f2f' : 'rgb(95,99,104) !important',
                                             '&.Mui-focused': {
                                                 color: '#d32f2f !important',
                                             },
                                         },
                                     } : {
                                         sx: {
-                                            color: "red !important",
+                                            color: "rgb(95,99,104)",
                                         }
                                     }
                                 }
@@ -78,16 +78,31 @@ export const EnterTheCodeComponent = ({
                     </Box>
                 </div>
 
-                {customGenderEmpty && isImagePreloaded ? (
-                    <div class='error-div' id='error-div-space-basic-info'>
+                {errorCondition === "inputEmpty" && isImagePreloaded ? (
+                    <div class='error-div' id='error-div-space-etc'>
                         <img className='error-image' src={errorImage} alt='Error Image' />
-                        <p class="input-error-message">Please indicate the gender you most identify with</p>
+                        <p class="input-error-message">Enter a code</p>
+                    </div>
+                ) : errorCondition === "wrongNumberOfDigits" && isImagePreloaded ? (
+                    <div class='error-div' id='error-div-space-etc'>
+                        <img className='error-image' src={errorImage} alt='Error Image' />
+                        <p class="input-error-message">Wrong number of digits. Try again.</p>
+                    </div>
+                ) : errorCondition === "wrongCode" && isImagePreloaded ? (
+                    <div class='error-div' id='error-div-space-etc'>
+                        <img className='error-image' src={errorImage} alt='Error Image' />
+                        <p class="input-error-message">Wrong code. Try Again</p>
+                    </div>
+                ) : errorCondition === "letters" && isImagePreloaded ? (
+                    <div class='error-div' id='error-div-space-etc'>
+                        <img className='error-image' src={errorImage} alt='Error Image' />
+                        <p class="input-error-message">Code has numbers only. Try again.</p>
                     </div>
                 ) : (
                     <div className='hidden-error-message-container-BI'></div>
                 )}
 
-                <div id="buttons-container-enter-the-code">
+                <div id={errorCondition ? "buttons-container-enter-the-code-error" : "buttons-container-enter-the-code"}>
                     <div id="secondary-button-container-etc">
                         <SecondaryGreyButton 
                                 variant="contained" 
@@ -97,8 +112,10 @@ export const EnterTheCodeComponent = ({
                                         animationDuration: '300ms',
                                     },
                                 }}
-                            >
-                                    Get new code
+                        >
+                            <div className="get-new-code-text">
+                                Get new code
+                            </div>
                         </SecondaryGreyButton>
                     </div>
 
@@ -111,8 +128,10 @@ export const EnterTheCodeComponent = ({
                                         animationDuration: '300ms',
                                     },
                                 }}
-                            >
-                                    Next
+                        >
+                            <div className="next">
+                                Next
+                            </div>
                         </CustomNextButton>
                     </div>
                 </div>

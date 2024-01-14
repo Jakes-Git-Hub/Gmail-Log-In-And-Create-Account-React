@@ -1022,21 +1022,34 @@ input[type="number"]::-webkit-outer-spin-button {
   color: rgb(32,33,36);
 }
 
-/* .MuiInputLabel-root,
-.MuiInputLabel-root:focus {
-  padding-left: 50px !important;
-} */
+#static-G-error {
+  position: absolute;
+  top: 44.1%;
+  left: 57.5px;
+  font-size: 0.875em;
+  font-weight: 200;
+  color: rgb(32,33,36);
+}
 
-/* .css-1jy569b-MuiFormLabel-root-MuiInputLabel-root.Mui-focused {
-  padding-left: 50px !important;
-}  */
+#error-div-space-etc {
+  width: 90%;
+  margin: 8px 5px 9.25px 5px;
+}
 
 #buttons-container-enter-the-code{
-  margin-bottom: 175px;
+  margin: 12px 0 167.5px 0;
   height: 50px;
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 92.5%;
+}
+
+#buttons-container-enter-the-code-error{
+  margin: 12px 0 145px 0;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  width: 92.5%;
 }
 
 #secondary-button-container-etc{
@@ -1044,6 +1057,8 @@ input[type="number"]::-webkit-outer-spin-button {
   align-items: center;
   width: 50%;
   justify-content: flex-start;
+  right: 6px;
+  position: relative;
 }
 
 #next-button-container-etc{
@@ -1051,6 +1066,8 @@ input[type="number"]::-webkit-outer-spin-button {
   align-items: center;
   justify-content: flex-end;
   width: 50%;
+  position: relative;
+  right: 7px;
 }
 
 

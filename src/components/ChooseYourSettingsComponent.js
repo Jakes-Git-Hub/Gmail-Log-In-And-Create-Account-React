@@ -43,7 +43,7 @@ export const ChooseYourSettingsComponent = ({
                     type="button"
                     sx={{
                         '&& .MuiTouchRipple-rippleVisible': {
-                            animationDuration: '150ms',
+                            animationDuration: '300ms',
                         },
                     }}
                 >

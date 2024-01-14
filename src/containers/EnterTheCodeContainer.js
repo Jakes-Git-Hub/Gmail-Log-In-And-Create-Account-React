@@ -30,18 +30,21 @@ export const EnterTheCodeContainer = ({ updateUser, userData }) => {
 // Users Verification Code Input
 
     const handleUserVerificationCodeInput = (e) => {
-        setIsTyping(true);
         setUsersVerificationCodeInput(e.target.value);
     }
 
-// Error Handling
+// Errors
 
     const error = error => setErrorCondition(error);
 
 // Handle Next Click
 
     const handleNextClick = () => {
-        navigate('/add-recovery-email')
+        const emptyInput = "";
+        if(usersVerificationCodeInput === emptyInput) {
+            error("inputEmpty");
+        }
+        // navigate('/add-recovery-email')
     };
 
 // Custom MUI TextField
@@ -51,7 +54,7 @@ export const EnterTheCodeContainer = ({ updateUser, userData }) => {
             MuiInputLabel: {
                 styleOverrides: {
                     root: {
-                        paddingLeft: '38px',
+                        paddingLeft: usersVerificationCodeInput ? "52px" : '38px',
                         '&.Mui-focused': {
                             paddingLeft: '52px',
                         },
@@ -61,7 +64,7 @@ export const EnterTheCodeContainer = ({ updateUser, userData }) => {
             MuiOutlinedInput: {
                 styleOverrides: {
                     notchedOutline: {
-                        paddingLeft: '46px',
+                        paddingLeft:'46px',
                     },
                     input: {
                         paddingLeft: '51px',

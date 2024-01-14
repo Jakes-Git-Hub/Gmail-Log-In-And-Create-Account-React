@@ -8,16 +8,20 @@ const CustomNextButton = styled(Button)({
     fontSize: '15px',
     boxShadow: "none",
     '&:hover': {
-        color: "#3d78c5",
+        color: "white",
         backgroundColor: 'rgb(34 106 202)',
         boxShadow: ('0px 3px 1px -2px rgba(0,0,0,0.2)', '0px 2px 2px 0px rgba(0,0,0,0.14)', '0px 1px 5px 0px rgba(0,0,0,0.12)'),    
         '& .MuiTouchRipple-child': {
             color: 'white',
-            backgroundColor: '#1c58a8', // Change this to your desired ripple color
+            backgroundColor: '#0a1147', // Change this to your desired ripple color
         },
     },
     textTransform: 'none',
-    margin: 'margin: 7px 1.5px 20px 0;'
+    margin: 'margin: 7px 1.5px 20px 0;',
+    '& .next': {
+        position: 'relative',
+        zIndex: 1,
+    },
 });
 
 export default CustomNextButton;
