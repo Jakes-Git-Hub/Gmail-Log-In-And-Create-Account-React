@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import InputAdornment from "@mui/material/InputAdornment";
-import CodeInput from 'react-code-input';
 import CustomNextButton from './CustomNextButtonComponent';
 
 export const ConfirmYoureNotARobotComponent = ({ 
@@ -23,16 +22,14 @@ export const ConfirmYoureNotARobotComponent = ({
     handleCountrySelect,
     errorCondition,
     actualSelectedOption,
-    handleUserVerificationCodeInput,
-    userInputtedVerificationCode,
-    showVerificationCodeInput,
     formattedPhoneNumber,
+    loading,
 }) => {
 
     return (
 
         <div id='google-container-flexible'>
-            <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : "empty-blue-snake-loader"}>
+            <div className={loading ? "empty-blue-snake-loader" : isImageLoaded ? 'empty-blue-snake-loader-placeholder' : "empty-blue-snake-loader"}>
                 <div className="blue-snake-loader"></div>
             </div>
             <img src={googleWritingSvg} alt="Google Writing" id="google-writing-BG"/>
@@ -127,29 +124,6 @@ export const ConfirmYoureNotARobotComponent = ({
 
                 <div class='below-input-small-grey-cynar'>
                     <p class='small-grey-cynar'>Google will verify this number via SMS (charges may apply).</p>
-                </div>
-
-                <div style={{ display: showVerificationCodeInput ? "block" : "none" }} id="verification-code-cynar">
-                    <CodeInput
-                        className="code-input"
-                        type= "number"
-                        fields={6}
-                        value={userInputtedVerificationCode}
-                        onChange={handleUserVerificationCodeInput}
-                        inputStyle={{
-                            "MozAppearance": "textfield",
-                            "borderRadius": "4px",
-                            "border": "1px solid #dadce0",
-                            "margin": "4px 8px 4px 8px",
-                            "paddingLeft": "11.3px",
-                            "width": "36px",
-                            "height": "42px",
-                            "fontSize": "1.25rem",
-                            "boxSizing": "border-box",
-                            "color": "rgb(32,33,36)",
-                            "backgroundColor": "white",
-                        }}
-                    />
                 </div>
                 
                 <div id={formattedPhoneNumber ? 'button-right-robot-confirm' : "button-right-robot"}>

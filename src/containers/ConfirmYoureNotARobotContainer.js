@@ -6,7 +6,6 @@ import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import { countries } from '../utils/countryDropDownOptions';
 import axios from 'axios';
-import dropDownImageSVG from '../images/gmail-drop-down-svg.svg';
 import GBSVG from '../images/flags/gb2.svg';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
@@ -22,9 +21,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
     const [filteredCountries, setFilteredCountries] = useState(countries);
     const [topOption, setTopOption] = useState(null);
     const [countryFromAPI, setCountryFromAPI] = useState({});
-    const [userInputtedVerificationCode, setUserInputtedVerificationCode] = useState('');
-    const [showVerificationCodeInput, setShowVerificationCodeInput] = useState(false);
-    const [twilioVerificationCode, setTwilioVerificationCode] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -302,26 +299,31 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
     const handleNextClick = () => {
         const phoneNumberInput = document.getElementById('phoneNumberInput');
         if (phoneNumber === '') {
-        setError("phoneNumberEmpty");
-        phoneNumberInput.focus();
+            setError("phoneNumberEmpty");
+            phoneNumberInput.focus();
         } else if (/[^0-9]/.test(phoneNumber)) {
-        // Check if the phoneNumber contains unallowed characters
-        setError("incorrectFormat");
-        phoneNumberInput.focus();
+            // Check if the phoneNumber contains unallowed characters
+            setError("incorrectFormat");
+            phoneNumberInput.focus();
         } else {
             const isPhoneNumberAlreadyRegistered = users.some(user => user.phoneNumber === phoneNumber);
             
             if(isPhoneNumberAlreadyRegistered) {
                 setError("alreadyRegistered"); 
             } else {
-                setFormattedPhoneNumber(selectedOption.value.dialingCode + phoneNumber);
-                setError(null);
+                if (actualSelectedOption) {
+                    setFormattedPhoneNumber(selectedOption.value.dialingCode + phoneNumber);
+                    updateUser({ phoneNumber: selectedOption.value.dialingCode + phoneNumber });
+                    setError(null);
+                    
+                }
             }
         }; 
     };
     
     useEffect(() => {
         const sendVerificationCode = async () => {
+            setLoading(true);
             try {
                 const response = await axios.post('http://localhost:3001/send-verification-code', {
                     formattedPhoneNumber: formattedPhoneNumber,
@@ -338,11 +340,24 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
                     const verificationCode = data.verificationCode.toString();
     
                     // Set the verification code in the state
-                    setTwilioVerificationCode(verificationCode);
+                    updateUser({ verificationCode: verificationCode });
+                    setFormattedPhoneNumber('');
+                    setPhoneNumber('');
+                    setErrorCondition(null);
+                    setIsImageLoaded(false);  
+                    setUsersCountryFlagSVG('');
+                    setSelectedOption(null);
+                    setActualSelectedOption(null);
+                    setFilteredCountries(countries);
+                    setTopOption(null);
+                    setCountryFromAPI({});
+                    setLoading(false);
+                    navigate('/enter-the-verification-code');
     
                     console.log('Verification code sent successfully:', verificationCode);
                     // Proceed to the next step or navigate to the next page
                 } else {
+                    setLoading(false);
                     if (data.error) {
                         console.error('Error sending verification code:', data.error);
                         // Display an error message or take appropriate action
@@ -358,37 +373,9 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
     
         if (formattedPhoneNumber) {
             sendVerificationCode();
-            setShowVerificationCodeInput(true);
         }
     }, [formattedPhoneNumber]);
 
-    useEffect(() => {
-        console.log("formattedPhoneNumber:", formattedPhoneNumber);
-    }, [formattedPhoneNumber]);
-
-// Verification Code (Twilio SMS)
-
-    const handleUserVerificationCodeInput = (userInputtedVerificationCode) => {
-        setUserInputtedVerificationCode(userInputtedVerificationCode);
-        console.log("userInputtedVerificationCode:", userInputtedVerificationCode);
-    }
-
-    useEffect(() => {
-        if (userInputtedVerificationCode !== '' && twilioVerificationCode !== '') {
-            if (userInputtedVerificationCode === twilioVerificationCode) {
-                updateUser({ phoneNumber: formattedPhoneNumber });
-                setUserInputtedVerificationCode('');
-                setTwilioVerificationCode('');
-                navigate('/add-recovery-email');
-            }
-        }
-    }, [userInputtedVerificationCode]);
-
-    useEffect(() => {
-        console.log("twilioVerificationCode:", twilioVerificationCode);
-    }, [twilioVerificationCode]);
-
-    
 
     return (
         <>
@@ -410,10 +397,8 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
                 handleCountrySelect={handleCountrySelect}
                 errorCondition={errorCondition}
                 actualSelectedOption={actualSelectedOption}
-                handleUserVerificationCodeInput={handleUserVerificationCodeInput}
-                userInputtedVerificationCode={userInputtedVerificationCode}
-                showVerificationCodeInput={showVerificationCodeInput}
                 formattedPhoneNumber={formattedPhoneNumber}
+                loading={loading}
             />
         </>
     )

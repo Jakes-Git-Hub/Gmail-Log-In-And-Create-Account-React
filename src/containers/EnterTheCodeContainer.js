@@ -10,14 +10,12 @@ export const EnterTheCodeContainer = ({ updateUser, userData }) => {
 
     const [errorCondition, setErrorCondition] = useState(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
-    const [isTyping, setIsTyping] = useState(false);
     const [usersVerificationCodeInput, setUsersVerificationCodeInput] = useState('');
+    const [verificationCode, setVerificationCode] = useState('');
 
     const navigate = useNavigate();
 
     const isImagePreloaded = useImagePreload(errorImage);
-
-    // Checks if Google SVG is Loaded, to Render all at Once
 
     useEffect(() => {
         const image = new Image();
@@ -26,6 +24,13 @@ export const EnterTheCodeContainer = ({ updateUser, userData }) => {
           setIsImageLoaded(true);
         };
     }, []);
+
+    useEffect(() => {   
+        console.log("userData", userData);
+        if (userData) {
+            setVerificationCode(userData.verificationCode);
+        }
+    }, [userData.verificationCode]);
 
 // Users Verification Code Input
 
@@ -37,14 +42,37 @@ export const EnterTheCodeContainer = ({ updateUser, userData }) => {
 
     const error = error => setErrorCondition(error);
 
+// Get New Code
+
+    const getNewCode = () => {
+        navigate("/confirm-youre-not-a-robot");
+    }
+
 // Handle Next Click
 
     const handleNextClick = () => {
         const emptyInput = "";
-        if(usersVerificationCodeInput === emptyInput) {
+        const hasLetters = /[a-zA-Z]/.test(usersVerificationCodeInput);
+        const sixDigits = /^\d{6}$/;
+        if (usersVerificationCodeInput === emptyInput) {
             error("inputEmpty");
         }
-        // navigate('/add-recovery-email')
+        if (hasLetters) {
+            error("hasLetters");
+        } 
+        if ((usersVerificationCodeInput !== emptyInput) && (!hasLetters && !sixDigits.test(usersVerificationCodeInput))) {
+            error("wrongNumberOfDigits");
+        } 
+        if (usersVerificationCodeInput === verificationCode) {
+            updateUser("verificationCode", usersVerificationCodeInput);
+            navigate("/create-your-profile");
+        } 
+        if (sixDigits.test(usersVerificationCodeInput) && (usersVerificationCodeInput !== verificationCode)) {
+            error("wrongCode");
+        } 
+        if (usersVerificationCodeInput === verificationCode) {
+            navigate("/add-recovery-email");
+        }
     };
 
 // Custom MUI TextField
@@ -82,8 +110,8 @@ export const EnterTheCodeContainer = ({ updateUser, userData }) => {
             isImageLoaded={isImageLoaded}
             handleUserVerificationCodeInput={handleUserVerificationCodeInput}
             usersVerificationCodeInput={usersVerificationCodeInput}
-            isTyping={isTyping}
             theme={theme}
+            getNewCode={getNewCode}
         />
     );
 };

@@ -127,8 +127,7 @@ const { userIP } = useUserIP()
         <Route path="/enter-the-verification-code" element={
             <EnterTheCodeContainer
               updateUser={updateUser}
-              userIP={userIP}
-              users={users}
+              userData={userData}
             />
           } 
         />

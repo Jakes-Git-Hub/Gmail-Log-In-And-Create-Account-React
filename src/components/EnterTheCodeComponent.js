@@ -12,10 +12,10 @@ export const EnterTheCodeComponent = ({
     isImagePreloaded,
     isImageLoaded,
     handleUserVerificationCodeInput,
-    customGenderEmpty,
     usersVerificationCodeInput,
     errorCondition,
     theme,
+    getNewCode,
 }) => {
     
     return (
@@ -93,7 +93,7 @@ export const EnterTheCodeComponent = ({
                         <img className='error-image' src={errorImage} alt='Error Image' />
                         <p class="input-error-message">Wrong code. Try Again</p>
                     </div>
-                ) : errorCondition === "letters" && isImagePreloaded ? (
+                ) : errorCondition === "hasLetters" && isImagePreloaded ? (
                     <div class='error-div' id='error-div-space-etc'>
                         <img className='error-image' src={errorImage} alt='Error Image' />
                         <p class="input-error-message">Code has numbers only. Try again.</p>
@@ -106,7 +106,7 @@ export const EnterTheCodeComponent = ({
                     <div id="secondary-button-container-etc">
                         <SecondaryGreyButton 
                                 variant="contained" 
-                                onClick={handleNextClick}
+                                onClick={getNewCode}
                                 sx={{
                                     '&& .MuiTouchRipple-rippleVisible': {
                                         animationDuration: '300ms',
