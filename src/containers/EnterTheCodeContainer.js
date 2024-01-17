@@ -40,7 +40,7 @@ export const EnterTheCodeContainer = ({ updateUser, userData }) => {
 
 // Errors
 
-    const error = error => setErrorCondition(error);
+const setError = errorType => setErrorCondition(errorType);
 
 // Get New Code
 
@@ -55,20 +55,20 @@ export const EnterTheCodeContainer = ({ updateUser, userData }) => {
         const hasLetters = /[a-zA-Z]/.test(usersVerificationCodeInput);
         const sixDigits = /^\d{6}$/;
         if (usersVerificationCodeInput === emptyInput) {
-            error("inputEmpty");
+            setError("inputEmpty");
         }
         if (hasLetters) {
-            error("hasLetters");
+            setError("hasLetters");
         } 
         if ((usersVerificationCodeInput !== emptyInput) && (!hasLetters && !sixDigits.test(usersVerificationCodeInput))) {
-            error("wrongNumberOfDigits");
+            setError("wrongNumberOfDigits");
         } 
         if (usersVerificationCodeInput === verificationCode) {
             updateUser("verificationCode", usersVerificationCodeInput);
             navigate("/create-your-profile");
         } 
         if (sixDigits.test(usersVerificationCodeInput) && (usersVerificationCodeInput !== verificationCode)) {
-            error("wrongCode");
+            setError("wrongCode");
         } 
         if (usersVerificationCodeInput === verificationCode) {
             navigate("/add-recovery-email");

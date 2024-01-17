@@ -106,7 +106,9 @@ export const CreateAccountcomponent = ({
                         },
                     }}
                 >
-                    Next
+                    <div class='next'>
+                        Next
+                    </div>
                 </CustomNextButton>
             </div>
 

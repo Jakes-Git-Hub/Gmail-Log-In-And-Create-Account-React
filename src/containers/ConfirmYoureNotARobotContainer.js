@@ -9,7 +9,7 @@ import axios from 'axios';
 import GBSVG from '../images/flags/gb2.svg';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) => {
+export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, userIP, handleCYNARCountrySelect, hasSelectedCYNARCountry }) => {
 
     const [formattedPhoneNumber, setFormattedPhoneNumber] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -35,40 +35,159 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
         image.onload = () => {
           setIsImageLoaded(true);
         };
+        console.log("hasSelectedCYNARCountry:", hasSelectedCYNARCountry);
     }, []);
 
-// Get User's Country from IP and Set Placeholder SVG Based on it
+// FLag Ip Business
 
-    useEffect(() => { 
-        if (userIP) {
-            const apiKey = 'b2ef0251b1264f88ae869467dfe144d8';
+    // Get User's Country from IP and Set Placeholder SVG Based on it
 
-            axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}&ip=102.217.238.0`)
-            .then((response) => {
-                const countryFromIP = response.data.country_name;
-                const matchingCountry = countries.find(country => country.name === countryFromIP);
-                if (matchingCountry) {
-                    setUsersCountryFlagSVG(matchingCountry.svg);
-                    setCountryFromAPI({name: matchingCountry.name, svg:matchingCountry.svg});
-                    console.log("usersCountryFlagSVG:", usersCountryFlagSVG);
-                    console.log("countryFromAPI:", countryFromAPI);
-                }
-                console.log(`User's country: ${countryFromIP}`);
-            })
-            .catch((error) => {
-                console.error('Error fetching geolocation data:', error);
-            });
-        } else {
-            console.log("didn't work, or still waiting for IP API request");
-        }
-    }, [userIP, usersCountryFlagSVG]);
+        useEffect(() => { 
+            if (userIP && hasSelectedCYNARCountry === false) {
+                console.log("actualSelectedOption:", actualSelectedOption)
+                const apiKey = 'b2ef0251b1264f88ae869467dfe144d8';
 
+                axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}&ip=102.217.238.0`)
+                .then((response) => {
+                    const countryFromIP = response.data.country_name;
+                    const matchingCountry = countries.find(country => country.name === countryFromIP);
+                    if (matchingCountry) {
+                        setUsersCountryFlagSVG(matchingCountry.svg);
+                        setCountryFromAPI({name: matchingCountry.name, svg:matchingCountry.svg});
+                        // console.log("usersCountryFlagSVG:", usersCountryFlagSVG);
+                        // console.log("countryFromAPI:", countryFromAPI);
+                    }
+                    // console.log(`User's country: ${countryFromIP}`);
+                })
+                .catch((error) => {
+                    console.error('Error fetching geolocation data:', error);
+                });
+            } else {
+                console.log("didn't work, or still waiting for IP API request");
+            }
+        }, [userIP, usersCountryFlagSVG]);
+
+    // Custom Options
+
+        useEffect(() => {
+            const newTopOption = countries.find(country => country.svg === countryFromAPI.svg) || { name: "United Kingdom" }.name;
+            setTopOption(newTopOption);
+            const newFilteredCountries = filteredCountries.filter(country => country.dialingCode !== '' && country.name !== newTopOption.name);
+            setFilteredCountries(newFilteredCountries);
+        }, [selectedOption, countryFromAPI]);
+
+        useEffect(() => {
+            const countryOption = countries.find(country => country.svg === countryFromAPI.svg);
+            if (countryOption) {
+                setSelectedOption({
+                    value: countryOption,
+                    label: countryOption.name
+                });
+                updateUser({ country: countryOption });
+            }
+        }, [countryFromAPI]);
+
+        const customOptions = [
+            // Top Option
+            {
+                value: topOption,
+                label: (
+                    <div>
+                        <img
+                            src={require(`../images/flags/${countryFromAPI.svg || 'gb2.svg'}`)}
+                            className="flag-image"
+                            alt={`${countryFromAPI.name || 'GBlol'} flag1`}
+                            width="24"
+                            height="16"
+                        />
+                        <span className='country-option'>
+                                {usersCountryFlagSVG ? countries.find(country => country.svg === usersCountryFlagSVG).name : 'United Kingdom'} ({usersCountryFlagSVG ? countries.find(country => country.svg === usersCountryFlagSVG).dialingCode : '+44'})
+                        </span>
+                    </div>
+                ),
+            },
+            // Separator
+            {
+                value: 'separator',
+                label: (
+                    <div className="separator" />
+                ),
+                isDisabled: true,
+            },
+            // Add the rest of the countries
+            ...filteredCountries.map((country) => ({
+                value: country,
+                label: (
+                    <div>
+                        <img
+                        src={require(`../images/flags/${country.svg}`)}
+                        className="flag-image"
+                        alt={`${country.name} flag2`}
+                        width="24"
+                        height="16"
+                        />
+                        <span className='country-option'>
+                            {country.name} ({country.dialingCode})
+                        </span>
+                    </div>
+                ),
+            })),
+        ];
+
+    // Chosen Country Flag Image Placeholder
+
+        useEffect(() => {
+            if (actualSelectedOption === true) {
+
+            }
+        }, []);
+        
+
+        const chosenCountryFlagImage = ({ children, ...props }) => {
+            return (
+            <components.SingleValue {...props}>
+                {props.data && props.data.value ? (
+                    <img
+                        src={require(`../images/flags/${props.data.value.svg}`)}
+                        className="flag-image"
+                        alt={`${props.data.value.name} flag3`}
+                        style={{ 
+                            marginLeft: '14px',
+                            marginBottom: '2px',
+                        }}
+                    />
+                ) : null}
+            </components.SingleValue>
+            );
+        };
+
+    // Placeholder Content
+
+        const placeholderContent = usersCountryFlagSVG ? (
+            <img
+                src={require(`../images/flags/${usersCountryFlagSVG}`)}
+                alt="Flag4"
+                width="24"
+                height="16"
+            />
+        ) : (
+            <img    
+                src={GBSVG} 
+                alt="Flag5" 
+                width="24" 
+                height="16" 
+            />
+        );
+    
 // phoneNumber
 
     const handleCountrySelect = (selectedOption) => {
         setSelectedOption(selectedOption);
         setActualSelectedOption(true);
         setPhoneNumber("");
+        updateUser({ country: selectedOption.value });
+        console.log("userData.country:", userData.country);
+        handleCYNARCountrySelect();
     }
 
     const handleSelectPhoneNumber = (e) => {
@@ -96,24 +215,6 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
         </components.DropdownIndicator>
         )
     );
-
-    const chosenCountryFlagImage = ({ children, ...props }) => {
-        return (
-        <components.SingleValue {...props}>
-            {props.data && props.data.value ? (
-                <img
-                    src={require(`../images/flags/${props.data.value.svg}`)}
-                    className="flag-image"
-                    alt={`${props.data.value.name} flag`}
-                    style={{ 
-                        marginLeft: '14px',
-                        marginBottom: '2px',
-                    }}
-                />
-            ) : null}
-        </components.SingleValue>
-        );
-    };
 
 // Custom React Select Styles
 
@@ -207,93 +308,6 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
         }),
     };
 
-    // state.isFocused ? 'rgb(245 245 245)' : '',
-
-// Placeholder Content
-
-    const placeholderContent = usersCountryFlagSVG ? (
-        <img
-            src={require(`../images/flags/${usersCountryFlagSVG}`)}
-            alt="Flag"
-            width="24"
-            height="16"
-        />
-    ) : (
-        <img    
-            src={GBSVG} 
-            alt="Flag" 
-            width="24" 
-            height="16" 
-        />
-    );
-
-// Custom Options
-
-    useEffect(() => {
-        const newTopOption = countries.find(country => country.svg === countryFromAPI.svg) || { name: "United Kingdom" }.name;
-        setTopOption(newTopOption);
-        const newFilteredCountries = filteredCountries.filter(country => country.dialingCode !== '' && country.name !== newTopOption.name);
-        setFilteredCountries(newFilteredCountries);
-        console.log("selectedOption:", selectedOption);
-    }, [selectedOption, countries, countryFromAPI]);
-
-    useEffect(() => {
-        const countryOption = countries.find(country => country.svg === countryFromAPI.svg);
-        if (countryOption) {
-            setSelectedOption({
-                value: countryOption,
-                label: countryOption.name
-            });
-        }
-    }, [countryFromAPI, countries]);
-
-    const customOptions = [
-        // Top Option
-        {
-            value: topOption,
-            label: (
-                <div>
-                    <img
-                        src={require(`../images/flags/${countryFromAPI.svg || 'gb2.svg'}`)}
-                        className="flag-image"
-                        alt={`${countryFromAPI.name || 'GB'} flag`}
-                        width="24"
-                        height="16"
-                    />
-                    <span className='country-option'>
-                            {usersCountryFlagSVG ? countries.find(country => country.svg === usersCountryFlagSVG).name : 'United Kingdom'} ({usersCountryFlagSVG ? countries.find(country => country.svg === usersCountryFlagSVG).dialingCode : '+44'})
-                    </span>
-                </div>
-            ),
-        },
-        // Separator
-        {
-            value: 'separator',
-            label: (
-                <div className="separator" />
-            ),
-            isDisabled: true,
-        },
-        // Add the rest of the countries
-        ...filteredCountries.map((country) => ({
-            value: country,
-            label: (
-                <div>
-                    <img
-                    src={require(`../images/flags/${country.svg}`)}
-                    className="flag-image"
-                    alt={`${country.name} flag`}
-                    width="24"
-                    height="16"
-                    />
-                    <span className='country-option'>
-                        {country.name} ({country.dialingCode})
-                    </span>
-                </div>
-            ),
-        })),
-    ];
-
 // Handle Next Click
 
     const handleNextClick = () => {
@@ -314,13 +328,14 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
                 if (actualSelectedOption) {
                     setFormattedPhoneNumber(selectedOption.value.dialingCode + phoneNumber);
                     updateUser({ phoneNumber: selectedOption.value.dialingCode + phoneNumber });
-                    setError(null);
-                    
+                    setError(null);                    
                 }
             }
         }; 
     };
-    
+   
+// Send Verification Code
+
     useEffect(() => {
         const sendVerificationCode = async () => {
             setLoading(true);
@@ -346,15 +361,15 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, users, userIP }) =>
                     setErrorCondition(null);
                     setIsImageLoaded(false);  
                     setUsersCountryFlagSVG('');
-                    setSelectedOption(null);
-                    setActualSelectedOption(null);
+                    // setSelectedOption(null);
+                    // setActualSelectedOption(null);
                     setFilteredCountries(countries);
-                    setTopOption(null);
+                    // setTopOption(null);
                     setCountryFromAPI({});
                     setLoading(false);
-                    navigate('/enter-the-verification-code');
-    
-                    console.log('Verification code sent successfully:', verificationCode);
+                    console.log("actualSelectedOption:", actualSelectedOption);
+                    navigate('/enter-the-verification-code');    
+                    // console.log('Verification code sent successfully:', verificationCode);
                     // Proceed to the next step or navigate to the next page
                 } else {
                     setLoading(false);

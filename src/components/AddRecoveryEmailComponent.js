@@ -109,7 +109,9 @@ export const AddRecoveryEmailComponent = ({
                                 },
                             }}
                         >
+                            <div class='next'>
                                 Next
+                            </div>
                         </CustomNextAndSkipButton>
                         <CustomNextAndSkipButton 
                             variant="contained" 

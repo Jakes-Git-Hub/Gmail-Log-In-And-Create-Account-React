@@ -281,11 +281,6 @@ form {
   cursor: pointer;
 }
 
-p {
-  font-size: 19px;
-  font-weight: 600;
-}
-
 .grey-button {
   background-color: white;
   border: 2px solid white;
@@ -1264,7 +1259,7 @@ input[type="number"]::-webkit-outer-spin-button {
 #profile-initial-circle {
   width: 28px; 
   height: 28px;
-  background-color: #aa252b;
+  background-color: #2b28ed;
   border-radius: 50%;
   color: white;
   display: flex;
@@ -1308,6 +1303,41 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 /* Choose Your Settings */
+
+#choose-your-settings-container {
+  width: 90%;
+  margin-top: 20px;
+}
+
+.radio-input-and-writting-container{
+  display: flex;
+  width: 95%;
+}
+
+.radio-input-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 20%;
+}
+
+.writting-container{
+  width: 100%;
+}
+
+.setting-option-name {
+  font-size: 0.875rem;
+  color: #202124;
+  margin: 0 0 5px 0;
+}
+
+.setting-information {
+  font-size: 0.75rem;
+  color: #5F6368;
+  margin: 0 0 5px 0;
+}
+
+/* Choose Your Settings 2 */
 
 #choose-your-settings-info {
   display: flex;

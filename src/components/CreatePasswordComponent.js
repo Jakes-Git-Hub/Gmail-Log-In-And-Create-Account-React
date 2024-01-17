@@ -179,7 +179,9 @@ export const CreatePasswordComponent = ({
                         },
                     }}
                 >
+                    <div class='next'>
                         Next
+                    </div>
                 </CustomNextButton>                
                 
             </div>

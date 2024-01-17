@@ -15,7 +15,7 @@ import { EnterTheCodeContainer } from "./containers/EnterTheCodeContainer";
 import { AddRecoveryEmailContainer } from "./containers/AddRecoveryEmailContainer";
 import { ReviewYourAccountInfoContainer } from "./containers/ReviewYourAccountInfoContainer";
 import { ChooseYourSettingsContainer } from "./containers/ChooseYourSettingsContainer";
-// import { AddPhoneNumberContainer } from "./containers/AddPhoneNumberContainer"
+import { ChooseYourSettingsContainer2 } from "./containers/ChooseYourSettingsContainer2";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -23,6 +23,7 @@ function App() {
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
   const [nextUserId, setNextUserId] = useState(1);
   const [userData, setUserData] = useState({});
+  const [hasSelectedCYNARCountry, setHasSelectedCYNARCountry] = useState(false);
 
 // Test
 
@@ -51,9 +52,13 @@ const { userIP } = useUserIP()
     }
   };
 
+// Update User Data
+
   const updateUser = (data) => {
     setUserData(prevData => ({ ...prevData, ...data }));
   };
+
+// Add User
 
   const addUser = () => {
     const newUser = {
@@ -63,6 +68,10 @@ const { userIP } = useUserIP()
     setUsers(prevUsers => [...prevUsers, newUser]);
     setNextUserId(prevId => prevId + 1); // Increment nextUserId
   };
+
+// Handle CYNAR Country Selection
+
+  const handleCYNARCountrySelect = () => setHasSelectedCYNARCountry(true);
 
   return (
     <Router>
@@ -119,8 +128,11 @@ const { userIP } = useUserIP()
         <Route path="/confirm-youre-not-a-robot" element={
             <ConfirmYoureNotARobotContainer
               updateUser={updateUser}
+              userData={userData}
               userIP={userIP}
               users={users}
+              handleCYNARCountrySelect={handleCYNARCountrySelect}
+              hasSelectedCYNARCountry={hasSelectedCYNARCountry}
             />
           } 
         />
@@ -150,21 +162,15 @@ const { userIP } = useUserIP()
               />
           } 
         />
+        <Route path="/choose-your-settings2" element={
+              <ChooseYourSettingsContainer2
+                updateUser={updateUser}
+              />
+          } 
+        />
       </Routes>
     </Router>
   );
 }
 
 export default App;
-
-
-{/* <Route path="/add-phone-number" element={
-            <StaticElementContainer>
-              <AddPhoneNumberContainer
-                updateUser={updateUser} 
-                users={users}
-                userIP={userIP}
-              />
-            </StaticElementContainer>
-          } 
-        /> */}

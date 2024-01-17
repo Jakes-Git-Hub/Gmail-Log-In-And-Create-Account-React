@@ -88,15 +88,17 @@ export const ChooseYourGmailAddressComponent = ({
 
             <div id='button-right-choose-email'>
                 <CustomNextButton 
-                        variant="contained" 
-                        onClick={handleNextClick}
-                        sx={{
-                            '&& .MuiTouchRipple-rippleVisible': {
-                                animationDuration: '300ms',
-                            },
-                        }}
-                    >
-                            Next
+                    variant="contained" 
+                    onClick={handleNextClick}
+                    sx={{
+                        '&& .MuiTouchRipple-rippleVisible': {
+                            animationDuration: '300ms',
+                        },
+                    }}
+                >
+                    <div class='next'>
+                        Next
+                    </div>
                 </CustomNextButton>
             </div>
 

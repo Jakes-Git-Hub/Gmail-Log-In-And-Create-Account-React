@@ -136,7 +136,9 @@ export const ConfirmYoureNotARobotComponent = ({
                             },
                         }}
                     >
-                        Next
+                        <div class='next'>
+                            Next
+                        </div>
                     </CustomNextButton>
                 </div>
 

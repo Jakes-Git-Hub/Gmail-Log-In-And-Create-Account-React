@@ -3,10 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { ChooseYourSettingsComponent } from "../components/ChooseYourSettingsComponent";
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const ChooseYourSettingsContainer = ({ updateUser }) => {
+export const ChooseYourSettingsContainer = ({ userData, updateUser }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
-    const [usersProfileCircleColor, setUsersProfileCircleColor] = useState('');
 
     const navigate = useNavigate();
 
@@ -18,35 +17,20 @@ export const ChooseYourSettingsContainer = ({ updateUser }) => {
         };
     }, []);
 
-// Assign Users Profile Circle Color
-
-    const profileCircleColor = () => {
-        const randomColor = "#" + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
-        setUsersProfileCircleColor(randomColor);
-    }
-
-    useEffect(() => {
-        profileCircleColor();
-        updateUser({ profileCircleColor: usersProfileCircleColor });
-    }, []);
-
-    useEffect(() => {
-        console.log(`usersProfileCircleColor:`, usersProfileCircleColor);
-    }, [usersProfileCircleColor]);
-
 // Handle Next Click
 
     const handleNextClick = (e) => {
         e.preventDefault();
-        navigate('/add-phone-number'); 
+        navigate('/choose-your-settings'); 
     };
 
- return(
-    <>
-        <ChooseYourSettingsComponent
-            handleNextClick={handleNextClick}
-            isImageLoaded={isImageLoaded}
-        />
-    </>
- );
+    return(
+        <>
+            <ChooseYourSettingsComponent
+                handleNextClick={handleNextClick}
+                isImageLoaded={isImageLoaded}
+                userData={userData}
+            />
+        </>
+    );
 };

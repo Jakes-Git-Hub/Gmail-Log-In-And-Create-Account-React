@@ -1,10 +1,15 @@
 import React from 'react';
 import googleWritingSvg from "../images/google-writing-svg.svg";
-import CustomNextAndSkipButton from './CustomNext&SkipButtonComponent';
+import CustomNextButton from './CustomNextButtonComponent';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
 
 export const ChooseYourSettingsComponent = ({ 
     handleNextClick,
     isImageLoaded,
+    userData,
 }) => {
 
 
@@ -17,38 +22,52 @@ export const ChooseYourSettingsComponent = ({
             </div>
             <img src={googleWritingSvg} alt="Google Writing" id="google-writing-recovery-ryai"/>
 
-            <div id="choose-your-settings-info">
-                <h1 class="thin h1-space">Choose your settings</h1>
-                <p class='thin gap center pcys'>Depending on your choice, your data will be used to give you more personalized experiences and more control over the personalized ads you see</p>
-            </div>
+            <h1 class="thin h1-space">Choose your settings</h1>
             
+            <div id="choose-your-settings-container">
+                <div className="radio-input-and-writting-container">
+                    <div className="radio-input-container">
+                        <FormControlLabel 
+                            value="express" 
+                            control={<Radio />}
+                            style={{margin:'3px'}} 
+                        />
+                    </div>
+                    <div className='writting-container'>
+                        <p className="setting-option-name" >Express (1 step)</p>
+                        <p className="setting-information">Choose your settings in one step. Your choices to turn settings on or off help tailor the content and ad experiences you see.</p>
+                    </div>
+                </div>
+                <div className="radio-input-and-writting-container">
+                    <div className="radio-input-container">
+                        <FormControlLabel 
+                            value="express" 
+                            control={<Radio />}
+                            style={{margin:'3px'}} 
+                        />
+                    </div>
+                    <div className='writting-container'>
+                        <p className="setting-option-name">Manual (4 steps)</p>
+                        <p className="setting-information">Choose your settings step by step. Your choices to turn settings on or off help tailor the content and ad experiences you see.</p>
+                    </div>
+                </div>
+            </div>
 
-            <div class='next-and-skip-button-duo button-space-add-recovery-email'>
-                <CustomNextAndSkipButton 
+            <div id='review-your-account-next-button' class="button-space-create-password">
+                <CustomNextButton 
                     variant="contained" 
                     onClick={handleNextClick}
-                    type="submit"
                     sx={{
                         '&& .MuiTouchRipple-rippleVisible': {
                             animationDuration: '300ms',
                         },
                     }}
                 >
-                    Reject all
-                </CustomNextAndSkipButton>
-
-                <CustomNextAndSkipButton 
-                    variant="contained" 
-                    // onClick={}
-                    type="button"
-                    sx={{
-                        '&& .MuiTouchRipple-rippleVisible': {
-                            animationDuration: '300ms',
-                        },
-                    }}
-                >
-                    Accept all
-                </CustomNextAndSkipButton>
+                    <div class='next'>
+                        Next
+                    </div>
+                </CustomNextButton>                
+                
             </div>
 
         </div>

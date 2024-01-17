@@ -363,7 +363,9 @@ export const BirthdayAndGenderComponent = ({
                             },
                         }}
                     >
+                        <div class='next'>
                             Next
+                        </div>
                     </CustomNextButton>
                 </section>
 
