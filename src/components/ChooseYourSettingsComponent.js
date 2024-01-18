@@ -30,7 +30,7 @@ export const ChooseYourSettingsComponent = ({
                         <FormControlLabel 
                             value="express" 
                             control={<Radio />}
-                            style={{margin:'3px'}} 
+                            style={{margin:'6.5px 3px 3px 3px'}}
                         />
                     </div>
                     <div className='writting-container'>
@@ -43,7 +43,7 @@ export const ChooseYourSettingsComponent = ({
                         <FormControlLabel 
                             value="express" 
                             control={<Radio />}
-                            style={{margin:'3px'}} 
+                            style={{margin:'6.5px 3px 3px 3px'}}
                         />
                     </div>
                     <div className='writting-container'>
@@ -53,7 +53,11 @@ export const ChooseYourSettingsComponent = ({
                 </div>
             </div>
 
-            <div id='review-your-account-next-button' class="button-space-create-password">
+            <div id="p-container-choose-your-settings">
+                <p id="choose-your-settings-p">You can change your settings anytime at account.google.com</p>
+            </div>
+
+            <div id='next-button-choose-your-settings'>
                 <CustomNextButton 
                     variant="contained" 
                     onClick={handleNextClick}
