@@ -2,10 +2,13 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { ChooseYourSettingsComponent } from "../components/ChooseYourSettingsComponent";
 import googleWritingSvg from "../images/google-writing-svg.svg";
+import { styled } from '@mui/system';
+import Radio from '@mui/material/Radio';
 
 export const ChooseYourSettingsContainer = ({ userData, updateUser }) => {
 
-    const [isImageLoaded, setIsImageLoaded] = useState(false); 
+    const [isImageLoaded, setIsImageLoaded] = useState(false);
+    const [selectedValue, setSelectedValue] = useState(null); 
 
     const navigate = useNavigate();
 
@@ -17,6 +20,12 @@ export const ChooseYourSettingsContainer = ({ userData, updateUser }) => {
         };
     }, []);
 
+// Handle Radio Change
+
+    const handleRadioChange = (e) => {
+        setSelectedValue(e.target.value);
+    }
+
 // Handle Next Click
 
     const handleNextClick = (e) => {
@@ -24,12 +33,22 @@ export const ChooseYourSettingsContainer = ({ userData, updateUser }) => {
         navigate('/choose-your-settings'); 
     };
 
+// MUI Custom Styles
+
+    const CustomRadio = styled(Radio)({
+        
+    });
+
+
     return(
         <>
             <ChooseYourSettingsComponent
                 handleNextClick={handleNextClick}
                 isImageLoaded={isImageLoaded}
                 userData={userData}
+                CustomRadio={CustomRadio}
+                selectedValue={selectedValue}
+                handleRadioChange={handleRadioChange}
             />
         </>
     );
