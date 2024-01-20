@@ -78,13 +78,16 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 
         useEffect(() => {
             const countryOption = countries.find(country => country.svg === countryFromAPI.svg);
-            if (countryOption) {
+            if (countryOption && hasSelectedCYNARCountry === false) {
                 setSelectedOption({
                     value: countryOption,
                     label: countryOption.name
                 });
-                updateUser({ country: countryOption });
-            }
+                console.log("countryOption:", countryOption);
+            } 
+            // else {
+                
+            // }
         }, [countryFromAPI]);
 
         const customOptions = [
@@ -185,10 +188,15 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
         setSelectedOption(selectedOption);
         setActualSelectedOption(true);
         setPhoneNumber("");
-        updateUser({ country: selectedOption.value });
-        console.log("userData.country:", userData.country);
+        updateUser({ countryDetails: selectedOption.value });
         handleCYNARCountrySelect();
-    }
+    };
+
+    // useEffect(() => {
+    //     if (selectedOption && selectedOption.value) {
+    //         console.log("selected option:", selectedOption.value);
+    //     }
+    // }, [selectedOption]);
 
     const handleSelectPhoneNumber = (e) => {
         setPhoneNumber(e.target.value);
@@ -327,7 +335,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
             } else {
                 if (actualSelectedOption) {
                     setFormattedPhoneNumber(selectedOption.value.dialingCode + phoneNumber);
-                    updateUser({ phoneNumber: selectedOption.value.dialingCode + phoneNumber });
+                    updateUser({ phoneNumber: selectedOption.value.dialingCode + phoneNumber, country: selectedOption.value });
                     setError(null);                    
                 }
             }

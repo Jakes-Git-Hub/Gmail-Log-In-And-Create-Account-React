@@ -15,7 +15,7 @@ import { EnterTheCodeContainer } from "./containers/EnterTheCodeContainer";
 import { AddRecoveryEmailContainer } from "./containers/AddRecoveryEmailContainer";
 import { ReviewYourAccountInfoContainer } from "./containers/ReviewYourAccountInfoContainer";
 import { ChooseYourSettingsContainer } from "./containers/ChooseYourSettingsContainer";
-import { ChooseYourSettingsContainer2 } from "./containers/ChooseYourSettingsContainer2";
+import { ExpressChooseYourSettingsContainer } from "./containers/ExpressChooseYourSettingsContainer";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -162,12 +162,18 @@ const { userIP } = useUserIP()
               />
           } 
         />
-        <Route path="/choose-your-settings2" element={
-              <ChooseYourSettingsContainer2
+        <Route path="/express-choose-your-settings" element={
+              <ExpressChooseYourSettingsContainer
                 updateUser={updateUser}
               />
           } 
         />
+        {/* <Route path="/manual-choose-your-settings" element={
+              <ManualChooseYourSettingsContainer2
+                updateUser={updateUser}
+              />
+          } 
+        /> */}
       </Routes>
     </Router>
   );

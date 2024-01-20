@@ -164,7 +164,8 @@ body {
 }
 
 h1 {
-  font-size: 1.5em;
+  font-size: 1.5rem;
+  color: #202124;
 }
 
 h2 {
@@ -1308,6 +1309,9 @@ input[type="number"]::-webkit-outer-spin-button {
   width: 82.5%;
   margin: 20px 0 17px 0;
   height: 176px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 .radio-input-and-writting-container{
@@ -1318,18 +1322,21 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .radio-input-container {
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  width: 10%;
+  width: 100%;
   height: 100%;
+  border-bottom: 1px solid #dadce0;
 }
 
-.css-1c95h0d-MuiButtonBase-root-MuiRadio-root {
+.css-t6g53l-MuiButtonBase-root-MuiRadio-root {
   height: 50px !important;
   width: 50px !important;
+  bottom: 20px !important;
+  overflow: visible !important;
 }
 
+.css-r1fb3p-MuiButtonBase-root-MuiRadio-root {
+  bottom: 20px !important;
+}
 
 .radio-group-cys {
   height: 100%;
@@ -1347,7 +1354,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .setting-option-name {
   font-size: 0.875rem;
   color: #202124;
-  margin: 0 0 5px 0;
+  margin: 0 0 0 0;
 }
 
 .setting-information {
@@ -1356,8 +1363,21 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0 1.25px 0 0;
 }
 
+.setting-option-name:hover,
+.setting-information:hover {
+    cursor: pointer;
+}
+
 #p-container-choose-your-settings {
   width: 81%;
+}
+
+#error-div-choose-your-settings {
+  width: 83%;
+  margin: -10.125px 0 11.125px 0;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
 }
 
 #choose-your-settings-p {
@@ -1372,17 +1392,43 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 30px 0 65px 0;
 }
 
-/* Choose Your Settings 2 */
+/* Express Choose Your Settings 2 */
 
-#choose-your-settings-info {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
+#choose-your-settings-title {
   width: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center
 }
 
 .pcys {
   font-size: 0.875rem;
   color: #202124;
 }
+
+#express-choose-your-settings-info {
+  width: 82.5%;
+  margin-top: 15px;
+}
+
+.settings-svg-and-info-container {
+  width: 100%;
+  height: 305px;
+}
+
+.settings-svg-and-info-row {
+  width: 100%;
+}
+
+.svg-settings {
+  width: 20%;
+}
+
+.setting-svg {
+  fill: rgb(95,99,104);
+}
+
+.info-settings {
+  width: 80%;
+}
+

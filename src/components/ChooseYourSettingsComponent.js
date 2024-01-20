@@ -4,15 +4,16 @@ import CustomNextButton from './CustomNextButtonComponent';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
+import errorImage from '../images/Daco_5575399.png';
 
 export const ChooseYourSettingsComponent = ({ 
     handleNextClick,
     isImageLoaded,
     userData,
-    CustomRadio,
     handleRadioChange,
-    selectedValue,
-    theme,
+    setting,
+    errorCondition,
+    isImagePreloaded,
 }) => {
 
 
@@ -30,53 +31,72 @@ export const ChooseYourSettingsComponent = ({
             <RadioGroup
                 aria-label="settings"
                 name="settings"
-                value={selectedValue}
+                value={setting}
                 onChange={handleRadioChange}
                 id="choose-your-settings-container"
             >
-                <div className="radio-input-and-writting-container">
-                    <div className="radio-input-container">
-                        <FormControlLabel 
-                            value="express" 
-                            control={
-                                <Radio
-                                    sx={{
-                                        '&.MuiButtonBase-root:hover': {
-                                            backgroundColor: 'transparent',
-                                        },
-                                    }}
-                                />
-                            }
-                            style={{margin:'6.5px 11px 3px 3px'}}
-                        />
-                    </div>
-                    <div className='writting-container'>
-                        <p className="setting-option-name" >Express (1 step)</p>
-                        <p className="setting-information">Choose your settings in one step. Your choices to turn settings on or off help tailor the content and ad experiences you see.</p>
-                    </div>
+                <div className="radio-input-container">
+                    <FormControlLabel 
+                        value="express" 
+                        control={
+                            <Radio
+                                sx={{
+                                    '&.MuiButtonBase-root:hover': {
+                                        backgroundColor: 'transparent',
+                                    },
+                                    color: errorCondition === "selectAnOption" ? 'rgb(217,48,37)' : 'default',
+                                }}
+                            />
+                        }
+                        label={
+                            <div className='writting-container'>
+                                <p className="setting-option-name" >Express (1 step)</p>
+                                <p className="setting-information">Choose your settings in one step. Your choices to turn settings on or off help tailor the content and ad experiences you see.</p>
+                            </div>
+                        }
+                        style={{
+                                margin:'6.5px 0 6.5px 1px',
+                                width: "100%",
+                                position: "relative",
+                                right: "10px",
+                        }}
+                    />
                 </div>
-                <div className="radio-input-and-writting-container">
-                    <div className="radio-input-container">
-                        <FormControlLabel 
-                            value="manual" 
-                            control={
-                                <Radio
-                                    sx={{
-                                        '&.MuiButtonBase-root:hover': {
-                                            backgroundColor: 'transparent',
-                                        }
-                                    }}
-                                 />
-                            }
-                            style={{margin:'6.5px 11px 3px 3px'}}
-                        />
-                    </div>
-                    <div className='writting-container'>
-                        <p className="setting-option-name">Manual (4 steps)</p>
-                        <p className="setting-information">Choose your settings step by step. Your choices to turn settings on or off help tailor the content and ad experiences you see.</p>
-                    </div>
+                <div className="radio-input-container">
+                    <FormControlLabel 
+                        value="manual" 
+                        control={
+                            <Radio
+                                sx={{
+                                    '&.MuiButtonBase-root:hover': {
+                                        backgroundColor: 'transparent',
+                                    },
+                                    color: errorCondition === "selectAnOption" ? 'rgb(217,48,37)' : 'default',
+                                }}
+                                />
+                        }
+                        label={
+                            <div className='writting-container'>
+                                <p className="setting-option-name">Manual (4 steps)</p>
+                                <p className="setting-information">Choose your settings step by step. Your choices to turn settings on or off help tailor the content and ad experiences you see.</p>
+                            </div>
+                        }
+                        style={{
+                            margin:'6.5px 0 6.5px 1px',
+                            width: "100%",
+                            position: "relative",
+                            right: "10px",
+                        }}
+                    />
                 </div>
             </RadioGroup>
+
+            {errorCondition === "selectAnOption" && isImagePreloaded && (   
+                <div id='error-div-choose-your-settings'>
+                    <img className='error-image' src={errorImage} alt='Error Image' />
+                    <p class="input-error-message">Select an option to continue</p>
+                </div>
+            )}
 
             <div id="p-container-choose-your-settings">
                 <p id="choose-your-settings-p">You can change your settings anytime at account.google.com</p>

@@ -23,6 +23,10 @@ const CustomNextAndSkipButton = styled(Button)({
     textTransform: 'none',
     margin: 'margin: 7px 1.5px 20px 0;',
     fontWeight: '400',
+    '& .duo': {
+        position: 'relative',
+        zIndex: 1,
+    },
 });
 
 export default CustomNextAndSkipButton;

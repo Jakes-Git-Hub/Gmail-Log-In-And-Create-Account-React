@@ -99,7 +99,8 @@ export const AddRecoveryEmailComponent = ({
                     )}  
 
                     <div class='next-and-skip-button-duo button-space-add-recovery-email'>
-                        <CustomNextAndSkipButton 
+                        <CustomNextAndSkipButton
+                            className="duo" 
                             variant="contained" 
                             onClick={handleNextClick}
                             type="submit"
@@ -113,7 +114,8 @@ export const AddRecoveryEmailComponent = ({
                                 Next
                             </div>
                         </CustomNextAndSkipButton>
-                        <CustomNextAndSkipButton 
+                        <CustomNextAndSkipButton
+                            className="duo" 
                             variant="contained" 
                             onClick={handleSkip}
                             type="button"

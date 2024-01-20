@@ -2,15 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { ChooseYourSettingsComponent } from "../components/ChooseYourSettingsComponent";
 import googleWritingSvg from "../images/google-writing-svg.svg";
-import { styled } from '@mui/system';
-import Radio from '@mui/material/Radio';
+import errorImage from '../images/Daco_5575399.png';
+import useImagePreload from "../hooks/useImagePreload";
 
 export const ChooseYourSettingsContainer = ({ userData, updateUser }) => {
 
+    const [setting, setSetting] = useState("");
     const [isImageLoaded, setIsImageLoaded] = useState(false);
-    const [selectedValue, setSelectedValue] = useState(null); 
+    const [errorCondition, setErrorCondition] = useState("");
 
     const navigate = useNavigate();
+
+// Check for Image Loads
+
+    const isImagePreloaded = useImagePreload(errorImage);
 
     useEffect(() => {
         const image = new Image();
@@ -23,21 +28,30 @@ export const ChooseYourSettingsContainer = ({ userData, updateUser }) => {
 // Handle Radio Change
 
     const handleRadioChange = (e) => {
-        setSelectedValue(e.target.value);
+        setSetting(e.target.value);
+        if (errorCondition === "selectAnOption") {
+            setErrorCondition("");
+        }
     }
+
+// Errors
+
+    const setError = (error) => setErrorCondition(error);
 
 // Handle Next Click
 
     const handleNextClick = (e) => {
         e.preventDefault();
-        navigate('/choose-your-settings'); 
+        if (setting === "") {
+            setError("selectAnOption");
+        } if (setting === "express") {
+            updateUser({ settings: "express" });
+            navigate("/express-choose-your-settings")
+        } if (setting === "manual") {
+            updateUser({ settings: "manual" });
+            navigate("/manual-choose-your-settings")
+        }
     };
-
-// MUI Custom Styles
-
-    const CustomRadio = styled(Radio)({
-        
-    });
 
 
     return(
@@ -46,9 +60,10 @@ export const ChooseYourSettingsContainer = ({ userData, updateUser }) => {
                 handleNextClick={handleNextClick}
                 isImageLoaded={isImageLoaded}
                 userData={userData}
-                CustomRadio={CustomRadio}
-                selectedValue={selectedValue}
+                setting={setting}
                 handleRadioChange={handleRadioChange}
+                errorCondition={errorCondition}
+                isImagePreloaded={isImagePreloaded}
             />
         </>
     );
