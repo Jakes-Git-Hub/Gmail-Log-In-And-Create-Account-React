@@ -49,8 +49,6 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                 if (countryFromSelection) {
                     setUsersCountryFlagSVG(countryFromSelection.svg);
                     setCountryFromAPIOrSelection({name: countryFromSelection.name, svg:countryFromSelection.svg});
-                    // console.log("usersCountryFlagSVG:", usersCountryFlagSVG);
-                    // console.log("setCountryFromAPIOrSelection:", setCountryFromAPIOrSelection);
                 }
             } else if (userIP && hasSelectedCYNARCountry === false) {
                 console.log("actualSelectedOption:", actualSelectedOption)
@@ -63,10 +61,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                     if (matchingCountry) {
                         setUsersCountryFlagSVG(matchingCountry.svg);
                         setCountryFromAPIOrSelection({name: matchingCountry.name, svg:matchingCountry.svg});
-                        // console.log("usersCountryFlagSVG:", usersCountryFlagSVG);
-                        // console.log("setCountryFromAPIOrSelection:", setCountryFromAPIOrSelection);
                     }
-                    // console.log(`User's country: ${countryFromIP}`);
                 })
                 .catch((error) => {
                     console.error('Error fetching geolocation data:', error);
@@ -313,12 +308,6 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
         setPhoneNumber("");
     };
 
-    // useEffect(() => {
-    //     if (selectedOption && selectedOption.value) {
-    //         console.log("selected option:", selectedOption.value);
-    //     }
-    // }, [selectedOption]);
-
     const handleSelectPhoneNumber = (e) => {
         setPhoneNumber(e.target.value);
     };
@@ -387,7 +376,6 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                     console.log("actualSelectedOption:", actualSelectedOption);
                     navigate('/enter-the-verification-code');    
                     // console.log('Verification code sent successfully:', verificationCode);
-                    // Proceed to the next step or navigate to the next page
                 } else {
                     setLoading(false);
                     if (data.error) {

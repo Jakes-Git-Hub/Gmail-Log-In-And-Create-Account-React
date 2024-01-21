@@ -12,6 +12,8 @@ export const EnterTheCodeContainer = ({ updateUser, userData }) => {
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
     const [usersVerificationCodeInput, setUsersVerificationCodeInput] = useState('');
     const [verificationCode, setVerificationCode] = useState('');
+    const [getNewCodeButtonDisabled, setGetNewCodeButtonDisabled] = useState(true);
+    const [disabledCount, setDisabledCount] = useState(30);
 
     const navigate = useNavigate();
 
@@ -43,6 +45,20 @@ export const EnterTheCodeContainer = ({ updateUser, userData }) => {
 const setError = errorType => setErrorCondition(errorType);
 
 // Get New Code
+
+    const thirtySecondGetNewCodeCountdown = disabledCount => {
+        setTimeout(() => {
+            setDisabledCount(disabledCount - 1);
+        }, 1000);
+    }
+
+    useEffect(() => {
+        thirtySecondGetNewCodeCountdown(disabledCount);
+        if (disabledCount === 0) {
+            setDisabledCount(30);
+            setGetNewCodeButtonDisabled(false);
+        }
+    }, [disabledCount]);
 
     const getNewCode = () => {
         navigate("/confirm-youre-not-a-robot");
@@ -112,6 +128,8 @@ const setError = errorType => setErrorCondition(errorType);
             usersVerificationCodeInput={usersVerificationCodeInput}
             theme={theme}
             getNewCode={getNewCode}
+            getNewCodeButtonDisabled={getNewCodeButtonDisabled}
+            disabledCount={disabledCount}
         />
     );
 };

@@ -16,6 +16,8 @@ export const EnterTheCodeComponent = ({
     errorCondition,
     theme,
     getNewCode,
+    getNewCodeButtonDisabled,
+    disabledCount,
 }) => {
     
     return (
@@ -103,21 +105,43 @@ export const EnterTheCodeComponent = ({
                 )}
 
                 <div id={errorCondition ? "buttons-container-enter-the-code-error" : "buttons-container-enter-the-code"}>
-                    <div id="secondary-button-container-etc">
-                        <SecondaryGreyButton 
-                                variant="contained" 
-                                onClick={getNewCode}
-                                sx={{
-                                    '&& .MuiTouchRipple-rippleVisible': {
-                                        animationDuration: '300ms',
-                                    },
-                                }}
-                        >
-                            <div className="get-new-code-text">
-                                Get new code
-                            </div>
-                        </SecondaryGreyButton>
-                    </div>
+                        
+                    {getNewCodeButtonDisabled ? (
+                        <div id="secondary-button-container-etc">
+                            <SecondaryGreyButton 
+                                    variant="contained" 
+                                    onClick={getNewCode}
+                                    disabled
+                                    sx={{
+                                        '&& .MuiTouchRipple-rippleVisible': {
+                                            animationDuration: '300ms',
+                                        },
+                                        backgroundColor: 'transparent !important',
+                                    }}
+                            >
+                                <div className="get-new-code-text">
+                                    {`Get new code (${disabledCount} seconds)`}
+                                </div>
+                            </SecondaryGreyButton>
+                        </div>
+                    ) : (
+                        <div id="secondary-button-container-etc">
+                            <SecondaryGreyButton 
+                                    variant="contained" 
+                                    onClick={getNewCode}
+                                    sx={{
+                                        '&& .MuiTouchRipple-rippleVisible': {
+                                            animationDuration: '300ms',
+                                        },
+                                    }}
+                            >
+                                <div className="get-new-code-text">
+                                    Get new code
+                                </div>
+                            </SecondaryGreyButton>
+                        </div>
+                    )}    
+                        
 
                     <div id="next-button-container-etc">
                         <CustomNextButton 

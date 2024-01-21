@@ -1041,7 +1041,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 #buttons-container-enter-the-code-error{
-  margin: 12px 0 145px 0;
+  margin: 17px 0 145px 0;
   height: 50px;
   display: flex;
   align-items: center;
@@ -1051,7 +1051,7 @@ input[type="number"]::-webkit-outer-spin-button {
 #secondary-button-container-etc{
   display: flex;
   align-items: center;
-  width: 50%;
+  width: 60%;
   justify-content: flex-start;
   right: 6px;
   position: relative;
@@ -1061,7 +1061,7 @@ input[type="number"]::-webkit-outer-spin-button {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  width: 50%;
+  width: 40%;
   position: relative;
   right: 7px;
 }
