@@ -6,7 +6,9 @@ import googleWritingSvg from "../images/google-writing-svg.svg";
 export const ExpressChooseYourSettingsContainer = ({ updateUser }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
-    const [usersProfileCircleColor, setUsersProfileCircleColor] = useState('');
+    const [showWebAndAppActivityModal, setShowWebAndAppActivityModal] = useState(false);
+    const [showYouTubeHistoryModal, setShowYouTubeHistoryModal] = useState(false);
+    const [showPersonalizedAdsModal, setShowPersonalizedAdsModal] = useState(false);
 
     const navigate = useNavigate();
 
@@ -15,6 +17,21 @@ export const ExpressChooseYourSettingsContainer = ({ updateUser }) => {
         image.src = googleWritingSvg;
         image.onload = () => {
           setIsImageLoaded(true);
+        };
+    }, []);
+
+// Add Overflow Body CSS
+
+    useEffect(() => {
+        // Remove the existing id from the body
+        document.body.removeAttribute('id');
+
+        // Add a new id to the body
+        document.body.id = 'body-overflow';
+
+        // Remove the new id when the component unmounts
+        return () => {
+            document.body.removeAttribute('id');
         };
     }, []);
 

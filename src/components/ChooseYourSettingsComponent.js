@@ -19,7 +19,7 @@ export const ChooseYourSettingsComponent = ({
 
     return (
 
-        <div id='google-container-flexible-ryai'>
+        <div className='google-container-flexible-ryai'>
 
             <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : "empty-blue-snake-loader"}>
                 <div className="blue-snake-loader"></div>

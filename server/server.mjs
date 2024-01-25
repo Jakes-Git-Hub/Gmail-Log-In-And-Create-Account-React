@@ -46,7 +46,7 @@ app.post('/send-verification-code', async (req, res) => {
 
     // Send SMS using Twilio
     await client.messages.create({
-      body: `Your verification code is: ${verificationCode}`,
+      body: `G-${verificationCode} is your Google verification code.`,
       from: twilioPhoneNumber,
       to: formattedPhoneNumber,
     })
