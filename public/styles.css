@@ -21,6 +21,10 @@
   margin-bottom: 725px;
 }
 
+.test-overflow {
+  height: 56px;
+}
+
 #root {
   font-size: 16px;
   color: rgb(32,33,36);
@@ -1510,4 +1514,47 @@ p-gap-ecys-tight {
 
 .button-space-ecys {
   margin: 20px 1.5px 65px 0;
+}
+
+.google-container-overflow {
+  display: flex;
+  align-items: center;
+  border: 1px solid #dadce0;
+  border-radius: 10px;
+  flex-direction: column;
+  width: 448.18px;
+  min-width: 448.18px;
+  min-height: 496.219px;
+  position: relative;
+}
+
+.modal-ecys {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-title-div {
+  height: 50.66px;
+  width: 100%;
+}
+
+.modal-title-h1 {
+  font-size: 1.25rem;
+  padding: 24px 24px 0 24px;
+  line-height: 1.3333;
+  font-weight: 400;
+  margin: 0;
+}
+
+.modal-scroll-information {
+  height: 100%;
+}
+
+.modal-got-it-div {
+  height: 78px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
 }

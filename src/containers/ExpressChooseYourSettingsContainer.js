@@ -35,6 +35,16 @@ export const ExpressChooseYourSettingsContainer = ({ updateUser }) => {
         };
     }, []);
 
+// Handle Modals
+
+    const openWebAndAppActivityModal = () => {
+        setShowWebAndAppActivityModal(true);
+    }
+
+    const closeWebAndAppActivityModal = () => {
+        setShowWebAndAppActivityModal(false);
+    }
+
 // Handle Next Click
 
     const handleNextClick = (e) => {
@@ -47,6 +57,9 @@ export const ExpressChooseYourSettingsContainer = ({ updateUser }) => {
         <ExpressChooseYourSettingsComponent
             handleNextClick={handleNextClick}
             isImageLoaded={isImageLoaded}
+            openWebAndAppActivityModal={openWebAndAppActivityModal}
+            closeWebAndAppActivityModal={closeWebAndAppActivityModal}
+            showWebAndAppActivityModal={showWebAndAppActivityModal}
         />
     </>
  );
