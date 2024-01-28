@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { memo } from 'react';
 import errorImage from '../images/Daco_5575399.png';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import CustomNextButton from './CustomNextButtonComponent';
 
-export const CreateAccountcomponent = ({ 
+export const CreateAccountcomponent = memo(({ 
     firstName,
     lastName,
     handleNextClick,
@@ -12,13 +12,15 @@ export const CreateAccountcomponent = ({
     onFirstNameInputChange,
     onLastNameInputChange,
     errorCondition,
+    handleLanguageSelection,
+    text,
 }) => {
 
     return (
         <form>
 
-            <h1 class="thin h1-space">Create a Google Account</h1>
-            <h2 class='thin gap'>Enter your name</h2>
+            <h1 class="thin h1-space">{text.h1}</h1>
+            <h2 class='thin gap'>{text.h2}</h2>
 
             <Box
                 component="form"
@@ -31,7 +33,7 @@ export const CreateAccountcomponent = ({
                 <TextField 
                     error={errorCondition}
                     id="firstNameInput" 
-                    label="First Name" 
+                    label={text.firstName}
                     variant="outlined" 
                     fullWidth
                     value={firstName}
@@ -63,7 +65,7 @@ export const CreateAccountcomponent = ({
                     }
                 />
                 <TextField 
-                    label="Last Name (optional)"
+                    label={text.lastName}
                     className='last-name-margin-top' 
                     variant="outlined" 
                     fullWidth
@@ -107,11 +109,19 @@ export const CreateAccountcomponent = ({
                     }}
                 >
                     <div class='next'>
-                        Next
+                        {text.next}
                     </div>
                 </CustomNextButton>
             </div>
 
+            <div className='language-changer-div'>
+                <select onChange={handleLanguageSelection}>
+                    <option value="es">Translate to Spanish</option>
+                    <option value="fr">Translate to French</option>
+                    <option value="de">Translate to German</option>
+                </select>
+            </div>
+
         </form>
     );
-}
+});

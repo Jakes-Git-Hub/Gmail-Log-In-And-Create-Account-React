@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';  // Added for parsing request bodies
@@ -26,11 +28,11 @@ app.get('/get-user-ip', (request, response) => {
 // Twilio API Endpoint
 
 // Twilio credentials
-const accountSid = 'AC6a9daf79d9a01cb2499f732adba298c5';
-const authToken = 'f723349a790c615be5cf83cd525d276a';
-const twilioPhoneNumber = '+447893941852';
+const twilioAccountSid = process.env.Twilio_ACCOUNT_SID;
+const twilioAuthToken = process.env.Twilio_AUTH_TOKEN;
+const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
 
-const client = twilio(accountSid, authToken);
+const client = twilio(twilioAccountSid, twilioAuthToken);
 
 // Endpoint to send verification code via SMS
 app.post('/send-verification-code', async (req, res) => {

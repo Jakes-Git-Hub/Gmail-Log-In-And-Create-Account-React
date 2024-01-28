@@ -1558,3 +1558,21 @@ p-gap-ecys-tight {
   justify-content: center;
   align-items: flex-end;
 }
+
+/* Language Changer Div */
+
+.language-changer-div {
+  width: 50px;
+  height: 50px;
+}
+
+.lang-test{
+  height: 50px;
+  width: 50px;
+}
+
+.change-lang-button {
+  height: 50px;
+  width: 50px;
+  background-color: red;
+}

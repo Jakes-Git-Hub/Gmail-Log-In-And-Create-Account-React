@@ -16,6 +16,7 @@ import { AddRecoveryEmailContainer } from "./containers/AddRecoveryEmailContaine
 import { ReviewYourAccountInfoContainer } from "./containers/ReviewYourAccountInfoContainer";
 import { ChooseYourSettingsContainer } from "./containers/ChooseYourSettingsContainer";
 import { ExpressChooseYourSettingsContainer } from "./containers/ExpressChooseYourSettingsContainer";
+import axios from "axios";  
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -24,11 +25,49 @@ function App() {
   const [nextUserId, setNextUserId] = useState(1);
   const [userData, setUserData] = useState({});
   const [hasSelectedCYNARCountry, setHasSelectedCYNARCountry] = useState(false);
+  const [translatedText, setTranslatedText] = useState({});
+
+// Translation
+
+const googleAPIKey = 'AIzaSyAnvQnBbhJ9H6qMEnyo-i0yxoj1w_cmrWI';
+
+  useEffect(() => {
+
+  }, [userData.language]);
+
+  const birthdayAndGenderText = {
+    h1: 'Basic Information',
+      h2: 'Enter your birthday and gender',
+      month: 'Month',
+      january: 'January',
+      february: 'February',
+      march: 'March',
+      april: 'April',
+      may: 'May',
+      june: 'June',
+      july: 'July',
+      august: 'August',
+      september: 'September',
+      october: 'October',
+      november: 'November',
+      december: 'December',
+      day: 'Day',
+      year: 'Year',
+      gender: 'Gender',
+      female: 'female',
+      male: 'male',
+      ratherNotSay: 'Rather not say',
+      custom: 'Custom',
+      whatsYourGender: 'What\'s your gender?',
+      pleaseReferToMeAs: 'Please refer to me as',
+      other: 'Other',
+      next: 'Next',
+  };
 
 // Test
 
 useEffect(() => { 
-  setUsers(prevUsers => [...prevUsers, { name: "Test Testerson", id: 0, email: 'tester@gmail.com', password: 'test', phoneNumber: "" }]);
+  setUsers(prevUsers => [...prevUsers, { name: "Test Testerson", id: 0, email: 'tester@gmail.com', password: 'test', phoneNumber: "", language: "fr"}]);
 }, []);
 
 // Grab User's IP
@@ -95,7 +134,8 @@ const { userIP } = useUserIP()
         <Route path="/create-account" element={
             <StaticElementContainer>
               <CreateAccountContainer 
-                updateUser={updateUser} 
+                updateUser={updateUser}
+                userData={userData}
               />
             </StaticElementContainer>
           } 
