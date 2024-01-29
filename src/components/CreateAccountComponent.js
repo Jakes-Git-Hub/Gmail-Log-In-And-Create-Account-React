@@ -1,10 +1,10 @@
-import React, { memo } from 'react';
+import React from 'react';
 import errorImage from '../images/Daco_5575399.png';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import CustomNextButton from './CustomNextButtonComponent';
 
-export const CreateAccountcomponent = memo(({ 
+export const CreateAccountcomponent = ({ 
     firstName,
     lastName,
     handleNextClick,
@@ -19,8 +19,8 @@ export const CreateAccountcomponent = memo(({
     return (
         <form>
 
-            <h1 class="thin h1-space">{text.h1}</h1>
-            <h2 class='thin gap'>{text.h2}</h2>
+            <h1 class="thin h1-space">{text.CreateAccount.h1}</h1>
+            <h2 class='thin gap'>{text.CreateAccount.h2}</h2>
 
             <Box
                 component="form"
@@ -33,7 +33,7 @@ export const CreateAccountcomponent = memo(({
                 <TextField 
                     error={errorCondition}
                     id="firstNameInput" 
-                    label={text.firstName}
+                    label={text.CreateAccount.firstName}
                     variant="outlined" 
                     fullWidth
                     value={firstName}
@@ -65,7 +65,7 @@ export const CreateAccountcomponent = memo(({
                     }
                 />
                 <TextField 
-                    label={text.lastName}
+                    label={text.CreateAccount.lastName}
                     className='last-name-margin-top' 
                     variant="outlined" 
                     fullWidth
@@ -109,13 +109,14 @@ export const CreateAccountcomponent = memo(({
                     }}
                 >
                     <div class='next'>
-                        {text.next}
+                        {text.CreateAccount.next}
                     </div>
                 </CustomNextButton>
             </div>
 
             <div className='language-changer-div'>
                 <select onChange={handleLanguageSelection}>
+                    <option></option>
                     <option value="es">Translate to Spanish</option>
                     <option value="fr">Translate to French</option>
                     <option value="de">Translate to German</option>
@@ -124,4 +125,4 @@ export const CreateAccountcomponent = memo(({
 
         </form>
     );
-});
+};

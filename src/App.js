@@ -25,18 +25,16 @@ function App() {
   const [nextUserId, setNextUserId] = useState(1);
   const [userData, setUserData] = useState({});
   const [hasSelectedCYNARCountry, setHasSelectedCYNARCountry] = useState(false);
-  const [translatedText, setTranslatedText] = useState({});
-
-// Translation
-
-const googleAPIKey = 'AIzaSyAnvQnBbhJ9H6qMEnyo-i0yxoj1w_cmrWI';
-
-  useEffect(() => {
-
-  }, [userData.language]);
-
-  const birthdayAndGenderText = {
-    h1: 'Basic Information',
+  const [text, setText] = useState({
+    CreateAccount: {
+      h1: 'Create a Google Account',
+      h2: 'Enter your name',
+      firstName: 'First name',
+      lastName: 'Last name (optional)',
+      next: 'Next',
+    },
+    BirthdayAndGender: {
+      h1: 'Basic Information',
       h2: 'Enter your birthday and gender',
       month: 'Month',
       january: 'January',
@@ -54,14 +52,62 @@ const googleAPIKey = 'AIzaSyAnvQnBbhJ9H6qMEnyo-i0yxoj1w_cmrWI';
       day: 'Day',
       year: 'Year',
       gender: 'Gender',
-      female: 'female',
-      male: 'male',
+      female: 'Female',
+      male: 'Male',
       ratherNotSay: 'Rather not say',
       custom: 'Custom',
       whatsYourGender: 'What\'s your gender?',
       pleaseReferToMeAs: 'Please refer to me as',
       other: 'Other',
       next: 'Next',
+    },
+});
+
+// Translation
+
+  const googleAPIKey = 'AIzaSyAnvQnBbhJ9H6qMEnyo-i0yxoj1w_cmrWI';
+
+  useEffect(() => {
+    handleLanguageSelection();
+    console.log('chosenLanguage:', userData.language)
+  }, [userData.language]);
+
+  const handleLanguageSelection = async () => {
+    if (!userData.language) return;
+  
+    const chosenLanguage = userData.language;
+  
+    // Translate each text in the 'text' object
+    const translatedText = {};
+    for (const topLevelKey in text) {
+      const topLevelObject = text[topLevelKey];
+      const translatedTopLevelObject = {};
+  
+      // Translate each key-value pair in the nested object
+      for (const key in topLevelObject) {
+        const translation = await changeLanguageAndTranslate(topLevelObject[key], chosenLanguage);
+        translatedTopLevelObject[key] = translation;
+      }
+  
+      translatedText[topLevelKey] = translatedTopLevelObject;
+    }
+  
+    // Update the 'text' state with translated text
+    setText(translatedText);
+  };
+
+  const changeLanguageAndTranslate = async (text, chosenLanguage) => {
+      updateUser({ language: chosenLanguage })
+      try {
+        const res = await axios.post(`https://translation.googleapis.com/language/translate/v2?key=${googleAPIKey}`, {
+          q: text,
+          target: chosenLanguage,
+        });
+        return res.data.data.translations[0].translatedText;
+      } catch (error) {
+        console.error('Error translating text:', error);
+        return null;
+      }
   };
 
 // Test
@@ -129,13 +175,14 @@ const { userIP } = useUserIP()
           element={<MockMailContainer   
                     loggedIn={loggedIn}
                     currentLoggedInUser={currentLoggedInUser}
-                   />} 
+                  />} 
         />
         <Route path="/create-account" element={
             <StaticElementContainer>
               <CreateAccountContainer 
                 updateUser={updateUser}
                 userData={userData}
+                text={text}
               />
             </StaticElementContainer>
           } 
@@ -144,6 +191,7 @@ const { userIP } = useUserIP()
               <BirthdayAndGenderContainer
                 updateUser={updateUser}
                 userData={userData}
+                text={text}
               />
           } 
         />

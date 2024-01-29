@@ -6,7 +6,7 @@ import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import axios from "axios";
 
-export const BirthdayAndGenderContainer = ({ updateUser, userData }) => {
+export const BirthdayAndGenderContainer = ({ updateUser, userData, text }) => {
 
     const [month, setMonth] = useState('');
     const [day, setDay] = useState("");
@@ -20,35 +20,6 @@ export const BirthdayAndGenderContainer = ({ updateUser, userData }) => {
     const [customGenderEmpty, setCustomGenderEmpty] = useState("");
     const [pronoun, setPronoun] = useState("");
     const [pronounEmpty, setPronounEmpty] = useState("");
-    const [text, setText] = useState({
-        h1: 'Basic Information',
-        h2: 'Enter your birthday and gender',
-        month: 'Month',
-        january: 'January',
-        february: 'February',
-        march: 'March',
-        april: 'April',
-        may: 'May',
-        june: 'June',
-        july: 'July',
-        august: 'August',
-        september: 'September',
-        october: 'October',
-        november: 'November',
-        december: 'December',
-        day: 'Day',
-        year: 'Year',
-        gender: 'Gender',
-        female: 'female',
-        male: 'male',
-        ratherNotSay: 'Rather not say',
-        custom: 'Custom',
-        whatsYourGender: 'What\'s your gender?',
-        pleaseReferToMeAs: 'Please refer to me as',
-        other: 'Other',
-        next: 'Next',
-    });
-    const [language, setLanguage] = useState(userData.language ? userData.language : 'en');
 
     const navigate = useNavigate();
 
@@ -64,55 +35,12 @@ export const BirthdayAndGenderContainer = ({ updateUser, userData }) => {
         };
     }, []);
 
-    useEffect(() => {
-        console.log(`userData:`, userData);
-    }, []);
-
-// Translation
-
-const googleAPIKey = 'AIzaSyAnvQnBbhJ9H6qMEnyo-i0yxoj1w_cmrWI';
-
 // Change Language
 
-    useEffect(() => {
-        if (userData.language) {
-            handleLanguageSelection();
-        }
-    }, []);
-
     const handleLanguageSelection = async (e) => {
-        let chosenLanguage;
-        if (e) {
             e.preventDefault();
-            chosenLanguage = e.target.value;
-        } else {
-            chosenLanguage = userData.language;
-        }
-
-        // Translate each text in the 'text' object
-        const translatedText = {};
-        for (const key in text) {
-            const translation = await changeLanguageAndTranslate(text[key], chosenLanguage);
-            translatedText[key] = translation;
-        }
-        
-        // Update the 'text' state with translated text
-        setText(translatedText);
-    };
-
-    const changeLanguageAndTranslate = async (text, chosenLanguage) => {
-        setLanguage(chosenLanguage);
-        updateUser({ language: chosenLanguage })
-        try {
-            const res = await axios.post(`https://translation.googleapis.com/language/translate/v2?key=${googleAPIKey}`, {
-                q: text,
-                target: chosenLanguage,
-            });
-            return res.data.data.translations[0].translatedText;
-        } catch (error) {
-            console.error('Error translating text:', error);
-            return null;
-        }
+            const chosenLanguage = e.target.value;
+            updateUser({ language: chosenLanguage })
     };
 
 // Month

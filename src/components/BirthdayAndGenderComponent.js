@@ -44,7 +44,7 @@ export const BirthdayAndGenderComponent = ({
             
                 <form>
 
-                    <h1 class="thin h1-space">{text.h1}</h1>
+                    <h1 class="thin h1-space">{text.BirthdayAndGender.h1}</h1>
 
                     <h2 class='thin gap'>Enter your birthday and gender</h2>
 
