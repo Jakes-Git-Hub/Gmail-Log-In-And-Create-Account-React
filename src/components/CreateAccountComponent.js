@@ -87,12 +87,12 @@ export const CreateAccountcomponent = ({
             {errorCondition === "firstNameEmpty" && isImagePreloaded ? (
                 <div class='error-div'>
                     <img className='error-image' src={errorImage} alt='Error Image' />
-                    <p class="input-error-message">Enter first name</p>
+                    <p class="input-error-message">{text.CreateAccount.error1}</p>
                 </div>
             ) : errorCondition === "areYouSureCorrect" && isImagePreloaded ? (
                 <div class='error-div'>
                     <img className='error-image' src={errorImage} alt='Error Image' />
-                    <p class="input-error-message">Are you sure you entered your name correctly?</p>
+                    <p class="input-error-message">{text.CreateAccount.error2}</p>
                 </div>
             ) : (
                 <div className='hidden-error-message-container-create-account'></div>

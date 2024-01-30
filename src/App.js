@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useUserIP } from './utils/userIPModule';
+import textData from './data/textData';
 import { FrontPageStaticContainer } from './containers/FrontPageStaticContainer'
 import { StaticElementContainer } from "./containers/StaticElementContainer";
 import { CreatePasswordStaticElementContainer } from "./containers/CreatePasswordStaticElementContainer";
@@ -25,43 +26,7 @@ function App() {
   const [nextUserId, setNextUserId] = useState(1);
   const [userData, setUserData] = useState({});
   const [hasSelectedCYNARCountry, setHasSelectedCYNARCountry] = useState(false);
-  const [text, setText] = useState({
-    CreateAccount: {
-      h1: 'Create a Google Account',
-      h2: 'Enter your name',
-      firstName: 'First name',
-      lastName: 'Last name (optional)',
-      next: 'Next',
-    },
-    BirthdayAndGender: {
-      h1: 'Basic Information',
-      h2: 'Enter your birthday and gender',
-      month: 'Month',
-      january: 'January',
-      february: 'February',
-      march: 'March',
-      april: 'April',
-      may: 'May',
-      june: 'June',
-      july: 'July',
-      august: 'August',
-      september: 'September',
-      october: 'October',
-      november: 'November',
-      december: 'December',
-      day: 'Day',
-      year: 'Year',
-      gender: 'Gender',
-      female: 'Female',
-      male: 'Male',
-      ratherNotSay: 'Rather not say',
-      custom: 'Custom',
-      whatsYourGender: 'What\'s your gender?',
-      pleaseReferToMeAs: 'Please refer to me as',
-      other: 'Other',
-      next: 'Next',
-    },
-});
+  const [text, setText] = useState(textData);
 
 // Translation
 
@@ -77,24 +42,30 @@ function App() {
   
     const chosenLanguage = userData.language;
   
-    // Translate each text in the 'text' object
-    const translatedText = {};
-    for (const topLevelKey in text) {
-      const topLevelObject = text[topLevelKey];
-      const translatedTopLevelObject = {};
+    try {
+      const translatedText = {};
+      for (const topLevelKey in text) {
+        const topLevelObject = text[topLevelKey];
+        const translatedTopLevelObject = {};
   
-      // Translate each key-value pair in the nested object
-      for (const key in topLevelObject) {
-        const translation = await changeLanguageAndTranslate(topLevelObject[key], chosenLanguage);
-        translatedTopLevelObject[key] = translation;
+        // Translate each key-value pair in the nested object
+        for (const key in topLevelObject) {
+          const translation = await changeLanguageAndTranslate(topLevelObject[key], chosenLanguage);
+          translatedTopLevelObject[key] = translation;
+        }
+  
+        translatedText[topLevelKey] = translatedTopLevelObject;
       }
   
-      translatedText[topLevelKey] = translatedTopLevelObject;
-    }
+      // Sanitize the translated text before setting it to state
+      const sanitizedTranslatedText = sanitizeText(translatedText);
   
-    // Update the 'text' state with translated text
-    setText(translatedText);
-  };
+      // Update the 'text' state with sanitized translated text
+      setText(sanitizedTranslatedText);
+    } catch (error) {
+      console.error('Error translating text:', error);
+    }
+  }; 
 
   const changeLanguageAndTranslate = async (text, chosenLanguage) => {
       updateUser({ language: chosenLanguage })
@@ -108,6 +79,26 @@ function App() {
         console.error('Error translating text:', error);
         return null;
       }
+  };
+  
+  const sanitizeText = (translatedText) => {
+    const sanitizedText = {};
+
+    for (const topLevelKey in translatedText) {
+      const topLevelObject = translatedText[topLevelKey];
+      const sanitizedTopLevelObject = {};
+
+      for (const key in topLevelObject) {
+        const sanitizedValue = topLevelObject[key].replace("&#39;", "'");
+        // Add more sanitization rules as needed
+
+        sanitizedTopLevelObject[key] = sanitizedValue;
+      }
+
+      sanitizedText[topLevelKey] = sanitizedTopLevelObject;
+    }
+
+    return sanitizedText;
   };
 
 // Test

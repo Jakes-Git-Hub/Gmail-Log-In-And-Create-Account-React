@@ -46,11 +46,11 @@ export const BirthdayAndGenderComponent = ({
 
                     <h1 class="thin h1-space">{text.BirthdayAndGender.h1}</h1>
 
-                    <h2 class='thin gap'>Enter your birthday and gender</h2>
+                    <h2 class='thin gap'>{text.BirthdayAndGender.h2}</h2>
 
                     <div class='third-container-basic-information'>
 
-    {/* Month */}
+{/* Month */}
 
                         <Box sx={{ width: 'calc(32.5% - 2px)' }}>
                             <FormControl fullWidth error={errorCondition}>
@@ -64,11 +64,11 @@ export const BirthdayAndGenderComponent = ({
                                         } : {}
                                     } 
                                 >
-                                    Month
+                                    {text.BirthdayAndGender.month}
                                 </InputLabel>
                                 <Select
                                     value={month}
-                                    label="Month"
+                                    label={text.BirthdayAndGender.month}
                                     onChange={(e) => handleSelectMonth(e, year, day)}
                                     native="true"
                                     sx={{
@@ -87,29 +87,30 @@ export const BirthdayAndGenderComponent = ({
                                     }}
                                 >
                                     <option value="" hidden></option>
-                                    <option value="January">January</option>
-                                    <option value="February">February</option>
-                                    <option value="March">March</option>
-                                    <option value="April">April</option>
-                                    <option value="May">May</option>
-                                    <option value="June">June</option>
-                                    <option value="July">July</option>
-                                    <option value="August">August</option>
-                                    <option value="September">September</option>
-                                    <option value="October">October</option>
-                                    <option value="November">November</option>
-                                    <option value="December">December</option>
+                                    <option value="January">{text.BirthdayAndGender.january}</option>
+                                    <option value="February">{text.BirthdayAndGender.february}</option>
+                                    <option value="March">{text.BirthdayAndGender.march}</option>
+                                    <option value="April">{text.BirthdayAndGender.april}</option>
+                                    <option value="May">{text.BirthdayAndGender.may}</option>
+                                    <option value="June">{text.BirthdayAndGender.june}</option>
+                                    <option value="July">{text.BirthdayAndGender.july}</option>
+                                    <option value="August">{text.BirthdayAndGender.august}</option>
+                                    <option value="September">{text.BirthdayAndGender.september}</option>
+                                    <option value="October">{text.BirthdayAndGender.october}</option>
+                                    <option value="November">{text.BirthdayAndGender.november}</option>
+                                    <option value="December">{text.BirthdayAndGender.december}</option>
+
                                 </Select>
                             </FormControl>
                         </Box>
 
-    {/* Day */}
+{/* Day */}
 
                         <Box sx={{ width: 'calc(32.5% - 10px)' }}>
                             <TextField
                                 fullWidth error={errorCondition}
                                 value={day}
-                                label="Day"
+                                label={text.BirthdayAndGender.day}
                                 onChange={(e) => handleSelectDay(e, year, month)}
                                 maxLength="2"
                                 InputLabelProps={
@@ -140,13 +141,13 @@ export const BirthdayAndGenderComponent = ({
                             />
                         </Box>
 
-    {/* Year */}
+{/* Year */}
 
                         <Box sx={{ width: 'calc(32.5% - 10px)' }}>
                             <TextField
                                 fullWidth error={errorCondition}
                                 value={year}
-                                label="Year"
+                                label={text.BirthdayAndGender.year}
                                 onChange={(e) => handleSelectYear(e, day, month)}
                                 maxLength="4"
                                 InputLabelProps={
@@ -193,7 +194,7 @@ export const BirthdayAndGenderComponent = ({
                         <div className='hidden-error-message-container-create-account'></div>
                     )}
 
-    {/* Gender */}
+{/* Gender */}
 
                     <div class='line-height gender-input-width' id='gender-space'>
                         <Box>
@@ -208,11 +209,11 @@ export const BirthdayAndGenderComponent = ({
                                     } : {}
                                 } 
                                 >  
-                                    Gender
+                                    {text.BirthdayAndGender.gender}
                                 </InputLabel>
                                 <Select
                                     value={gender}
-                                    label="Gender"
+                                    label={text.BirthdayAndGender.gender}
                                     onChange={handleSelectGender}
                                     native="true"
                                     sx={{
@@ -231,10 +232,10 @@ export const BirthdayAndGenderComponent = ({
                                     }}
                                 >
                                     <option value="" hidden></option>
-                                    <option value="Female">Female</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Rather not say">Rather not say</option>
-                                    <option value="Custom">Custom</option>
+                                    <option value="Female">{text.BirthdayAndGender.female}</option>
+                                    <option value="Male">{text.BirthdayAndGender.male}</option>
+                                    <option value="Rather not say">{text.BirthdayAndGender.ratherNotSay}</option>
+                                    <option value="Custom">{text.BirthdayAndGender.custom}</option>
                                 </Select>
                             </FormControl>
                         </Box>
@@ -249,7 +250,7 @@ export const BirthdayAndGenderComponent = ({
                         <div className='hidden-error-message-container-BI'></div>
                     )}
 
-    {/* Hidden Gender Options */}
+{/* Hidden Gender Options */}
 
     {/* What's Your Gender? */}
 
@@ -260,7 +261,7 @@ export const BirthdayAndGenderComponent = ({
                                         <TextField
                                             fullWidth error={customGenderEmpty}
                                             value={customGender}
-                                            label="What's your gender?"
+                                            label={text.BirthdayAndGender.whatsYourGender}
                                             onChange={handleSelectCustomGender}
                                             InputLabelProps={
                                                 customGenderEmpty ? 
@@ -313,11 +314,11 @@ export const BirthdayAndGenderComponent = ({
                                             } : {}
                                         } 
                                         >  
-                                            Please refer to me as
+                                            {text.BirthdayAndGender.pleaseReferToMeAs}
                                         </InputLabel>
                                         <Select
                                             value={pronoun}
-                                            label="Please refer to me as"
+                                            label={text.BirthdayAndGender.pleaseReferToMeAs}
                                             onChange={handleSelectPronoun}
                                             native="true"
                                             sx={{
@@ -335,9 +336,9 @@ export const BirthdayAndGenderComponent = ({
                                             }}
                                         >
                                             <option value="" hidden></option>
-                                            <option value="Female">Female</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Other">Other</option>
+                                            <option value="Female">{text.BirthdayAndGender.female}</option>
+                                            <option value="Male">{text.BirthdayAndGender.male}</option>
+                                            <option value="Other">{text.BirthdayAndGender.other}</option>
                                         </Select>
                                     </FormControl>
                                 </Box>
