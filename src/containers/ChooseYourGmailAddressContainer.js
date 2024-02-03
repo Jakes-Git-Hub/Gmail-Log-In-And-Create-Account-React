@@ -1,16 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChooseYourGmailAddressComponent } from '../components/ChooseYourGmailAddressComponent';
 import errorImage from '../images/Daco_5575399.png';
 import useImagePreload from "../hooks/useImagePreload";
+import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const ChooseYourGmailAddressContainer = ({ updateUser, users }) => {
+export const ChooseYourGmailAddressContainer = ({ updateUser, users, text }) => {
 
-    const [email, setEmail] = useState('');
-    const [errorCondition, setErrorCondition] = useState(null);
-    const navigate = useNavigate();
+  const [email, setEmail] = useState('');
+  const [errorCondition, setErrorCondition] = useState(null);
+  const [isImageLoaded, setIsImageLoaded] = useState(false); 
 
-    const isImagePreloaded = useImagePreload(errorImage);
+  const navigate = useNavigate();
+
+  const isImagePreloaded = useImagePreload(errorImage);
+
+  useEffect(() => {
+    const image = new Image();
+    image.src = googleWritingSvg;
+    image.onload = () => {
+      setIsImageLoaded(true);
+    };
+  }, []);
+
+// Change Language
+
+  const handleLanguageSelection = async (e) => {
+    e.preventDefault();
+    const chosenLanguage = e.target.value;
+    updateUser({ language: chosenLanguage })
+  };
 
 // Email
 
@@ -58,6 +77,9 @@ export const ChooseYourGmailAddressContainer = ({ updateUser, users }) => {
                 isImagePreloaded={isImagePreloaded}
                 errorCondition={errorCondition}
                 handleSelectEmail={handleSelectEmail}
+                text={text}
+                handleLanguageSelection={handleLanguageSelection}
+                isImageLoaded={isImageLoaded}
             />
         </>
     )

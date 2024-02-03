@@ -3,14 +3,29 @@ import { useNavigate } from 'react-router-dom';
 import { CreateAccountcomponent } from "../components/CreateAccountComponent";
 import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
-import axios from 'axios';
+import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const CreateAccountContainer = ({ updateUser, userData, text }) => {
+export const CreateAccountContainer = ({ updateUser, text }) => {
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [isFirstNameFocused, setIsFirstNameFocused] = useState(false);
     const [errorCondition, setErrorCondition] = useState(null);
+    const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+    const navigate = useNavigate();
+
+    // Handle Slow Svg Load
+
+    useEffect(() => {
+        const image = new Image();
+        image.src = googleWritingSvg;
+        image.onload = () => {
+          setIsImageLoaded(true);
+        };
+    }, []);
+
+    const isImagePreloaded = useImagePreload(errorImage);
 
 // Change Language
 
@@ -23,12 +38,6 @@ export const CreateAccountContainer = ({ updateUser, userData, text }) => {
             const chosenLanguage = e.target.value;
             updateUser({ language: chosenLanguage })
     };
-   
-    const navigate = useNavigate();
-
-// Pre-load Error Img
-
-    const isImagePreloaded = useImagePreload(errorImage);
 
 // First Name
 
@@ -101,6 +110,7 @@ export const CreateAccountContainer = ({ updateUser, userData, text }) => {
                 errorCondition={errorCondition}
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
+                isImageLoaded={isImageLoaded}
             />
         </>
     );

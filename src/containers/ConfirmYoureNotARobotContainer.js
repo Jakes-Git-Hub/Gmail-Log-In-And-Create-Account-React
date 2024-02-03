@@ -4,12 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { ConfirmYoureNotARobotComponent } from '../components/ConfirmYoureNotARobotComponent';
 import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
-import { countries } from '../utils/countryDropDownOptions';
 import axios from 'axios';
 import GBSVG from '../images/flags/gb2.svg';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, userIP, handleCYNARCountrySelect, hasSelectedCYNARCountry }) => {
+export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, userIP, handleCYNARCountrySelect, hasSelectedCYNARCountry, text, translatedCountries }) => {
 
     const [formattedPhoneNumber, setFormattedPhoneNumber] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -19,13 +18,30 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
     const [countryFromAPIOrSelection, setCountryFromAPIOrSelection] = useState(hasSelectedCYNARCountry ? userData.countryDetails.name : {});
     const [selectedOption, setSelectedOption] = useState(null);
     const [actualSelectedOption, setActualSelectedOption] = useState(null);
-    const [filteredCountries, setFilteredCountries] = useState(countries);
+    const [filteredCountries, setFilteredCountries] = useState(translatedCountries);
+
     const [topOption, setTopOption] = useState(null);
     
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
+// Change Language
+
+    const handleLanguageSelection = async (e) => {
+        e.preventDefault();
+        const chosenLanguage = e.target.value;
+        updateUser({ language: chosenLanguage })
+    };
+
+    useEffect(() => {
+        setFilteredCountries(translatedCountries);
+    }, [translatedCountries]);
+
+    useEffect(() => {
+        console.log('filteredCountries:', filteredCountries);
+    }, []);
+    
 // Loads Error Image
 
     const isImagePreloaded = useImagePreload(errorImage);
@@ -39,152 +55,149 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
         console.log("hasSelectedCYNARCountry:", hasSelectedCYNARCountry);
     }, []);
 
-// FLag Ip Business
+// Get User's Country from IP and Set Placeholder SVG and Top Option Based on it
 
-    // Get User's Country from IP and Set Placeholder SVG Based on it
-
-        useEffect(() => { 
-            if (userIP && hasSelectedCYNARCountry === true) {
-                const countryFromSelection = userData.countryDetails;
-                if (countryFromSelection) {
-                    setUsersCountryFlagSVG(countryFromSelection.svg);
-                    setCountryFromAPIOrSelection({name: countryFromSelection.name, svg:countryFromSelection.svg});
-                }
-            } else if (userIP && hasSelectedCYNARCountry === false) {
-                console.log("actualSelectedOption:", actualSelectedOption)
-                const apiKey = 'b2ef0251b1264f88ae869467dfe144d8';
-
-                axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}&ip=102.217.238.0`)
-                .then((response) => {
-                    const countryFromIP = response.data.country_name;
-                    const matchingCountry = countries.find(country => country.name === countryFromIP);
-                    if (matchingCountry) {
-                        setUsersCountryFlagSVG(matchingCountry.svg);
-                        setCountryFromAPIOrSelection({name: matchingCountry.name, svg:matchingCountry.svg});
-                    }
-                })
-                .catch((error) => {
-                    console.error('Error fetching geolocation data:', error);
-                });
-            } else {
-                console.log("didn't work, or still waiting for IP API request");
+    useEffect(() => { 
+        if (userIP && hasSelectedCYNARCountry === true) {
+            const countryFromSelection = userData.countryDetails;
+            if (countryFromSelection) {
+                setUsersCountryFlagSVG(countryFromSelection.svg);
+                setCountryFromAPIOrSelection({name: countryFromSelection.name, svg:countryFromSelection.svg});
             }
-        }, [userIP, usersCountryFlagSVG]);
+        } else if (userIP && hasSelectedCYNARCountry === false) {
+            console.log("actualSelectedOption:", actualSelectedOption)
+            const apiKey = 'b2ef0251b1264f88ae869467dfe144d8';
 
-    // Custom Options
+            axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}&ip=102.217.238.0`)
+            .then((response) => {
+                const countryFromIP = response.data.country_name;
+                const matchingCountry = translatedCountries.find(country => country.name === countryFromIP);
+                if (matchingCountry) {
+                    setUsersCountryFlagSVG(matchingCountry.svg);
+                    setCountryFromAPIOrSelection({name: matchingCountry.name, svg:matchingCountry.svg});
+                }
+            })
+            .catch((error) => {
+                console.error('Error fetching geolocation data:', error);
+            });
+        } else {
+            console.log("didn't work, or still waiting for IP API request");
+        }
+    }, [userIP, usersCountryFlagSVG]);
 
-        useEffect(() => {
-            const newTopOption = countries.find(country => country.svg === countryFromAPIOrSelection.svg) || { name: "United Kingdom" }.name;
-            setTopOption(newTopOption);
-            const newFilteredCountries = filteredCountries.filter(country => country.dialingCode !== '' && country.name !== newTopOption.name);
-            setFilteredCountries(newFilteredCountries);
-        }, [selectedOption, countryFromAPIOrSelection]);
+// Custom Options
 
-        useEffect(() => {
-            const countryOption = countries.find(country => country.svg === countryFromAPIOrSelection.svg);
-            if (countryOption && hasSelectedCYNARCountry === false) {
-                setSelectedOption({
-                    value: countryOption,
-                    label: countryOption.name
-                });
-                console.log("countryOption:", countryOption);
-            } 
-            // else {
-                
-            // }
-        }, [countryFromAPIOrSelection]);
+    useEffect(() => {
+        const countryOption = translatedCountries.find(country => country.svg === countryFromAPIOrSelection.svg);
+        if (countryOption && hasSelectedCYNARCountry === false) {
+            setSelectedOption({
+                value: countryOption,
+                label: countryOption.name
+            });
+            console.log("countryOption:", countryOption);
+        } 
+    }, [countryFromAPIOrSelection]);
+    
+    useEffect(() => {
+        const newTopOption = translatedCountries.find(country => country.svg === countryFromAPIOrSelection.svg) || { name: "United Kingdom" }.name;
+        setTopOption(newTopOption);
+        const newFilteredCountries = filteredCountries.sort((a, b) => a.name.localeCompare(b.name));
+        setFilteredCountries(newFilteredCountries);
+    }, [selectedOption, countryFromAPIOrSelection]);
 
-        const customOptions = [
-            // Top Option
-            {
-                value: topOption,
-                label: (
-                    <div>
-                        <img
-                            src={require(`../images/flags/${countryFromAPIOrSelection.svg || 'gb2.svg'}`)}
-                            className="flag-image"
-                            alt={`${countryFromAPIOrSelection.name || 'GBlol'} flag1`}
-                            width="24"
-                            height="16"
-                        />
-                        <span className='country-option'>
-                                {usersCountryFlagSVG ? countries.find(country => country.svg === usersCountryFlagSVG).name : 'United Kingdom'} ({usersCountryFlagSVG ? countries.find(country => country.svg === usersCountryFlagSVG).dialingCode : '+44'})
-                        </span>
-                    </div>
-                ),
-            },
-            // Separator
-            {
-                value: 'separator',
-                label: (
-                    <div className="separator" />
-                ),
-                isDisabled: true,
-            },
-            // Add the rest of the countries
-            ...filteredCountries.map((country) => ({
-                value: country,
-                label: (
-                    <div>
-                        <img
-                        src={require(`../images/flags/${country.svg}`)}
+    const unitedKingdom = filteredCountries.find(country => country.abbreviation === 'gb')?.name;
+
+    const customOptions = [
+        // Top Option
+        {
+            value: topOption,
+            label: (
+                <div>
+                    <img
+                        src={require(`../images/flags/${countryFromAPIOrSelection.svg || 'gb2.svg'}`)}
                         className="flag-image"
-                        alt={`${country.name} flag2`}
+                        alt={`${countryFromAPIOrSelection.name || 'GB Flag'} flag1`}
                         width="24"
                         height="16"
-                        />
-                        <span className='country-option'>
-                            {country.name} ({country.dialingCode})
-                        </span>
-                    </div>
-                ),
-            })),
-        ];
-
-    // Chosen Country Flag Image Placeholder
-
-        useEffect(() => {
-            if (actualSelectedOption === true) {
-
-            }
-        }, []);
-        
-
-        const chosenCountryFlagImage = ({ children, ...props }) => {
-            return (
-            <components.SingleValue {...props}>
-                {props.data && props.data.value ? (
-                    <img
-                        src={require(`../images/flags/${props.data.value.svg}`)}
-                        className="flag-image"
-                        alt={`${props.data.value.name} flag3`}
-                        style={{ 
-                            marginLeft: '14px',
-                            marginBottom: '2px',
-                        }}
                     />
-                ) : null}
-            </components.SingleValue>
-            );
-        };
+                    <span className='country-option'>
+                        {usersCountryFlagSVG ? translatedCountries.find(country => country.svg === usersCountryFlagSVG).name : unitedKingdom} ({usersCountryFlagSVG ? translatedCountries.find(country => country.svg === usersCountryFlagSVG).dialingCode : '+44'})
+                    </span>
+                </div>
+            ),
+        },
+        // Separator
+        {
+            value: 'separator',
+            label: (
+                <div className="separator" />
+            ),
+            isDisabled: true,
+        },
+        // Add the rest of the translatedCountries
+        ...filteredCountries.map((country) => ({
+            value: country,
+            label: (
+                <div>
+                    <img
+                    src={require(`../images/flags/${country.svg}`)}
+                    className="flag-image"
+                    alt={`${country.name} flag2`}
+                    width="24"
+                    height="16"
+                    />
+                    <span className='country-option'>
+                        {country.name || country.name} ({country.dialingCode})
+                    </span>
+                </div>
+            ),
+        })),
+    ];
 
-    // Placeholder Content
+// Chosen Country Flag Image Placeholder
 
-        const placeholderContent = usersCountryFlagSVG ? (
-            <img
-                src={require(`../images/flags/${usersCountryFlagSVG}`)}
-                alt="Flag4"
-                width="24"
-                height="16"
-            />
-        ) : (
-            <img    
-                src={GBSVG} 
-                alt="Flag5" 
-                width="24" 
-                height="16" 
-            />
+    useEffect(() => {
+        if (actualSelectedOption === true) {
+
+        }
+    }, []);
+    
+
+    const chosenCountryFlagImage = ({ children, ...props }) => {
+        return (
+        <components.SingleValue {...props}>
+            {props.data && props.data.value ? (
+                <img
+                    src={require(`../images/flags/${props.data.value.svg || 'gb2.svg'}`)}
+                    className="flag-image"
+                    alt={`${props.data.value.name} flag3`}
+                    style={{ 
+                        marginLeft: '14px',
+                        marginBottom: '2px',
+                    }}
+                />
+            ) : null}
+        </components.SingleValue>
         );
+    };
+
+// Placeholder Content
+
+    const placeholderContent = usersCountryFlagSVG ? (
+        <img
+            src={require(`../images/flags/${usersCountryFlagSVG}`)}
+            alt="Flag4"
+            width="24"
+            height="16"
+        />
+    ) : (
+        <img    
+            src={GBSVG} 
+            alt="Flag5" 
+            width="24" 
+            height="16" 
+        />
+    );
     
 // Error Messages
 
@@ -369,7 +382,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                     setUsersCountryFlagSVG('');
                     // setSelectedOption(null);
                     // setActualSelectedOption(null);
-                    setFilteredCountries(countries);
+                    setFilteredCountries(translatedCountries);
                     // setTopOption(null);
                     // setCountryFromAPI({});
                     setLoading(false);
@@ -405,7 +418,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                 handleNextClick={handleNextClick}
                 isImagePreloaded={isImagePreloaded}
                 customOptions={customOptions}
-                countries={countries}
+                translatedCountries={translatedCountries}
                 customStyles={customStyles}
                 userIP={userIP}
                 customDropdownIndicator={customDropdownIndicator}
@@ -419,6 +432,8 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                 actualSelectedOption={actualSelectedOption}
                 formattedPhoneNumber={formattedPhoneNumber}
                 loading={loading}
+                text={text}
+                handleLanguageSelection={handleLanguageSelection}
             />
         </>
     )

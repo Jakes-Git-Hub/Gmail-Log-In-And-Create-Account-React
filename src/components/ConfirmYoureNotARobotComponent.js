@@ -24,127 +24,148 @@ export const ConfirmYoureNotARobotComponent = ({
     actualSelectedOption,
     formattedPhoneNumber,
     loading,
+    text,
+    handleLanguageSelection,
 }) => {
 
     return (
 
-        <div id='google-container-flexible'>
-            <div className={loading ? "empty-blue-snake-loader" : isImageLoaded ? 'empty-blue-snake-loader-placeholder' : "empty-blue-snake-loader"}>
-                <div className="blue-snake-loader"></div>
-            </div>
-            <img src={googleWritingSvg} alt="Google Writing" id="google-writing-BG"/>
+        <>
 
-            <form>
+            <div id='google-container-flexible'>
+                <div className={loading ? "empty-blue-snake-loader" : isImageLoaded ? 'empty-blue-snake-loader-placeholder' : "empty-blue-snake-loader"}>
+                    <div className="blue-snake-loader"></div>
+                </div>
+                <img src={googleWritingSvg} alt="Google Writing" id="google-writing-BG"/>
 
-                <h1 class="thin" id="h1-cynar">Confirm you're not a robot</h1>
+                <form>
 
-                <h2 class='thin gap-cynar' id='h2-cynar'>Get a verification code sent to your phone</h2>
 
-                <div id='add-phone-number-dropdown-and-input'>
-                    <Select
-                        styles={customStyles}
-                        class="flag-drop-down"
-                        options={customOptions}
-                        components={{ 
-                            DropdownIndicator: customDropdownIndicator, 
-                            SingleValue: chosenCountryFlagImage, 
-                        }}
-                        placeholder={placeholderContent}
-                        onChange={handleCountrySelect}
-                        value={selectedOption}
-                        onInputChange={(inputValue, { action }) => {
-                            if (action === 'input-change') {
-                              return '';
-                            }
-                            return inputValue;
-                        }}
-                    />
+                    <h1 class="thin" id="h1-cynar">{text.ConfirmYoureNotARobot.h1}</h1>
 
-                    <div class='line-height gender-input-width' id='phoneNumber-input-width'>
-                        <Box>
-                                <TextField
-                                    autoFocus
-                                    fullWidth error={errorCondition}
-                                    id='phoneNumberInput'
-                                    value={phoneNumber}
-                                    label="Phone Number"
-                                    type="number text"
-                                    onChange={handleSelectPhoneNumber}
-                                    InputLabelProps={
-                                        errorCondition ? 
-                                        { 
-                                            sx: {
-                                                color: phoneNumber || actualSelectedOption ? '#d32f2f' : 'rgba(0, 0, 0, 0.6) !important',
-                                                '&.Mui-focused': {
-                                                    color: '#d32f2f !important',
+                    <div id='h2-cynar-div'>
+                        <h2 id='h2-cynar'>{text.ConfirmYoureNotARobot.h2}</h2>
+                    </div>
+                    
+
+                    <div id='add-phone-number-dropdown-and-input'>
+                        <Select
+                            styles={customStyles}
+                            class="flag-drop-down"
+                            options={customOptions}
+                            components={{ 
+                                DropdownIndicator: customDropdownIndicator, 
+                                SingleValue: chosenCountryFlagImage, 
+                            }}
+                            placeholder={placeholderContent}
+                            onChange={handleCountrySelect}
+                            value={selectedOption}
+                            onInputChange={(inputValue, { action }) => {
+                                if (action === 'input-change') {
+                                return '';
+                                }
+                                return inputValue;
+                            }}
+                            menuIsOpen
+                        />
+
+                        <div class='line-height gender-input-width' id='phoneNumber-input-width'>
+                            <Box>
+                                    <TextField
+                                        autoFocus
+                                        fullWidth error={errorCondition}
+                                        id='phoneNumberInput'
+                                        value={phoneNumber}
+                                        label={text.ConfirmYoureNotARobot.phoneNumber}
+                                        type="number text"
+                                        onChange={handleSelectPhoneNumber}
+                                        InputLabelProps={
+                                            errorCondition ? 
+                                            { 
+                                                sx: {
+                                                    color: phoneNumber || actualSelectedOption ? '#d32f2f' : 'rgba(0, 0, 0, 0.6) !important',
+                                                    '&.Mui-focused': {
+                                                        color: '#d32f2f !important',
+                                                    },
                                                 },
-                                            },
-                                        } : {}
-                                    }
-                                    InputProps={{
-                                        startAdornment: actualSelectedOption ? (
-                                          <InputAdornment position="start">{selectedOption.value.dialingCode}</InputAdornment>
-                                        ) : null,
-                                      }}
-                                    sx={
-                                        errorCondition ? 
-                                        {} : 
-                                        {
-                                            "& .MuiOutlinedInput-root": {
-                                                "&:hover:not(.Mui-focused) fieldset": {
-                                                    borderColor: "#dadce0"
-                                                },
-                                                "& fieldset": {
-                                                    borderColor: "#dadce0"
-                                                },
-                                            },
+                                            } : {}
                                         }
-                                    }
-                                />
-                        </Box>  
-                    </div>
-                </div>
-
-                {errorCondition === "phoneNumberEmpty" && isImagePreloaded ? (
-                    <div class='long-error-div' id='error-div-space-cynar'>
-                        <img className='error-image' src={errorImage} alt='Error Image' />
-                        <p class="input-error-message">Please enter a phone number</p>
-                    </div>
-                ) : errorCondition === "incorrectFormat" && isImagePreloaded ? (
-                    <div class='error-div' id='error-div-space-cynar'>
-                        <img className='error-image' src={errorImage} alt='Error Image' />
-                        <p class="input-error-message">This phone number format is not recognized. Please check the country and number.</p>
-                    </div>
-                ) : errorCondition === "alreadyRegistered" && isImagePreloaded ? (
-                    <div class='error-div' id='error-div-space-cynar'>
-                        <img className='error-image' src={errorImage} alt='Error Image' />
-                        <p class="input-error-message">This phone number has been used too many times</p>
-                    </div>
-                ) : null}
-
-                <div class='below-input-small-grey-cynar'>
-                    <p class='small-grey-cynar'>Google will verify this number via SMS (charges may apply).</p>
-                </div>
-                
-                <div id={formattedPhoneNumber ? 'button-right-robot-confirm' : "button-right-robot"}>
-                    <CustomNextButton 
-                        variant="contained" 
-                        onClick={handleNextClick}
-                        sx={{
-                            '&& .MuiTouchRipple-rippleVisible': {
-                                animationDuration: '300ms',
-                            },
-                        }}
-                    >
-                        <div class='next'>
-                            Next
+                                        InputProps={{
+                                            startAdornment: actualSelectedOption ? (
+                                            <InputAdornment position="start" sx={{color: 'rgba(0, 0, 0, 0.87)', marginTop: '2.5px'}}>
+                                                    {selectedOption.value.dialingCode}
+                                                </InputAdornment>
+                                            ) : null,
+                                        }}
+                                        sx={
+                                            errorCondition ? 
+                                            {} : 
+                                            {
+                                                "& .MuiOutlinedInput-root": {
+                                                    "&:hover:not(.Mui-focused) fieldset": {
+                                                        borderColor: "#dadce0"
+                                                    },
+                                                    "& fieldset": {
+                                                        borderColor: "#dadce0"
+                                                    },
+                                                },
+                                            }
+                                        }
+                                    />
+                            </Box>  
                         </div>
-                    </CustomNextButton>
-                </div>
+                    </div>
 
-            </form>
+                    {errorCondition === "phoneNumberEmpty" && isImagePreloaded ? (
+                        <div class='long-error-div' id='error-div-space-cynar'>
+                            <img className='error-image' src={errorImage} alt='Error Image' />
+                            <p class="input-error-message">{text.ConfirmYoureNotARobot.error1}</p>
+                        </div>
+                    ) : errorCondition === "incorrectFormat" && isImagePreloaded ? (
+                        <div class='error-div' id='error-div-space-cynar'>
+                            <img className='error-image' src={errorImage} alt='Error Image' />
+                            <p class="input-error-message">{text.ConfirmYoureNotARobot.error2}</p>
+                        </div>
+                    ) : errorCondition === "alreadyRegistered" && isImagePreloaded ? (
+                        <div class='error-div' id='error-div-space-cynar'>
+                            <img className='error-image' src={errorImage} alt='Error Image' />
+                            <p class="input-error-message">{text.ConfirmYoureNotARobot.error3}</p>
+                        </div>
+                    ) : null}
 
-        </div>               
+                    <div class='below-input-small-grey-cynar'>
+                        <p class='small-grey-cynar'>{text.ConfirmYoureNotARobot.googleWillVerify}</p>
+                    </div>
+                    
+                    <div id={formattedPhoneNumber ? 'button-right-robot-confirm' : "button-right-robot"}>
+                        <CustomNextButton 
+                            variant="contained" 
+                            onClick={handleNextClick}
+                            sx={{
+                                '&& .MuiTouchRipple-rippleVisible': {
+                                    animationDuration: '300ms',
+                                },
+                            }}
+                        >
+                            <div class='next'>
+                            {text.ConfirmYoureNotARobot.next}
+                            </div>
+                        </CustomNextButton>
+                    </div>
+
+                </form>
+
+            </div> 
+
+            <div className='language-changer-div'>
+                <select onChange={handleLanguageSelection}>
+                    <option value="es">Translate to Spanish</option>
+                    <option value="fr">Translate to French</option>
+                    <option value="de">Translate to German</option>
+                </select>
+            </div>
+
+        </>            
 
     );
 }

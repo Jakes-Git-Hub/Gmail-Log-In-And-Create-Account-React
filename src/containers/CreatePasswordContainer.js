@@ -1,19 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { CreatePasswordComponent } from "../components/CreatePasswordComponent";
 import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
+import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const CreatePasswordContainer = ({ updateUser }) => {
+export const CreatePasswordContainer = ({ updateUser, text }) => {
 
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [errorCondition, setErrorCondition] = useState(null);
+    const [isImageLoaded, setIsImageLoaded] = useState(false); 
 
     const navigate = useNavigate();
 
+// Handle Slow Svg Load
+
+    useEffect(() => {
+        const image = new Image();
+        image.src = googleWritingSvg;
+        image.onload = () => {
+        setIsImageLoaded(true);
+        };
+    }, []);
+
     const isImagePreloaded = useImagePreload(errorImage);
+
+// Change Language
+
+    const handleLanguageSelection = async (e) => {
+        e.preventDefault();
+        const chosenLanguage = e.target.value;
+        updateUser({ language: chosenLanguage })
+    };
     
 // Password
 
@@ -118,6 +138,9 @@ export const CreatePasswordContainer = ({ updateUser }) => {
             passwordMismatch={passwordMismatch}
             isImagePreloaded={isImagePreloaded}
             errorCondition={errorCondition}
+            text={text}
+            handleLanguageSelection={handleLanguageSelection}
+            isImageLoaded={isImageLoaded}
         />
     </>
  );

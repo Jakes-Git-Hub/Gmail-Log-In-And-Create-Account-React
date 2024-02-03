@@ -36,6 +36,7 @@ export const BirthdayAndGenderComponent = ({
     return (
         <>
             <div id='google-container-BG'>
+                
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : "empty-blue-snake-loader"}>
                 <div className="blue-snake-loader"></div>
                 </div>
@@ -46,7 +47,7 @@ export const BirthdayAndGenderComponent = ({
 
                     <h1 class="thin h1-space">{text.BirthdayAndGender.h1}</h1>
 
-                    <h2 class='thin gap'>{text.BirthdayAndGender.h2}</h2>
+                    <h2 class='thin h2-bg'>{text.BirthdayAndGender.h2}</h2>
 
                     <div class='third-container-basic-information'>
 
@@ -183,12 +184,12 @@ export const BirthdayAndGenderComponent = ({
                     {errorCondition === 'incompleteBirthday' && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space-basic-info'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">Please fill in a complete birthday</p>
+                            <p class="input-error-message">{text.BirthdayAndGender.pleaseFillInCompleteBirthday}</p>
                         </div>
                     ) : errorCondition === 'isWrongFormat' && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space-basic-info'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">Please enter a valid date</p>
+                            <p class="input-error-message">{text.BirthdayAndGender.pleaseEnterVAlidDate}</p>
                         </div>
                     ) : (
                         <div className='hidden-error-message-container-create-account'></div>
@@ -244,7 +245,7 @@ export const BirthdayAndGenderComponent = ({
                     {genderEmpty && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space-basic-info'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">Please select your gender</p>
+                            <p class="input-error-message">{text.BirthdayAndGender.pleaseSelectGender}</p>
                         </div>
                     ) : (
                         <div className='hidden-error-message-container-BI'></div>
@@ -295,7 +296,7 @@ export const BirthdayAndGenderComponent = ({
                             {customGenderEmpty && isImagePreloaded ? (
                                 <div class='error-div' id='error-div-space-basic-info'>
                                     <img className='error-image' src={errorImage} alt='Error Image' />
-                                    <p class="input-error-message">Please indicate the gender you most identify with</p>
+                                    <p class="input-error-message">{text.BirthdayAndGender.pleaseIndicateGender}</p>
                                 </div>
                             ) : (
                                 <div className='hidden-error-message-container-BI'></div>
@@ -347,7 +348,7 @@ export const BirthdayAndGenderComponent = ({
                             {pronounEmpty && isImagePreloaded ? (
                                 <div class='error-div' id='error-div-space-basic-info'>
                                     <img className='error-image' src={errorImage} alt='Error Image' />
-                                    <p class="input-error-message">Please select a pronoun</p>
+                                    <p class="input-error-message">{text.BirthdayAndGender.pleaseSelectPronoun}</p>
                                 </div>
                             ) : (
                                 <div className='hidden-error-message-container-BI'></div>
@@ -367,7 +368,7 @@ export const BirthdayAndGenderComponent = ({
                             }}
                         >
                             <div class='next'>
-                                Next
+                                {text.BirthdayAndGender.next}
                             </div>
                         </CustomNextButton>
                     </section>

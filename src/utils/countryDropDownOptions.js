@@ -1,4 +1,4 @@
-export const countries = [
+const countries = [
     {
         name: 'Andorra',
         abbreviation: 'ad',
@@ -1503,7 +1503,7 @@ export const countries = [
 
 // countries array to big to copy into question 
 
-// Quicker way of assigning the countries SVG values
+// Assigning SVG values and Populates in Countries Array
 
 function populateSvgForCountries(countries) {
     for (const country of countries) {
@@ -1513,44 +1513,13 @@ function populateSvgForCountries(countries) {
     }
 }
 
+populateSvgForCountries(countries);
+
 // Sorts
 
 countries.sort((a, b) => a.name.localeCompare(b.name));
-
-// Populates
-
-populateSvgForCountries(countries);
 
 // Filter
 
 export const filteredCountries = countries.filter(country => country.dialingCode !== '');
 
-export const customOptions = [
-    // Add your placeholder option here
-    {
-        value: 'placeholder',
-        label: (
-            <span className='country-option'>
-                'Select a country...'
-            </span>
-        )
-    },
-    // Add the rest of the countries
-    ...filteredCountries.map((country) => ({
-        value: country,
-        label: (
-            <div>
-                <img
-                src={require(`../images/flags/${country.svg}`)}
-                className="flag-image"
-                alt={`${country.name} flag`}
-                width="24"
-                height="16"
-                />
-                <span className='country-option'>
-                    {country.name} ({country.dialingCode})
-                </span>
-            </div>
-        ),
-    })),
-];

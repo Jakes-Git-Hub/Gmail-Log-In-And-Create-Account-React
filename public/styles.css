@@ -172,6 +172,7 @@
 
 .h1-space {
   margin: 6px;
+  text-align: center;
 }
 
 .gap {
@@ -416,11 +417,11 @@ form {
   margin-top: 15px !important;
 }
 
-.button-right {
+.button-right-ca {
   display: flex;
   width: 363px;
   justify-content: flex-end;
-  margin-bottom: 145px;
+  margin-bottom: 105px;
 }
 
 .button-right-first-name-empty {
@@ -428,7 +429,7 @@ form {
   width: 363px;
   justify-content: flex-end;
   margin-top: 25px;
-  margin-bottom: 119px;
+  margin-bottom: 79px;
 }
 
 .hidden-error-message-container-create-account {
@@ -454,6 +455,13 @@ form {
   margin-bottom: 15px;
   height: auto;
   width: 72px;
+}
+
+.h2-bg {
+  margin-top: 10px;
+  margin-bottom: 25px;
+  width: 350px;
+  text-align: center;
 }
 
 .input-third {
@@ -908,6 +916,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 #h1-cynar {
   margin: 5px 0 15px 0;
+  text-align: center;
 }
 
 #google-container-cynar {
@@ -923,11 +932,18 @@ input[type="number"]::-webkit-outer-spin-button {
   position: relative;
 }
 
+#h2-cynar-div{
+  margin-top: 11.95px;
+  margin-bottom: 20px;
+  position: relative;
+  width: 266.57px;
+  text-align: left;
+  right: 45px;
+}
+
 #h2-cynar{
   font-size: 0.9em;
   font-weight: 200;
-  margin-right: 90px;
-  margin-bottom: 20px;
 }
 
 .small-grey-cynar {
@@ -968,11 +984,6 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 1rem;
   color: rgb(60,64,67);
   margin: 2px 0;
-}
-
-.css-1pnmrwp-MuiTypography-root {
-  color: rgba(0, 0, 0, 0.87) !important;
-  margin-top: 2.5px !important;
 }
 
 #button-right-robot {

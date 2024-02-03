@@ -4,7 +4,6 @@ import { BirthdayAndGenderComponent } from '../components/BirthdayAndGenderCompo
 import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
-import axios from "axios";
 
 export const BirthdayAndGenderContainer = ({ updateUser, userData, text }) => {
 
@@ -23,17 +22,17 @@ export const BirthdayAndGenderContainer = ({ updateUser, userData, text }) => {
 
     const navigate = useNavigate();
 
-    const isImagePreloaded = useImagePreload(errorImage);
-
-    // Checks if Google SVG is Loaded, to Render all at Once
+// Handle Slow Svg Load
 
     useEffect(() => {
         const image = new Image();
         image.src = googleWritingSvg;
         image.onload = () => {
-          setIsImageLoaded(true);
+        setIsImageLoaded(true);
         };
     }, []);
+
+    const isImagePreloaded = useImagePreload(errorImage);
 
 // Change Language
 

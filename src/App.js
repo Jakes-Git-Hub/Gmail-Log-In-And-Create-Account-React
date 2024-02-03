@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useUserIP } from './utils/userIPModule';
+import axios from "axios";  
 import textData from './data/textData';
+import { filteredCountries } from './utils/countryDropDownOptions';
 import { FrontPageStaticContainer } from './containers/FrontPageStaticContainer'
 import { StaticElementContainer } from "./containers/StaticElementContainer";
-import { CreatePasswordStaticElementContainer } from "./containers/CreatePasswordStaticElementContainer";
 import { SignInFrontPageContainer } from "./containers/SignInFrontPageContainer";
 import { MockMailContainer } from "./containers/MockMailContainer";
 import { CreateAccountContainer } from "./containers/CreateAccountContainer";
@@ -17,7 +18,7 @@ import { AddRecoveryEmailContainer } from "./containers/AddRecoveryEmailContaine
 import { ReviewYourAccountInfoContainer } from "./containers/ReviewYourAccountInfoContainer";
 import { ChooseYourSettingsContainer } from "./containers/ChooseYourSettingsContainer";
 import { ExpressChooseYourSettingsContainer } from "./containers/ExpressChooseYourSettingsContainer";
-import axios from "axios";  
+
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -27,6 +28,7 @@ function App() {
   const [userData, setUserData] = useState({});
   const [hasSelectedCYNARCountry, setHasSelectedCYNARCountry] = useState(false);
   const [text, setText] = useState(textData);
+  const [translatedCountries, setTranslatedCountries] = useState(filteredCountries);
 
 // Translation
 
@@ -36,6 +38,10 @@ function App() {
     handleLanguageSelection();
     console.log('chosenLanguage:', userData.language)
   }, [userData.language]);
+
+  useEffect(() => {
+    console.log('translatedCountries', translatedCountries)
+  }, [translatedCountries]);
 
   const handleLanguageSelection = async () => {
     if (!userData.language) return;
@@ -62,6 +68,19 @@ function App() {
   
       // Update the 'text' state with sanitized translated text
       setText(sanitizedTranslatedText);
+  
+      // Translate country names
+      const newTranslatedCountries = await Promise.all(filteredCountries.map(async (country) => {
+        const translatedName = await changeLanguageAndTranslate(country.name, chosenLanguage);
+        return { ...country, name: translatedName };
+      }));
+
+      const sanitizedTranslatedCountries = sanitizeCountryNames(newTranslatedCountries);
+
+      const orderedSanitizedTranslatedCountries = [...sanitizedTranslatedCountries].sort((a, b) => a.name.localeCompare(b.name));
+  
+      // Update the 'translatedCountries' state with new translated countries
+      setTranslatedCountries(orderedSanitizedTranslatedCountries);
     } catch (error) {
       console.error('Error translating text:', error);
     }
@@ -101,10 +120,19 @@ function App() {
     return sanitizedText;
   };
 
+  const sanitizeCountryNames = (countries) => {
+    const sanitizedCountries = countries.map(country => ({
+      ...country,
+      name: country.name.replace(/&#39;/g, "'")
+    }));
+  
+    return sanitizedCountries;
+  };
+
 // Test
 
 useEffect(() => { 
-  setUsers(prevUsers => [...prevUsers, { name: "Test Testerson", id: 0, email: 'tester@gmail.com', password: 'test', phoneNumber: "", language: "fr"}]);
+  setUsers(prevUsers => [...prevUsers, { name: "Test Testerson", id: 0, email: 'tester@gmail.com', password: 'test', phoneNumber: "", }]);
 }, []);
 
 // Grab User's IP
@@ -158,6 +186,7 @@ const { userIP } = useUserIP()
                 users={users}
                 handleLogin={handleLogin}
                 userIP={userIP}
+                text={text}
               />
             </FrontPageStaticContainer>
           } />
@@ -166,16 +195,15 @@ const { userIP } = useUserIP()
           element={<MockMailContainer   
                     loggedIn={loggedIn}
                     currentLoggedInUser={currentLoggedInUser}
+                    text={text}
                   />} 
         />
         <Route path="/create-account" element={
-            <StaticElementContainer>
-              <CreateAccountContainer 
-                updateUser={updateUser}
-                userData={userData}
-                text={text}
-              />
-            </StaticElementContainer>
+            <CreateAccountContainer 
+              updateUser={updateUser}
+              userData={userData}
+              text={text}
+            />
           } 
         />
         <Route path="/basic-information" element={
@@ -191,17 +219,17 @@ const { userIP } = useUserIP()
               <ChooseYourGmailAddressContainer
                 updateUser={updateUser} 
                 users={users}
+                text={text}
               />
             </StaticElementContainer>
           } 
         />
         <Route path="/create-password" element={
-            <CreatePasswordStaticElementContainer>
-              <CreatePasswordContainer
-                updateUser={updateUser} 
-                users={users}
-              />
-            </CreatePasswordStaticElementContainer>
+            <CreatePasswordContainer
+              updateUser={updateUser} 
+              users={users}
+              text={text}
+            />
           } 
         />
         <Route path="/confirm-youre-not-a-robot" element={
@@ -212,6 +240,8 @@ const { userIP } = useUserIP()
               users={users}
               handleCYNARCountrySelect={handleCYNARCountrySelect}
               hasSelectedCYNARCountry={hasSelectedCYNARCountry}
+              text={text}
+              translatedCountries={translatedCountries}
             />
           } 
         />
@@ -219,12 +249,14 @@ const { userIP } = useUserIP()
             <EnterTheCodeContainer
               updateUser={updateUser}
               userData={userData}
+              text={text}
             />
           } 
         />
         <Route path="/add-recovery-email" element={
               <AddRecoveryEmailContainer
                 updateUser={updateUser} 
+                text={text}
               />
           } 
         />
@@ -232,18 +264,21 @@ const { userIP } = useUserIP()
               <ReviewYourAccountInfoContainer 
                 updateUser={updateUser}
                 userData={userData}
+                text={text}
               />
           } 
         />
         <Route path="/choose-your-settings" element={
               <ChooseYourSettingsContainer
                 updateUser={updateUser}
+                text={text}
               />
           } 
         />
         <Route path="/express-choose-your-settings" element={
               <ExpressChooseYourSettingsContainer
                 updateUser={updateUser}
+                text={text}
               />
           } 
         />
