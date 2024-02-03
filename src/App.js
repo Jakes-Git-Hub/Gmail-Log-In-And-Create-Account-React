@@ -5,7 +5,6 @@ import axios from "axios";
 import textData from './data/textData';
 import { filteredCountries } from './utils/countryDropDownOptions';
 import { FrontPageStaticContainer } from './containers/FrontPageStaticContainer'
-import { StaticElementContainer } from "./containers/StaticElementContainer";
 import { SignInFrontPageContainer } from "./containers/SignInFrontPageContainer";
 import { MockMailContainer } from "./containers/MockMailContainer";
 import { CreateAccountContainer } from "./containers/CreateAccountContainer";
@@ -108,7 +107,7 @@ function App() {
       const sanitizedTopLevelObject = {};
 
       for (const key in topLevelObject) {
-        const sanitizedValue = topLevelObject[key].replace("&#39;", "'");
+        const sanitizedValue = topLevelObject[key].replace(/&#39;/, "'");
         // Add more sanitization rules as needed
 
         sanitizedTopLevelObject[key] = sanitizedValue;
@@ -215,13 +214,11 @@ const { userIP } = useUserIP()
           } 
         />
         <Route path="/choose-your-gmail-address" element={
-            <StaticElementContainer>
-              <ChooseYourGmailAddressContainer
-                updateUser={updateUser} 
-                users={users}
-                text={text}
-              />
-            </StaticElementContainer>
+            <ChooseYourGmailAddressContainer
+              updateUser={updateUser} 
+              users={users}
+              text={text}
+            />
           } 
         />
         <Route path="/create-password" element={

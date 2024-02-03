@@ -5,7 +5,7 @@ import googleWritingSvg from "../images/google-writing-svg.svg";
 import errorImage from '../images/Daco_5575399.png';
 import useImagePreload from "../hooks/useImagePreload";
 
-export const ChooseYourSettingsContainer = ({ userData, updateUser }) => {
+export const ChooseYourSettingsContainer = ({ userData, updateUser, text }) => {
 
     const [setting, setSetting] = useState("");
     const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -24,6 +24,14 @@ export const ChooseYourSettingsContainer = ({ userData, updateUser }) => {
           setIsImageLoaded(true);
         };
     }, []);
+
+// Change Language
+
+    const handleLanguageSelection = async (e) => {
+        e.preventDefault();
+        const chosenLanguage = e.target.value;
+        updateUser({ language: chosenLanguage })
+    };
 
 // Handle Radio Change
 
@@ -64,6 +72,8 @@ export const ChooseYourSettingsContainer = ({ userData, updateUser }) => {
                 handleRadioChange={handleRadioChange}
                 errorCondition={errorCondition}
                 isImagePreloaded={isImagePreloaded}
+                handleLanguageSelection={handleLanguageSelection}
+                text={text}
             />
         </>
     );

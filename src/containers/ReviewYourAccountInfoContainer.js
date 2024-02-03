@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ReviewYourAccountInfoComponent } from "../components/ReviewYourAccountInfoComponent";
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const ReviewYourAccountInfoContainer = ({ userData, updateUser }) => {
+export const ReviewYourAccountInfoContainer = ({ userData, updateUser, text }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
 
@@ -17,7 +17,21 @@ export const ReviewYourAccountInfoContainer = ({ userData, updateUser }) => {
         };
     }, []);
 
+// Change Language
+
+    const handleLanguageSelection = async (e) => {
+        e.preventDefault();
+        const chosenLanguage = e.target.value;
+        updateUser({ language: chosenLanguage })
+    };
+
 // Assign Users Profile Circle Color
+
+    useEffect(() => {
+        if (userData.profileCircleColor === "") {
+            profileCircleColor();
+        }
+    }, [userData.profileCircleColor]);
 
     const profileCircleColor = () => {
         let randomColor;
@@ -30,12 +44,6 @@ export const ReviewYourAccountInfoContainer = ({ userData, updateUser }) => {
         } while (brightness > 200); // Change this value to adjust the "closeness" to white
         updateUser({ profileCircleColor: randomColor });
     }
-
-    useEffect(() => {
-        if (userData.profileCircleColor === "") {
-            profileCircleColor();
-        }
-    }, []);
 
 // Handle Next Click
 
@@ -50,6 +58,8 @@ export const ReviewYourAccountInfoContainer = ({ userData, updateUser }) => {
                 handleNextClick={handleNextClick}
                 isImageLoaded={isImageLoaded}
                 userData={userData}
+                handleLanguageSelection={handleLanguageSelection}
+                text={text}
             />
         </>
     );

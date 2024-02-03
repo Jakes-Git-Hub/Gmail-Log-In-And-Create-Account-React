@@ -1334,8 +1334,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 #choose-your-settings-container {
   width: 82.5%;
-  margin: 20px 0 17px 0;
-  height: 176px;
+  margin: 20px 0 0 0;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
@@ -1402,7 +1401,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 #error-div-choose-your-settings {
   width: 83%;
-  margin: -10.125px 0 11.125px 0;
+  margin: 5px 0 11.125px 0;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;

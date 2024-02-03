@@ -4,9 +4,9 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import TransparentSmallButton from './TransparentSmallButtonComponent';
-import CustomNextAndSkipButton from './CustomNext&SkipButtonComponent';
-import SecondaryGreyButton2 from './SecondaryGreyButtonComponent2';
+import TransparentSmallButton from './buttons/TransparentSmallButtonComponent';
+import CustomNextAndSkipButton from './buttons/CustomNext&SkipButtonComponent';
+import SecondaryGreyButton2 from './buttons/SecondaryGreyButtonComponent2';
 
 export const ExpressChooseYourSettingsComponent = ({ 
     handleNextClick,

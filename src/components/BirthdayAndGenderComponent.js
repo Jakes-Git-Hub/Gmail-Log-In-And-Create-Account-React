@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import googleWritingSvg from "../images/google-writing-svg.svg";
-import CustomNextButton from './CustomNextButtonComponent';
+import CustomNextButton from './buttons/CustomNextButtonComponent';
 
 export const BirthdayAndGenderComponent = ({
     month, 

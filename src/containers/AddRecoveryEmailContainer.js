@@ -5,7 +5,7 @@ import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const AddRecoveryEmailContainer = ({ updateUser }) => {
+export const AddRecoveryEmailContainer = ({ updateUser, text }) => {
 
     const [recoveryEmail, setRecoveryEmail] = useState("");
     const [errorCondition, setErrorCondition] = useState(null);
@@ -22,6 +22,14 @@ export const AddRecoveryEmailContainer = ({ updateUser }) => {
           setIsImageLoaded(true);
         };
     }, []);
+
+// Change Language
+
+    const handleLanguageSelection = async (e) => {
+        e.preventDefault();
+        const chosenLanguage = e.target.value;
+        updateUser({ language: chosenLanguage })
+    };
 
 // Handle Next
 
@@ -105,6 +113,8 @@ export const AddRecoveryEmailContainer = ({ updateUser }) => {
             errorCondition={errorCondition}
             handleSkip={handleSkip}
             handleSubmit={handleSubmit}
+            handleLanguageSelection={handleLanguageSelection}
+            text={text}
         />
     </>
  );

@@ -105,10 +105,11 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
         setFilteredCountries(newFilteredCountries);
     }, [selectedOption, countryFromAPIOrSelection]);
 
-    const unitedKingdom = filteredCountries.find(country => country.abbreviation === 'gb')?.name;
+    const unitedKingdom = filteredCountries.find(country => country.abbreviation === 'gb');
 
     const customOptions = [
         // Top Option
+
         {
             value: topOption,
             label: (
@@ -121,7 +122,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                         height="16"
                     />
                     <span className='country-option'>
-                        {usersCountryFlagSVG ? translatedCountries.find(country => country.svg === usersCountryFlagSVG).name : unitedKingdom} ({usersCountryFlagSVG ? translatedCountries.find(country => country.svg === usersCountryFlagSVG).dialingCode : '+44'})
+                        {usersCountryFlagSVG ? translatedCountries.find(country => country.svg === usersCountryFlagSVG).name : unitedKingdom.name} ({usersCountryFlagSVG ? translatedCountries.find(country => country.svg === usersCountryFlagSVG).dialingCode : unitedKingdom.dialingCode})
                     </span>
                 </div>
             ),
@@ -434,6 +435,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                 loading={loading}
                 text={text}
                 handleLanguageSelection={handleLanguageSelection}
+                unitedKingdom={unitedKingdom}
             />
         </>
     )

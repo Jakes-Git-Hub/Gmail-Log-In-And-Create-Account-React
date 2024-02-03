@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import InputAdornment from "@mui/material/InputAdornment";
-import CustomNextButton from './CustomNextButtonComponent';
+import CustomNextButton from './buttons/CustomNextButtonComponent';
 
 export const ConfirmYoureNotARobotComponent = ({ 
     phoneNumber,
@@ -26,6 +26,7 @@ export const ConfirmYoureNotARobotComponent = ({
     loading,
     text,
     handleLanguageSelection,
+    unitedKingdom,
 }) => {
 
     return (
@@ -66,7 +67,6 @@ export const ConfirmYoureNotARobotComponent = ({
                                 }
                                 return inputValue;
                             }}
-                            menuIsOpen
                         />
 
                         <div class='line-height gender-input-width' id='phoneNumber-input-width'>
@@ -93,7 +93,7 @@ export const ConfirmYoureNotARobotComponent = ({
                                         InputProps={{
                                             startAdornment: actualSelectedOption ? (
                                             <InputAdornment position="start" sx={{color: 'rgba(0, 0, 0, 0.87)', marginTop: '2.5px'}}>
-                                                    {selectedOption.value.dialingCode}
+                                                    {selectedOption.value.dialingCode || unitedKingdom.dialingCode}
                                                 </InputAdornment>
                                             ) : null,
                                         }}
