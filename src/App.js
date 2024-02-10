@@ -17,7 +17,8 @@ import { AddRecoveryEmailContainer } from "./containers/AddRecoveryEmailContaine
 import { ReviewYourAccountInfoContainer } from "./containers/ReviewYourAccountInfoContainer";
 import { ChooseYourSettingsContainer } from "./containers/ChooseYourSettingsContainer";
 import { ExpressChooseYourSettingsContainer } from "./containers/ExpressChooseYourSettingsContainer";
-
+import SpringModal from "./containers/modalTest";
+import { Spring } from "react-spring";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -276,6 +277,11 @@ const { userIP } = useUserIP()
               <ExpressChooseYourSettingsContainer
                 updateUser={updateUser}
                 text={text}
+              />
+          } 
+        />
+        <Route path="/modal-test" element={
+              <SpringModal
               />
           } 
         />

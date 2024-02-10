@@ -1553,12 +1553,47 @@ p-gap-ecys-tight {
   font-size: 1.25rem;
   padding: 24px 24px 0 24px;
   line-height: 1.3333;
-  font-weight: 400;
+  font-weight: 600;
   margin: 0;
 }
 
-.modal-scroll-information {
+.modal-scroll-information-container {
   height: 100%;
+  overflow: auto;
+}
+
+.modal-scroll-information {
+  margin: 0 27px;
+}
+
+.modal-h2 {
+  color: #202124;
+  line-height: 1.5;
+  font-weight: 600;
+  width: 97%;
+  margin-bottom: 0;
+  margin-top: 17.5px;
+}
+
+.modal-h2-more-margin {
+  margin-top: 22.5px;
+}
+
+.css-uii3cu .modal-p, .css-uii3cu .modal-li{
+  font-size: 14px;
+  line-height: 1.4286;
+  margin-top: 8.125px;
+  margin-bottom: 0;
+}
+
+.css-uii3cu ul {
+  margin-top: -5px;
+  padding-inline-start: 25px;
+  margin-bottom: 12.5px;
+}
+
+.css-uii3cu li {
+  padding-left: 15px;
 }
 
 .modal-got-it-div {

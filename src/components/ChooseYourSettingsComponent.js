@@ -17,7 +17,6 @@ export const ChooseYourSettingsComponent = ({
     text,
 }) => {
 
-
     return (
 
         <>

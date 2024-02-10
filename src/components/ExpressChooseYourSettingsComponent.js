@@ -1,9 +1,7 @@
 import React from 'react';
 import googleWritingSvg from "../images/google-writing-svg.svg";
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from '@mui/material/Modal';
+import { Modal, Box } from '@mui/material';
+import { animated } from 'react-spring';
 import TransparentSmallButton from './buttons/TransparentSmallButtonComponent';
 import CustomNextAndSkipButton from './buttons/CustomNext&SkipButtonComponent';
 import SecondaryGreyButton2 from './buttons/SecondaryGreyButtonComponent2';
@@ -14,8 +12,13 @@ export const ExpressChooseYourSettingsComponent = ({
     showWebAndAppActivityModal,
     closeWebAndAppActivityModal,
     openWebAndAppActivityModal,
+    modalCondition,
+    animationOpen,
+    animationClose,
+    showYouTubeHistoryModal,
+    openYouTubeHistoryModal,
+    closeYouTubeHistoryModal,
 }) => {
-
 
     return (
 
@@ -50,53 +53,73 @@ export const ExpressChooseYourSettingsComponent = ({
                                 <Modal
                                     open={showWebAndAppActivityModal}
                                     onClose={closeWebAndAppActivityModal}
-                                    className='modal-ecys'
+                                    closeAfterTransition
+                                    className= 'modal-ecys'
                                 >
-                                    <Box 
-                                        sx={{
-                                            position: 'absolute',
-                                            width: '336px',
-                                            height: '93.25vh',
-                                            bgcolor: '#fff',
-                                            borderRadius: '8px',
-                                            color: '#5f6368',
-                                            letterSpacing: '.25px',
-                                            WebkitBoxAlign: 'stretch',
-                                            boxAlign: 'stretch',
-                                            alignItems: 'stretch',
-                                            display: 'flex',
-                                            WebkitBoxOrient: 'vertical',
-                                            boxOrient: 'vertical',
-                                            flexDirection: 'column',
-                                            transition: 'transform .225s cubic-bezier(0,0,0.2,1),-webkit-transform .225s cubic-bezier(0,0,0.2,1)',
-                                            backgroundColor: '#fff',
-                                            boxShadow: '0 12px 15px 0 rgba(0,0,0,.24)',
-                                            maxWidth: '24em',
-                                            outline: '1px solid transparent',
-                                            overflow: 'hidden',
-                                          }}
-                                    >
-                                        <div className='modal-title-div'>
-                                            <h1 className='modal-title-h1'>About Web & App Activity</h1>
-                                        </div>
-                                        <div className='modal-scroll-information'>
-
-                                        </div>
-                                        <div className='modal-got-it-div'>
-                                        <SecondaryGreyButton2 
-                                                variant="contained" 
-                                                onClick={closeWebAndAppActivityModal}
-                                                sx={{
-                                                    '&& .MuiTouchRipple-rippleVisible': {
-                                                        animationDuration: '300ms',
-                                                    },
-                                                    
-                                                }}
+                                    <animated.div style={modalCondition === 'opening' ? animationOpen : modalCondition === 'closing' ? animationClose : {}}>  
+                                        <Box 
+                                            sx={{
+                                                width: '336px',
+                                                height: '93.25vh',
+                                                bgcolor: '#fff',
+                                                borderRadius: '8px',
+                                                color: '#5f6368',
+                                                WebkitBoxAlign: 'stretch',
+                                                boxAlign: 'stretch',
+                                                alignItems: 'stretch',
+                                                display: 'flex',
+                                                WebkitBoxOrient: 'vertical',
+                                                boxOrient: 'vertical',
+                                                flexDirection: 'column',
+                                                transition: 'transform .225s cubic-bezier(0,0,0.2,1)',
+                                                WebkitTransition: 'transform .225s cubic-bezier(0,0,0.2,1),-webkit-transform .225s cubic-bezier(0,0,0.2,1)',
+                                                backgroundColor: '#fff',
+                                                boxShadow: '0 12px 15px 0 rgba(0,0,0,.24)',
+                                                maxWidth: '24em',
+                                                outline: '1px solid transparent',
+                                                overflow: 'hidden',
+                                            }}
                                         >
-                                            Got it
-                                        </SecondaryGreyButton2>
-                                        </div>
-                                    </Box>
+                                    
+                                            <div className='modal-title-div'>
+                                                <h1 className='modal-title-h1'>About Web & App Activity</h1>
+                                            </div>
+                                            <div className='modal-scroll-information-container'>
+                                                <div className='modal-scroll-information'>  
+                                                    <h2 className='modal-h2'>What data is saved when this setting is on</h2>
+                                                    <p className='modal-p'>Web & App Activity saves the things you do on Google sites, apps, and services, including your searches, interactions with Google partners, and associated information like location and language.</p>
+                                                    <p className='modal-p'>This setting also saves synced Chrome history and activity from sites, apps, and devices that use Google services, including:</p>
+                                                    <ul>
+                                                        <li className='modal-li'>activity from sites and apps that partner with Google to show ads</li>
+                                                        <li className='modal-li'>Chrome history (if saved in your Google Account via Chrome sync)</li>
+                                                        <li className='modal-li'>app activity, including data that apps share with Google</li>
+                                                        <li className='modal-li'>Android usage and diagnostics, like battery level, how often you use your device and apps, and system errors (if your Android usage & diagnostics setting is on)</li>
+                                                    </ul>
+                                                    <p className='modal-p'>If you use your device without an internet connection, your data may be saved in your account once you return online.</p>
+                                                    <p className='modal-p'>Not all Google services save this data in your account.</p>
+                                                    <h2 className='modal-h2 modal-h2-more-margin'>How we use this data</h2>
+                                                    <p className='modal-p'>Saved data helps Google give you more personalized experiences across Google services, like faster searching, more relevant results, and app and content recommendations automatically tailored to you.</p>
+                                                    <p className='modal-p'>Depending on your Ad Settings, you may also see ads on and off Google that are tailored to you based on this data.</p>
+                                                    <h2 className='modal-h2 modal-h2-more-margin'>How you can manage your data</h2>
+                                                    <p className='modal-p'>In addition to being able to manually delete your data anytime, you can choose to have your Web & App Activity older than 3, 18, or 36 months automatically deleted. You can see your data, delete it, change your settings, and withdraw your consent at account.google.com.</p>
+                                                </div>
+                                            </div>
+                                            <div className='modal-got-it-div'>
+                                                <SecondaryGreyButton2 
+                                                        variant="contained"     
+                                                        onClick={closeWebAndAppActivityModal}
+                                                        sx={{
+                                                            '&& .MuiTouchRipple-rippleVisible': {
+                                                                animationDuration: '300ms',
+                                                            },
+                                                            
+                                                        }}
+                                                >
+                                                    Got it
+                                                </SecondaryGreyButton2>
+                                            </div>
+                                        </Box>
+                                    </animated.div>  
                                 </Modal>
                             </div>
                         </div>
@@ -109,7 +132,70 @@ export const ExpressChooseYourSettingsComponent = ({
                             <div class="info-settings">
                                 <p className="pecys-pseudo-title">YouTube History</p>
                                 <p className="setting-information">Provides things like YouTube homepage recommendations and helps you remember where you left off.</p>
-                                <TransparentSmallButton className="setting-information">Learn more about YouTube History</TransparentSmallButton>
+                                <TransparentSmallButton className="setting-information" onClick={openYouTubeHistoryModal}>Learn more about YouTube History</TransparentSmallButton>
+                                <Modal
+                                    open={showYouTubeHistoryModal}
+                                    onClose={closeYouTubeHistoryModal}
+                                    closeAfterTransition
+                                    className='modal-ecys'
+                                >
+                                    <animated.div style={modalCondition === 'opening' ? animationOpen : modalCondition === 'closing' ? animationClose : {}}>
+                                        <Box 
+                                            sx={{
+                                                width: '336px',
+                                                height: '93.25vh',
+                                                bgcolor: '#fff',
+                                                borderRadius: '8px',
+                                                color: '#5f6368',
+                                                WebkitBoxAlign: 'stretch',
+                                                boxAlign: 'stretch',
+                                                alignItems: 'stretch',
+                                                display: 'flex',
+                                                WebkitBoxOrient: 'vertical',
+                                                boxOrient: 'vertical',
+                                                flexDirection: 'column',
+                                                transition: 'transform .225s cubic-bezier(0,0,0.2,1)',
+                                                WebkitTransition: 'transform .225s cubic-bezier(0,0,0.2,1),-webkit-transform .225s cubic-bezier(0,0,0.2,1)',
+                                                backgroundColor: '#fff',
+                                                boxShadow: '0 12px 15px 0 rgba(0,0,0,.24)',
+                                                maxWidth: '24em',
+                                                outline: '1px solid transparent',
+                                                overflow: 'hidden',
+                                            }}
+                                        >
+                                    
+                                            <div className='modal-title-div'>
+                                                <h1 className='modal-title-h1'>About YouTube History</h1>
+                                            </div>
+                                            <div className='modal-scroll-information-container'>
+                                                <div className='modal-scroll-information'>  
+                                                    <h2 className='modal-h2'>What data is saved when this setting is on</h2>
+                                                    <p className='modal-p'>YouTube History saves your activity on YouTube, like videos you watch and things you search for.</p>
+                                                    <p className='modal-p'>If you use your device without an internet connection, your data may be saved in your account once you return online.</p>
+                                                    <h2 className='modal-h2 modal-h2-more-margin'>How we use this data</h2>
+                                                    <p className='modal-p'>Saved data helps Google give you more personalized experiences across Google services, like faster searching, more relevant results, and app and content recommendations automatically tailored to you.</p>
+                                                    <p className='modal-p'>Depending on your Ad Settings, you may also see ads on and off Google that are tailored to you based on this data.</p>
+                                                    <h2 className='modal-h2 modal-h2-more-margin'>How you can manage your data</h2>
+                                                    <p className='modal-p'>In addition to being able to manually delete your data anytime, you can choose to have your Web & App Activity older than 3, 18, or 36 months automatically deleted. You can see your data, delete it, change your settings, and withdraw your consent at account.google.com.</p>
+                                                </div>
+                                            </div>
+                                            <div className='modal-got-it-div'>
+                                                <SecondaryGreyButton2 
+                                                        variant="contained"     
+                                                        onClick={closeYouTubeHistoryModal}
+                                                        sx={{
+                                                            '&& .MuiTouchRipple-rippleVisible': {
+                                                                animationDuration: '300ms',
+                                                            },
+                                                            
+                                                        }}
+                                                >
+                                                    Got it
+                                                </SecondaryGreyButton2>
+                                            </div>
+                                        </Box>
+                                    </animated.div>  
+                                </Modal>                        
                             </div>
                         </div>
                         <div class="settings-svg-and-info-row">
@@ -125,15 +211,10 @@ export const ExpressChooseYourSettingsComponent = ({
                     </div>
 
                     <h2 class="express-ecys-h2">What data is used</h2>
-
                     <p class='pecys p-gap-ecys'>Web & App Activity saves your activity on Google sites and apps, like Search and Maps, and includes associated info like location. It also saves synced Chrome history and activity from sites, apps, and devices that use Google services.</p>
-
                     <p class='pecys p-gap-ecys'>YouTube History saves the videos you watch and the things you search for when you use YouTube.</p>
-
                     <p class='pecys p-gap-ecys-last'>Personalized ads use information saved in your Google Account (such as your activity, age range, and gender) as well as interactions with advertisers. We’ll also use your activity on other sites and apps that use our advertising services.</p>
-
                     <h2 class="express-ecys-h2">How we use this data</h2>
-
                     <p class='pecys'>When you’re signed in and these settings are on, personal data will be saved in your account and used to personalize your experience in Search, YouTube, Maps, and other Google services for things like</p>
                 
                     <ul className='ul-ecys'>
@@ -143,7 +224,6 @@ export const ExpressChooseYourSettingsComponent = ({
                     </ul>
 
                     <p class='pecys p-gap-ecys-first'>When this setting is off, YouTube features that rely on history to personalize your experience are disabled.</p>
-
                     <p class='pecys p-gap-ecys-tight'>We also use your information to show ads. Ads are tailored to you in Google services and on sites and apps that partner with Google, so you can</p>
                 
                     <ul className='ul-ecys'>
@@ -152,11 +232,8 @@ export const ExpressChooseYourSettingsComponent = ({
                     </ul>
                 
                     <p class='pecys p-gap-ecys-first-and-last'>We don’t sell your personal information to anyone.</p>
-
                     <h2 class="express-ecys-h2">How you can manage your data</h2>
-
                     <p class='pecys p-gap-ecys'>In addition to being able to manually delete your activity anytime, Web & App Activity older than 18 months and YouTube History older than 36 months will be automatically deleted.</p>
-
                     <p class='pecys p-gap-ecys-last'>You can see your data, delete it, change your settings, and withdraw your consent at account.google.com.</p>
                 
                 </div>
@@ -190,8 +267,6 @@ export const ExpressChooseYourSettingsComponent = ({
                         Accept all
                     </CustomNextAndSkipButton>
                 </div>
-
-                
 
             </div>
 
