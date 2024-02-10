@@ -18,7 +18,6 @@ import { ReviewYourAccountInfoContainer } from "./containers/ReviewYourAccountIn
 import { ChooseYourSettingsContainer } from "./containers/ChooseYourSettingsContainer";
 import { ExpressChooseYourSettingsContainer } from "./containers/ExpressChooseYourSettingsContainer";
 import SpringModal from "./containers/modalTest";
-import { Spring } from "react-spring";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -108,7 +107,7 @@ function App() {
       const sanitizedTopLevelObject = {};
 
       for (const key in topLevelObject) {
-        const sanitizedValue = topLevelObject[key].replace(/&#39;/, "'");
+        const sanitizedValue = topLevelObject[key].replace(/&#39;/g, "'");
         // Add more sanitization rules as needed
 
         sanitizedTopLevelObject[key] = sanitizedValue;
@@ -123,7 +122,7 @@ function App() {
   const sanitizeCountryNames = (countries) => {
     const sanitizedCountries = countries.map(country => ({
       ...country,
-      name: country.name.replace(/&#39;/g, "'")
+      name: country.name.replace(/&#39;/, "'")
     }));
   
     return sanitizedCountries;

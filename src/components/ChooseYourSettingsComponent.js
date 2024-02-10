@@ -53,7 +53,7 @@ export const ChooseYourSettingsComponent = ({
                             label={
                                 <div className='writting-container'>
                                     <p className="setting-option-name">{text.ChooseYourSettings.express}</p>
-                                    <p className="setting-information">{text.ChooseYourSettings.expressInfo}</p>
+                                    <p className="setting-information setting-information-pointer">{text.ChooseYourSettings.expressInfo}</p>
                                 </div>
                             }
                             style={{
@@ -80,7 +80,7 @@ export const ChooseYourSettingsComponent = ({
                             label={
                                 <div className='writting-container'>
                                     <p className="setting-option-name">{text.ChooseYourSettings.manual}</p>
-                                    <p className="setting-information">{text.ChooseYourSettings.manualInfo}</p>
+                                    <p className="setting-information setting-information-pointer">{text.ChooseYourSettings.manualInfo}</p>
                                 </div>
                             }
                             style={{

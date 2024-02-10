@@ -22,7 +22,7 @@
 }
 
 .test-overflow {
-  height: 56px;
+  height: 6px;
 }
 
 #root {
@@ -1391,7 +1391,7 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .setting-option-name:hover,
-.setting-information:hover {
+.setting-information-pointer:hover {
     cursor: pointer;
 }
 
@@ -1452,7 +1452,6 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .settings-svg-and-info-container {
   width: 100%;
-  height: 305px;
   margin-top: 20px;
 }
 
@@ -1560,6 +1559,7 @@ p-gap-ecys-tight {
 .modal-scroll-information-container {
   height: 100%;
   overflow: auto;
+  margin-top: 10px;
 }
 
 .modal-scroll-information {
@@ -1572,7 +1572,6 @@ p-gap-ecys-tight {
   font-weight: 600;
   width: 97%;
   margin-bottom: 0;
-  margin-top: 17.5px;
 }
 
 .modal-h2-more-margin {

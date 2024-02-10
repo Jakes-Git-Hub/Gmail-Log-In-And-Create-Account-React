@@ -4,7 +4,7 @@ import { ExpressChooseYourSettingsComponent } from "../components/ExpressChooseY
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import { useSpring } from 'react-spring';
 
-export const ExpressChooseYourSettingsContainer = ({ updateUser }) => {
+export const ExpressChooseYourSettingsContainer = ({ updateUser, text }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
     const [showWebAndAppActivityModal, setShowWebAndAppActivityModal] = useState(false);
@@ -21,6 +21,14 @@ export const ExpressChooseYourSettingsContainer = ({ updateUser }) => {
           setIsImageLoaded(true);
         };
     }, []);
+    
+// Change Language
+
+    const handleLanguageSelection = async (e) => {
+        e.preventDefault();
+        const chosenLanguage = e.target.value;
+        updateUser({ language: chosenLanguage })
+    };
 
 // Add Overflow Body CSS
 
@@ -51,7 +59,7 @@ export const ExpressChooseYourSettingsContainer = ({ updateUser }) => {
         setTimeout(() => {
             toggleModalCondition('closed');
             setShowWebAndAppActivityModal(false);
-        }, 300);
+        }, 275);
     };
 
     const openYouTubeHistoryModal = () => {
@@ -64,12 +72,21 @@ export const ExpressChooseYourSettingsContainer = ({ updateUser }) => {
         setTimeout(() => {
             toggleModalCondition('closed');
             setShowYouTubeHistoryModal(false);
-        }, 300);
+        }, 275);
     };
 
-    const openPersonalizedAdsModal = () => setShowPersonalizedAdsModal(true);
+    const openPersonalizedAdsModal = () => {
+        setShowPersonalizedAdsModal(true);
+        toggleModalCondition('opening');
+    };
 
-    const closePersonalizedAdsModal = () => setShowPersonalizedAdsModal(false);
+    const closePersonalizedAdsModal = () => {
+        toggleModalCondition('closing');
+        setTimeout(() => {
+            toggleModalCondition('closed');
+            setShowPersonalizedAdsModal(false);
+        }, 275);
+    };
 
     const animationOpen = useSpring({
         transform: modalCondition === 'opening' ? `scale(1)` : `scale(0.85)`,
@@ -82,7 +99,7 @@ export const ExpressChooseYourSettingsContainer = ({ updateUser }) => {
     const animationClose = useSpring({
         transform: modalCondition === 'closing' ? `scale(0.85)` : `scale(1)`,
         config: {
-          duration: 300,
+          duration: 275,
           easing: t => t < 0.5 ? 2*t*t : -1+(4-2*t)*t
         }
     });
@@ -94,21 +111,26 @@ export const ExpressChooseYourSettingsContainer = ({ updateUser }) => {
         navigate('/add-phone-number'); 
     };
 
- return(
-    <>
-        <ExpressChooseYourSettingsComponent
-            handleNextClick={handleNextClick}
-            isImageLoaded={isImageLoaded}
-            openWebAndAppActivityModal={openWebAndAppActivityModal}
-            closeWebAndAppActivityModal={closeWebAndAppActivityModal}
-            showWebAndAppActivityModal={showWebAndAppActivityModal}
-            modalCondition={modalCondition}
-            animationOpen={animationOpen}
-            animationClose={animationClose}
-            showYouTubeHistoryModal={showYouTubeHistoryModal}
-            openYouTubeHistoryModal={openYouTubeHistoryModal}
-            closeYouTubeHistoryModal={closeYouTubeHistoryModal}
-        />
-    </>
- );
+    return(
+        <>
+            <ExpressChooseYourSettingsComponent
+                handleNextClick={handleNextClick}
+                isImageLoaded={isImageLoaded}
+                openWebAndAppActivityModal={openWebAndAppActivityModal}
+                closeWebAndAppActivityModal={closeWebAndAppActivityModal}
+                showWebAndAppActivityModal={showWebAndAppActivityModal}
+                modalCondition={modalCondition}
+                animationOpen={animationOpen}
+                animationClose={animationClose}
+                showYouTubeHistoryModal={showYouTubeHistoryModal}
+                openYouTubeHistoryModal={openYouTubeHistoryModal}
+                closeYouTubeHistoryModal={closeYouTubeHistoryModal}
+                openPersonalizedAdsModal={openPersonalizedAdsModal}
+                closePersonalizedAdsModal={closePersonalizedAdsModal}
+                showPersonalizedAdsModal={showPersonalizedAdsModal}
+                text={text}
+                handleLanguageSelection={handleLanguageSelection}
+            />
+        </>
+    );
 };

@@ -12,13 +12,12 @@ const SecondaryGreyButton2 = styled(Button)({
         color: "#1f5cab",
         boxShadow: 'none',    
         '& .MuiTouchRipple-child': {
-            color: "red !important",
-            backgroundColor: '#69aaffeb', // Change this to your desired ripple color
+            backgroundColor: '#9b9898',
         },
     },
     textTransform: 'none',
     marginRight: '24px',
-    '& .get-new-code-text': {
+    '& .got-it-text': {
         position: 'relative',
         zIndex: 1,
     },

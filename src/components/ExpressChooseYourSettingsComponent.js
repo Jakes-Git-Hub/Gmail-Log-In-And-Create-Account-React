@@ -18,6 +18,11 @@ export const ExpressChooseYourSettingsComponent = ({
     showYouTubeHistoryModal,
     openYouTubeHistoryModal,
     closeYouTubeHistoryModal,
+    openPersonalizedAdsModal,
+    closePersonalizedAdsModal,
+    showPersonalizedAdsModal,
+    text,
+    handleLanguageSelection,
 }) => {
 
     return (
@@ -32,12 +37,12 @@ export const ExpressChooseYourSettingsComponent = ({
                 <img src={googleWritingSvg} alt="Google Writing" id="google-writing-recovery-ryai"/>
 
                 <div id="choose-your-settings-title">
-                    <h1 class="thin h1-space">Choose your settings</h1>
+                    <h1 class="thin h1-space">{text.ExpressChooseYourSettings.h1}</h1>
                 </div>
 
                 <div id="express-choose-your-settings-info">
 
-                    <p class='pecys'>Depending on your choice, your data will be used to give you more personalized experiences and more control over the personalized ads you see</p>
+                    <p class='pecys'>{text.ExpressChooseYourSettings.depending}</p>
 
                     <div class="settings-svg-and-info-container">
                         <div class="settings-svg-and-info-row">
@@ -47,9 +52,9 @@ export const ExpressChooseYourSettingsComponent = ({
                                 </svg> 
                             </div>
                             <div class="info-settings">
-                                <p className="pecys-pseudo-title">Web & App Activity</p>
-                                <p className="setting-information">Provides things like faster searching, more relevant results, and more helpful app and content recommendations.</p>
-                                <TransparentSmallButton className="setting-information" onClick={openWebAndAppActivityModal}>Learn more about Web & App Activity</TransparentSmallButton>
+                                <p className="pecys-pseudo-title">{text.ExpressChooseYourSettings.webAndAppActivity}</p>
+                                <p className="setting-information">{text.ExpressChooseYourSettings.provides1}</p>
+                                <TransparentSmallButton className="setting-information" onClick={openWebAndAppActivityModal}>{text.ExpressChooseYourSettings.learnMore1}</TransparentSmallButton>
                                 <Modal
                                     open={showWebAndAppActivityModal}
                                     onClose={closeWebAndAppActivityModal}
@@ -82,26 +87,26 @@ export const ExpressChooseYourSettingsComponent = ({
                                         >
                                     
                                             <div className='modal-title-div'>
-                                                <h1 className='modal-title-h1'>About Web & App Activity</h1>
+                                                <h1 className='modal-title-h1'>{text.ExpressChooseYourSettings.about1}</h1>
                                             </div>
                                             <div className='modal-scroll-information-container'>
                                                 <div className='modal-scroll-information'>  
-                                                    <h2 className='modal-h2'>What data is saved when this setting is on</h2>
-                                                    <p className='modal-p'>Web & App Activity saves the things you do on Google sites, apps, and services, including your searches, interactions with Google partners, and associated information like location and language.</p>
-                                                    <p className='modal-p'>This setting also saves synced Chrome history and activity from sites, apps, and devices that use Google services, including:</p>
+                                                    <h2 className='modal-h2'>{text.ExpressChooseYourSettings.m1h21}</h2>
+                                                    <p className='modal-p'>{text.ExpressChooseYourSettings.m1p1}</p>
+                                                    <p className='modal-p'>{text.ExpressChooseYourSettings.m1p2}</p>
                                                     <ul>
-                                                        <li className='modal-li'>activity from sites and apps that partner with Google to show ads</li>
-                                                        <li className='modal-li'>Chrome history (if saved in your Google Account via Chrome sync)</li>
-                                                        <li className='modal-li'>app activity, including data that apps share with Google</li>
-                                                        <li className='modal-li'>Android usage and diagnostics, like battery level, how often you use your device and apps, and system errors (if your Android usage & diagnostics setting is on)</li>
+                                                        <li className='modal-li'>{text.ExpressChooseYourSettings.m1b1}</li>
+                                                        <li className='modal-li'>{text.ExpressChooseYourSettings.m1b2}</li>
+                                                        <li className='modal-li'>{text.ExpressChooseYourSettings.m1b3}</li>
+                                                        <li className='modal-li'>{text.ExpressChooseYourSettings.m1b4}</li>
                                                     </ul>
-                                                    <p className='modal-p'>If you use your device without an internet connection, your data may be saved in your account once you return online.</p>
-                                                    <p className='modal-p'>Not all Google services save this data in your account.</p>
-                                                    <h2 className='modal-h2 modal-h2-more-margin'>How we use this data</h2>
-                                                    <p className='modal-p'>Saved data helps Google give you more personalized experiences across Google services, like faster searching, more relevant results, and app and content recommendations automatically tailored to you.</p>
-                                                    <p className='modal-p'>Depending on your Ad Settings, you may also see ads on and off Google that are tailored to you based on this data.</p>
-                                                    <h2 className='modal-h2 modal-h2-more-margin'>How you can manage your data</h2>
-                                                    <p className='modal-p'>In addition to being able to manually delete your data anytime, you can choose to have your Web & App Activity older than 3, 18, or 36 months automatically deleted. You can see your data, delete it, change your settings, and withdraw your consent at account.google.com.</p>
+                                                    <p className='modal-p'>{text.ExpressChooseYourSettings.m1p3}.</p>
+                                                    <p className='modal-p'>{text.ExpressChooseYourSettings.m1p4}</p>
+                                                    <h2 className='modal-h2 modal-h2-more-margin'>{text.ExpressChooseYourSettings.m1h22}</h2>
+                                                    <p className='modal-p'>{text.ExpressChooseYourSettings.m1p5}</p>
+                                                    <p className='modal-p'>{text.ExpressChooseYourSettings.m1p6}</p>
+                                                    <h2 className='modal-h2 modal-h2-more-margin'>{text.ExpressChooseYourSettings.m1h23}</h2>
+                                                    <p className='modal-p'>{text.ExpressChooseYourSettings.m1p7}</p>
                                                 </div>
                                             </div>
                                             <div className='modal-got-it-div'>
@@ -115,7 +120,9 @@ export const ExpressChooseYourSettingsComponent = ({
                                                             
                                                         }}
                                                 >
-                                                    Got it
+                                                    <div className='got-it-text'>
+                                                    {text.ExpressChooseYourSettings.gotIt}
+                                                    </div>
                                                 </SecondaryGreyButton2>
                                             </div>
                                         </Box>
@@ -130,9 +137,9 @@ export const ExpressChooseYourSettingsComponent = ({
                             </svg>
                             </div>
                             <div class="info-settings">
-                                <p className="pecys-pseudo-title">YouTube History</p>
-                                <p className="setting-information">Provides things like YouTube homepage recommendations and helps you remember where you left off.</p>
-                                <TransparentSmallButton className="setting-information" onClick={openYouTubeHistoryModal}>Learn more about YouTube History</TransparentSmallButton>
+                                <p className="pecys-pseudo-title">{text.ExpressChooseYourSettings.youTubeHistory}</p>
+                                <p className="setting-information">{text.ExpressChooseYourSettings.provides2}</p>
+                                <TransparentSmallButton className="setting-information" onClick={openYouTubeHistoryModal}>{text.ExpressChooseYourSettings.learnMore2}</TransparentSmallButton>
                                 <Modal
                                     open={showYouTubeHistoryModal}
                                     onClose={closeYouTubeHistoryModal}
@@ -165,18 +172,18 @@ export const ExpressChooseYourSettingsComponent = ({
                                         >
                                     
                                             <div className='modal-title-div'>
-                                                <h1 className='modal-title-h1'>About YouTube History</h1>
+                                                <h1 className='modal-title-h1'>{text.ExpressChooseYourSettings.about2}</h1>
                                             </div>
                                             <div className='modal-scroll-information-container'>
                                                 <div className='modal-scroll-information'>  
-                                                    <h2 className='modal-h2'>What data is saved when this setting is on</h2>
-                                                    <p className='modal-p'>YouTube History saves your activity on YouTube, like videos you watch and things you search for.</p>
-                                                    <p className='modal-p'>If you use your device without an internet connection, your data may be saved in your account once you return online.</p>
-                                                    <h2 className='modal-h2 modal-h2-more-margin'>How we use this data</h2>
-                                                    <p className='modal-p'>Saved data helps Google give you more personalized experiences across Google services, like faster searching, more relevant results, and app and content recommendations automatically tailored to you.</p>
-                                                    <p className='modal-p'>Depending on your Ad Settings, you may also see ads on and off Google that are tailored to you based on this data.</p>
-                                                    <h2 className='modal-h2 modal-h2-more-margin'>How you can manage your data</h2>
-                                                    <p className='modal-p'>In addition to being able to manually delete your data anytime, you can choose to have your Web & App Activity older than 3, 18, or 36 months automatically deleted. You can see your data, delete it, change your settings, and withdraw your consent at account.google.com.</p>
+                                                    <h2 className='modal-h2'>{text.ExpressChooseYourSettings.m2h21}</h2>
+                                                    <p className='modal-p'>{text.ExpressChooseYourSettings.m2p1}</p>
+                                                    <p className='modal-p'>{text.ExpressChooseYourSettings.m2p2}</p>
+                                                    <h2 className='modal-h2 modal-h2-more-margin'>{text.ExpressChooseYourSettings.m2h22}</h2>
+                                                    <p className='modal-p'>{text.ExpressChooseYourSettings.m2p3}</p>
+                                                    <p className='modal-p'>{text.ExpressChooseYourSettings.m2p4}</p>
+                                                    <h2 className='modal-h2 modal-h2-more-margin'>{text.ExpressChooseYourSettings.m2h23}</h2>
+                                                    <p className='modal-p'>{text.ExpressChooseYourSettings.m2p5}</p>
                                                 </div>
                                             </div>
                                             <div className='modal-got-it-div'>
@@ -190,7 +197,9 @@ export const ExpressChooseYourSettingsComponent = ({
                                                             
                                                         }}
                                                 >
-                                                    Got it
+                                                    <div className='got-it-text'>
+                                                    {text.ExpressChooseYourSettings.gotIt}
+                                                    </div>
                                                 </SecondaryGreyButton2>
                                             </div>
                                         </Box>
@@ -203,38 +212,99 @@ export const ExpressChooseYourSettingsComponent = ({
                             <svg aria-hidden="true" class="stUf5b" fill="currentColor" focusable="false" width="24px" height="24px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M15.2222 11.1111H9.88889V12.8889H15.2222V11.1111ZM14.7138 16.4444H4.55556V14.6667H14.1868C14.3511 15.2415 14.5288 15.8374 14.7138 16.4444ZM15.2629 18.2222H3.66667C3.18667 18.2222 2.77778 17.9022 2.77778 17.5289V6.47111C2.77778 6.09778 3.18667 5.77778 3.66667 5.77778H16.1022C16.5822 5.77778 16.9911 6.09778 16.9911 6.47111V12H17V14.9042C17.2675 14.9865 17.5366 15.0696 17.8065 15.1528C18.1296 15.2525 18.4539 15.3526 18.7778 15.4522V6.47111C18.7778 5.11111 17.5689 4 16.1111 4H3.66667C2.20889 4 1 5.12 1 6.47111V17.5289C1 18.8889 2.20889 20 3.66667 20H15.8153C15.6668 19.5183 15.5152 19.0319 15.3636 18.5455C15.3301 18.4377 15.2965 18.3299 15.2629 18.2222ZM8.11111 12.8889H4.55556V7.55556H8.11111V12.8889ZM15.2222 9.33333H9.88889V7.55556H15.2222V9.33333Z" fill="#5F6368"></path><path d="M15 15C15.5409 16.9727 16.3682 19.3909 16.9091 21.3636L17.6982 18.9773L20.7273 22L22 20.7273L19.0091 17.7364L21.3636 16.9091C19.3909 16.3682 16.9727 15.5727 15 15Z" fill="#5F6368"></path></svg>
                             </div>
                             <div class="info-settings">
-                                <p className="pecys-pseudo-title">Personalized ads</p>
-                                <p className="setting-information">Provides more relevant ads and control over the info used to show those ads. <TransparentSmallButton className="setting-information" >Learn more about personalized ads</TransparentSmallButton></p> 
-                                
+                                <p className="pecys-pseudo-title">{text.ExpressChooseYourSettings.personalizedAds}</p>
+                                <p className="setting-information">{text.ExpressChooseYourSettings.provides3}<TransparentSmallButton className="setting-information" onClick={openPersonalizedAdsModal} >{text.ExpressChooseYourSettings.learnMore3}</TransparentSmallButton></p> 
+                                <Modal
+                                    open={showPersonalizedAdsModal}
+                                    onClose={closePersonalizedAdsModal}
+                                    closeAfterTransition
+                                    className='modal-ecys'
+                                >
+                                    <animated.div style={modalCondition === 'opening' ? animationOpen : modalCondition === 'closing' ? animationClose : {}}>
+                                        <Box 
+                                            sx={{
+                                                width: '336px',
+                                                height: '93.25vh',
+                                                bgcolor: '#fff',
+                                                borderRadius: '8px',
+                                                color: '#5f6368',
+                                                WebkitBoxAlign: 'stretch',
+                                                boxAlign: 'stretch',
+                                                alignItems: 'stretch',
+                                                display: 'flex',
+                                                WebkitBoxOrient: 'vertical',
+                                                boxOrient: 'vertical',
+                                                flexDirection: 'column',
+                                                transition: 'transform .225s cubic-bezier(0,0,0.2,1)',
+                                                WebkitTransition: 'transform .225s cubic-bezier(0,0,0.2,1),-webkit-transform .225s cubic-bezier(0,0,0.2,1)',
+                                                backgroundColor: '#fff',
+                                                boxShadow: '0 12px 15px 0 rgba(0,0,0,.24)',
+                                                maxWidth: '24em',
+                                                outline: '1px solid transparent',
+                                                overflow: 'hidden',
+                                            }}
+                                        >
+                                    
+                                            <div className='modal-title-div'>
+                                                <h1 className='modal-title-h1'>{text.ExpressChooseYourSettings.about3}</h1>
+                                            </div>
+                                            <div className='modal-scroll-information-container'>
+                                                <div className='modal-scroll-information'>  
+                                                    <p className='modal-p modal-p-more-margin'>{text.ExpressChooseYourSettings.m3p1}</p>
+                                                    <p className='modal-p'>{text.ExpressChooseYourSettings.m3p2}</p>
+                                                    <p className='modal-p'>{text.ExpressChooseYourSettings.m3p3}</p>
+                                                    <p className='modal-p'>{text.ExpressChooseYourSettings.m3p4}</p>
+                                                    <p className='modal-p'>{text.ExpressChooseYourSettings.m3p5}</p>
+                                                </div>
+                                            </div>
+                                            <div className='modal-got-it-div'>
+                                                <SecondaryGreyButton2 
+                                                        variant="contained"     
+                                                        onClick={closePersonalizedAdsModal}
+                                                        sx={{
+                                                            '&& .MuiTouchRipple-rippleVisible': {
+                                                                animationDuration: '300ms',
+                                                            },
+                                                            
+                                                        }}
+                                                >
+                                                    <div className='got-it-text'>
+                                                    {text.ExpressChooseYourSettings.gotIt}
+                                                    </div>
+                                                </SecondaryGreyButton2>
+                                            </div>
+                                        </Box>
+                                    </animated.div>  
+                                </Modal>  
                             </div>
                         </div>
                     </div>
 
-                    <h2 class="express-ecys-h2">What data is used</h2>
-                    <p class='pecys p-gap-ecys'>Web & App Activity saves your activity on Google sites and apps, like Search and Maps, and includes associated info like location. It also saves synced Chrome history and activity from sites, apps, and devices that use Google services.</p>
-                    <p class='pecys p-gap-ecys'>YouTube History saves the videos you watch and the things you search for when you use YouTube.</p>
-                    <p class='pecys p-gap-ecys-last'>Personalized ads use information saved in your Google Account (such as your activity, age range, and gender) as well as interactions with advertisers. We’ll also use your activity on other sites and apps that use our advertising services.</p>
-                    <h2 class="express-ecys-h2">How we use this data</h2>
-                    <p class='pecys'>When you’re signed in and these settings are on, personal data will be saved in your account and used to personalize your experience in Search, YouTube, Maps, and other Google services for things like</p>
+                    <h2 class="express-ecys-h2">{text.ExpressChooseYourSettings.whatData}</h2>
+                    <p class='pecys p-gap-ecys'>{text.ExpressChooseYourSettings.datap1}</p>
+                    <p class='pecys p-gap-ecys'>{text.ExpressChooseYourSettings.datap2}</p>
+                    <p class='pecys p-gap-ecys-last'>{text.ExpressChooseYourSettings.datap3}</p>
+                    <h2 class="express-ecys-h2">{text.ExpressChooseYourSettings.howWeUse}</h2>
+                    <p class='pecys'>{text.ExpressChooseYourSettings.howWeUse1}</p>
                 
                     <ul className='ul-ecys'>
-                        <li className='pecys bullet-point-ecys'>help remembering where you left off</li>
-                        <li className='pecys bullet-point-ecys'>more personalized recommendations across Google products, like articles, apps, and videos</li>
-                        <li className='pecys bullet-point-ecys'>YouTube homepage recommendations</li>
+                        <li className='pecys bullet-point-ecys'>{text.ExpressChooseYourSettings.howWeUse2}</li>
+                        <li className='pecys bullet-point-ecys'>{text.ExpressChooseYourSettings.howWeUse3}</li>
+                        <li className='pecys bullet-point-ecys'>{text.ExpressChooseYourSettings.howWeUse4}</li>
                     </ul>
 
-                    <p class='pecys p-gap-ecys-first'>When this setting is off, YouTube features that rely on history to personalize your experience are disabled.</p>
-                    <p class='pecys p-gap-ecys-tight'>We also use your information to show ads. Ads are tailored to you in Google services and on sites and apps that partner with Google, so you can</p>
+                    <p class='pecys p-gap-ecys-first'>{text.ExpressChooseYourSettings.howWeUse5}</p>
+                    <p class='pecys p-gap-ecys-tight'>{text.ExpressChooseYourSettings.howWeUse6}</p>
                 
                     <ul className='ul-ecys'>
-                        <li className='pecys bullet-point-ecys'>see ads that are based on topics you might find appealing</li>
-                        <li className='pecys bullet-point-ecys'>block specific topics and advertisers</li>
+                        <li className='pecys bullet-point-ecys'>{text.ExpressChooseYourSettings.howWeUse7}</li>
+                        <li className='pecys bullet-point-ecys'>{text.ExpressChooseYourSettings.howWeUse8}</li>
                     </ul>
                 
-                    <p class='pecys p-gap-ecys-first-and-last'>We don’t sell your personal information to anyone.</p>
-                    <h2 class="express-ecys-h2">How you can manage your data</h2>
-                    <p class='pecys p-gap-ecys'>In addition to being able to manually delete your activity anytime, Web & App Activity older than 18 months and YouTube History older than 36 months will be automatically deleted.</p>
-                    <p class='pecys p-gap-ecys-last'>You can see your data, delete it, change your settings, and withdraw your consent at account.google.com.</p>
+                    <p class='pecys p-gap-ecys-first-and-last'>{text.ExpressChooseYourSettings.howWeUse9}</p>
+                    <h2 class="express-ecys-h2">{text.ExpressChooseYourSettings.howYouCan}</h2>
+                    <p class='pecys p-gap-ecys'>{text.ExpressChooseYourSettings.howYouCan1}</p>
+                    <p class='pecys p-gap-ecys-last'>{text.ExpressChooseYourSettings.howYouCan2}</p>
                 
                 </div>
 
@@ -250,7 +320,7 @@ export const ExpressChooseYourSettingsComponent = ({
                             },
                         }}
                     >
-                        Reject all
+                        {text.ExpressChooseYourSettings.reject}
                     </CustomNextAndSkipButton>
 
                     <CustomNextAndSkipButton
@@ -264,10 +334,18 @@ export const ExpressChooseYourSettingsComponent = ({
                             },
                         }}
                     >
-                        Accept all
+                        {text.ExpressChooseYourSettings.accept}
                     </CustomNextAndSkipButton>
                 </div>
 
+            </div>
+
+            <div className='language-changer-div'>
+                <select onChange={handleLanguageSelection}>
+                    <option value="es">Translate to Spanish</option>
+                    <option value="fr">Translate to French</option>
+                    <option value="de">Translate to German</option>
+                </select>
             </div>
 
             <div className='test-overflow'></div>
