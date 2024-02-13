@@ -18,7 +18,7 @@
   display: flex;
   justify-content: center;
   margin-top: 30px;
-  margin-bottom: 725px;
+  /* margin-bottom: 725px; */
 }
 
 .test-overflow {
@@ -1353,15 +1353,11 @@ input[type="number"]::-webkit-outer-spin-button {
   border-bottom: 1px solid #dadce0;
 }
 
-.css-t6g53l-MuiButtonBase-root-MuiRadio-root {
+.cys-radio {
   height: 50px !important;
   width: 50px !important;
   bottom: 20px !important;
   overflow: visible !important;
-}
-
-.css-r1fb3p-MuiButtonBase-root-MuiRadio-root {
-  bottom: 20px !important;
 }
 
 .radio-group-ecys {
@@ -1395,8 +1391,8 @@ input[type="number"]::-webkit-outer-spin-button {
     cursor: pointer;
 }
 
-#p-container-choose-your-settings {
-  width: 81%;
+#container-choose-your-settings-m{
+  width: 83%;
 }
 
 #error-div-choose-your-settings {
@@ -1420,10 +1416,6 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 /* Express Choose Your Settings */
-
-/* #ecys-top-margin {
-  margin-top: 300px;
-} */
 
 #choose-your-settings-title {
   width: 90%;
@@ -1601,6 +1593,64 @@ p-gap-ecys-tight {
   flex-direction: column;
   justify-content: center;
   align-items: flex-end;
+}
+
+/* Manual Choose Your Settings */
+
+.h1-mcys{
+  width: 86%;
+}
+
+.first-p-mcys{
+  margin-top: 7.5px;
+}
+
+.regular-p{
+  font-size: 0.875rem;
+  color: #202124;
+  font-size: 0.875rem;
+  color: #202124;
+  position: relative;
+  margin-bottom: 10px;
+  margin-top: 22.5px;
+}
+
+#choose-your-settings-container-mcys{
+  width: 82.5%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.cys-radio-manual {
+  height: 50px !important;
+  width: 50px !important;
+  overflow: visible !important;
+}
+
+.radio-input-container-mcys {
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid #dadce0;
+}
+
+.mcys-h2 {
+  font-size: 1.1rem;
+  color: rgb(32,33,36);
+  margin: 17.5px 0 10px 0;
+  font-weight: 500;
+}
+
+#more-margin-top-h2-mcys {
+  margin-top: 22.5px;
+}
+
+.learn-more-mcys {
+  font-size: 0.875rem !important;
+  margin-top: 10px !important; 
+  margin-bottom: 15px !important;
+  text-align: left !important;
 }
 
 /* Language Changer Div */

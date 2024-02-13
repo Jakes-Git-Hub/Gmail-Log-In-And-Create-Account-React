@@ -17,7 +17,9 @@ import { AddRecoveryEmailContainer } from "./containers/AddRecoveryEmailContaine
 import { ReviewYourAccountInfoContainer } from "./containers/ReviewYourAccountInfoContainer";
 import { ChooseYourSettingsContainer } from "./containers/ChooseYourSettingsContainer";
 import { ExpressChooseYourSettingsContainer } from "./containers/ExpressChooseYourSettingsContainer";
-import SpringModal from "./containers/modalTest";
+import { ConfirmYourSettingsContainer } from "./containers/ConfirmYourSettingsContainer";
+import { ManualChooseYourSettingsContainer } from "./containers/ManualChooseYourSettingsContainer"
+import { ManualChooseYourSettingsContainer2 } from "./containers/ManualChooseYourSettingsContainer2"
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -251,45 +253,60 @@ const { userIP } = useUserIP()
           } 
         />
         <Route path="/add-recovery-email" element={
-              <AddRecoveryEmailContainer
-                updateUser={updateUser} 
-                text={text}
-              />
+            <AddRecoveryEmailContainer
+              updateUser={updateUser} 
+              text={text}
+            />
           } 
         />
         <Route path="/review-account-info" element={
-              <ReviewYourAccountInfoContainer 
-                updateUser={updateUser}
-                userData={userData}
-                text={text}
-              />
+            <ReviewYourAccountInfoContainer 
+              updateUser={updateUser}
+              userData={userData}
+              text={text}
+            />
           } 
         />
         <Route path="/choose-your-settings" element={
-              <ChooseYourSettingsContainer
-                updateUser={updateUser}
-                text={text}
-              />
+            <ChooseYourSettingsContainer
+              updateUser={updateUser}
+              text={text}
+            />
           } 
         />
         <Route path="/express-choose-your-settings" element={
-              <ExpressChooseYourSettingsContainer
-                updateUser={updateUser}
-                text={text}
-              />
+            <ExpressChooseYourSettingsContainer
+              updateUser={updateUser}
+              text={text}
+            />
           } 
         />
-        <Route path="/modal-test" element={
-              <SpringModal
-              />
+        
+        <Route path="/manual-choose-your-settings" element={
+            <ManualChooseYourSettingsContainer
+              userData={userData}
+              updateUser={updateUser}
+              text={text}
+            />
           } 
         />
-        {/* <Route path="/manual-choose-your-settings" element={
-              <ManualChooseYourSettingsContainer2
-                updateUser={updateUser}
-              />
+
+        <Route path="/manual-choose-your-settings2" element={
+            <ManualChooseYourSettingsContainer2
+              userData={userData}
+              updateUser={updateUser}
+              text={text}
+            />
           } 
-        /> */}
+        />
+
+        <Route path="/confirm-your-settings" element={
+            <ConfirmYourSettingsContainer
+              text={text}
+            />
+          } 
+        />
+
       </Routes>
     </Router>
   );

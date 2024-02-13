@@ -42,6 +42,7 @@ export const ChooseYourSettingsComponent = ({
                             value="express" 
                             control={
                                 <Radio
+                                    className='cys-radio'
                                     sx={{
                                         '&.MuiButtonBase-root:hover': {
                                             backgroundColor: 'transparent',
@@ -69,6 +70,7 @@ export const ChooseYourSettingsComponent = ({
                             value="manual" 
                             control={
                                 <Radio
+                                    className='cys-radio'
                                     sx={{
                                         '&.MuiButtonBase-root:hover': {
                                             backgroundColor: 'transparent',
