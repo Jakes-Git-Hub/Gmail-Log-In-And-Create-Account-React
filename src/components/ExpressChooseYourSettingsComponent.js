@@ -312,7 +312,7 @@ export const ExpressChooseYourSettingsComponent = ({
                     <CustomNextAndSkipButton 
                         className="duo" 
                         variant="contained" 
-                        onClick={handleNextClick}
+                        // onClick={handleNextClick}
                         type="submit"
                         sx={{
                             '&& .MuiTouchRipple-rippleVisible': {
@@ -326,7 +326,7 @@ export const ExpressChooseYourSettingsComponent = ({
                     <CustomNextAndSkipButton
                         className="duo"  
                         variant="contained" 
-                        // onClick={}
+                        onClick={handleNextClick}
                         type="button"
                         sx={{
                             '&& .MuiTouchRipple-rippleVisible': {

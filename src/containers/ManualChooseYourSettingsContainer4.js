@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import { ManualChooseYourSettingsComponent } from "../components/ManualChooseYourSettingsComponent";
+import { ManualChooseYourSettingsComponent4 } from "../components/ManualChooseYourSettingsComponent4";
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import errorImage from '../images/Daco_5575399.png';
 import useImagePreload from "../hooks/useImagePreload";
 import { useSpring } from 'react-spring';
 
-export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text }) => {
+export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text }) => {
 
-    const [manualSetting1, setManualSetting1] = useState("");
+    const [manualSetting3, setManualSetting3] = useState("");
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [errorCondition, setErrorCondition] = useState("");
-    const [showWebAndAppActivityModal, setShowWebAndAppActivityModal] = useState(false);
+    const [showYouTubeHistoryModal, setShowYouTubeHistoryModal] = useState(false);
     const [modalCondition, setModalCondition] = useState('closed');
 
     const navigate = useNavigate();
@@ -27,10 +27,6 @@ export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text }
           setIsImageLoaded(true);
         };
     }, []);
-
-    useEffect(() => {
-        console.log('errorCondition:', errorCondition);
-    }, [errorCondition]);
 
 // Add Overflow Body CSS
 
@@ -51,16 +47,16 @@ export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text }
 
     const toggleModalCondition = condition => setModalCondition(condition);
 
-    const openWebAndAppActivityModal = () => {
-        setShowWebAndAppActivityModal(true);
+    const openYouTubeHistoryModal = () => {
+        setShowYouTubeHistoryModal(true);
         toggleModalCondition('opening');
     };
 
-    const closeWebAndAppActivityModal = () => {
+    const closeYouTubeHistoryModal = () => {
         toggleModalCondition('closing');
         setTimeout(() => {
             toggleModalCondition('closed');
-            setShowWebAndAppActivityModal(false);
+            setShowYouTubeHistoryModal(false);
         }, 275);
     };
 
@@ -91,25 +87,24 @@ export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text }
 // Handle Radio Change
 
     const handleRadioChange = (e) => {
-        setManualSetting1(e.target.value);
+        setManualSetting3(e.target.value);
         if (errorCondition === "selectAnOption") {
             setErrorCondition("");
         }
     }
 
-// Error & Scroll to Error
+// Errors
 
-    const setError = error => setErrorCondition(error);
+    const setError = (error) => setErrorCondition(error);
 
     const repositionViewPortOnError = () => {
         const settingsContainer = document.getElementById('container-choose-your-settings-m');
         if (settingsContainer) {
             const topOffset = settingsContainer.getBoundingClientRect().top;
             if (topOffset < 0 || topOffset > window.innerHeight) {
-                // Scroll the viewport to bring the settings container to the top
                 window.scrollTo({
                     top: window.scrollY + topOffset,
-                    behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
+                    behavior: 'auto'
                 });
             }
         }
@@ -117,52 +112,49 @@ export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text }
 
 // Handle Next & Back Click
 
-    const handleNextClick = () => {
-        if (manualSetting1 === "") {
+    const handleNextClick = (e) => {
+        e.preventDefault();
+        if (manualSetting3 === "") {
             setError("selectAnOption");
             repositionViewPortOnError();
-        } if (manualSetting1 === "keep until delete") {
-            updateUser({ manualSetting1: "keep until delete" });
+        } if (manualSetting3 === "show personalized ads") {
+            updateUser({ manualSetting3: "show personalized ads" });
             repositionViewPortOnNextOrBackClick();
-            navigate("/manual-choose-your-settings2")
-        } if (manualSetting1 === "18 months or delete") {
-            updateUser({ manualSetting1: "18 months or delete" });
+            navigate("/manual-choose-your-settings3")
+        } if (manualSetting3 === "show generic ads") {
+            updateUser({ manualSetting3: "show generic ads" });
             repositionViewPortOnNextOrBackClick();
-            navigate("/manual-choose-your-settings2")
-        } if (manualSetting1 === "dont save") {
-            updateUser({ manualSetting1: "dont save" });
-            repositionViewPortOnNextOrBackClick();
-            navigate("/manual-choose-your-settings2")
+            navigate("/manual-choose-your-settings3")
         }
     };
 
     const handleBackClick = (e) => {
         e.preventDefault();
-        navigate("/choose-your-settings")
-    }
+        repositionViewPortOnNextOrBackClick();
+        navigate("/manual-choose-your-settings2")
+    };
 
     const repositionViewPortOnNextOrBackClick = () => {
         window.scrollTo({
-            top: 0, // Scroll to the top of the viewport
-            behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
+            top: 0,
+            behavior: 'auto',
         });
     };
 
     return(
         <>
-            <ManualChooseYourSettingsComponent
+            <ManualChooseYourSettingsComponent4
                 handleNextClick={handleNextClick}
                 isImageLoaded={isImageLoaded}
                 userData={userData}
-                manualSetting1={manualSetting1}
                 handleRadioChange={handleRadioChange}
                 errorCondition={errorCondition}
                 isImagePreloaded={isImagePreloaded}
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
-                openWebAndAppActivityModal={openWebAndAppActivityModal}
-                closeWebAndAppActivityModal={closeWebAndAppActivityModal}
-                showWebAndAppActivityModal={showWebAndAppActivityModal}
+                openYouTubeHistoryModal={openYouTubeHistoryModal}
+                closeYouTubeHistoryModal={closeYouTubeHistoryModal}
+                showYouTubeHistoryModal={showYouTubeHistoryModal}
                 modalCondition={modalCondition}
                 animationOpen={animationOpen}
                 animationClose={animationClose}

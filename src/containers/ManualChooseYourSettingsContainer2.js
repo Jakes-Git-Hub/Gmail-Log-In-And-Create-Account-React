@@ -97,27 +97,53 @@ export const ManualChooseYourSettingsContainer2 = ({ userData, updateUser, text 
 
     const setError = (error) => setErrorCondition(error);
 
+    const repositionViewPortOnError = () => {
+        const settingsContainer = document.getElementById('container-choose-your-settings-m');
+        if (settingsContainer) {
+            const topOffset = settingsContainer.getBoundingClientRect().top;
+            if (topOffset < 0 || topOffset > window.innerHeight) {
+                // Scroll the viewport to bring the settings container to the top
+                window.scrollTo({
+                    top: window.scrollY + topOffset,
+                    behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
+                });
+            }
+        }
+    };
+
 // Handle Next & Back Click
 
     const handleNextClick = (e) => {
         e.preventDefault();
         if (manualSetting2 === "") {
             setError("selectAnOption");
+            repositionViewPortOnError();
         } if (manualSetting2 === "keep until delete") {
             updateUser({ manualSetting2: "keep until delete" });
+            repositionViewPortOnNextOrBackClick();
             navigate("/manual-choose-your-settings3")
         } if (manualSetting2 === "36 months or delete") {
-            updateUser({ manualSetting2: "18 months or delete" });
+            updateUser({ manualSetting2: "36 months or delete" });
+            repositionViewPortOnNextOrBackClick();
             navigate("/manual-choose-your-settings3")
         } if (manualSetting2 === "dont save") {
             updateUser({ manualSetting2: "dont save" });
+            repositionViewPortOnNextOrBackClick();
             navigate("/manual-choose-your-settings3")
         }
     };
 
     const handleBackClick = (e) => {
         e.preventDefault();
+        repositionViewPortOnNextOrBackClick();
         navigate("/manual-choose-your-settings")
+    };
+
+    const repositionViewPortOnNextOrBackClick = () => {
+        window.scrollTo({
+            top: 0, // Scroll to the top of the viewport
+            behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
+        });
     };
 
     return(

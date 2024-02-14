@@ -18,8 +18,10 @@ import { ReviewYourAccountInfoContainer } from "./containers/ReviewYourAccountIn
 import { ChooseYourSettingsContainer } from "./containers/ChooseYourSettingsContainer";
 import { ExpressChooseYourSettingsContainer } from "./containers/ExpressChooseYourSettingsContainer";
 import { ConfirmYourSettingsContainer } from "./containers/ConfirmYourSettingsContainer";
-import { ManualChooseYourSettingsContainer } from "./containers/ManualChooseYourSettingsContainer"
-import { ManualChooseYourSettingsContainer2 } from "./containers/ManualChooseYourSettingsContainer2"
+import { ManualChooseYourSettingsContainer } from "./containers/ManualChooseYourSettingsContainer";
+import { ManualChooseYourSettingsContainer2 } from "./containers/ManualChooseYourSettingsContainer2";
+import { ManualChooseYourSettingsContainer3 } from "./containers/ManualChooseYourSettingsContainer3";
+import { ManualChooseYourSettingsContainer4 } from "./containers/ManualChooseYourSettingsContainer4";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -159,7 +161,7 @@ const { userIP } = useUserIP()
 
 // Update User Data
 
-  const updateUser = (data) => {
+  const updateUser = data => {
     setUserData(prevData => ({ ...prevData, ...data }));
   };
 
@@ -179,7 +181,7 @@ const { userIP } = useUserIP()
   const handleCYNARCountrySelect = () => setHasSelectedCYNARCountry(true);
 
   return (
-    <Router>
+    <Router scrollBehavior="top">
       <Routes>
         <Route path="/" element={
             <FrontPageStaticContainer>
@@ -293,6 +295,24 @@ const { userIP } = useUserIP()
 
         <Route path="/manual-choose-your-settings2" element={
             <ManualChooseYourSettingsContainer2
+              userData={userData}
+              updateUser={updateUser}
+              text={text}
+            />
+          } 
+        />
+
+        <Route path="/manual-choose-your-settings3" element={
+            <ManualChooseYourSettingsContainer3
+              userData={userData}
+              updateUser={updateUser}
+              text={text}
+            />
+          } 
+        />
+
+        <Route path="/manual-choose-your-settings4" element={
+            <ManualChooseYourSettingsContainer4
               userData={userData}
               updateUser={updateUser}
               text={text}

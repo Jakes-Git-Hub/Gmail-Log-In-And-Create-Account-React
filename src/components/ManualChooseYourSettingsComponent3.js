@@ -10,7 +10,7 @@ import { animated } from 'react-spring';
 import TransparentSmallButton from './buttons/TransparentSmallButtonComponent';
 import SecondaryGreyButton2 from './buttons/SecondaryGreyButtonComponent2';
 
-export const ManualChooseYourSettingsComponent = ({ 
+export const ManualChooseYourSettingsComponent3 = ({ 
     handleNextClick,
     isImageLoaded,
     handleRadioChange,
@@ -19,9 +19,9 @@ export const ManualChooseYourSettingsComponent = ({
     isImagePreloaded,
     handleLanguageSelection,
     text,
-    openWebAndAppActivityModal,
-    closeWebAndAppActivityModal,
-    showWebAndAppActivityModal,
+    openYouTubeHistoryModal,
+    closeYouTubeHistoryModal,
+    showYouTubeHistoryModal,
     modalCondition,
     animationOpen,
     animationClose,
@@ -39,10 +39,11 @@ export const ManualChooseYourSettingsComponent = ({
                 </div>
                 <img src={googleWritingSvg} alt="Google Writing" id="google-writing-recovery-ryai"/>
 
-                <h1 class="thin h1-space h1-mcys">{text.ManualChooseYourSettings.h1}</h1>
-                <p class="first-p-mcys">{text.ManualChooseYourSettings.step1}</p>
+                <h1 class="thin h1-space h1-mcys">{text.ManualChooseYourSettings3.h1}</h1>
+                <p class="first-p-mcys">{text.ManualChooseYourSettings3.step}</p>
+
                 <div id="container-choose-your-settings-m">
-                    <p class="regular-p">{text.ManualChooseYourSettings.choose}</p>
+                    <p class="regular-p">{text.ManualChooseYourSettings3.choose}</p>
                 </div>
                 
                 <RadioGroup
@@ -50,14 +51,14 @@ export const ManualChooseYourSettingsComponent = ({
                     name="settings"
                     value={setting}
                     onChange={handleRadioChange}
-                    id="choose-your-settings-container-mcys"
+                    id="choose-your-settings-container-no-margin"
                 >
-                    <div className="radio-input-container-mcys">
+                    <div className="radio-input-container">
                         <FormControlLabel 
-                            value="keep until delete" 
+                            value='show personalized ads'
                             control={
                                 <Radio
-                                    className='cys-radio-manual'
+                                    className='mcys-radio'
                                     sx={{
                                         '&.MuiButtonBase-root:hover': {
                                             backgroundColor: 'transparent',
@@ -68,23 +69,24 @@ export const ManualChooseYourSettingsComponent = ({
                             }
                             label={
                                 <div className='writting-container'>
-                                    <p className="setting-option-name">{text.ManualChooseYourSettings.keepUntil}</p>
+                                    <p className="setting-option-name">{text.ManualChooseYourSettings3.showMePersonalisedAds}</p>
+                                    <p className="setting-information setting-information-pointer">{text.ManualChooseYourSettings3.showMePersonalisedAds1}</p>
                                 </div>
                             }
                             style={{
-                                    margin: '2.5px 0 2.5px 11.5px',
+                                    margin:'6.5px 0 11.5px 1px',
                                     width: "100%",
                                     position: "relative",
-                                    right: "25px",
+                                    right: "10px",
                             }}
                         />
                     </div>
-                    <div className="radio-input-container-mcys">
+                    <div className="radio-input-container">
                         <FormControlLabel 
-                            value="18 months or delete" 
+                            value="show generic ads" 
                             control={
                                 <Radio
-                                    className='cys-radio-manual'
+                                    className='mcys-radio'
                                     sx={{
                                         '&.MuiButtonBase-root:hover': {
                                             backgroundColor: 'transparent',
@@ -95,44 +97,15 @@ export const ManualChooseYourSettingsComponent = ({
                             }
                             label={
                                 <div className='writting-container'>
-                                    <p className="setting-option-name">{text.ManualChooseYourSettings.keepActivity}</p>
-                                    <p className="setting-information setting-information-pointer">{text.ManualChooseYourSettings.keepActivity2}</p>
+                                    <p className="setting-option-name">{text.ManualChooseYourSettings3.showMeGenericAds}</p>
+                                    <p className="setting-information setting-information-pointer">{text.ManualChooseYourSettings3.showMeGenericAds1}</p>
                                 </div>
                             }
                             style={{
-                                marginLeft:'11.5px',
-                                marginBottom: '2.5px',
+                                margin:'6.5px 0 11.5px 1px',
                                 width: "100%",
                                 position: "relative",
-                                right: "25px",
-                            }}
-                        />
-                    </div>
-                    <div className="radio-input-container-mcys">
-                        <FormControlLabel 
-                            value="dont save" 
-                            control={
-                                <Radio
-                                    className='cys-radio-manual'
-                                    sx={{
-                                        '&.MuiButtonBase-root:hover': {
-                                            backgroundColor: 'transparent',
-                                        },
-                                        color: errorCondition === "selectAnOption" ? 'rgb(217,48,37)' : 'default',
-                                    }}
-                                    />
-                            }
-                            label={
-                                <div className='writting-container'>
-                                    <p className="setting-option-name">{text.ManualChooseYourSettings.dontSave}</p>
-                                </div>
-                            }
-                            style={{
-                                marginLeft:'11.5px',
-                                marginBottom: '2.5px',
-                                width: "100%",
-                                position: "relative",
-                                right: "25px",
+                                right: "10px",
                             }}
                         />
                     </div>
@@ -141,22 +114,22 @@ export const ManualChooseYourSettingsComponent = ({
                 {errorCondition === "selectAnOption" && isImagePreloaded && (   
                     <div id='error-div-choose-your-settings'>
                         <img className='error-image' src={errorImage} alt='Error Image' />
-                        <p class="input-error-message">{text.ManualChooseYourSettings.error}</p>
+                        <p class="input-error-message">{text.ManualChooseYourSettings3.error}</p>
                     </div>
                 )}
 
                 <div id="container-choose-your-settings-m">
-                    <h2 class="mcys-h2">{text.ManualChooseYourSettings.whatData}</h2>
-                    <p class='pecys p-gap-ecys'>{text.ManualChooseYourSettings.whatData1}</p>
-                    <h2 class="mcys-h2" id='more-margin-top-h2-mcys'>{text.ManualChooseYourSettings.howWeUse}</h2>
-                    <p class='pecys p-gap-ecys'>{text.ManualChooseYourSettings.howWeUse1}</p>
-                    <h2 class="mcys-h2" id='more-margin-top-h2-mcys'>{text.ManualChooseYourSettings.howYouCanManage}</h2>
-                    <p class='pecys p-gap-ecys'>{text.ManualChooseYourSettings.howYouCanManage1}</p>
+                    <h2 class="mcys-h2">{text.ManualChooseYourSettings3.whatData}</h2>
+                    <p class='pecys p-gap-ecys'>{text.ManualChooseYourSettings3.whatData1}</p>
+                    <h2 class="mcys-h2" id='more-margin-top-h2-mcys'>{text.ManualChooseYourSettings3.howWeUse}</h2>
+                    <p class='pecys p-gap-ecys'>{text.ManualChooseYourSettings3.howWeUse1}</p>
+                    <h2 class="mcys-h2" id='more-margin-top-h2-mcys'>{text.ManualChooseYourSettings3.howYouCanManage}</h2>
+                    <p class='pecys p-gap-ecys'>{text.ManualChooseYourSettings3.howYouCanManage1}</p>
 
-                    <TransparentSmallButton className="setting-information learn-more-mcys" onClick={openWebAndAppActivityModal}>{text.ExpressChooseYourSettings.learnMore1}</TransparentSmallButton>
+                    <TransparentSmallButton className="setting-information learn-more-mcys" onClick={openYouTubeHistoryModal}>{text.ManualChooseYourSettings3.learnMore}</TransparentSmallButton>
                     <Modal
-                        open={showWebAndAppActivityModal}
-                        onClose={closeWebAndAppActivityModal}
+                        open={showYouTubeHistoryModal}
+                        onClose={closeYouTubeHistoryModal}
                         closeAfterTransition
                         className= 'modal-ecys'
                     >
@@ -185,45 +158,34 @@ export const ManualChooseYourSettingsComponent = ({
                                 }}
                             >
                         
-                                <div className='modal-title-div'>
-                                    <h1 className='modal-title-h1'>{text.ExpressChooseYourSettings.about1}</h1>
+                        <div className='modal-title-div'>
+                            <h1 className='modal-title-h1'>{text.ManualChooseYourSettings3.aboutAd}</h1>
+                        </div>
+                        <div className='modal-scroll-information-container'>
+                            <div className='modal-scroll-information'>  
+                                <p className='modal-p'>{text.ManualChooseYourSettings3.aboutAd1}</p>
+                                <p className='modal-p'>{text.ManualChooseYourSettings3.aboutAd2}</p>
+                                <p className='modal-p'>{text.ManualChooseYourSettings3.aboutAd3}</p>
+                                <p className='modal-p'>{text.ManualChooseYourSettings3.aboutAd4}</p>
+                                <p className='modal-p'>{text.ManualChooseYourSettings3.aboutAd5}</p>
+                            </div>
+                        </div>
+                        <div className='modal-got-it-div'>
+                            <SecondaryGreyButton2 
+                                    variant="contained"     
+                                    onClick={closeYouTubeHistoryModal}
+                                    sx={{
+                                        '&& .MuiTouchRipple-rippleVisible': {
+                                            animationDuration: '300ms',
+                                        },
+                                        
+                                    }}
+                            >
+                                <div className='got-it-text'>
+                                {text.ExpressChooseYourSettings.gotIt}
                                 </div>
-                                <div className='modal-scroll-information-container'>
-                                    <div className='modal-scroll-information'>  
-                                        <h2 className='modal-h2'>{text.ExpressChooseYourSettings.m1h21}</h2>
-                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p1}</p>
-                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p2}</p>
-                                        <ul>
-                                            <li className='modal-li'>{text.ExpressChooseYourSettings.m1b1}</li>
-                                            <li className='modal-li'>{text.ExpressChooseYourSettings.m1b2}</li>
-                                            <li className='modal-li'>{text.ExpressChooseYourSettings.m1b3}</li>
-                                            <li className='modal-li'>{text.ExpressChooseYourSettings.m1b4}</li>
-                                        </ul>
-                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p3}.</p>
-                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p4}</p>
-                                        <h2 className='modal-h2 modal-h2-more-margin'>{text.ExpressChooseYourSettings.m1h22}</h2>
-                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p5}</p>
-                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p6}</p>
-                                        <h2 className='modal-h2 modal-h2-more-margin'>{text.ExpressChooseYourSettings.m1h23}</h2>
-                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p7}</p>
-                                    </div>
-                                </div>
-                                <div className='modal-got-it-div'>
-                                    <SecondaryGreyButton2 
-                                            variant="contained"     
-                                            onClick={closeWebAndAppActivityModal}
-                                            sx={{
-                                                '&& .MuiTouchRipple-rippleVisible': {
-                                                    animationDuration: '300ms',
-                                                },
-                                                
-                                            }}
-                                    >
-                                        <div className='got-it-text'>
-                                        {text.ExpressChooseYourSettings.gotIt}
-                                        </div>
-                                    </SecondaryGreyButton2>
-                                </div>
+                            </SecondaryGreyButton2>
+                        </div>
                             </Box>
                         </animated.div>  
                     </Modal>
@@ -243,7 +205,7 @@ export const ManualChooseYourSettingsComponent = ({
                             },
                         }}
                     >
-                        {text.ManualChooseYourSettings.back}
+                        {text.ManualChooseYourSettings3.back}
                     </CustomNextAndSkipButton>
 
                     <CustomNextAndSkipButton
@@ -257,7 +219,7 @@ export const ManualChooseYourSettingsComponent = ({
                             },
                         }}
                     >
-                        {text.ManualChooseYourSettings.next}
+                        {text.ManualChooseYourSettings3.next}
                     </CustomNextAndSkipButton>
                 </div>
 
