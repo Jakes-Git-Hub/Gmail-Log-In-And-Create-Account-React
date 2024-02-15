@@ -23,6 +23,7 @@ export const ExpressChooseYourSettingsComponent = ({
     showPersonalizedAdsModal,
     text,
     handleLanguageSelection,
+    handleRejectAllClick,
 }) => {
 
     return (
@@ -312,7 +313,7 @@ export const ExpressChooseYourSettingsComponent = ({
                     <CustomNextAndSkipButton 
                         className="duo" 
                         variant="contained" 
-                        // onClick={handleNextClick}
+                        onClick={handleRejectAllClick}
                         type="submit"
                         sx={{
                             '&& .MuiTouchRipple-rippleVisible': {

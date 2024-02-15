@@ -17,7 +17,7 @@
   height: 100vh;
   display: flex;
   justify-content: center;
-  margin-top: 30px;
+  margin-top: 40px;
   /* margin-bottom: 725px; */
 }
 
@@ -1631,7 +1631,6 @@ p-gap-ecys-tight {
 .radio-input-container-mcys {
   width: 100%;
   height: 100%;
-  border-bottom: 1px solid #dadce0;
 }
 
 .mcys-h2 {
@@ -1669,6 +1668,38 @@ p-gap-ecys-tight {
   width: 50px;
   bottom: 15px;
   overflow: visible;
+}
+
+#bullet-points-mcys {
+  margin-top: -5px;
+  padding-inline-start: 25px;
+  margin-bottom: 12.5px;
+}
+
+.modal-li {
+  font-size: 14px;
+  line-height: 1.4286;
+  margin-top: 8.125px;
+  margin-bottom: 0;
+  padding-left: 15px;
+}
+
+.grey-mcys{
+  color: #5f6368;
+  margin-bottom: 20px;
+}
+
+.button-space-mcys {
+  margin: 20px 1.5px 60px 0;
+}
+
+/* Confirm Your Settings */
+
+.confirm-your-settings-configuration-container {
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid #dadce0;
+  display: flex;
 }
 
 /* Language Changer Div */

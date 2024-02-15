@@ -31,15 +31,9 @@ export const ManualChooseYourSettingsContainer2 = ({ userData, updateUser, text 
 // Add Overflow Body CSS
 
     useEffect(() => {
-        // Remove the existing id from the body
-        document.body.removeAttribute('id');
-
-        // Add a new id to the body
         document.body.id = 'body-overflow';
-
-        // Remove the new id when the component unmounts
         return () => {
-            document.body.removeAttribute('id');
+            document.body.id = 'body';
         };
     }, []);
 

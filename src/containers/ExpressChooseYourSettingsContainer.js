@@ -33,15 +33,9 @@ export const ExpressChooseYourSettingsContainer = ({ updateUser, text }) => {
 // Add Overflow Body CSS
 
     useEffect(() => {
-        // Remove the existing id from the body
-        document.body.removeAttribute('id');
-
-        // Add a new id to the body
         document.body.id = 'body-overflow';
-
-        // Remove the new id when the component unmounts
         return () => {
-            document.body.removeAttribute('id');
+            document.body.id = 'body';
         };
     }, []);
 
@@ -106,10 +100,23 @@ export const ExpressChooseYourSettingsContainer = ({ updateUser, text }) => {
 
 // Handle Next Click
 
+    const repositionViewPortOnNextOrBackClick = () => {
+        window.scrollTo({
+            top: 0, // Scroll to the top of the viewport
+            behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
+        });
+    };
+
     const handleNextClick = (e) => {
         e.preventDefault();
-        navigate('/add-phone-number'); 
+        repositionViewPortOnNextOrBackClick();
+        navigate('/confirm-your-settings'); 
     };
+
+    const handleRejectAllClick = (e) => {
+        e.preventDefault();
+        navigate('/choose-your-settings');
+    }
 
     return(
         <>
@@ -130,6 +137,7 @@ export const ExpressChooseYourSettingsContainer = ({ updateUser, text }) => {
                 showPersonalizedAdsModal={showPersonalizedAdsModal}
                 text={text}
                 handleLanguageSelection={handleLanguageSelection}
+                handleRejectAllClick={handleRejectAllClick}
             />
         </>
     );

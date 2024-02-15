@@ -151,7 +151,7 @@ export const CreatePasswordComponent = ({
                         </div>
                     )}
 
-                    <div className={`password-toggle checkbox-text-colour`}>
+                    <div className='password-toggle checkbox-text-colour'>
                         <Checkbox 
                             defaultChecked
                             type="checkbox"

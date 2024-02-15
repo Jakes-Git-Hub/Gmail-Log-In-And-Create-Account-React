@@ -53,7 +53,7 @@ export const ManualChooseYourSettingsComponent2 = ({
                     onChange={handleRadioChange}
                     id="choose-your-settings-container-mcys"
                 >
-                    <div className="radio-input-container-mcys">
+                    <div className="radio-input-container">
                         <FormControlLabel 
                             value="keep until delete" 
                             control={
@@ -80,7 +80,7 @@ export const ManualChooseYourSettingsComponent2 = ({
                             }}
                         />
                     </div>
-                    <div className="radio-input-container-mcys">
+                    <div className="radio-input-container">
                         <FormControlLabel 
                             value="36 months or delete" 
                             control={
@@ -109,7 +109,7 @@ export const ManualChooseYourSettingsComponent2 = ({
                             }}
                         />
                     </div>
-                    <div className="radio-input-container-mcys">
+                    <div className="radio-input-container">
                         <FormControlLabel 
                             value="dont save" 
                             control={
@@ -224,7 +224,7 @@ export const ManualChooseYourSettingsComponent2 = ({
 
                 
 
-                <div class='next-and-skip-button-duo button-space-ecys'>
+                <div class='next-and-skip-button-duo button-space-mcys'>
                     <CustomNextAndSkipButton 
                         className="duo" 
                         variant="contained" 

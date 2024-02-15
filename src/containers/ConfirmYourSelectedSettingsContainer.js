@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import { ManualChooseYourSettingsComponent3 } from "../components/ManualChooseYourSettingsComponent3";
+import { ConfirmYourSelectedSettingsComponent } from "../components/ConfirmYourSelectedSettingsComponent";
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import errorImage from '../images/Daco_5575399.png';
 import useImagePreload from "../hooks/useImagePreload";
 import { useSpring } from 'react-spring';
 
-export const ManualChooseYourSettingsContainer3 = ({ userData, updateUser, text }) => {
+export const ConfirmYourSelectedSettingsContainer = ({ userData, updateUser, text }) => {
 
-    const [manualSetting3, setManualSetting3] = useState("");
+    const [manualSetting2, setManualSetting2] = useState("");
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [errorCondition, setErrorCondition] = useState("");
     const [showYouTubeHistoryModal, setShowYouTubeHistoryModal] = useState(false);
@@ -81,7 +81,7 @@ export const ManualChooseYourSettingsContainer3 = ({ userData, updateUser, text 
 // Handle Radio Change
 
     const handleRadioChange = (e) => {
-        setManualSetting3(e.target.value);
+        setManualSetting2(e.target.value);
         if (errorCondition === "selectAnOption") {
             setErrorCondition("");
         }
@@ -96,9 +96,10 @@ export const ManualChooseYourSettingsContainer3 = ({ userData, updateUser, text 
         if (settingsContainer) {
             const topOffset = settingsContainer.getBoundingClientRect().top;
             if (topOffset < 0 || topOffset > window.innerHeight) {
+                // Scroll the viewport to bring the settings container to the top
                 window.scrollTo({
                     top: window.scrollY + topOffset,
-                    behavior: 'auto'
+                    behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
                 });
             }
         }
@@ -108,38 +109,44 @@ export const ManualChooseYourSettingsContainer3 = ({ userData, updateUser, text 
 
     const handleNextClick = (e) => {
         e.preventDefault();
-        if (manualSetting3 === "") {
+        if (manualSetting2 === "") {
             setError("selectAnOption");
             repositionViewPortOnError();
-        } if (manualSetting3 === "show personalized ads") {
-            updateUser({ manualSetting3: "show personalized ads" });
+        } if (manualSetting2 === "keep until delete") {
+            updateUser({ manualSetting2: "keep until delete" });
             repositionViewPortOnNextOrBackClick();
-        } if (manualSetting3 === "show generic ads") {
-            updateUser({ manualSetting3: "show me generic ads" });
+            navigate("/manual-choose-your-settings3")
+        } if (manualSetting2 === "36 months or delete") {
+            updateUser({ manualSetting2: "36 months or delete" });
             repositionViewPortOnNextOrBackClick();
+            navigate("/manual-choose-your-settings3")
+        } if (manualSetting2 === "dont save") {
+            updateUser({ manualSetting2: "dont save" });
+            repositionViewPortOnNextOrBackClick();
+            navigate("/manual-choose-your-settings3")
         }
-        navigate("/manual-choose-your-settings4");
     };
 
     const handleBackClick = (e) => {
         e.preventDefault();
         repositionViewPortOnNextOrBackClick();
-        navigate("/manual-choose-your-settings2")
+        navigate("/manual-choose-your-settings")
     };
 
     const repositionViewPortOnNextOrBackClick = () => {
         window.scrollTo({
-            top: 0,
-            behavior: 'auto',
+            top: 0, // Scroll to the top of the viewport
+            behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
         });
     };
 
     return(
         <>
-            <ManualChooseYourSettingsComponent3
+            <ConfirmYourSelectedSettingsComponent
                 handleNextClick={handleNextClick}
                 isImageLoaded={isImageLoaded}
                 userData={userData}
+                manualSetting2={manualSetting2}
                 handleRadioChange={handleRadioChange}
                 errorCondition={errorCondition}
                 isImagePreloaded={isImagePreloaded}

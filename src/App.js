@@ -323,6 +323,7 @@ const { userIP } = useUserIP()
         <Route path="/confirm-your-settings" element={
             <ConfirmYourSettingsContainer
               text={text}
+              userData={userData}
             />
           } 
         />

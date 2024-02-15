@@ -193,7 +193,7 @@ export const ManualChooseYourSettingsComponent3 = ({
 
                 
 
-                <div class='next-and-skip-button-duo button-space-ecys'>
+                <div class='next-and-skip-button-duo button-space-mcys'>
                     <CustomNextAndSkipButton 
                         className="duo" 
                         variant="contained" 
