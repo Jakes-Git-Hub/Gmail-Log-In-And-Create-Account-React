@@ -830,8 +830,8 @@ input[type="number"]::-webkit-outer-spin-button {
   display: flex;
   width: 363px;
   justify-content: flex-end;
-  margin-bottom: 42px;
-  margin-top: 5px;
+  margin-bottom: 62px;
+  margin-top: 40px;
 }
 
 .tick-white {
@@ -1698,8 +1698,53 @@ p-gap-ecys-tight {
 .confirm-your-settings-configuration-container {
   width: 100%;
   height: 100%;
-  border-bottom: 1px solid #dadce0;
   display: flex;
+  margin-bottom: 40px;
+}
+
+#reduce-width-h2-confirm-your-settings {
+  width: 72.5%;
+  margin-bottom: 17.5px;
+}
+
+.tick-or-null-svg {
+  margin-right: 13.375px;
+  flex-shrink: 0;
+}
+
+.setting-option-name-confirm {
+  font-size: 0.875rem;
+  color: #202124;
+  margin: 0 0 7.5px 0;
+}
+
+.confirm-last-container {
+  margin-bottom: 27.5px;
+}
+
+.pconfirmys {
+  font-size: 0.875rem;
+  color: #5F6368;
+  line-height: 1.4286;
+}
+
+.confirm-list {
+  margin-top: 8.125px;
+}
+
+.href {
+  color: rgb(26,115,232);
+  text-decoration: none;
+}
+
+.href:active {
+  color: rgb(23,78,166);
+}
+
+.href:focus {
+  background-color: rgba(26,115,232,0.149);
+  border-radius: 2px;
+  color: rgb(23,78,166);
 }
 
 /* Language Changer Div */

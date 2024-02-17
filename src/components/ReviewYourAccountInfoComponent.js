@@ -30,7 +30,7 @@ export const ReviewYourAccountInfoComponent = ({
                 <div id="profile-card-container">
                     <div id="profile-initial-circle-container">
                         <div id="profile-initial-circle" style={{backgroundColor: userData.profileCircleColor}}>
-                            {/* {userData.firstName.charAt(0) ? userData.firstName.charAt(0) : ""} */}
+                            {userData.firstName.charAt(0) ? userData.firstName.charAt(0) : ""}
                         </div>
                     </div>
                     <div id="name-and-email-container">
@@ -38,7 +38,7 @@ export const ReviewYourAccountInfoComponent = ({
                             {userData.firstName} {userData.lastName}
                         </div>
                         <div id="email-address-ryai">
-                            testerhapital@gmail.com{userData.email}
+                            {userData.email}
                         </div>
                     </div>
                 </div>

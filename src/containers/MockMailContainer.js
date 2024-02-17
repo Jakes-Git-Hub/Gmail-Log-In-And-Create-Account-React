@@ -1,4 +1,4 @@
-import { MockMail } from '../components/MockMail';
+import { MockMail } from '../components/MockMailComponent';
 
 
 export const MockMailContainer = ({ loggedIn, currentLoggedInUser }) => {

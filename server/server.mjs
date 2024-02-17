@@ -1,10 +1,10 @@
-require('dotenv').config();
-
+import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';  // Added for parsing request bodies
 import twilio from 'twilio';  // Added for Twilio integration
 
+dotenv.config();
 const app = express();
 
 app.use(express.json());
@@ -27,9 +27,13 @@ app.get('/get-user-ip', (request, response) => {
 
 // Twilio API Endpoint
 
+console.log(process.env.TWILIO_ACCOUNT_SID);
+console.log(process.env.TWILIO_AUTH_TOKEN);
+console.log(process.env.TWILIO_PHONE_NUMBER);
+
 // Twilio credentials
-const twilioAccountSid = process.env.Twilio_ACCOUNT_SID;
-const twilioAuthToken = process.env.Twilio_AUTH_TOKEN;
+const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID;
+const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
 
 const client = twilio(twilioAccountSid, twilioAuthToken);

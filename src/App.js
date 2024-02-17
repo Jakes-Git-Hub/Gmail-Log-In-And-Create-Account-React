@@ -82,7 +82,7 @@ function App() {
 
       const orderedSanitizedTranslatedCountries = [...sanitizedTranslatedCountries].sort((a, b) => a.name.localeCompare(b.name));
   
-      // Update the 'translatedCountries' state with new translated countries
+      // Update the translatedCountries state with new translated countries
       setTranslatedCountries(orderedSanitizedTranslatedCountries);
     } catch (error) {
       console.error('Error translating text:', error);
@@ -111,7 +111,7 @@ function App() {
       const sanitizedTopLevelObject = {};
 
       for (const key in topLevelObject) {
-        const sanitizedValue = topLevelObject[key].replace(/&#39;/g, "'");
+        const sanitizedValue = topLevelObject[key].replace(/&#39;/g, "'").replace(/«/g,'"').replace(/»/g,'"');
         // Add more sanitization rules as needed
 
         sanitizedTopLevelObject[key] = sanitizedValue;
@@ -131,12 +131,6 @@ function App() {
   
     return sanitizedCountries;
   };
-
-// Test
-
-useEffect(() => { 
-  setUsers(prevUsers => [...prevUsers, { name: "Test Testerson", id: 0, email: 'tester@gmail.com', password: 'test', phoneNumber: "", }]);
-}, []);
 
 // Grab User's IP
 
@@ -173,7 +167,8 @@ const { userIP } = useUserIP()
       ...userData
     };
     setUsers(prevUsers => [...prevUsers, newUser]);
-    setNextUserId(prevId => prevId + 1); // Increment nextUserId
+    setNextUserId(prevId => prevId + 1);
+    setUserData({});
   };
 
 // Handle CYNAR Country Selection
@@ -181,7 +176,7 @@ const { userIP } = useUserIP()
   const handleCYNARCountrySelect = () => setHasSelectedCYNARCountry(true);
 
   return (
-    <Router scrollBehavior="top">
+    <Router>
       <Routes>
         <Route path="/" element={
             <FrontPageStaticContainer>
@@ -324,6 +319,9 @@ const { userIP } = useUserIP()
             <ConfirmYourSettingsContainer
               text={text}
               userData={userData}
+              updateUser={updateUser}
+              addUser={addUser}
+              handleLogin={handleLogin}
             />
           } 
         />
