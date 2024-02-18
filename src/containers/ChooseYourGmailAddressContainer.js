@@ -63,7 +63,7 @@ export const ChooseYourGmailAddressContainer = ({ updateUser, users, text }) => 
       } else if (users.find(user => user.email === email + '@gmail.com')) {
         usernameIsAlreadyTaken();
       } else {
-        updateUser({ email: email })
+        updateUser({ email: email + '@gmail.com' })
         navigate('/create-password')
       }
   };

@@ -4,7 +4,7 @@ import { ExpressChooseYourSettingsComponent } from "../components/ExpressChooseY
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import { useSpring } from 'react-spring';
 
-export const ExpressChooseYourSettingsContainer = ({ updateUser, text }) => {
+export const ExpressChooseYourSettingsContainer = ({ updateUser, text, makePrivacyRowDisappear }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
     const [showWebAndAppActivityModal, setShowWebAndAppActivityModal] = useState(false);
@@ -109,6 +109,7 @@ export const ExpressChooseYourSettingsContainer = ({ updateUser, text }) => {
 
     const handleNextClick = (e) => {
         e.preventDefault();
+        makePrivacyRowDisappear();
         repositionViewPortOnNextOrBackClick();
         navigate('/confirm-your-settings'); 
     };

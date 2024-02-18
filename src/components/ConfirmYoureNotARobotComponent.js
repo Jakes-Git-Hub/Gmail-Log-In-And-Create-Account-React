@@ -67,7 +67,6 @@ export const ConfirmYoureNotARobotComponent = ({
                                 }
                                 return inputValue;
                             }}
-                            menuIsOpen
                         />
 
                         <div class='line-height gender-input-width' id='phoneNumber-input-width'>

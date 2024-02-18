@@ -23,15 +23,6 @@ export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text 
         };
     }, []);
 
-// Add Overflow Body CSS
-
-    useEffect(() => {
-        document.body.id = 'body-overflow';
-        return () => {
-            document.body.id = 'body';
-        };
-    }, []);
-
 // Check Box
 
     const toggleCheckBox = () => {

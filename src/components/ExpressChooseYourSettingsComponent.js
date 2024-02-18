@@ -122,7 +122,7 @@ export const ExpressChooseYourSettingsComponent = ({
                                                         }}
                                                 >
                                                     <div className='got-it-text'>
-                                                    {text.ExpressChooseYourSettings.gotIt}
+                                                        {text.ExpressChooseYourSettings.gotIt}
                                                     </div>
                                                 </SecondaryGreyButton2>
                                             </div>

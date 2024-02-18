@@ -32,9 +32,6 @@ export const ManualChooseYourSettingsContainer3 = ({ userData, updateUser, text 
 
     useEffect(() => {
         document.body.id = 'body-overflow';
-        return () => {
-            document.body.id = 'body';
-        };
     }, []);
 
 // Handle Modals
@@ -111,6 +108,7 @@ export const ManualChooseYourSettingsContainer3 = ({ userData, updateUser, text 
         if (manualSetting3 === "") {
             setError("selectAnOption");
             repositionViewPortOnError();
+            return;
         } if (manualSetting3 === "show personalized ads") {
             updateUser({ manualSetting3: "show personalized ads" });
             repositionViewPortOnNextOrBackClick();
@@ -118,6 +116,7 @@ export const ManualChooseYourSettingsContainer3 = ({ userData, updateUser, text 
             updateUser({ manualSetting3: "show me generic ads" });
             repositionViewPortOnNextOrBackClick();
         }
+        document.body.id = 'body';
         navigate("/manual-choose-your-settings4");
     };
 

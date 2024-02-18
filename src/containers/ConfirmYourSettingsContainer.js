@@ -5,11 +5,9 @@ import googleWritingSvg from "../images/google-writing-svg.svg";
 import errorImage from '../images/Daco_5575399.png';
 import useImagePreload from "../hooks/useImagePreload";
 
-export const ConfirmYourSettingsContainer = ({ userData, updateUser, text, addUser, handleLogin }) => {
+export const ConfirmYourSettingsContainer = ({ userData, updateUser, text, noPrivacyRow }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
-    const [username, setUsername] = useState(userData.username);
-    const [password, setPassword] = useState(userData.password);
 
     const navigate = useNavigate();
 
@@ -54,9 +52,7 @@ export const ConfirmYourSettingsContainer = ({ userData, updateUser, text, addUs
     const handleNextClick = (e) => {
         e.preventDefault();
         repositionViewPortOnNextOrBackClick();
-        addUser();
-        handleLogin(username, password);
-        navigate("/mockmail")
+        navigate("/privacy-and-terms")
     };
 
     const handleBackClick = (e) => {
@@ -82,6 +78,7 @@ export const ConfirmYourSettingsContainer = ({ userData, updateUser, text, addUs
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
                 handleBackClick={handleBackClick}
+                noPrivacyRow={noPrivacyRow}
             />
         </>
     );

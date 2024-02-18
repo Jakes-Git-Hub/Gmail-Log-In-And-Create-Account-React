@@ -22,6 +22,7 @@ import { ManualChooseYourSettingsContainer } from "./containers/ManualChooseYour
 import { ManualChooseYourSettingsContainer2 } from "./containers/ManualChooseYourSettingsContainer2";
 import { ManualChooseYourSettingsContainer3 } from "./containers/ManualChooseYourSettingsContainer3";
 import { ManualChooseYourSettingsContainer4 } from "./containers/ManualChooseYourSettingsContainer4";
+import { PrivacyAndTermsContainer } from "./containers/PrivacyAndTermsContainer";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -32,6 +33,7 @@ function App() {
   const [hasSelectedCYNARCountry, setHasSelectedCYNARCountry] = useState(false);
   const [text, setText] = useState(textData);
   const [translatedCountries, setTranslatedCountries] = useState(filteredCountries);
+  const [noPrivacyRow, setNoPrivacyRow] = useState(false);
 
 // Translation
 
@@ -175,6 +177,11 @@ const { userIP } = useUserIP()
 
   const handleCYNARCountrySelect = () => setHasSelectedCYNARCountry(true);
 
+// Choose Your Settings No Privacy Row For Confirm Your Settings
+
+  const makePrivacyRowDisappear = () => setNoPrivacyRow(true);
+
+
   return (
     <Router>
       <Routes>
@@ -275,6 +282,7 @@ const { userIP } = useUserIP()
             <ExpressChooseYourSettingsContainer
               updateUser={updateUser}
               text={text}
+              makePrivacyRowDisappear={makePrivacyRowDisappear}
             />
           } 
         />
@@ -320,8 +328,19 @@ const { userIP } = useUserIP()
               text={text}
               userData={userData}
               updateUser={updateUser}
+              noPrivacyRow={noPrivacyRow}
+            />
+          } 
+        />
+
+        <Route path="/privacy-and-terms" element={
+            <PrivacyAndTermsContainer
+              text={text}
+              userData={userData}
+              updateUser={updateUser}
               addUser={addUser}
               handleLogin={handleLogin}
+              users={users}
             />
           } 
         />

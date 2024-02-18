@@ -14,6 +14,7 @@ export const ConfirmYourSettingsComponent = ({
     text,
     handleBackClick,
     userData,
+    noPrivacyRow,
 }) => {
 
     return (
@@ -26,7 +27,7 @@ export const ConfirmYourSettingsComponent = ({
                     <div className="blue-snake-loader"></div>
                 </div>
                 <img src={googleWritingSvg} alt="Google Writing" id="google-writing-recovery-ryai"/>
-
+                
                 <h1 class="thin h1-space h1-mcys">{text.ConfirmYourSettings.h1}</h1>
                 <div id='reduce-width-h2-confirm-your-settings'>
                     <h2 class='thin gap center'>{text.ConfirmYourSettings.h2}</h2>
@@ -87,7 +88,7 @@ export const ConfirmYourSettingsComponent = ({
                         </div>
                     </div>
 
-                    <div className="confirm-your-settings-configuration-container confirm-last-container">
+                    <div className="confirm-your-settings-configuration-container">
                         {userData.manualSetting4 ? (
                                 <TickSVG />
                             ) : (
@@ -113,7 +114,7 @@ export const ConfirmYourSettingsComponent = ({
                     </div>
                 )}
 
-                <div id="container-choose-your-settings-m">
+                <div id="container-confirm-your-settings">
                     <h2 class="mcys-h2">{text.ConfirmYourSettings.aboutCookies}</h2>
                     <p class='pconfirmys p-gap-ecys'>
                         {text.ConfirmYourSettings.aboutCookies1}
