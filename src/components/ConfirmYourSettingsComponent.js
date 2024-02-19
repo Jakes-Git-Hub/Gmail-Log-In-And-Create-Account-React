@@ -14,7 +14,7 @@ export const ConfirmYourSettingsComponent = ({
     text,
     handleBackClick,
     userData,
-    noPrivacyRow,
+    showPrivacyRow,
 }) => {
 
     return (
@@ -88,23 +88,24 @@ export const ConfirmYourSettingsComponent = ({
                         </div>
                     </div>
 
-                    <div className="confirm-your-settings-configuration-container">
-                        {userData.manualSetting4 ? (
+                    {showPrivacyRow ? (
+                        <div className="confirm-your-settings-configuration-container">
+                            {userData.manualSetting4 ? (
                                 <TickSVG />
                             ) : (
                                 <NullSVG />
-                            )
-                        }
-                        <div className='writting-container'>
-                            <p className="setting-option-name-confirm">{text.ConfirmYourSettings.privacyReminders}</p>
-                            {userData.manualSetting4 ? (
+                            )}
+                            <div className='writting-container'>
+                                <p className="setting-option-name-confirm">{text.ConfirmYourSettings.privacyReminders}</p>
+                                {userData.manualSetting4 ? (
                                     <p className="setting-information">{text.ConfirmYourSettings.onPrivacyReminders}</p> 
                                 ) : (
                                     <p className="setting-information">{text.ConfirmYourSettings.offPrivacyReminders}</p>
-                                )
-                            }
+                                )}
+                            </div>
                         </div>
-                    </div>
+                    ) : null}
+                    
                 </div>
 
                 {errorCondition === "selectAnOption" && isImagePreloaded && (   

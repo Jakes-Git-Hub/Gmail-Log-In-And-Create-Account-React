@@ -5,11 +5,12 @@ import googleWritingSvg from "../images/google-writing-svg.svg";
 import errorImage from '../images/Daco_5575399.png';
 import useImagePreload from "../hooks/useImagePreload";
 
-export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, handleLogin, users }) => {
+export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, handleLogin }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [email, setEmail] = useState(userData.email);
     const [password, setPassword] = useState(userData.password);
+    const [nextClicked, setNextClicked] = useState(false);
 
     const navigate = useNavigate();
 
@@ -23,13 +24,6 @@ export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, 
         image.onload = () => {
           setIsImageLoaded(true);
         };
-    }, []);
-
-    useEffect(() => {
-        console.log('userData.ManualSetting1:', userData.manualSetting1);
-        console.log('userData.ManualSetting2:', userData.manualSetting2);
-        console.log('userData.ManualSetting3:', userData.manualSetting3);
-        console.log('userData.ManualSetting4:', userData.manualSetting4);
     }, []);
 
 // Add Overflow Body CSS
@@ -52,20 +46,22 @@ export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, 
         e.preventDefault();
         repositionViewPortOnNextOrBackClick();
         addUser();
-        handleLogin(email, password);
-        document.body.id = 'body';
-        navigate("/mockmail");
+        setNextClicked(true);
     };
+
+    useEffect(() => {
+        if (nextClicked && email && password) {
+            handleLogin(email, password);
+            document.body.id = 'body';
+            navigate("/mockmail");
+        }
+    }, [nextClicked]);
 
     useEffect(() => {
         console.log(`email: ${email}`);
         console.log(`password: ${password}`);
     }, []);
-
-    useEffect(() => {
-        console.log(`users: ${users}`);
-    }, [users]);
-
+    
     const handleBackClick = (e) => {
         e.preventDefault();
         repositionViewPortOnNextOrBackClick();

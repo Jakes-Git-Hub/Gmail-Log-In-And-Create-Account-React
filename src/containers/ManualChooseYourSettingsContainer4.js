@@ -4,7 +4,7 @@ import { ManualChooseYourSettingsComponent4 } from "../components/ManualChooseYo
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import errorImage from '../images/Daco_5575399.png';
 import useImagePreload from "../hooks/useImagePreload";
-export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text }) => {
+export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text, makePrivacyRowVisible }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [checked, setChecked] = useState(false);
@@ -52,6 +52,7 @@ export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text 
             updateUser({ manualSetting4: 'get privacy reminders' });
             repositionViewPortOnNextOrBackClick();
         }
+        makePrivacyRowVisible();
         navigate("/confirm-your-settings")
     };
 

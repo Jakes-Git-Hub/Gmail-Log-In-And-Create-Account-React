@@ -5,7 +5,7 @@ import googleWritingSvg from "../images/google-writing-svg.svg";
 import errorImage from '../images/Daco_5575399.png';
 import useImagePreload from "../hooks/useImagePreload";
 
-export const ConfirmYourSettingsContainer = ({ userData, updateUser, text, noPrivacyRow }) => {
+export const ConfirmYourSettingsContainer = ({ userData, updateUser, text, showPrivacyRow }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
 
@@ -78,7 +78,7 @@ export const ConfirmYourSettingsContainer = ({ userData, updateUser, text, noPri
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
                 handleBackClick={handleBackClick}
-                noPrivacyRow={noPrivacyRow}
+                showPrivacyRow={showPrivacyRow}
             />
         </>
     );

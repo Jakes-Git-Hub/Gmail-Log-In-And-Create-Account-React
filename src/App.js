@@ -33,7 +33,7 @@ function App() {
   const [hasSelectedCYNARCountry, setHasSelectedCYNARCountry] = useState(false);
   const [text, setText] = useState(textData);
   const [translatedCountries, setTranslatedCountries] = useState(filteredCountries);
-  const [noPrivacyRow, setNoPrivacyRow] = useState(false);
+  const [showPrivacyRow, setShowPrivacyRow] = useState(false);
 
 // Translation
 
@@ -179,7 +179,9 @@ const { userIP } = useUserIP()
 
 // Choose Your Settings No Privacy Row For Confirm Your Settings
 
-  const makePrivacyRowDisappear = () => setNoPrivacyRow(true);
+  const makePrivacyRowVisible = () => setShowPrivacyRow(true);
+
+  const hidePrivacyRow = () => setShowPrivacyRow(false);
 
 
   return (
@@ -201,6 +203,7 @@ const { userIP } = useUserIP()
                     loggedIn={loggedIn}
                     currentLoggedInUser={currentLoggedInUser}
                     text={text}
+                    users={users}
                   />} 
         />
         <Route path="/create-account" element={
@@ -282,7 +285,7 @@ const { userIP } = useUserIP()
             <ExpressChooseYourSettingsContainer
               updateUser={updateUser}
               text={text}
-              makePrivacyRowDisappear={makePrivacyRowDisappear}
+              hidePrivacyRow={hidePrivacyRow}  
             />
           } 
         />
@@ -319,6 +322,7 @@ const { userIP } = useUserIP()
               userData={userData}
               updateUser={updateUser}
               text={text}
+              makePrivacyRowVisible={makePrivacyRowVisible}
             />
           } 
         />
@@ -328,7 +332,7 @@ const { userIP } = useUserIP()
               text={text}
               userData={userData}
               updateUser={updateUser}
-              noPrivacyRow={noPrivacyRow}
+              showPrivacyRow={showPrivacyRow}
             />
           } 
         />
