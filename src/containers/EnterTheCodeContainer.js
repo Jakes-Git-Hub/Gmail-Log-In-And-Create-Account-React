@@ -88,7 +88,6 @@ const setError = errorType => setErrorCondition(errorType);
             setError("wrongNumberOfDigits");
         } 
         if (usersVerificationCodeInput === verificationCode) {
-            updateUser("verificationCode", usersVerificationCodeInput);
             navigate("/create-your-profile");
         } 
         if (sixDigits.test(usersVerificationCodeInput) && (usersVerificationCodeInput !== verificationCode)) {

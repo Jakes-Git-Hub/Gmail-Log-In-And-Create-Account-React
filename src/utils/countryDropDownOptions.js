@@ -1521,5 +1521,5 @@ countries.sort((a, b) => a.name.localeCompare(b.name));
 
 // Filter
 
-export const filteredCountries = countries.filter(country => country.dialingCode !== '');
+export const filteredCountriesFromUtil = countries.filter(country => country.dialingCode !== '');
 

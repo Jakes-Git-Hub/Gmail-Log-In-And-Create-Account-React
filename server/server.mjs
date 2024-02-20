@@ -65,12 +65,12 @@ app.post('/send-verification-code', async (req, res) => {
       });
     })
     .catch(error => {
-      console.error('Twilio API call error:', error.response.data);
+      console.error('Twilio API call error:', error.response ? error.response.data : error);
       res.status(500).json({ error: 'Internal Server Error' });
     });
 
   } catch (error) {
-    console.error('Error in try-catch block:', error.response.data);
+    console.error('Error in try-catch block:', error.response ? error.response.data : error);
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });

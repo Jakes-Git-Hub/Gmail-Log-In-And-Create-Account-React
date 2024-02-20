@@ -67,6 +67,7 @@ export const ConfirmYoureNotARobotComponent = ({
                                 }
                                 return inputValue;
                             }}
+                            isSearchable={true}
                         />
 
                         <div class='line-height gender-input-width' id='phoneNumber-input-width'>
@@ -130,6 +131,11 @@ export const ConfirmYoureNotARobotComponent = ({
                         <div class='error-div' id='error-div-space-cynar'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
                             <p class="input-error-message">{text.ConfirmYoureNotARobot.error3}</p>
+                        </div>
+                    ) : errorCondition === "incorrectNumber" && isImagePreloaded ? (
+                        <div class='error-div' id='error-div-space-cynar'>
+                            <img className='error-image' src={errorImage} alt='Error Image' />
+                            <p class="input-error-message">{text.ConfirmYoureNotARobot.error4}</p>
                         </div>
                     ) : null}
 

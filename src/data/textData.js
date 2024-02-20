@@ -74,6 +74,7 @@ const textData = {
         error1: 'Please enter a phone number',
         error2: 'This phone number format is not recognized. Please check the country and number.',
         error3: 'This phone number has been used too many times',
+        error4: 'Double check phone number and try again',
     },
     EnterTheCode: {
         h1: 'Enter the code',

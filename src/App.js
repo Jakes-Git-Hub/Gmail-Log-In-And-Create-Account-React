@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useUserIP } from './utils/userIPModule';
 import axios from "axios";  
 import textData from './data/textData';
-import { filteredCountries } from './utils/countryDropDownOptions';
+import { filteredCountriesFromUtil } from './utils/countryDropDownOptions';
 import { FrontPageStaticContainer } from './containers/FrontPageStaticContainer'
 import { SignInFrontPageContainer } from "./containers/SignInFrontPageContainer";
 import { MockMailContainer } from "./containers/MockMailContainer";
@@ -24,20 +24,21 @@ import { ManualChooseYourSettingsContainer3 } from "./containers/ManualChooseYou
 import { ManualChooseYourSettingsContainer4 } from "./containers/ManualChooseYourSettingsContainer4";
 import { PrivacyAndTermsContainer } from "./containers/PrivacyAndTermsContainer";
 
+
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [users, setUsers] = useState([]);
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
   const [nextUserId, setNextUserId] = useState(1);
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState({ manualSetting4: 'no privacy reminders'});
   const [hasSelectedCYNARCountry, setHasSelectedCYNARCountry] = useState(false);
   const [text, setText] = useState(textData);
-  const [translatedCountries, setTranslatedCountries] = useState(filteredCountries);
+  const [translatedCountries, setTranslatedCountries] = useState(filteredCountriesFromUtil);
   const [showPrivacyRow, setShowPrivacyRow] = useState(false);
 
 // Translation
 
-  const googleAPIKey = 'AIzaSyAnvQnBbhJ9H6qMEnyo-i0yxoj1w_cmrWI';
+  const googleAPIKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
   useEffect(() => {
     handleLanguageSelection();
@@ -75,7 +76,7 @@ function App() {
       setText(sanitizedTranslatedText);
   
       // Translate country names
-      const newTranslatedCountries = await Promise.all(filteredCountries.map(async (country) => {
+      const newTranslatedCountries = await Promise.all(filteredCountriesFromUtil.map(async (country) => {
         const translatedName = await changeLanguageAndTranslate(country.name, chosenLanguage);
         return { ...country, name: translatedName };
       }));
@@ -183,6 +184,9 @@ const { userIP } = useUserIP()
 
   const hidePrivacyRow = () => setShowPrivacyRow(false);
 
+  useEffect(() => {
+    console.log('users', users);
+  }, [users]);
 
   return (
     <Router>

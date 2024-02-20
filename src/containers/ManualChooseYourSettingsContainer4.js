@@ -52,6 +52,7 @@ export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text,
             updateUser({ manualSetting4: 'get privacy reminders' });
             repositionViewPortOnNextOrBackClick();
         }
+        updateUser({ manualSetting4: 'no privacy reminders' });
         makePrivacyRowVisible();
         navigate("/confirm-your-settings")
     };
