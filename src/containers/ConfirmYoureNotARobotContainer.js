@@ -66,6 +66,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
         image.onload = () => {
           setIsImageLoaded(true);
         };
+        console.log("hasSelectedCYNARCountry:", hasSelectedCYNARCountry);
     }, []);
 
 // Get User's Country from IP and Set Placeholder SVG and Top Option Based on it
@@ -226,6 +227,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 
     const handleNextClick = () => {
         const phoneNumberInput = document.getElementById('phoneNumberInput');
+        const dialingCode = selectedOption ? selectedOption.value.dialingCode : "+44";
         if (phoneNumber === '') {
             setError("phoneNumberEmpty");
             phoneNumberInput.focus();
@@ -246,7 +248,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                     setError(null);                    
                 } else {
                     setFormattedPhoneNumber(phoneNumber);
-                    updateUser({ phoneNumber: phoneNumber });
+                    updateUser({ phoneNumber: unitedKingdom.dialingCode + phoneNumber, countryDetails: unitedKingdom });
                     handleCYNARCountrySelect();
                     setError(null);
                 }
@@ -281,10 +283,15 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                     setErrorCondition(null);
                     setIsImageLoaded(false);  
                     setUsersCountryFlagSVG('');
+                    // setSelectedOption(null);
+                    // setActualSelectedOption(null);
                     setFilteredCountries(translatedCountries);
+                    // setTopOption(null);
+                    // setCountryFromAPI({});
                     setLoading(false);
                     console.log("actualSelectedOption:", actualSelectedOption);
                     navigate('/enter-the-verification-code');    
+                    // console.log('Verification code sent successfully:', verificationCode);
                 } else {
                     setLoading(false);
                     if (data.error) {
