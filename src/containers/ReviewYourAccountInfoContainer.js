@@ -28,12 +28,13 @@ export const ReviewYourAccountInfoContainer = ({ userData, updateUser, text }) =
 // Assign Users Profile Circle Color
 
     useEffect(() => {
-        if (userData.profileCircleColor === "") {
+        if (!userData.profileCircleColor) {
             profileCircleColor();
         }
-    }, [userData.profileCircleColor]);
+    }, []);
 
     const profileCircleColor = () => {
+        console.log('profileCircleColor running');
         let randomColor;
         do {
             randomColor = "#" + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');

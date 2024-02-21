@@ -5,7 +5,6 @@ import { ConfirmYoureNotARobotComponent } from '../components/ConfirmYoureNotARo
 import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import axios from 'axios';
-import { PhoneNumberUtil } from 'google-libphonenumber';
 import GBSVG from '../images/flags/gb2.svg';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import { filteredCountriesFromUtil } from '../utils/countryDropDownOptions';
@@ -27,8 +26,6 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 
     const navigate = useNavigate();
 
-    const phoneUtil = PhoneNumberUtil.getInstance();
-
 // Change Language
 
     const handleLanguageSelection = async (e) => {
@@ -40,7 +37,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
     useEffect(() => {
         if(selectedOption) {
             console.log('selectedOption:', selectedOption);
-            console.log('selectedOption.dialingCode:', selectedOption.value.dialingCode);
+            console.log('selectedOption.value.dialingCode:', selectedOption.value.dialingCode);
         }
     }, [selectedOption]);
 
@@ -215,7 +212,6 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
     const handleCountrySelect = (selectedOption) => {
         setSelectedOption(selectedOption);
         setActualSelectedOption(true);
-        setPhoneNumber("");
     };
 
     const handleSelectPhoneNumber = (e) => {
@@ -227,7 +223,6 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 
     const handleNextClick = () => {
         const phoneNumberInput = document.getElementById('phoneNumberInput');
-        const dialingCode = selectedOption ? selectedOption.value.dialingCode : "+44";
         if (phoneNumber === '') {
             setError("phoneNumberEmpty");
             phoneNumberInput.focus();
@@ -248,12 +243,12 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                     setError(null);                    
                 } else {
                     setFormattedPhoneNumber(phoneNumber);
-                    updateUser({ phoneNumber: unitedKingdom.dialingCode + phoneNumber, countryDetails: unitedKingdom });
+                    updateUser({ phoneNumber: phoneNumber, countryDetails: unitedKingdom });
                     handleCYNARCountrySelect();
                     setError(null);
                 }
             }
-        }; 
+        }
     };
    
 // Send Verification Code When Formatted Phone Number Changes

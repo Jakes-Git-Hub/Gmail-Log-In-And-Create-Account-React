@@ -5,7 +5,7 @@ import googleWritingSvg from "../images/google-writing-svg.svg";
 import errorImage from '../images/Daco_5575399.png';
 import useImagePreload from "../hooks/useImagePreload";
 
-export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, handleLogin }) => {
+export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, handleLogin, loggedIn }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [email, setEmail] = useState(userData.email);
@@ -53,11 +53,16 @@ export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, 
     useEffect(() => {
         if (nextClicked && email && password) {
             handleLogin(email, password);
-            document.body.id = 'body';
-            
-            navigate("/mockmail");
         }
     }, [nextClicked]);
+
+    useEffect(() => {
+        if (loggedIn) {
+            document.body.id = 'body';
+            navigate("/mockmail");
+        }
+    }, [loggedIn]);
+            
 
     useEffect(() => {
         console.log(`email: ${email}`);

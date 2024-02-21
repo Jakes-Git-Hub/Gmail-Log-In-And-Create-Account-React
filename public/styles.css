@@ -1287,7 +1287,7 @@ input[type="number"]::-webkit-outer-spin-button {
 #profile-initial-circle {
   width: 28px; 
   height: 28px;
-  background-color: #2b28ed;
+  /* background-color: #2b28ed; */
   border-radius: 50%;
   color: white;
   display: flex;
