@@ -4,6 +4,7 @@ import CustomNextAndSkipButton from './buttons/CustomNext&SkipButtonComponent';
 import errorImage from '../images/Daco_5575399.png';
 import TickSVG from './svg\'s/tickSVG';
 import NullSVG from './svg\'s/nullSVG';
+import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
 
 export const ConfirmYourSettingsComponent = ({ 
     handleNextClick,
@@ -170,6 +171,8 @@ export const ConfirmYourSettingsComponent = ({
                 </div>
 
             </div>
+
+            <LanguageChanger handleLanguageSelection={handleLanguageSelection} />
 
             <div className='language-changer-div'>
                 <select onChange={handleLanguageSelection}>

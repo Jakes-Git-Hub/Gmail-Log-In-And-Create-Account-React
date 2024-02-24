@@ -23,6 +23,7 @@ import { ManualChooseYourSettingsContainer2 } from "./containers/ManualChooseYou
 import { ManualChooseYourSettingsContainer3 } from "./containers/ManualChooseYourSettingsContainer3";
 import { ManualChooseYourSettingsContainer4 } from "./containers/ManualChooseYourSettingsContainer4";
 import { PrivacyAndTermsContainer } from "./containers/PrivacyAndTermsContainer";
+import LanguageChanger from "./components/LanguageChanger/LanguageChangerComponent";
 
 
 function App() {
@@ -30,11 +31,15 @@ function App() {
   const [users, setUsers] = useState([]);
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
   const [nextUserId, setNextUserId] = useState(1);
-  const [userData, setUserData] = useState({ manualSetting4: 'no privacy reminders'});
+  const [userData, setUserData] = useState({ manualSetting4: 'no privacy reminders' });
   const [hasSelectedCYNARCountry, setHasSelectedCYNARCountry] = useState(false);
   const [text, setText] = useState(textData);
   const [translatedCountries, setTranslatedCountries] = useState(filteredCountriesFromUtil);
+  const [hasTranslatedCountries, setHasTranslatedCountries] = useState(false);
   const [showPrivacyRow, setShowPrivacyRow] = useState(false);
+
+// Drill UserData and UpdateUser
+  // <LanguageChanger updateUser={updateUser} userData={userData} />
 
 // Translation
 
@@ -87,6 +92,7 @@ function App() {
   
       // Update the translatedCountries state with new translated countries
       setTranslatedCountries(orderedSanitizedTranslatedCountries);
+      setHasTranslatedCountries(true);
     } catch (error) {
       console.error('Error translating text:', error);
     }
@@ -252,6 +258,7 @@ const { userIP } = useUserIP()
               hasSelectedCYNARCountry={hasSelectedCYNARCountry}
               text={text}
               translatedCountries={translatedCountries}
+              hasTranslatedCountries={hasTranslatedCountries}
             />
           } 
         />

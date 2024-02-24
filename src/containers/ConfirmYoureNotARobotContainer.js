@@ -7,10 +7,8 @@ import errorImage from '../images/Daco_5575399.png';
 import axios from 'axios';
 import GBSVG from '../images/flags/gb2.svg';
 import googleWritingSvg from "../images/google-writing-svg.svg";
-import { filteredCountriesFromUtil } from '../utils/countryDropDownOptions';
 
-
-export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, userIP, handleCYNARCountrySelect, hasSelectedCYNARCountry, text, translatedCountries }) => {
+export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, userIP, handleCYNARCountrySelect, hasSelectedCYNARCountry, text, translatedCountries, hasTranslatedCountries }) => {
 
     const [formattedPhoneNumber, setFormattedPhoneNumber] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -20,7 +18,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
     const [countryFromAPIOrSelection, setCountryFromAPIOrSelection] = useState(hasSelectedCYNARCountry ? userData.countryDetails.name : {});
     const [selectedOption, setSelectedOption] = useState(null);
     const [actualSelectedOption, setActualSelectedOption] = useState(null);
-    const [filteredCountries, setFilteredCountries] = useState(filteredCountriesFromUtil);
+    const [filteredCountries, setFilteredCountries] = useState(translatedCountries);
     const [topOption, setTopOption] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -28,31 +26,22 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 
 // Change Language
 
-    const handleLanguageSelection = async (e) => {
+    const handleLanguageSelection = (e) => {
         e.preventDefault();
         const chosenLanguage = e.target.value;
         updateUser({ language: chosenLanguage })
     };
 
-    useEffect(() => {
-        if(selectedOption) {
-            console.log('selectedOption:', selectedOption);
-            console.log('selectedOption.value.dialingCode:', selectedOption.value.dialingCode);
-        }
-    }, [selectedOption]);
+    // const handleRSLanguageSelection = (chosenLanguage) => {
+    //     updateUser({ language: chosenLanguage })
+    // };
+
+// Populate the filteredCountries state with the translatedCountries
 
     useEffect(() => {
         setFilteredCountries(translatedCountries);
     }, [translatedCountries]);
 
-    useEffect(() => {
-        console.log('countryFromAPIOrSelection:', countryFromAPIOrSelection);
-    }, [countryFromAPIOrSelection]);
-
-    useEffect(() => {
-        console.log('actualSelectedOption:', actualSelectedOption);
-    }, [actualSelectedOption]);
-    
 // Loads Error Image
 
     const isImagePreloaded = useImagePreload(errorImage);
@@ -82,7 +71,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
             axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}&ip=102.217.238.0`)
             .then((response) => {
                 const countryFromIP = response.data.country_name;
-                const matchingCountry = translatedCountries.find(country => country.name === countryFromIP);
+                const matchingCountry = filteredCountries.find(country => country.name === countryFromIP);
                 if (matchingCountry) {
                     setUsersCountryFlagSVG(matchingCountry.svg);
                     setCountryFromAPIOrSelection({name: matchingCountry.name, svg:matchingCountry.svg});
@@ -99,18 +88,18 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 // Custom Options
 
     useEffect(() => {
-        const countryOption = translatedCountries.find(country => country.svg === countryFromAPIOrSelection.svg);
+        const countryOption = filteredCountries.find(country => country.svg === countryFromAPIOrSelection.svg);
         if (countryOption && hasSelectedCYNARCountry === false) {
             setSelectedOption({
                 value: countryOption,
-                label: countryOption.name
+                label: countryOption.name,
             });
             console.log("countryOption:", countryOption);
         } 
     }, [countryFromAPIOrSelection]);
     
     useEffect(() => {
-        const newTopOption = translatedCountries.find(country => country.svg === countryFromAPIOrSelection.svg) || { name: "United Kingdom" }.name;
+        const newTopOption = filteredCountries.find(country => country.svg === countryFromAPIOrSelection.svg) || { name: "United Kingdom" }.name;
         setTopOption(newTopOption);
         const newFilteredCountries = filteredCountries.sort((a, b) => a.name.localeCompare(b.name));
         setFilteredCountries(newFilteredCountries);
@@ -132,7 +121,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                         height="16"
                     />
                     <span className='country-option'>
-                        {usersCountryFlagSVG ? translatedCountries.find(country => country.svg === usersCountryFlagSVG).name : unitedKingdom.name} ({usersCountryFlagSVG ? translatedCountries.find(country => country.svg === usersCountryFlagSVG).dialingCode : unitedKingdom.dialingCode})
+                        {usersCountryFlagSVG ? filteredCountries.find(country => country.svg === usersCountryFlagSVG).name : unitedKingdom.name} ({usersCountryFlagSVG ? filteredCountries.find(country => country.svg === usersCountryFlagSVG).dialingCode : unitedKingdom.dialingCode})
                     </span>
                 </div>
             ),
@@ -185,7 +174,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
         );
     };
 
-// Placeholder Content
+    // Placeholder Content
 
     const placeholderContent = usersCountryFlagSVG ? (
         <img
@@ -227,7 +216,6 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
             setError("phoneNumberEmpty");
             phoneNumberInput.focus();
         } else if (/[^0-9]/.test(phoneNumber)) {
-            // Check if the phoneNumber contains unallowed characters
             setError("incorrectFormat");
             phoneNumberInput.focus();
         } else {
@@ -270,28 +258,19 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                 if (data.verificationCode) {
                     // Extract the verification code from the Twilio response
                     const verificationCode = data.verificationCode.toString();
-    
-                    // Set the verification code in the state
                     updateUser({ verificationCode: verificationCode });
                     setFormattedPhoneNumber('');
                     setPhoneNumber('');
                     setErrorCondition(null);
                     setIsImageLoaded(false);  
                     setUsersCountryFlagSVG('');
-                    // setSelectedOption(null);
-                    // setActualSelectedOption(null);
-                    setFilteredCountries(translatedCountries);
-                    // setTopOption(null);
-                    // setCountryFromAPI({});
                     setLoading(false);
                     console.log("actualSelectedOption:", actualSelectedOption);
                     navigate('/enter-the-verification-code');    
-                    // console.log('Verification code sent successfully:', verificationCode);
                 } else {
                     setLoading(false);
                     if (data.error) {
                         console.error('Error sending verification code:', data.error);
-                        // Display an error message or take appropriate action
                     } else {
                         console.error('Unknown error sending verification code');
                     }
@@ -301,11 +280,11 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                 setLoading(false);
                 setError("incorrectNumber");
             }
-        };
-    
+        }; 
         if (formattedPhoneNumber) {
             sendVerificationCode();
         }
+
     }, [formattedPhoneNumber]);
 
 // Custom React Select Components
@@ -334,6 +313,7 @@ const customStyles = {
         width: '360px',
         height: '325px',
         top: "87%",
+        zIndex: '2',
     }),
     menuList: styles => ({
         ...styles,
@@ -407,7 +387,7 @@ const customStyles = {
     }),
     option: (provided, state) => ({
         ...provided,
-        backgroundColor: state.isFocused ? 'rgb(245 245 245)' : '',
+        backgroundColor: state.isSelected ? '#d3e4fb' : state.isFocused ? 'rgb(245 245 245)' : '',
         ':active': {
             backgroundColor: state.isFocused ? "#d3e4fb" :"#e8f0fe",
         },
@@ -427,7 +407,6 @@ const customStyles = {
                 handleNextClick={handleNextClick}
                 isImagePreloaded={isImagePreloaded}
                 customOptions={customOptions}
-                translatedCountries={translatedCountries}
                 customStyles={customStyles}
                 userIP={userIP}
                 customDropdownIndicator={customDropdownIndicator}

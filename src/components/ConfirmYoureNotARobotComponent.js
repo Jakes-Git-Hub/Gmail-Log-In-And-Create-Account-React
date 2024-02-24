@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import InputAdornment from "@mui/material/InputAdornment";
 import CustomNextButton from './buttons/CustomNextButtonComponent';
+import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
 
 export const ConfirmYoureNotARobotComponent = ({ 
     phoneNumber,
@@ -67,7 +68,6 @@ export const ConfirmYoureNotARobotComponent = ({
                                 }
                                 return inputValue;
                             }}
-                            isSearchable={true}
                         />
 
                         <div class='line-height gender-input-width' id='phoneNumber-input-width'>
@@ -162,6 +162,8 @@ export const ConfirmYoureNotARobotComponent = ({
                 </form>
 
             </div> 
+
+            <LanguageChanger className='language-changer-div' onChange={handleLanguageSelection} />
 
             <div className='language-changer-div'>
                 <select onChange={handleLanguageSelection}>

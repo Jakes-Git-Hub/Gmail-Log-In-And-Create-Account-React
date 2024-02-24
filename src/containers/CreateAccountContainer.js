@@ -29,10 +29,6 @@ export const CreateAccountContainer = ({ updateUser, text }) => {
 
 // Change Language
 
-    useEffect(() => {
-        console.log('text.CreateAccount.h1', text.CreateAccount.h1);
-    }, [text]);
-
     const handleLanguageSelection = async (e) => {
             e.preventDefault();
             const chosenLanguage = e.target.value;

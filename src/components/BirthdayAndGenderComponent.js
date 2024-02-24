@@ -7,6 +7,7 @@ import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import CustomNextButton from './buttons/CustomNextButtonComponent';
+import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
 
 export const BirthdayAndGenderComponent = ({
     month, 
@@ -375,6 +376,10 @@ export const BirthdayAndGenderComponent = ({
 
                 </form>
 
+            </div>
+
+            <div className='language-changer-div'>
+                <LanguageChanger />
             </div>
 
             <div className='language-changer-div'>
