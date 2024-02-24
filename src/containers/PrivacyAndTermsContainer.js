@@ -5,7 +5,7 @@ import googleWritingSvg from "../images/google-writing-svg.svg";
 import errorImage from '../images/Daco_5575399.png';
 import useImagePreload from "../hooks/useImagePreload";
 
-export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, handleLogin, loggedIn }) => {
+export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, handleLogin, loggedIn, translationLoading }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [email, setEmail] = useState(userData.email);
@@ -34,10 +34,12 @@ export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, 
 
 // Change Language
 
-    const handleLanguageSelection = async (e) => {
-        e.preventDefault();
-        const chosenLanguage = e.target.value;
-        updateUser({ language: chosenLanguage })
+    const handleLanguageSelection = (chosenLanguage) => {
+        window.scrollTo({
+            top: 0, // Scroll to the top of the viewport
+            behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
+        });
+        updateUser({ language: chosenLanguage.value })
     };
 
 // Handle Next & Back Click
@@ -62,12 +64,6 @@ export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, 
             navigate("/mockmail");
         }
     }, [loggedIn]);
-            
-
-    useEffect(() => {
-        console.log(`email: ${email}`);
-        console.log(`password: ${password}`);
-    }, []);
     
     const handleBackClick = (e) => {
         e.preventDefault();
@@ -92,6 +88,7 @@ export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, 
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
                 handleBackClick={handleBackClick}
+                translationLoading={translationLoading}
             />
         </>
     );

@@ -5,7 +5,7 @@ import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const AddRecoveryEmailContainer = ({ updateUser, text }) => {
+export const AddRecoveryEmailContainer = ({ updateUser, text, translationLoading }) => {
 
     const [recoveryEmail, setRecoveryEmail] = useState("");
     const [errorCondition, setErrorCondition] = useState(null);
@@ -25,10 +25,9 @@ export const AddRecoveryEmailContainer = ({ updateUser, text }) => {
 
 // Change Language
 
-    const handleLanguageSelection = async (e) => {
-        e.preventDefault();
-        const chosenLanguage = e.target.value;
-        updateUser({ language: chosenLanguage })
+    const handleLanguageSelection = (chosenLanguage) => {
+        console.log("chosenLanguage:", chosenLanguage.value);
+        updateUser({ language: chosenLanguage.value })
     };
 
 // Handle Next
@@ -115,6 +114,7 @@ export const AddRecoveryEmailContainer = ({ updateUser, text }) => {
             handleSubmit={handleSubmit}
             handleLanguageSelection={handleLanguageSelection}
             text={text}
+            translationLoading={translationLoading}
         />
     </>
  );

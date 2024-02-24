@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ReviewYourAccountInfoComponent } from "../components/ReviewYourAccountInfoComponent";
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const ReviewYourAccountInfoContainer = ({ userData, updateUser, text }) => {
+export const ReviewYourAccountInfoContainer = ({ userData, updateUser, text, translationLoading }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
 
@@ -19,10 +19,12 @@ export const ReviewYourAccountInfoContainer = ({ userData, updateUser, text }) =
 
 // Change Language
 
-    const handleLanguageSelection = async (e) => {
-        e.preventDefault();
-        const chosenLanguage = e.target.value;
-        updateUser({ language: chosenLanguage })
+    const handleLanguageSelection = (chosenLanguage) => {
+        window.scrollTo({
+            top: 0, // Scroll to the top of the viewport
+            behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
+        });
+        updateUser({ language: chosenLanguage.value })
     };
 
 // Assign Users Profile Circle Color
@@ -61,6 +63,7 @@ export const ReviewYourAccountInfoContainer = ({ userData, updateUser, text }) =
                 userData={userData}
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
+                translationLoading={translationLoading}
             />
         </>
     );

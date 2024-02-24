@@ -5,7 +5,7 @@ import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const CreatePasswordContainer = ({ updateUser, text }) => {
+export const CreatePasswordContainer = ({ updateUser, text, translationLoading, }) => {
 
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
@@ -29,10 +29,8 @@ export const CreatePasswordContainer = ({ updateUser, text }) => {
 
 // Change Language
 
-    const handleLanguageSelection = async (e) => {
-        e.preventDefault();
-        const chosenLanguage = e.target.value;
-        updateUser({ language: chosenLanguage })
+    const handleLanguageSelection = (chosenLanguage) => {
+        updateUser({ language: chosenLanguage.value })
     };
     
 // Password
@@ -141,6 +139,7 @@ export const CreatePasswordContainer = ({ updateUser, text }) => {
             text={text}
             handleLanguageSelection={handleLanguageSelection}
             isImageLoaded={isImageLoaded}
+            translationLoading={translationLoading}
         />
     </>
  );

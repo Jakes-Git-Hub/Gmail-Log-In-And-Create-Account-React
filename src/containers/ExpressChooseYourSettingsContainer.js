@@ -4,7 +4,7 @@ import { ExpressChooseYourSettingsComponent } from "../components/ExpressChooseY
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import { useSpring } from 'react-spring';
 
-export const ExpressChooseYourSettingsContainer = ({ updateUser, text, hidePrivacyRow }) => {
+export const ExpressChooseYourSettingsContainer = ({ updateUser, text, hidePrivacyRow, translationLoading }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
     const [showWebAndAppActivityModal, setShowWebAndAppActivityModal] = useState(false);
@@ -24,10 +24,12 @@ export const ExpressChooseYourSettingsContainer = ({ updateUser, text, hidePriva
     
 // Change Language
 
-    const handleLanguageSelection = async (e) => {
-        e.preventDefault();
-        const chosenLanguage = e.target.value;
-        updateUser({ language: chosenLanguage })
+    const handleLanguageSelection = (chosenLanguage) => {
+        window.scrollTo({
+            top: 0, // Scroll to the top of the viewport
+            behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
+        });
+        updateUser({ language: chosenLanguage.value })
     };
 
 // Add Overflow Body CSS
@@ -140,6 +142,7 @@ export const ExpressChooseYourSettingsContainer = ({ updateUser, text, hidePriva
                 text={text}
                 handleLanguageSelection={handleLanguageSelection}
                 handleRejectAllClick={handleRejectAllClick}
+                translationLoading={translationLoading}
             />
         </>
     );

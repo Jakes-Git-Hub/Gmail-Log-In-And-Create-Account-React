@@ -8,7 +8,7 @@ import axios from 'axios';
 import GBSVG from '../images/flags/gb2.svg';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, userIP, handleCYNARCountrySelect, hasSelectedCYNARCountry, text, translatedCountries, hasTranslatedCountries }) => {
+export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, userIP, handleCYNARCountrySelect, hasSelectedCYNARCountry, text, translatedCountries, translationLoading }) => {
 
     const [formattedPhoneNumber, setFormattedPhoneNumber] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -26,15 +26,10 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 
 // Change Language
 
-    const handleLanguageSelection = (e) => {
-        e.preventDefault();
-        const chosenLanguage = e.target.value;
-        updateUser({ language: chosenLanguage })
+    const handleRSLanguageSelection = (chosenLanguage) => {
+        console.log("chosenLanguage:", chosenLanguage.value);
+        updateUser({ language: chosenLanguage.value })
     };
-
-    // const handleRSLanguageSelection = (chosenLanguage) => {
-    //     updateUser({ language: chosenLanguage })
-    // };
 
 // Populate the filteredCountries state with the translatedCountries
 
@@ -200,6 +195,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 
     const handleCountrySelect = (selectedOption) => {
         setSelectedOption(selectedOption);
+        console.log("selectedOption:", selectedOption);
         setActualSelectedOption(true);
     };
 
@@ -421,8 +417,9 @@ const customStyles = {
                 formattedPhoneNumber={formattedPhoneNumber}
                 loading={loading}
                 text={text}
-                handleLanguageSelection={handleLanguageSelection}
                 unitedKingdom={unitedKingdom}
+                handleRSLanguageSelection={handleRSLanguageSelection}
+                translationLoading={translationLoading}
             />
         </>
     )

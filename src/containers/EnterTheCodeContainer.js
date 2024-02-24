@@ -6,7 +6,7 @@ import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import { createTheme } from '@mui/material/styles';
 
-export const EnterTheCodeContainer = ({ updateUser, userData, text }) => {
+export const EnterTheCodeContainer = ({ updateUser, userData, text, translationLoading }) => {
 
     const [errorCondition, setErrorCondition] = useState(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
@@ -29,10 +29,8 @@ export const EnterTheCodeContainer = ({ updateUser, userData, text }) => {
 
 // Change Language
 
-    const handleLanguageSelection = async (e) => {
-        e.preventDefault();
-        const chosenLanguage = e.target.value;
-        updateUser({ language: chosenLanguage })
+    const handleLanguageSelection = (chosenLanguage) => {
+        updateUser({ language: chosenLanguage.value })
     };
 
 // Verification Code
@@ -139,6 +137,7 @@ const setError = errorType => setErrorCondition(errorType);
             disabledCount={disabledCount}
             text={text}
             handleLanguageSelection={handleLanguageSelection}
+            translationLoading={translationLoading}
         />
     );
 };

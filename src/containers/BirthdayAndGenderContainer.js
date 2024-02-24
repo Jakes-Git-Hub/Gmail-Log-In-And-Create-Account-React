@@ -5,7 +5,7 @@ import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const BirthdayAndGenderContainer = ({ updateUser, userData, text }) => {
+export const BirthdayAndGenderContainer = ({ updateUser, text, translationLoading }) => {
 
     const [month, setMonth] = useState('');
     const [day, setDay] = useState("");
@@ -36,10 +36,9 @@ export const BirthdayAndGenderContainer = ({ updateUser, userData, text }) => {
 
 // Change Language
 
-    const handleLanguageSelection = async (e) => {
-            e.preventDefault();
-            const chosenLanguage = e.target.value;
-            updateUser({ language: chosenLanguage })
+    const handleLanguageSelection = (chosenLanguage) => {
+        console.log("chosenLanguage:", chosenLanguage.value);
+        updateUser({ language: chosenLanguage.value })
     };
 
 // Month
@@ -162,8 +161,9 @@ export const BirthdayAndGenderContainer = ({ updateUser, userData, text }) => {
             pronoun={pronoun}
             handleSelectPronoun={handleSelectPronoun}
             isCustomChecked={isCustomChecked}
-            handleLanguageSelection={handleLanguageSelection}
             text={text}
+            translationLoading={translationLoading}
+            handleLanguageSelection={handleLanguageSelection}
         />
     );
 };

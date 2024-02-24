@@ -9,6 +9,7 @@ import { Modal, Box } from '@mui/material';
 import { animated } from 'react-spring';
 import TransparentSmallButton from './buttons/TransparentSmallButtonComponent';
 import SecondaryGreyButton2 from './buttons/SecondaryGreyButtonComponent2';
+import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
 
 export const ManualChooseYourSettingsComponent = ({ 
     handleNextClick,
@@ -26,6 +27,7 @@ export const ManualChooseYourSettingsComponent = ({
     animationOpen,
     animationClose,
     handleBackClick,
+    translationLoading,
 }) => {
 
     return (
@@ -34,7 +36,7 @@ export const ManualChooseYourSettingsComponent = ({
 
             <div className='google-container-flexible-ryai'>
 
-                <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : "empty-blue-snake-loader"}>
+                <div className={!isImageLoaded || translationLoading ? "empty-blue-snake-loader" : 'empty-blue-snake-loader-placeholder'}>
                     <div className="blue-snake-loader"></div>
                 </div>
                 <img src={googleWritingSvg} alt="Google Writing" id="google-writing-recovery-ryai"/>
@@ -263,13 +265,10 @@ export const ManualChooseYourSettingsComponent = ({
 
             </div>
 
-            <div className='language-changer-div'>
-                <select onChange={handleLanguageSelection}>
-                    <option value="es">Translate to Spanish</option>
-                    <option value="fr">Translate to French</option>
-                    <option value="de">Translate to German</option>
-                </select>
-            </div>
+            <LanguageChanger 
+                className='language-changer-div'
+                onChange={handleLanguageSelection}
+            />
 
         </>
     );

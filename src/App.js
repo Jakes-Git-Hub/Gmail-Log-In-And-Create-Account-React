@@ -23,7 +23,6 @@ import { ManualChooseYourSettingsContainer2 } from "./containers/ManualChooseYou
 import { ManualChooseYourSettingsContainer3 } from "./containers/ManualChooseYourSettingsContainer3";
 import { ManualChooseYourSettingsContainer4 } from "./containers/ManualChooseYourSettingsContainer4";
 import { PrivacyAndTermsContainer } from "./containers/PrivacyAndTermsContainer";
-import LanguageChanger from "./components/LanguageChanger/LanguageChangerComponent";
 
 
 function App() {
@@ -37,9 +36,7 @@ function App() {
   const [translatedCountries, setTranslatedCountries] = useState(filteredCountriesFromUtil);
   const [hasTranslatedCountries, setHasTranslatedCountries] = useState(false);
   const [showPrivacyRow, setShowPrivacyRow] = useState(false);
-
-// Drill UserData and UpdateUser
-  // <LanguageChanger updateUser={updateUser} userData={userData} />
+  const [translationLoading, setTranslationLoading] = useState(false);
 
 // Translation
 
@@ -54,9 +51,13 @@ function App() {
     console.log('translatedCountries', translatedCountries)
   }, [translatedCountries]);
 
+  useEffect(() => {
+    console.log('translationLoading', translationLoading)
+  }, [translationLoading]);
+
   const handleLanguageSelection = async () => {
     if (!userData.language) return;
-  
+    setTranslationLoading(true);
     const chosenLanguage = userData.language;
   
     try {
@@ -96,6 +97,7 @@ function App() {
     } catch (error) {
       console.error('Error translating text:', error);
     }
+    setTranslationLoading(false);
   }; 
 
   const changeLanguageAndTranslate = async (text, chosenLanguage) => {
@@ -120,7 +122,7 @@ function App() {
       const sanitizedTopLevelObject = {};
 
       for (const key in topLevelObject) {
-        const sanitizedValue = topLevelObject[key].replace(/&#39;/g, "'").replace(/«/g,'"').replace(/»/g,'"');
+        const sanitizedValue = topLevelObject[key].replace(/&#39;/g, "'").replace(/«/g,'"').replace(/»/g,'"').replace(/&quot;/g,'"');
         // Add more sanitization rules as needed
 
         sanitizedTopLevelObject[key] = sanitizedValue;
@@ -221,6 +223,7 @@ const { userIP } = useUserIP()
               updateUser={updateUser}
               userData={userData}
               text={text}
+              translationLoading={translationLoading}
             />
           } 
         />
@@ -229,6 +232,7 @@ const { userIP } = useUserIP()
                 updateUser={updateUser}
                 userData={userData}
                 text={text}
+                translationLoading={translationLoading}
               />
           } 
         />
@@ -237,6 +241,7 @@ const { userIP } = useUserIP()
               updateUser={updateUser} 
               users={users}
               text={text}
+              translationLoading={translationLoading}
             />
           } 
         />
@@ -245,6 +250,7 @@ const { userIP } = useUserIP()
               updateUser={updateUser} 
               users={users}
               text={text}
+              translationLoading={translationLoading}
             />
           } 
         />
@@ -259,6 +265,7 @@ const { userIP } = useUserIP()
               text={text}
               translatedCountries={translatedCountries}
               hasTranslatedCountries={hasTranslatedCountries}
+              translationLoading={translationLoading}
             />
           } 
         />
@@ -267,6 +274,7 @@ const { userIP } = useUserIP()
               updateUser={updateUser}
               userData={userData}
               text={text}
+              translationLoading={translationLoading}
             />
           } 
         />
@@ -274,6 +282,7 @@ const { userIP } = useUserIP()
             <AddRecoveryEmailContainer
               updateUser={updateUser} 
               text={text}
+              translationLoading={translationLoading}
             />
           } 
         />
@@ -282,6 +291,7 @@ const { userIP } = useUserIP()
               updateUser={updateUser}
               userData={userData}
               text={text}
+              translationLoading={translationLoading}
             />
           } 
         />
@@ -289,6 +299,7 @@ const { userIP } = useUserIP()
             <ChooseYourSettingsContainer
               updateUser={updateUser}
               text={text}
+              translationLoading={translationLoading}
             />
           } 
         />
@@ -297,6 +308,7 @@ const { userIP } = useUserIP()
               updateUser={updateUser}
               text={text}
               hidePrivacyRow={hidePrivacyRow}  
+              translationLoading={translationLoading}
             />
           } 
         />
@@ -306,6 +318,7 @@ const { userIP } = useUserIP()
               userData={userData}
               updateUser={updateUser}
               text={text}
+              translationLoading={translationLoading}
             />
           } 
         />
@@ -315,6 +328,7 @@ const { userIP } = useUserIP()
               userData={userData}
               updateUser={updateUser}
               text={text}
+              translationLoading={translationLoading}
             />
           } 
         />
@@ -324,6 +338,7 @@ const { userIP } = useUserIP()
               userData={userData}
               updateUser={updateUser}
               text={text}
+              translationLoading={translationLoading}
             />
           } 
         />
@@ -334,6 +349,7 @@ const { userIP } = useUserIP()
               updateUser={updateUser}
               text={text}
               makePrivacyRowVisible={makePrivacyRowVisible}
+              translationLoading={translationLoading}
             />
           } 
         />
@@ -344,6 +360,7 @@ const { userIP } = useUserIP()
               userData={userData}
               updateUser={updateUser}
               showPrivacyRow={showPrivacyRow}
+              translationLoading={translationLoading}
             />
           } 
         />
@@ -357,6 +374,7 @@ const { userIP } = useUserIP()
               handleLogin={handleLogin}
               users={users}
               loggedIn={loggedIn}
+              translationLoading={translationLoading}
             />
           } 
         />

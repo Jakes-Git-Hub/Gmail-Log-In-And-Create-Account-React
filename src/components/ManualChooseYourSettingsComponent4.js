@@ -3,21 +3,19 @@ import googleWritingSvg from "../images/google-writing-svg.svg";
 import CustomNextAndSkipButton from './buttons/CustomNext&SkipButtonComponent';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import errorImage from '../images/Daco_5575399.png';
 import Checkbox from '@mui/material/Checkbox';
+import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
 
 export const ManualChooseYourSettingsComponent4 = ({ 
     handleNextClick,
     isImageLoaded,
-    handleRadioChange,
     setting,
-    errorCondition,
-    isImagePreloaded,
     handleLanguageSelection,
     text,
     handleBackClick,
     checked,
     toggleCheckBox,
+    translationLoading,
 }) => {
 
     return (
@@ -26,7 +24,7 @@ export const ManualChooseYourSettingsComponent4 = ({
 
             <div className='google-container-flexible-ryai'>
 
-                <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : "empty-blue-snake-loader"}>
+                <div className={!isImageLoaded || translationLoading ? "empty-blue-snake-loader" : 'empty-blue-snake-loader-placeholder'}>
                     <div className="blue-snake-loader"></div>
                 </div>
                 <img src={googleWritingSvg} alt="Google Writing" id="google-writing-recovery-ryai"/>
@@ -133,13 +131,10 @@ export const ManualChooseYourSettingsComponent4 = ({
 
             </div>
 
-            <div className='language-changer-div'>
-                <select onChange={handleLanguageSelection}>
-                    <option value="es">Translate to Spanish</option>
-                    <option value="fr">Translate to French</option>
-                    <option value="de">Translate to German</option>
-                </select>
-            </div>
+            <LanguageChanger 
+                className='language-changer-div'
+                onChange={handleLanguageSelection}
+            />
 
         </>
     );

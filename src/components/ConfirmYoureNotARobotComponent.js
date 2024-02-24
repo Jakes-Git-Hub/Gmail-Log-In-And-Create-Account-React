@@ -26,8 +26,9 @@ export const ConfirmYoureNotARobotComponent = ({
     formattedPhoneNumber,
     loading,
     text,
-    handleLanguageSelection,
     unitedKingdom,
+    handleRSLanguageSelection,
+    translationLoading,
 }) => {
 
     return (
@@ -35,7 +36,7 @@ export const ConfirmYoureNotARobotComponent = ({
         <>
 
             <div id='google-container-flexible'>
-                <div className={loading ? "empty-blue-snake-loader" : isImageLoaded ? 'empty-blue-snake-loader-placeholder' : "empty-blue-snake-loader"}>
+                <div className={loading || translationLoading ? "empty-blue-snake-loader" : isImageLoaded ? 'empty-blue-snake-loader-placeholder' : "empty-blue-snake-loader"}>
                     <div className="blue-snake-loader"></div>
                 </div>
                 <img src={googleWritingSvg} alt="Google Writing" id="google-writing-BG"/>
@@ -163,15 +164,10 @@ export const ConfirmYoureNotARobotComponent = ({
 
             </div> 
 
-            <LanguageChanger className='language-changer-div' onChange={handleLanguageSelection} />
-
-            <div className='language-changer-div'>
-                <select onChange={handleLanguageSelection}>
-                    <option value="es">Translate to Spanish</option>
-                    <option value="fr">Translate to French</option>
-                    <option value="de">Translate to German</option>
-                </select>
-            </div>
+            <LanguageChanger 
+                className='language-changer-div'
+                onChange={handleRSLanguageSelection}
+            />
 
         </>            
 

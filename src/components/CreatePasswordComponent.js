@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import CustomNextButton from './buttons/CustomNextButtonComponent';
 import Checkbox from '@mui/material/Checkbox';
 import googleWritingSvg from "../images/google-writing-svg.svg";
+import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
 
 export const CreatePasswordComponent = ({ 
     password,
@@ -19,6 +20,7 @@ export const CreatePasswordComponent = ({
     text,
     handleLanguageSelection,
     isImageLoaded,
+    translationLoading,
 }) => {
 
 
@@ -28,7 +30,7 @@ export const CreatePasswordComponent = ({
 
             <div id='google-container-BG'>
 
-                <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : "empty-blue-snake-loader"}>
+                <div className={!isImageLoaded || translationLoading ? "empty-blue-snake-loader" : 'empty-blue-snake-loader-placeholder'}>
                 <div className="blue-snake-loader"></div>
                 </div>
                 <img src={googleWritingSvg} alt="Google Writing" id="google-writing-BG"/>
@@ -204,13 +206,10 @@ export const CreatePasswordComponent = ({
 
             </div>
 
-            <div className='language-changer-div'>
-                <select onChange={handleLanguageSelection}>
-                    <option value="es">Translate to Spanish</option>
-                    <option value="fr">Translate to French</option>
-                    <option value="de">Translate to German</option>
-                </select>
-            </div>
+            <LanguageChanger 
+                className='language-changer-div'
+                onChange={handleLanguageSelection}
+            />
 
         </>
     );

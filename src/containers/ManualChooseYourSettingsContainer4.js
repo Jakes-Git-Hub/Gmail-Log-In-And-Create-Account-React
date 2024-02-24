@@ -4,7 +4,7 @@ import { ManualChooseYourSettingsComponent4 } from "../components/ManualChooseYo
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import errorImage from '../images/Daco_5575399.png';
 import useImagePreload from "../hooks/useImagePreload";
-export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text, makePrivacyRowVisible }) => {
+export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text, makePrivacyRowVisible, translationLoading }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [checked, setChecked] = useState(false);
@@ -31,10 +31,8 @@ export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text,
 
 // Change Language
 
-    const handleLanguageSelection = async (e) => {
-        e.preventDefault();
-        const chosenLanguage = e.target.value;
-        updateUser({ language: chosenLanguage })
+    const handleLanguageSelection = (chosenLanguage) => {
+        updateUser({ language: chosenLanguage.value })
     };
 
 // Handle Next & Back Click
@@ -74,6 +72,7 @@ export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text,
                 text={text}
                 handleBackClick={handleBackClick}
                 toggleCheckBox={toggleCheckBox}
+                translationLoading={translationLoading}
             />
         </>
     );

@@ -4,6 +4,7 @@ import googleWritingSvg from "../images/google-writing-svg.svg";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import CustomNextAndSkipButton from './buttons/CustomNext&SkipButtonComponent';
+import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
 
 export const AddRecoveryEmailComponent = ({ 
     recoveryEmail,
@@ -16,6 +17,7 @@ export const AddRecoveryEmailComponent = ({
     isImageLoaded,
     handleLanguageSelection,
     text,
+    translationLoading,
 }) => {
 
     return (
@@ -24,7 +26,7 @@ export const AddRecoveryEmailComponent = ({
 
             <div id='google-container-flexible'>
 
-                <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : "empty-blue-snake-loader"}>
+                <div className={!isImageLoaded || translationLoading ? "empty-blue-snake-loader" : 'empty-blue-snake-loader-placeholder'}>
                     <div className="blue-snake-loader"></div>
                 </div>
                 <img src={googleWritingSvg} alt="Google Writing" id="google-writing-recovery-email"/>
@@ -138,13 +140,10 @@ export const AddRecoveryEmailComponent = ({
 
             </div>
 
-            <div className='language-changer-div'>
-                <select onChange={handleLanguageSelection}>
-                    <option value="es">Translate to Spanish</option>
-                    <option value="fr">Translate to French</option>
-                    <option value="de">Translate to German</option>
-                </select>
-            </div>
+            <LanguageChanger 
+                className='language-changer-div'
+                onChange={handleLanguageSelection}
+            />
 
         </>
     );

@@ -5,7 +5,7 @@ import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const CreateAccountContainer = ({ updateUser, text }) => {
+export const CreateAccountContainer = ({ updateUser, text, translationLoading, }) => {
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -29,10 +29,8 @@ export const CreateAccountContainer = ({ updateUser, text }) => {
 
 // Change Language
 
-    const handleLanguageSelection = async (e) => {
-            e.preventDefault();
-            const chosenLanguage = e.target.value;
-            updateUser({ language: chosenLanguage })
+    const handleLanguageSelection = (chosenLanguage) => {
+        updateUser({ language: chosenLanguage.value })
     };
 
 // First Name
@@ -107,6 +105,7 @@ export const CreateAccountContainer = ({ updateUser, text }) => {
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
                 isImageLoaded={isImageLoaded}
+                translationLoading={translationLoading}
             />
         </>
     );

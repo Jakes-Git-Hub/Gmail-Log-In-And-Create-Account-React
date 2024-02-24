@@ -16,6 +16,7 @@ export const ConfirmYourSettingsComponent = ({
     handleBackClick,
     userData,
     showPrivacyRow,
+    translationLoading,
 }) => {
 
     return (
@@ -24,7 +25,7 @@ export const ConfirmYourSettingsComponent = ({
 
             <div className='google-container-flexible-ryai'>
 
-                <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : "empty-blue-snake-loader"}>
+                <div className={!isImageLoaded || translationLoading ? "empty-blue-snake-loader" : 'empty-blue-snake-loader-placeholder'}>
                     <div className="blue-snake-loader"></div>
                 </div>
                 <img src={googleWritingSvg} alt="Google Writing" id="google-writing-recovery-ryai"/>
@@ -172,15 +173,10 @@ export const ConfirmYourSettingsComponent = ({
 
             </div>
 
-            <LanguageChanger handleLanguageSelection={handleLanguageSelection} />
-
-            <div className='language-changer-div'>
-                <select onChange={handleLanguageSelection}>
-                    <option value="es">Translate to Spanish</option>
-                    <option value="fr">Translate to French</option>
-                    <option value="de">Translate to German</option>
-                </select>
-            </div>
+            <LanguageChanger 
+                className='language-changer-div'
+                onChange={handleLanguageSelection}
+            />
 
         </>
     );

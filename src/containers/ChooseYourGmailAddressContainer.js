@@ -5,7 +5,7 @@ import errorImage from '../images/Daco_5575399.png';
 import useImagePreload from "../hooks/useImagePreload";
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const ChooseYourGmailAddressContainer = ({ updateUser, users, text }) => {
+export const ChooseYourGmailAddressContainer = ({ updateUser, users, text, translationLoading }) => {
 
   const [email, setEmail] = useState('');
   const [errorCondition, setErrorCondition] = useState(null);
@@ -25,10 +25,9 @@ export const ChooseYourGmailAddressContainer = ({ updateUser, users, text }) => 
 
 // Change Language
 
-  const handleLanguageSelection = async (e) => {
-    e.preventDefault();
-    const chosenLanguage = e.target.value;
-    updateUser({ language: chosenLanguage })
+  const handleLanguageSelection = (chosenLanguage) => {
+    console.log("chosenLanguage:", chosenLanguage.value);
+    updateUser({ language: chosenLanguage.value })
   };
 
 // Email
@@ -80,6 +79,7 @@ export const ChooseYourGmailAddressContainer = ({ updateUser, users, text }) => 
                 text={text}
                 handleLanguageSelection={handleLanguageSelection}
                 isImageLoaded={isImageLoaded}
+                translationLoading={translationLoading}
             />
         </>
     )

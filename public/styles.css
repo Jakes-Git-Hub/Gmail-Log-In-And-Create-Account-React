@@ -1428,6 +1428,13 @@ input[type="number"]::-webkit-outer-spin-button {
   align-items: center;
 }
 
+#p-container-choose-your-settings {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 83%;
+}
+
 #choose-your-settings-p {
   font-size: 0.875rem;
   color: #5f6368;

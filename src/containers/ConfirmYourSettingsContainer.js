@@ -5,7 +5,7 @@ import googleWritingSvg from "../images/google-writing-svg.svg";
 import errorImage from '../images/Daco_5575399.png';
 import useImagePreload from "../hooks/useImagePreload";
 
-export const ConfirmYourSettingsContainer = ({ userData, updateUser, text, showPrivacyRow }) => {
+export const ConfirmYourSettingsContainer = ({ userData, updateUser, text, showPrivacyRow, translationLoading }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
 
@@ -23,13 +23,6 @@ export const ConfirmYourSettingsContainer = ({ userData, updateUser, text, showP
         };
     }, []);
 
-    useEffect(() => {
-        console.log('userData.ManualSetting1:', userData.manualSetting1);
-        console.log('userData.ManualSetting2:', userData.manualSetting2);
-        console.log('userData.ManualSetting3:', userData.manualSetting3);
-        console.log('userData.ManualSetting4:', userData.manualSetting4);
-    }, []);
-
 // Add Overflow Body CSS
 
     useEffect(() => {
@@ -41,10 +34,12 @@ export const ConfirmYourSettingsContainer = ({ userData, updateUser, text, showP
 
 // Change Language
 
-    const handleLanguageSelection = async (e) => {
-        e.preventDefault();
-        const chosenLanguage = e.target.value;
-        updateUser({ language: chosenLanguage })
+    const handleLanguageSelection = (chosenLanguage) => {
+        window.scrollTo({
+            top: 0, // Scroll to the top of the viewport
+            behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
+        });
+        updateUser({ language: chosenLanguage.value })
     };
 
 // Handle Next & Back Click
@@ -79,6 +74,7 @@ export const ConfirmYourSettingsContainer = ({ userData, updateUser, text, showP
                 text={text}
                 handleBackClick={handleBackClick}
                 showPrivacyRow={showPrivacyRow}
+                translationLoading={translationLoading}
             />
         </>
     );

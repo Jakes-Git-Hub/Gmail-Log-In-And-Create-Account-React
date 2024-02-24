@@ -1,5 +1,6 @@
 import React from "react";
 import errorImage from '../images/Daco_5575399.png';
+import LanguageChanger from "./LanguageChanger/LanguageChangerComponent";
 
 export const SignInFrontPageComponent = ({ 
     email,
@@ -16,9 +17,13 @@ export const SignInFrontPageComponent = ({
     handleCreateAccountClick,
     emailIsEmpty,
     passwordIsEmpty,
-    isImagePreloaded
+    isImagePreloaded,
+    translationLoading,
+
 }) => {
+
     return (
+
         <form onSubmit={handleSubmit}>
 
             <h1 class="thin h1-space">Sign In</h1>

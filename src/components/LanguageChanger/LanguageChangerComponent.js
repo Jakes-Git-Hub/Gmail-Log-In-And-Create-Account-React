@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import languageOptions from '../../utils/languageOptions';
 import Select from 'react-select';
 import { components } from 'react-select';
 
-function LanguageChanger({ updateUser, userData }) {
-
-    const handleRSLanguageSelection = (chosenLanguage) => {
-        updateUser({ language: chosenLanguage })
-    };
+function LanguageChanger({ onChange }) {
 
     const customStyles = {
         menu: styles => ({
@@ -100,14 +96,9 @@ function LanguageChanger({ updateUser, userData }) {
         }),
     };
 
-    useEffect(() => {
-        console.log('userData', userData);
-    }, [userData]);
-
     const customOptions = [
         // Add the rest of the translatedCountries
         ...languageOptions.map((language) => {
-          console.log(language);
           return {
             value: language.value,
             label: (
@@ -144,6 +135,7 @@ function LanguageChanger({ updateUser, userData }) {
                 components={{ 
                     DropdownIndicator: customDropdownIndicator,  
                 }}
+                onChange={onChange}
                 // placeholder=
                 // value={selectedOption}
                 

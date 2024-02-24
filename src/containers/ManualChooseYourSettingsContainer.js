@@ -6,7 +6,7 @@ import errorImage from '../images/Daco_5575399.png';
 import useImagePreload from "../hooks/useImagePreload";
 import { useSpring } from 'react-spring';
 
-export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text }) => {
+export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text, translationLoading }) => {
 
     const [manualSetting1, setManualSetting1] = useState("");
     const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -76,10 +76,12 @@ export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text }
 
 // Change Language
 
-    const handleLanguageSelection = async (e) => {
-        e.preventDefault();
-        const chosenLanguage = e.target.value;
-        updateUser({ language: chosenLanguage })
+    const handleLanguageSelection = (chosenLanguage) => {
+        window.scrollTo({
+            top: 0, // Scroll to the top of the viewport
+            behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
+        });
+        updateUser({ language: chosenLanguage.value })
     };
 
 // Handle Radio Change
@@ -161,6 +163,7 @@ export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text }
                 animationOpen={animationOpen}
                 animationClose={animationClose}
                 handleBackClick={handleBackClick}
+                translationLoading={translationLoading}
             />
         </>
     );
