@@ -81,7 +81,7 @@ export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text, 
             top: 0, // Scroll to the top of the viewport
             behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
         });
-        updateUser({ language: chosenLanguage.value })
+        updateUser({ language: chosenLanguage })
     };
 
 // Handle Radio Change

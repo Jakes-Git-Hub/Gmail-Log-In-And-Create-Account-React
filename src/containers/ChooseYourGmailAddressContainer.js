@@ -26,8 +26,7 @@ export const ChooseYourGmailAddressContainer = ({ updateUser, users, text, trans
 // Change Language
 
   const handleLanguageSelection = (chosenLanguage) => {
-    console.log("chosenLanguage:", chosenLanguage.value);
-    updateUser({ language: chosenLanguage.value })
+    updateUser({ language: chosenLanguage})
   };
 
 // Email

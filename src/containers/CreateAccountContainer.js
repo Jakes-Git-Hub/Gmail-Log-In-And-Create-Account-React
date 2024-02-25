@@ -30,7 +30,7 @@ export const CreateAccountContainer = ({ updateUser, text, translationLoading, }
 // Change Language
 
     const handleLanguageSelection = (chosenLanguage) => {
-        updateUser({ language: chosenLanguage.value })
+        updateUser({ language: chosenLanguage })
     };
 
 // First Name

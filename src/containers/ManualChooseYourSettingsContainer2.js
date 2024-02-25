@@ -77,7 +77,7 @@ export const ManualChooseYourSettingsContainer2 = ({ userData, updateUser, text,
             top: 0,
             behavior: 'auto'
         });
-        updateUser({ language: chosenLanguage.value })
+        updateUser({ language: chosenLanguage })
     };
 
 // Handle Radio Change

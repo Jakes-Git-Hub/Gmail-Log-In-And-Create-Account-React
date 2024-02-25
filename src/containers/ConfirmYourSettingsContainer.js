@@ -39,7 +39,7 @@ export const ConfirmYourSettingsContainer = ({ userData, updateUser, text, showP
             top: 0, // Scroll to the top of the viewport
             behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
         });
-        updateUser({ language: chosenLanguage.value })
+        updateUser({ language: chosenLanguage })
     };
 
 // Handle Next & Back Click

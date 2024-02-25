@@ -40,7 +40,7 @@ export const BirthdayAndGenderComponent = ({
             <div id='google-container-BG'>
                 
                 <div className={!isImageLoaded || translationLoading ? "empty-blue-snake-loader" : 'empty-blue-snake-loader-placeholder'}>
-                <div className="blue-snake-loader"></div>
+                    <div className="blue-snake-loader"></div>
                 </div>
                 <img src={googleWritingSvg} alt="Google Writing" id="google-writing-BG"/>
 
@@ -379,8 +379,7 @@ export const BirthdayAndGenderComponent = ({
 
             </div>
 
-            <LanguageChanger 
-                className='language-changer-div'
+            <LanguageChanger
                 onChange={handleLanguageSelection}
             />
 

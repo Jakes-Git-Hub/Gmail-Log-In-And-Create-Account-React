@@ -27,7 +27,7 @@ export const ConfirmYoureNotARobotComponent = ({
     loading,
     text,
     unitedKingdom,
-    handleRSLanguageSelection,
+    handleLanguageSelection,
     translationLoading,
 }) => {
 
@@ -166,7 +166,7 @@ export const ConfirmYoureNotARobotComponent = ({
 
             <LanguageChanger 
                 className='language-changer-div'
-                onChange={handleRSLanguageSelection}
+                onChange={handleLanguageSelection}
             />
 
         </>            

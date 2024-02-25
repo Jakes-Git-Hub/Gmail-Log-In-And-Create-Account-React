@@ -29,7 +29,7 @@ export const ExpressChooseYourSettingsContainer = ({ updateUser, text, hidePriva
             top: 0, // Scroll to the top of the viewport
             behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
         });
-        updateUser({ language: chosenLanguage.value })
+        updateUser({ language: chosenLanguage })
     };
 
 // Add Overflow Body CSS

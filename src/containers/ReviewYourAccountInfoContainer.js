@@ -24,7 +24,7 @@ export const ReviewYourAccountInfoContainer = ({ userData, updateUser, text, tra
             top: 0, // Scroll to the top of the viewport
             behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
         });
-        updateUser({ language: chosenLanguage.value })
+        updateUser({ language: chosenLanguage })
     };
 
 // Assign Users Profile Circle Color

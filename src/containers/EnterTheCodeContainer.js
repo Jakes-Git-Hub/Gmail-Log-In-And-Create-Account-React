@@ -30,7 +30,7 @@ export const EnterTheCodeContainer = ({ updateUser, userData, text, translationL
 // Change Language
 
     const handleLanguageSelection = (chosenLanguage) => {
-        updateUser({ language: chosenLanguage.value })
+        updateUser({ language: chosenLanguage })
     };
 
 // Verification Code

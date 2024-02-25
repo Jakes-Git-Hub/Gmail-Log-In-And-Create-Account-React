@@ -26,8 +26,7 @@ export const AddRecoveryEmailContainer = ({ updateUser, text, translationLoading
 // Change Language
 
     const handleLanguageSelection = (chosenLanguage) => {
-        console.log("chosenLanguage:", chosenLanguage.value);
-        updateUser({ language: chosenLanguage.value })
+        updateUser({ language: chosenLanguage})
     };
 
 // Handle Next

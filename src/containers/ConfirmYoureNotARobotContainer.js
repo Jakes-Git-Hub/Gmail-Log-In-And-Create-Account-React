@@ -26,9 +26,8 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 
 // Change Language
 
-    const handleRSLanguageSelection = (chosenLanguage) => {
-        console.log("chosenLanguage:", chosenLanguage.value);
-        updateUser({ language: chosenLanguage.value })
+    const handleLanguageSelection = (chosenLanguage) => {
+        updateUser({ language: chosenLanguage})
     };
 
 // Populate the filteredCountries state with the translatedCountries
@@ -418,7 +417,7 @@ const customStyles = {
                 loading={loading}
                 text={text}
                 unitedKingdom={unitedKingdom}
-                handleRSLanguageSelection={handleRSLanguageSelection}
+                handleLanguageSelection={handleLanguageSelection}
                 translationLoading={translationLoading}
             />
         </>
