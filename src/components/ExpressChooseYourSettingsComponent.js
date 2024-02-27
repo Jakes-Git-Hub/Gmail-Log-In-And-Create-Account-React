@@ -26,6 +26,7 @@ export const ExpressChooseYourSettingsComponent = ({
     handleLanguageSelection,
     handleRejectAllClick,
     translationLoading,
+    userData,
 }) => {
 
     return (
@@ -346,9 +347,8 @@ export const ExpressChooseYourSettingsComponent = ({
             <LanguageChanger 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
+                initialLanguage={userData.language}
             />
-
-            <div className='test-overflow'></div>
 
         </>                
         

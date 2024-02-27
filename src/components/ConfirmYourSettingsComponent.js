@@ -176,6 +176,7 @@ export const ConfirmYourSettingsComponent = ({
             <LanguageChanger 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
+                initialLanguage={userData.language}
             />
 
         </>

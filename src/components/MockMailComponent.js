@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const MockMail = ({ loggedIn, currentLoggedInUser, users }) => {
+export const MockMail = ({ loggedIn, currentLoggedInUser, users, userData, }) => {
 
     return (
         <>

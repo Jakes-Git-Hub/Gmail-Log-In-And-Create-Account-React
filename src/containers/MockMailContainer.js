@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { MockMail } from '../components/MockMailComponent';
 
 
-export const MockMailContainer = ({ loggedIn, currentLoggedInUser, users }) => {
+export const MockMailContainer = ({ loggedIn, currentLoggedInUser, users, userData, }) => {
 
     console.log("loggedIn:", loggedIn);
     console.log("currentLoggedInUser:", currentLoggedInUser);
@@ -16,6 +16,7 @@ export const MockMailContainer = ({ loggedIn, currentLoggedInUser, users }) => {
             loggedIn={loggedIn}
             currentLoggedInUser={currentLoggedInUser}
             users={users}
+            userData={userData}
         />
     )
 }

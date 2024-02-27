@@ -18,6 +18,7 @@ export const AddRecoveryEmailComponent = ({
     handleLanguageSelection,
     text,
     translationLoading,
+    userData,
 }) => {
 
     return (
@@ -141,7 +142,7 @@ export const AddRecoveryEmailComponent = ({
             </div>
 
             <LanguageChanger 
-                className='language-changer-div'
+                initialLanguage={userData.language}
                 onChange={handleLanguageSelection}
             />
 

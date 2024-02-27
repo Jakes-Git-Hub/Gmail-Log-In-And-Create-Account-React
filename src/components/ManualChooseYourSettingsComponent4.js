@@ -16,6 +16,7 @@ export const ManualChooseYourSettingsComponent4 = ({
     checked,
     toggleCheckBox,
     translationLoading,
+    userData,
 }) => {
 
     return (
@@ -134,6 +135,7 @@ export const ManualChooseYourSettingsComponent4 = ({
             <LanguageChanger 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
+                initialLanguage={userData.language}
             />
 
         </>

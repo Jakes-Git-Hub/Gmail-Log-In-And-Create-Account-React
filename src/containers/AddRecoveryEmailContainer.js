@@ -5,7 +5,7 @@ import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const AddRecoveryEmailContainer = ({ updateUser, text, translationLoading }) => {
+export const AddRecoveryEmailContainer = ({ updateUser, text, translationLoading, userData, }) => {
 
     const [recoveryEmail, setRecoveryEmail] = useState("");
     const [errorCondition, setErrorCondition] = useState(null);
@@ -114,6 +114,7 @@ export const AddRecoveryEmailContainer = ({ updateUser, text, translationLoading
             handleLanguageSelection={handleLanguageSelection}
             text={text}
             translationLoading={translationLoading}
+            userData={userData}
         />
     </>
  );

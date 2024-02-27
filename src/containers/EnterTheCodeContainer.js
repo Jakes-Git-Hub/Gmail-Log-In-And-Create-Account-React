@@ -138,6 +138,7 @@ const setError = errorType => setErrorCondition(errorType);
             text={text}
             handleLanguageSelection={handleLanguageSelection}
             translationLoading={translationLoading}
+            userData={userData}
         />
     );
 };

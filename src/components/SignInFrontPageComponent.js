@@ -19,6 +19,7 @@ export const SignInFrontPageComponent = ({
     passwordIsEmpty,
     isImagePreloaded,
     translationLoading,
+    userData,
 
 }) => {
 

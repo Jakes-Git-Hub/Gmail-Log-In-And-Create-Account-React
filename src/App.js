@@ -47,14 +47,6 @@ function App() {
     console.log('chosenLanguage:', userData.language)
   }, [userData.language]);
 
-  useEffect(() => {
-    console.log('translatedCountries', translatedCountries)
-  }, [translatedCountries]);
-
-  useEffect(() => {
-    console.log('translationLoading', translationLoading)
-  }, [translationLoading]);
-
   const handleLanguageSelection = async () => {
     if (!userData.language) return;
     setTranslationLoading(true);
@@ -206,6 +198,7 @@ const { userIP } = useUserIP()
                 handleLogin={handleLogin}
                 userIP={userIP}
                 text={text}
+                userData={userData}
               />
             </FrontPageStaticContainer>
           } />
@@ -216,6 +209,7 @@ const { userIP } = useUserIP()
                     currentLoggedInUser={currentLoggedInUser}
                     text={text}
                     users={users}
+                    userData={userData}
                   />} 
         />
         <Route path="/create-account" element={
@@ -283,6 +277,7 @@ const { userIP } = useUserIP()
               updateUser={updateUser} 
               text={text}
               translationLoading={translationLoading}
+              userData={userData}
             />
           } 
         />
@@ -300,6 +295,7 @@ const { userIP } = useUserIP()
               updateUser={updateUser}
               text={text}
               translationLoading={translationLoading}
+              userData={userData}
             />
           } 
         />
@@ -309,6 +305,7 @@ const { userIP } = useUserIP()
               text={text}
               hidePrivacyRow={hidePrivacyRow}  
               translationLoading={translationLoading}
+              userData={userData}
             />
           } 
         />

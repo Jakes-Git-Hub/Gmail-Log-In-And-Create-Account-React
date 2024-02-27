@@ -18,6 +18,7 @@ export const ChooseYourGmailAddressComponent = ({
     handleLanguageSelection,
     isImageLoaded,
     translationLoading,
+    userData,
 }) => {
 
     return (
@@ -131,6 +132,7 @@ export const ChooseYourGmailAddressComponent = ({
             <LanguageChanger 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
+                initialLanguage={userData.language}
             />
 
         </>

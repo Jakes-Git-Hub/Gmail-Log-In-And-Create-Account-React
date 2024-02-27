@@ -19,6 +19,7 @@ export const CreateAccountcomponent = ({
     text,
     isImageLoaded,
     translationLoading,
+    userData,
 }) => {
 
     return (
@@ -138,6 +139,7 @@ export const CreateAccountcomponent = ({
             <LanguageChanger 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
+                initialLanguage={userData.language}
             />
 
         </>

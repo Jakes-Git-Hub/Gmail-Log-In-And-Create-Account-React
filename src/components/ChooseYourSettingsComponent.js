@@ -17,6 +17,7 @@ export const ChooseYourSettingsComponent = ({
     isImagePreloaded,
     handleLanguageSelection,
     text,
+    userData,
     translationLoading,
 }) => {
 
@@ -131,6 +132,7 @@ export const ChooseYourSettingsComponent = ({
             <LanguageChanger 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
+                initialLanguage={userData.language}
             />
 
         </>

@@ -29,6 +29,7 @@ export const ConfirmYoureNotARobotComponent = ({
     unitedKingdom,
     handleLanguageSelection,
     translationLoading,
+    userData,
 }) => {
 
     return (
@@ -167,6 +168,7 @@ export const ConfirmYoureNotARobotComponent = ({
             <LanguageChanger 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
+                initialLanguage={userData.language}
             />
 
         </>            

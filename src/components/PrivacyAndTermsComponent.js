@@ -12,6 +12,7 @@ export const PrivacyAndTermsComponent = ({
     text,
     handleBackClick,
     translationLoading,
+    userData,
 }) => {
 
     return (
@@ -106,6 +107,7 @@ export const PrivacyAndTermsComponent = ({
             <LanguageChanger 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
+                initialLanguage={userData.language}
             />
 
         </>

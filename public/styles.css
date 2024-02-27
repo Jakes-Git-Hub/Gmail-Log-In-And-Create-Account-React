@@ -1805,7 +1805,7 @@ p-gap-ecys-tight {
 /* Language Changer Div */
 
 .language-changer {
-  width: 100px;
+  width: auto;
   height: auto;
 }
 
@@ -1819,3 +1819,8 @@ p-gap-ecys-tight {
   width: 50px;
   background-color: red;
 }
+
+.css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
+  /* max-height: 584px !important; */
+}
+

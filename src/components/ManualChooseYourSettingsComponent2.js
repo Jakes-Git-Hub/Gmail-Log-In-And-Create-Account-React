@@ -28,6 +28,7 @@ export const ManualChooseYourSettingsComponent2 = ({
     animationClose,
     handleBackClick,
     translationLoading,
+    userData,
 
 }) => {
 
@@ -262,6 +263,7 @@ export const ManualChooseYourSettingsComponent2 = ({
             <LanguageChanger 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
+                initialLanguage={userData.language}
             />
 
         </>

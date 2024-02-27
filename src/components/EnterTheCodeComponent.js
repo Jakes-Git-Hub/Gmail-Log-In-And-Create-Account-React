@@ -22,6 +22,7 @@ export const EnterTheCodeComponent = ({
     text,
     handleLanguageSelection,
     translationLoading,
+    userData,
 }) => {
     
     return (
@@ -174,6 +175,7 @@ export const EnterTheCodeComponent = ({
             <LanguageChanger 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
+                initialLanguage={userData.language}
             />
 
         </>
