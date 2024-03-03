@@ -22,6 +22,7 @@ export const CreatePasswordComponent = ({
     isImageLoaded,
     translationLoading,
     userData,
+    
 }) => {
 
 
@@ -211,6 +212,7 @@ export const CreatePasswordComponent = ({
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
+                
             />
 
         </>

@@ -19,6 +19,7 @@ export const ChooseYourSettingsComponent = ({
     text,
     userData,
     translationLoading,
+    
 }) => {
 
     return (
@@ -133,6 +134,7 @@ export const ChooseYourSettingsComponent = ({
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
+                
             />
 
         </>

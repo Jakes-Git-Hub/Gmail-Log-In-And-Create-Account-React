@@ -19,6 +19,7 @@ export const AddRecoveryEmailComponent = ({
     text,
     translationLoading,
     userData,
+    
 }) => {
 
     return (
@@ -144,6 +145,7 @@ export const AddRecoveryEmailComponent = ({
             <LanguageChanger 
                 initialLanguage={userData.language}
                 onChange={handleLanguageSelection}
+                
             />
 
         </>

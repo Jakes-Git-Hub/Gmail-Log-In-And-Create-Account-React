@@ -5,7 +5,7 @@ import googleWritingSvg from "../images/google-writing-svg.svg";
 import errorImage from '../images/Daco_5575399.png';
 import useImagePreload from "../hooks/useImagePreload";
 
-export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, handleLogin, loggedIn, translationLoading }) => {
+export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, handleLogin, loggedIn, translationLoading,  }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [email, setEmail] = useState(userData.email);
@@ -89,6 +89,7 @@ export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, 
                 text={text}
                 handleBackClick={handleBackClick}
                 translationLoading={translationLoading}
+                
             />
         </>
     );

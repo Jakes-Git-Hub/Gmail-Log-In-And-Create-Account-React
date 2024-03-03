@@ -34,6 +34,7 @@ export const BirthdayAndGenderComponent = ({
     translationLoading,
     handleLanguageSelection,
     userData,
+    
 }) => {
     
     return (
@@ -383,6 +384,7 @@ export const BirthdayAndGenderComponent = ({
             <LanguageChanger
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
+                
             />
 
         </>

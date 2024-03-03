@@ -24,7 +24,6 @@ import { ManualChooseYourSettingsContainer3 } from "./containers/ManualChooseYou
 import { ManualChooseYourSettingsContainer4 } from "./containers/ManualChooseYourSettingsContainer4";
 import { PrivacyAndTermsContainer } from "./containers/PrivacyAndTermsContainer";
 
-
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [users, setUsers] = useState([]);
@@ -51,43 +50,45 @@ function App() {
     if (!userData.language) return;
     setTranslationLoading(true);
     const chosenLanguage = userData.language;
-  
+
     try {
-      const translatedText = {};
-      for (const topLevelKey in text) {
-        const topLevelObject = text[topLevelKey];
-        const translatedTopLevelObject = {};
-  
-        // Translate each key-value pair in the nested object
-        for (const key in topLevelObject) {
-          const translation = await changeLanguageAndTranslate(topLevelObject[key], chosenLanguage);
-          translatedTopLevelObject[key] = translation;
+        // Translate text
+        const translatedText = {};
+        for (const topLevelKey in text) {
+            const topLevelObject = text[topLevelKey];
+            const translatedTopLevelObject = {};
+
+            // Translate each key-value pair in the nested object
+            for (const key in topLevelObject) {
+                const translation = await changeLanguageAndTranslate(topLevelObject[key], chosenLanguage);
+                translatedTopLevelObject[key] = translation;
+            }
+
+            translatedText[topLevelKey] = translatedTopLevelObject;
         }
-  
-        translatedText[topLevelKey] = translatedTopLevelObject;
-      }
-  
-      // Sanitize the translated text before setting it to state
-      const sanitizedTranslatedText = sanitizeText(translatedText);
-  
-      // Update the 'text' state with sanitized translated text
-      setText(sanitizedTranslatedText);
-  
-      // Translate country names
-      const newTranslatedCountries = await Promise.all(filteredCountriesFromUtil.map(async (country) => {
-        const translatedName = await changeLanguageAndTranslate(country.name, chosenLanguage);
-        return { ...country, name: translatedName };
-      }));
 
-      const sanitizedTranslatedCountries = sanitizeCountryNames(newTranslatedCountries);
+        // Sanitize the translated text before setting it to state
+        const sanitizedTranslatedText = sanitizeText(translatedText);
 
-      const orderedSanitizedTranslatedCountries = [...sanitizedTranslatedCountries].sort((a, b) => a.name.localeCompare(b.name));
-  
-      // Update the translatedCountries state with new translated countries
-      setTranslatedCountries(orderedSanitizedTranslatedCountries);
-      setHasTranslatedCountries(true);
+        // Update the 'text' state with sanitized translated text
+        setText(sanitizedTranslatedText);
+
+        // Translate country names
+        const newTranslatedCountries = await Promise.all(filteredCountriesFromUtil.map(async (country) => {
+            const translatedName = await changeLanguageAndTranslate(country.name, chosenLanguage);
+            return { ...country, name: translatedName };
+        }));
+
+        const sanitizedTranslatedCountries = sanitizeCountryNames(newTranslatedCountries);
+
+        const orderedSanitizedTranslatedCountries = [...sanitizedTranslatedCountries].sort((a, b) => a.name.localeCompare(b.name));
+
+        // Update the translatedCountries state with new translated countries
+        setTranslatedCountries(orderedSanitizedTranslatedCountries);
+        setHasTranslatedCountries(true);
+
     } catch (error) {
-      console.error('Error translating text:', error);
+        console.error('Error translating text:', error);
     }
     setTranslationLoading(false);
   }; 
@@ -106,6 +107,8 @@ function App() {
       }
   };
   
+// Translation Sanitisation 
+
   const sanitizeText = (translatedText) => {
     const sanitizedText = {};
 
@@ -199,6 +202,7 @@ const { userIP } = useUserIP()
                 userIP={userIP}
                 text={text}
                 userData={userData}
+                
               />
             </FrontPageStaticContainer>
           } />
@@ -210,6 +214,7 @@ const { userIP } = useUserIP()
                     text={text}
                     users={users}
                     userData={userData}
+                    
                   />} 
         />
         <Route path="/create-account" element={
@@ -218,6 +223,7 @@ const { userIP } = useUserIP()
               userData={userData}
               text={text}
               translationLoading={translationLoading}
+              
             />
           } 
         />
@@ -227,6 +233,7 @@ const { userIP } = useUserIP()
                 userData={userData}
                 text={text}
                 translationLoading={translationLoading}
+                
               />
           } 
         />
@@ -236,6 +243,7 @@ const { userIP } = useUserIP()
               users={users}
               text={text}
               translationLoading={translationLoading}
+              
             />
           } 
         />
@@ -245,6 +253,7 @@ const { userIP } = useUserIP()
               users={users}
               text={text}
               translationLoading={translationLoading}
+              
             />
           } 
         />
@@ -260,6 +269,7 @@ const { userIP } = useUserIP()
               translatedCountries={translatedCountries}
               hasTranslatedCountries={hasTranslatedCountries}
               translationLoading={translationLoading}
+              
             />
           } 
         />
@@ -269,6 +279,7 @@ const { userIP } = useUserIP()
               userData={userData}
               text={text}
               translationLoading={translationLoading}
+              
             />
           } 
         />
@@ -278,6 +289,7 @@ const { userIP } = useUserIP()
               text={text}
               translationLoading={translationLoading}
               userData={userData}
+              
             />
           } 
         />
@@ -287,6 +299,7 @@ const { userIP } = useUserIP()
               userData={userData}
               text={text}
               translationLoading={translationLoading}
+              
             />
           } 
         />
@@ -296,6 +309,7 @@ const { userIP } = useUserIP()
               text={text}
               translationLoading={translationLoading}
               userData={userData}
+              
             />
           } 
         />
@@ -306,6 +320,7 @@ const { userIP } = useUserIP()
               hidePrivacyRow={hidePrivacyRow}  
               translationLoading={translationLoading}
               userData={userData}
+              
             />
           } 
         />
@@ -316,6 +331,7 @@ const { userIP } = useUserIP()
               updateUser={updateUser}
               text={text}
               translationLoading={translationLoading}
+              
             />
           } 
         />
@@ -326,6 +342,7 @@ const { userIP } = useUserIP()
               updateUser={updateUser}
               text={text}
               translationLoading={translationLoading}
+              
             />
           } 
         />
@@ -336,6 +353,7 @@ const { userIP } = useUserIP()
               updateUser={updateUser}
               text={text}
               translationLoading={translationLoading}
+              
             />
           } 
         />
@@ -347,6 +365,7 @@ const { userIP } = useUserIP()
               text={text}
               makePrivacyRowVisible={makePrivacyRowVisible}
               translationLoading={translationLoading}
+              
             />
           } 
         />
@@ -358,6 +377,7 @@ const { userIP } = useUserIP()
               updateUser={updateUser}
               showPrivacyRow={showPrivacyRow}
               translationLoading={translationLoading}
+              
             />
           } 
         />
@@ -372,6 +392,7 @@ const { userIP } = useUserIP()
               users={users}
               loggedIn={loggedIn}
               translationLoading={translationLoading}
+              
             />
           } 
         />

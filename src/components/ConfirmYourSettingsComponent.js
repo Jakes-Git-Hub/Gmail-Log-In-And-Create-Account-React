@@ -17,6 +17,7 @@ export const ConfirmYourSettingsComponent = ({
     userData,
     showPrivacyRow,
     translationLoading,
+    
 }) => {
 
     return (
@@ -177,6 +178,7 @@ export const ConfirmYourSettingsComponent = ({
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
+                
             />
 
         </>

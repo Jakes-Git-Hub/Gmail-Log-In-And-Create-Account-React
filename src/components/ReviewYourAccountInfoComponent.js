@@ -10,6 +10,7 @@ export const ReviewYourAccountInfoComponent = ({
     handleLanguageSelection,
     text,
     translationLoading,
+    
 
 }) => {
 
@@ -68,6 +69,7 @@ export const ReviewYourAccountInfoComponent = ({
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
+                
             />
 
         </>

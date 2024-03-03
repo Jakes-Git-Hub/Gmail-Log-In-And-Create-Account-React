@@ -5,7 +5,7 @@ import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const CreateAccountContainer = ({ updateUser, text, translationLoading, userData, }) => {
+export const CreateAccountContainer = ({ updateUser, text, translationLoading, userData,  }) => {
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -107,6 +107,7 @@ export const CreateAccountContainer = ({ updateUser, text, translationLoading, u
                 isImageLoaded={isImageLoaded}
                 translationLoading={translationLoading}
                 userData={userData}
+                
             />
         </>
     );

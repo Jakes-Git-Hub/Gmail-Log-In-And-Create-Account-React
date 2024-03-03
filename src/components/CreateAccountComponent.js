@@ -20,6 +20,7 @@ export const CreateAccountcomponent = ({
     isImageLoaded,
     translationLoading,
     userData,
+    
 }) => {
 
     return (
@@ -140,6 +141,7 @@ export const CreateAccountcomponent = ({
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
+                
             />
 
         </>

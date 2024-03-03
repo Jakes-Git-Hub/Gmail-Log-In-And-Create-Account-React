@@ -27,6 +27,7 @@ export const ExpressChooseYourSettingsComponent = ({
     handleRejectAllClick,
     translationLoading,
     userData,
+    
 }) => {
 
     return (
@@ -348,6 +349,7 @@ export const ExpressChooseYourSettingsComponent = ({
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
+                
             />
 
         </>                

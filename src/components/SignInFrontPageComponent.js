@@ -20,6 +20,7 @@ export const SignInFrontPageComponent = ({
     isImagePreloaded,
     translationLoading,
     userData,
+    
 
 }) => {
 

@@ -1802,25 +1802,33 @@ p-gap-ecys-tight {
   align-items: center;
 }
 
-/* Language Changer Div */
+/* Footer */
 
-.language-changer {
-  width: auto;
-  height: auto;
+/* Language Changer */
+
+#language-changer-footer {
+  width: 448.18px;
+  min-width: 448.18px;
 }
 
-.lang-test{
-  height: 50px;
-  width: 50px;
+#language-changer-dropdown {
+  right: 12.5px;
+  margin-top: 5px;
+  width: 209px;
 }
 
-.change-lang-button {
-  height: 50px;
-  width: 50px;
-  background-color: red;
+.css-2uyz2z-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
+  color: rgb(60,64,67) !important;
 }
 
-.css-3dzjca-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
-  /* max-height: 584px !important; */
+.css-hfutr2-MuiSvgIcon-root-MuiSelect-icon {
+  cursor: pointer !important;
+  pointer-events: auto !important;
 }
+
+.css-bpeome-MuiSvgIcon-root-MuiSelect-icon {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+}
+
 

@@ -13,6 +13,7 @@ export const PrivacyAndTermsComponent = ({
     handleBackClick,
     translationLoading,
     userData,
+    
 }) => {
 
     return (
@@ -108,6 +109,7 @@ export const PrivacyAndTermsComponent = ({
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
+                
             />
 
         </>

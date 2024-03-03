@@ -4,7 +4,7 @@ import { ExpressChooseYourSettingsComponent } from "../components/ExpressChooseY
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import { useSpring } from 'react-spring';
 
-export const ExpressChooseYourSettingsContainer = ({ updateUser, text, hidePrivacyRow, translationLoading, userData }) => {
+export const ExpressChooseYourSettingsContainer = ({ updateUser, text, hidePrivacyRow, translationLoading, userData,  }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
     const [showWebAndAppActivityModal, setShowWebAndAppActivityModal] = useState(false);
@@ -144,6 +144,7 @@ export const ExpressChooseYourSettingsContainer = ({ updateUser, text, hidePriva
                 handleRejectAllClick={handleRejectAllClick}
                 translationLoading={translationLoading}
                 userData={userData}
+                
             />
         </>
     );

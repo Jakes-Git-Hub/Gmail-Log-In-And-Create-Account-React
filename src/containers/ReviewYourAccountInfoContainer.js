@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ReviewYourAccountInfoComponent } from "../components/ReviewYourAccountInfoComponent";
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const ReviewYourAccountInfoContainer = ({ userData, updateUser, text, translationLoading }) => {
+export const ReviewYourAccountInfoContainer = ({ userData, updateUser, text, translationLoading,  }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
 
@@ -64,6 +64,7 @@ export const ReviewYourAccountInfoContainer = ({ userData, updateUser, text, tra
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
                 translationLoading={translationLoading}
+                
             />
         </>
     );

@@ -4,7 +4,7 @@ import { SignInFrontPageComponent } from '../components/SignInFrontPageComponent
 import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 
-export const SignInFrontPageContainer = ({ users, handleLogin, translationLoading, userData, }) => {
+export const SignInFrontPageContainer = ({ users, handleLogin, translationLoading, userData,  }) => {
 
     const navigate = useNavigate();
 
@@ -97,6 +97,7 @@ export const SignInFrontPageContainer = ({ users, handleLogin, translationLoadin
                 isImagePreloaded={isImagePreloaded}
                 translationLoading={translationLoading}
                 userData={userData}
+                
             />
         </>
     );
