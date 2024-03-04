@@ -1802,18 +1802,19 @@ p-gap-ecys-tight {
   align-items: center;
 }
 
-/* Footer */
-
-/* Language Changer */
+/* Language Changer Footer */
 
 #language-changer-footer {
   width: 448.18px;
   min-width: 448.18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 7px;
 }
 
 #language-changer-dropdown {
   right: 12.5px;
-  margin-top: 5px;
   width: 209px;
 }
 
@@ -1831,4 +1832,7 @@ p-gap-ecys-tight {
   pointer-events: auto !important;
 }
 
-
+#footer-trio-buttons-container {
+  position: relative;
+  left: 15px;
+}

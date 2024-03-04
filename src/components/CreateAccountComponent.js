@@ -141,7 +141,6 @@ export const CreateAccountcomponent = ({
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
-                
             />
 
         </>

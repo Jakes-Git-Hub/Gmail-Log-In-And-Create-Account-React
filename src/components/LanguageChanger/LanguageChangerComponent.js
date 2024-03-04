@@ -3,7 +3,7 @@ import languageOptions from '../../utils/languageOptions';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import TransparentSmallButton from '../buttons/FooterGreyButton';
+import FooterGreyButton from '../buttons/FooterGreyButton';
 
 function LanguageChanger({ onChange, initialLanguage }) {
 
@@ -63,13 +63,28 @@ function LanguageChanger({ onChange, initialLanguage }) {
         setOpen(!open);
     };
 
+// Footer Button Links
+
+    const handleHelpButtonClicked = () => {
+        window.open('https://support.google.com/accounts?hl=en-GB&visit_id=638451420796909083-2011793641&rd=2&p=account_iph#topic=3382296', '_blank');
+    };
+
+    const handlePrivacyButtonClicked = () => {
+        window.open('https://policies.google.com/privacy?gl=GB&hl=en-GB', '_blank');
+    };
+
+    const handleTermsButtonClicked = () => {
+        window.open('https://policies.google.com/terms?gl=GB&hl=en-GB', '_blank');
+    };
+
     return (
 
 
-        <div id='language-changer-footer' onClick={toggleMenu}>
+        <div id='language-changer-footer'>
 
             <FormControl 
                 id='language-changer-dropdown'
+                onClick={toggleMenu}
                 sx={{
                         backgroundColor: open ? '#eeeeee' : "",
                         borderRadius: '4px',
@@ -133,15 +148,15 @@ function LanguageChanger({ onChange, initialLanguage }) {
             </FormControl>
 
             <div id='footer-trio-buttons-container'>
-                <TransparentSmallButton>
+                <FooterGreyButton onClick={handleHelpButtonClicked}>
                     Help
-                </TransparentSmallButton>
-                <TransparentSmallButton>
+                </FooterGreyButton>
+                <FooterGreyButton onClick={handlePrivacyButtonClicked}>
                     Privacy
-                </TransparentSmallButton>
-                <TransparentSmallButton>
+                </FooterGreyButton>
+                <FooterGreyButton onClick={handleTermsButtonClicked}>
                     Terms
-                </TransparentSmallButton>
+                </FooterGreyButton>
             </div>
 
         </div>

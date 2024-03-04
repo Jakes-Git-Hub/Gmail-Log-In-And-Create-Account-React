@@ -1,19 +1,21 @@
 import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 
-const TransparentSmallButton = styled(Button)({
+const FooterGreyButton = styled(Button)({
     backgroundColor: 'transparent',
-    color: 'rgb(26,115,232)',
+    color: '#3c4043',
+    fontWeight: '400',
     padding: '0',
     fontSize: '0.75rem',
+    height: '50.25px',
+    width: '48px',
     boxShadow: "none",
-    borderRadius: "2px",
+    borderRadius: "4px",
     '& .MuiTouchRipple-child': {
         color: 'rgb(26,115,232)',
         backgroundColor: 'transparent', // Change this to your desired ripple color
     },
     '&:hover': {
-        color: "rgb(26,115,232)",
         backgroundColor: 'transparent',
         boxShadow: 'none',    
     },
@@ -24,20 +26,18 @@ const TransparentSmallButton = styled(Button)({
         zIndex: 1,
     },
     '&:active': {
-        color: 'rgb(23,78,166)',
         '& .MuiTouchRipple-child': {
-            color: 'rgb(26,115,232)',
+            color: 'none',
             backgroundColor: 'transparent', // Change this to your desired ripple color
         },
     },
     '&:focus': {
-        color: 'rgb(23,78,166)',
-        backgroundColor: 'rgba(26,115,232,0.149)',
+        backgroundColor: '#e0e0e0;',
         '& .MuiTouchRipple-child': {
-            color: 'rgb(26,115,232)',
+            color: 'none',
             backgroundColor: 'transparent', // Change this to your desired ripple color
         },
     },
 });
 
-export default TransparentSmallButton;
+export default FooterGreyButton;
