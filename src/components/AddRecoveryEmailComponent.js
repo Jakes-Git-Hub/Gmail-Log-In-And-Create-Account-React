@@ -35,9 +35,9 @@ export const AddRecoveryEmailComponent = ({
 
                     <form onSubmit={handleSubmit}>
 
-                        <h1 class="thin h1-space">{text.AddRecoveryEmail.h1}</h1>
+                        <h1 class="thin h1-space">{text.AddRecoveryEmail.h1[userData.language]}</h1>
                         <div id='reduce-width-h2'>
-                            <h2 class='thin gap center'>{text.AddRecoveryEmail.h2}</h2>
+                            <h2 class='thin gap center'>{text.AddRecoveryEmail.h2[userData.language]}</h2>
                         </div>
 
                         <div id='create-password-space'class=" line-height label-input-width input-label-recovery-email">
@@ -46,7 +46,7 @@ export const AddRecoveryEmailComponent = ({
                                             fullWidth error={errorCondition}
                                             id='recoveryEmailInput'
                                             value={recoveryEmail}
-                                            label={text.AddRecoveryEmail.recoveryEmail}
+                                            label={text.AddRecoveryEmail.recoveryEmail[userData.language]}
                                             onChange={(e) => setRecoveryEmail(e.target.value)}
                                             InputLabelProps={
                                                 errorCondition ? 
@@ -80,28 +80,28 @@ export const AddRecoveryEmailComponent = ({
                         {errorCondition === 'enterValidEmail' && isImagePreloaded && (
                             <div class='error-div-add-recovery-email'>
                                 <img className='error-image' src={errorImage} alt='Error Image' />
-                                <p class="input-error-message">{text.AddRecoveryEmail.error1}</p>
+                                <p class="input-error-message">{text.AddRecoveryEmail.error1[userData.language]}</p>
                             </div>
                         )}
 
                         {errorCondition === 'dontForgetAtSymbol' && isImagePreloaded && ( 
                             <div class='error-div-add-recovery-email'>
                                 <img className='error-image' src={errorImage} alt='Error Image' />
-                                <p class="input-error-message">{text.AddRecoveryEmail.error2}</p>
+                                <p class="input-error-message">{text.AddRecoveryEmail.error2[userData.language]}</p>
                             </div>
                         )} 
                         
                         {errorCondition === 'enterADomainName' && isImagePreloaded && (
                             <div class='error-div-add-recovery-email'>
                                 <img className='error-image' src={errorImage} alt='Error Image' />
-                                <p class="input-error-message">{text.AddRecoveryEmail.error3}</p>
+                                <p class="input-error-message">{text.AddRecoveryEmail.error3[userData.language]}</p>
                             </div>
                         )}
 
                         {errorCondition === 'emailAddressNotValid' && isImagePreloaded && (
                             <div class='error-div-add-recovery-email'>
                                 <img className='error-image' src={errorImage} alt='Error Image' />
-                                <p class="input-error-message">{text.AddRecoveryEmail.error4}</p>
+                                <p class="input-error-message">{text.AddRecoveryEmail.error4[userData.language]}</p>
                             </div>
                         )}  
 
@@ -118,7 +118,7 @@ export const AddRecoveryEmailComponent = ({
                                 }}
                             >
                                 <div class='next'>
-                                    {text.AddRecoveryEmail.next}
+                                    {text.EnterTheCode.next[userData.language]}
                                 </div>
                             </CustomNextAndSkipButton>
                             <CustomNextAndSkipButton
@@ -133,7 +133,7 @@ export const AddRecoveryEmailComponent = ({
                                 }}
                             >
                                 <div class='skip'>
-                                    {text.AddRecoveryEmail.skip}
+                                    {text.AddRecoveryEmail.skip[userData.language]}
                                 </div>
                             </CustomNextAndSkipButton>
                         </div>

@@ -39,9 +39,9 @@ export const CreatePasswordComponent = ({
 
                 <form>
 
-                    <h1 class="thin h1-space">{text.CreatePassword.h1}</h1>
+                    <h1 class="thin h1-space">{text.CreatePassword.h1[userData.language]}</h1>
                     <div id='create-password-h2'>
-                        <h2 class='thin gap center'>{text.CreatePassword.h2}</h2>
+                        <h2 class='thin gap center'>{text.CreatePassword.h2[userData.language]}</h2>
                     </div>
 
                     <div id='create-password-space'class=" line-height label-input-width input-label">
@@ -51,7 +51,7 @@ export const CreatePasswordComponent = ({
                                 id='passwordInput'
                                 value={password}
                                 type={!showPassword ? 'password' : 'text'}
-                                label={text.CreatePassword.password}
+                                label={text.CreatePassword.password[userData.language]}
                                 onChange={handleSelectPassword}
                                 InputLabelProps={
                                     errorCondition && errorCondition !== 'confirmPasswordEmpty' && errorCondition !== 'passwordMismatch'? 
@@ -89,7 +89,7 @@ export const CreatePasswordComponent = ({
                                 id='confirmPasswordInput'
                                 value={confirmPassword}
                                 type={!showPassword ? 'password' : 'text'}
-                                label={text.CreatePassword.confirm}
+                                label={text.CreatePassword.confirm[userData.language]}
                                 onChange={handleSelectConfirmPassword}
                                 InputLabelProps={
                                     errorCondition && errorCondition !== 'passwordEmpty' && errorCondition !== 'needs8CharsOrMore' ? 
@@ -123,35 +123,35 @@ export const CreatePasswordComponent = ({
                     {errorCondition === 'passwordEmpty' && isImagePreloaded && (
                         <div class='error-div' id='create-password-error-div'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.CreatePassword.error1}</p>
+                            <p class="input-error-message">{text.CreatePassword.error1[userData.language]}</p>
                         </div>
                     )}
 
                     {errorCondition === 'confirmPasswordEmpty' && isImagePreloaded && ( 
                         <div class='error-div' id='create-password-error-div'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.CreatePassword.error2}</p>
+                            <p class="input-error-message">{text.CreatePassword.error2[userData.language]}</p>
                         </div>
                     )} 
                     
                     {errorCondition === 'passwordMismatch' && isImagePreloaded && (
                         <div class='error-div' id='create-password-error-div'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.CreatePassword.error3}</p>
+                            <p class="input-error-message">{text.CreatePassword.error3[userData.language]}</p>
                         </div>
                     )}
 
                     {errorCondition === 'needs8CharsOrMore' && isImagePreloaded && (
                         <div class='error-div' id='create-password-error-div'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.CreatePassword.error4}</p>
+                            <p class="input-error-message">{text.CreatePassword.error4[userData.language]}</p>
                         </div>
                     )}
 
                     {errorCondition === 'pleaseChooseAStrongerPassword' && isImagePreloaded && (
                         <div class='error-div' id='create-password-error-div-stronger-password'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.CreatePassword.error5}</p>
+                            <p class="input-error-message">{text.CreatePassword.error5[userData.language]}</p>
                         </div>
                     )}
 
@@ -184,7 +184,7 @@ export const CreatePasswordComponent = ({
                                 },
                             }}
                         />
-                        <p id='show-password-checkbox'>{text.CreatePassword.show}</p>
+                        <p id='show-password-checkbox'>{text.CreatePassword.show[userData.language]}</p>
                     </div>
 
                     <div id='create-password-next-button' class="button-space-create-password">
@@ -198,7 +198,7 @@ export const CreatePasswordComponent = ({
                             }}
                         >
                             <div class='next'>
-                            {text.CreatePassword.next}
+                            {text.CreatePassword.next[userData.language]}
                             </div>
                         </CustomNextButton>                
                         

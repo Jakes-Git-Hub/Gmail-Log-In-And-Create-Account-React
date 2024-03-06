@@ -31,7 +31,7 @@ export const ConfirmYourSettingsComponent = ({
                 </div>
                 <img src={googleWritingSvg} alt="Google Writing" id="google-writing-recovery-ryai"/>
                 
-                <h1 class="thin h1-space h1-mcys">{text.ConfirmYourSettings.h1}</h1>
+                <h1 class="thin h1-space h1-mcys">{text.ConfirmYourSettings.h1[userData.language]}</h1>
                 <div id='reduce-width-h2-confirm-your-settings'>
                     <h2 class='thin gap center'>{text.ConfirmYourSettings.h2}</h2>
                 </div>

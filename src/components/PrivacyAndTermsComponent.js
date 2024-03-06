@@ -27,7 +27,7 @@ export const PrivacyAndTermsComponent = ({
                 </div>
                 <img src={googleWritingSvg} alt="Google Writing" id="google-writing-recovery-ryai"/>
                 
-                <h1 class="thin h1-space h1-mcys">{text.PrivacyAndTerms.h1}</h1>
+                <h1 class="thin h1-space h1-mcys">{text.PrivacyAndTerms.h1[userData.language]}</h1>
 
                 <div id="container-choose-your-settings-m">
                     <p class='p-privacy-and-terms p-gap-ecys'>

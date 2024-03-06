@@ -6,7 +6,7 @@ import errorImage from '../images/Daco_5575399.png';
 import useImagePreload from "../hooks/useImagePreload";
 import { useSpring } from 'react-spring';
 
-export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text, translationLoading,  }) => {
+export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text, translationLoading, }) => {
 
     const [manualSetting1, setManualSetting1] = useState("");
     const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -28,9 +28,18 @@ export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text, 
         };
     }, []);
 
+// Change Language
+
+    const handleLanguageSelection = (chosenLanguage) => {
+        updateUser({ language: chosenLanguage })
+    };
+
     useEffect(() => {
-        console.log('errorCondition:', errorCondition);
-    }, [errorCondition]);
+        window.scrollTo({
+            top: 0, // Scroll to the top of the viewport
+            behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
+        });
+    }, [userData.language]);
 
 // Add Overflow Body CSS
 
@@ -73,16 +82,6 @@ export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text, 
           easing: t => t < 0.5 ? 2*t*t : -1+(4-2*t)*t
         }
     });
-
-// Change Language
-
-    const handleLanguageSelection = (chosenLanguage) => {
-        window.scrollTo({
-            top: 0, // Scroll to the top of the viewport
-            behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
-        });
-        updateUser({ language: chosenLanguage })
-    };
 
 // Handle Radio Change
 

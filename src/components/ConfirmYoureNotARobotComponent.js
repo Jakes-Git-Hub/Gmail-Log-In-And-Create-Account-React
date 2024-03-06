@@ -46,10 +46,10 @@ export const ConfirmYoureNotARobotComponent = ({
                 <form>
 
 
-                    <h1 class="thin" id="h1-cynar">{text.ConfirmYoureNotARobot.h1}</h1>
+                    <h1 class="thin" id="h1-cynar">{text.ConfirmYoureNotARobot.h1[userData.language]}</h1>
 
                     <div id='h2-cynar-div'>
-                        <h2 id='h2-cynar'>{text.ConfirmYoureNotARobot.h2}</h2>
+                        <h2 id='h2-cynar'>{text.ConfirmYoureNotARobot.h2[userData.language]}</h2>
                     </div>
                     
 
@@ -80,7 +80,7 @@ export const ConfirmYoureNotARobotComponent = ({
                                         fullWidth error={errorCondition}
                                         id='phoneNumberInput'
                                         value={phoneNumber}
-                                        label={text.ConfirmYoureNotARobot.phoneNumber}
+                                        label={text.ConfirmYoureNotARobot.phoneNumber[userData.language]}
                                         type="number text"
                                         onChange={handleSelectPhoneNumber}
                                         InputLabelProps={
@@ -123,27 +123,27 @@ export const ConfirmYoureNotARobotComponent = ({
                     {errorCondition === "phoneNumberEmpty" && isImagePreloaded ? (
                         <div class='long-error-div' id='error-div-space-cynar'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.ConfirmYoureNotARobot.error1}</p>
+                            <p class="input-error-message">{text.ConfirmYoureNotARobot.error1[userData.language]}</p>
                         </div>
                     ) : errorCondition === "incorrectFormat" && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space-cynar'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.ConfirmYoureNotARobot.error2}</p>
+                            <p class="input-error-message">{text.ConfirmYoureNotARobot.error2[userData.language]}</p>
                         </div>
                     ) : errorCondition === "alreadyRegistered" && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space-cynar'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.ConfirmYoureNotARobot.error3}</p>
+                            <p class="input-error-message">{text.ConfirmYoureNotARobot.error3[userData.language]}</p>
                         </div>
                     ) : errorCondition === "incorrectNumber" && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space-cynar'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.ConfirmYoureNotARobot.error4}</p>
+                            <p class="input-error-message">{text.ConfirmYoureNotARobot.error4[userData.language]}</p>
                         </div>
                     ) : null}
 
                     <div class='below-input-small-grey-cynar'>
-                        <p class='small-grey-cynar'>{text.ConfirmYoureNotARobot.googleWillVerify}</p>
+                        <p class='small-grey-cynar'>{text.ConfirmYoureNotARobot.googleWillVerify[userData.language]}</p>
                     </div>
                     
                     <div id={formattedPhoneNumber ? 'button-right-robot-confirm' : "button-right-robot"}>
@@ -157,7 +157,7 @@ export const ConfirmYoureNotARobotComponent = ({
                             }}
                         >
                             <div class='next'>
-                            {text.ConfirmYoureNotARobot.next}
+                            {text.ConfirmYoureNotARobot.next[userData.language]}
                             </div>
                         </CustomNextButton>
                     </div>

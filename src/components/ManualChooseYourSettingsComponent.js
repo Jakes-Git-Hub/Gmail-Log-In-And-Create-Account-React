@@ -43,7 +43,7 @@ export const ManualChooseYourSettingsComponent = ({
                 </div>
                 <img src={googleWritingSvg} alt="Google Writing" id="google-writing-recovery-ryai"/>
 
-                <h1 class="thin h1-space h1-mcys">{text.ManualChooseYourSettings.h1}</h1>
+                <h1 class="thin h1-space h1-mcys">{text.ManualChooseYourSettings.h1[userData.language]}</h1>
                 <p class="first-p-mcys">{text.ManualChooseYourSettings.step1}</p>
                 <div id="container-choose-your-settings-m">
                     <p class="regular-p">{text.ManualChooseYourSettings.choose}</p>
@@ -157,7 +157,7 @@ export const ManualChooseYourSettingsComponent = ({
                     <h2 class="mcys-h2" id='more-margin-top-h2-mcys'>{text.ManualChooseYourSettings.howYouCanManage}</h2>
                     <p class='pecys p-gap-ecys'>{text.ManualChooseYourSettings.howYouCanManage1}</p>
 
-                    <TransparentSmallButton className="setting-information learn-more-mcys" onClick={openWebAndAppActivityModal}>{text.ExpressChooseYourSettings.learnMore1}</TransparentSmallButton>
+                    <TransparentSmallButton className="setting-information learn-more-mcys" onClick={openWebAndAppActivityModal}>{text.ExpressChooseYourSettings.learnMore1[userData.language]}</TransparentSmallButton>
                     <Modal
                         open={showWebAndAppActivityModal}
                         onClose={closeWebAndAppActivityModal}
@@ -190,26 +190,26 @@ export const ManualChooseYourSettingsComponent = ({
                             >
                         
                                 <div className='modal-title-div'>
-                                    <h1 className='modal-title-h1'>{text.ExpressChooseYourSettings.about1}</h1>
+                                    <h1 className='modal-title-h1'>{text.ExpressChooseYourSettings.about1[userData.language]}</h1>
                                 </div>
                                 <div className='modal-scroll-information-container'>
                                     <div className='modal-scroll-information'>  
-                                        <h2 className='modal-h2'>{text.ExpressChooseYourSettings.m1h21}</h2>
-                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p1}</p>
-                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p2}</p>
+                                        <h2 className='modal-h2'>{text.ExpressChooseYourSettings.m1h21[userData.language]}</h2>
+                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p1[userData.language]}</p>
+                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p2[userData.language]}</p>
                                         <ul>
-                                            <li className='modal-li'>{text.ExpressChooseYourSettings.m1b1}</li>
-                                            <li className='modal-li'>{text.ExpressChooseYourSettings.m1b2}</li>
-                                            <li className='modal-li'>{text.ExpressChooseYourSettings.m1b3}</li>
-                                            <li className='modal-li'>{text.ExpressChooseYourSettings.m1b4}</li>
+                                            <li className='modal-li'>{text.ExpressChooseYourSettings.m1b1[userData.language]}</li>
+                                            <li className='modal-li'>{text.ExpressChooseYourSettings.m1b2[userData.language]}</li>
+                                            <li className='modal-li'>{text.ExpressChooseYourSettings.m1b3[userData.language]}</li>
+                                            <li className='modal-li'>{text.ExpressChooseYourSettings.m1b4[userData.language]}</li>
                                         </ul>
-                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p3}.</p>
-                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p4}</p>
-                                        <h2 className='modal-h2 modal-h2-more-margin'>{text.ExpressChooseYourSettings.m1h22}</h2>
-                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p5}</p>
-                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p6}</p>
-                                        <h2 className='modal-h2 modal-h2-more-margin'>{text.ExpressChooseYourSettings.m1h23}</h2>
-                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p7}</p>
+                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p3[userData.language]}.</p>
+                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p4[userData.language]}</p>
+                                        <h2 className='modal-h2 modal-h2-more-margin'>{text.ExpressChooseYourSettings.m1h22[userData.language]}</h2>
+                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p5[userData.language]}</p>
+                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p6[userData.language]}</p>
+                                        <h2 className='modal-h2 modal-h2-more-margin'>{text.ExpressChooseYourSettings.m1h23[userData.language]}</h2>
+                                        <p className='modal-p'>{text.ExpressChooseYourSettings.m1p7[userData.language]}</p>
                                     </div>
                                 </div>
                                 <div className='modal-got-it-div'>
@@ -271,7 +271,6 @@ export const ManualChooseYourSettingsComponent = ({
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
-                
             />
 
         </>

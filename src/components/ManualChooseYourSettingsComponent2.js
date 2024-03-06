@@ -44,7 +44,7 @@ export const ManualChooseYourSettingsComponent2 = ({
                 </div>
                 <img src={googleWritingSvg} alt="Google Writing" id="google-writing-recovery-ryai"/>
 
-                <h1 class="thin h1-space h1-mcys">{text.ManualChooseYourSettings2.h1}</h1>
+                <h1 class="thin h1-space h1-mcys">{text.ManualChooseYourSettings2.h1[userData.language]}</h1>
                 <p class="first-p-mcys">{text.ManualChooseYourSettings2.step}</p>
 
                 <div id="container-choose-your-settings-m">
@@ -265,7 +265,6 @@ export const ManualChooseYourSettingsComponent2 = ({
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
-                
             />
 
         </>

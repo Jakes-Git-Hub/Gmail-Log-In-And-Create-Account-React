@@ -4,7 +4,6 @@ import { useUserIP } from './utils/userIPModule';
 import axios from "axios";  
 import textData from './data/textData';
 import { filteredCountriesFromUtil } from './utils/countryDropDownOptions';
-import { FrontPageStaticContainer } from './containers/FrontPageStaticContainer'
 import { SignInFrontPageContainer } from "./containers/SignInFrontPageContainer";
 import { MockMailContainer } from "./containers/MockMailContainer";
 import { CreateAccountContainer } from "./containers/CreateAccountContainer";
@@ -29,13 +28,11 @@ function App() {
   const [users, setUsers] = useState([]);
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
   const [nextUserId, setNextUserId] = useState(1);
-  const [userData, setUserData] = useState({ manualSetting4: 'no privacy reminders' });
+  const [userData, setUserData] = useState({ manualSetting4: 'no privacy reminders', language: 'en-GB' });
   const [hasSelectedCYNARCountry, setHasSelectedCYNARCountry] = useState(false);
   const [text, setText] = useState(textData);
   const [translatedCountries, setTranslatedCountries] = useState(filteredCountriesFromUtil);
-  const [hasTranslatedCountries, setHasTranslatedCountries] = useState(false);
   const [showPrivacyRow, setShowPrivacyRow] = useState(false);
-  const [translationLoading, setTranslationLoading] = useState(false);
 
 // Translation
 
@@ -48,32 +45,10 @@ function App() {
 
   const handleLanguageSelection = async () => {
     if (!userData.language) return;
-    setTranslationLoading(true);
     const chosenLanguage = userData.language;
 
     try {
-        // Translate text
-        const translatedText = {};
-        for (const topLevelKey in text) {
-            const topLevelObject = text[topLevelKey];
-            const translatedTopLevelObject = {};
 
-            // Translate each key-value pair in the nested object
-            for (const key in topLevelObject) {
-                const translation = await changeLanguageAndTranslate(topLevelObject[key], chosenLanguage);
-                translatedTopLevelObject[key] = translation;
-            }
-
-            translatedText[topLevelKey] = translatedTopLevelObject;
-        }
-
-        // Sanitize the translated text before setting it to state
-        const sanitizedTranslatedText = sanitizeText(translatedText);
-
-        // Update the 'text' state with sanitized translated text
-        setText(sanitizedTranslatedText);
-
-        // Translate country names
         const newTranslatedCountries = await Promise.all(filteredCountriesFromUtil.map(async (country) => {
             const translatedName = await changeLanguageAndTranslate(country.name, chosenLanguage);
             return { ...country, name: translatedName };
@@ -85,12 +60,10 @@ function App() {
 
         // Update the translatedCountries state with new translated countries
         setTranslatedCountries(orderedSanitizedTranslatedCountries);
-        setHasTranslatedCountries(true);
 
     } catch (error) {
         console.error('Error translating text:', error);
     }
-    setTranslationLoading(false);
   }; 
 
   const changeLanguageAndTranslate = async (text, chosenLanguage) => {
@@ -107,27 +80,27 @@ function App() {
       }
   };
   
-// Translation Sanitisation 
+// // Translation Sanitisation 
 
-  const sanitizeText = (translatedText) => {
-    const sanitizedText = {};
+//   const sanitizeText = (translatedText) => {
+//     const sanitizedText = {};
 
-    for (const topLevelKey in translatedText) {
-      const topLevelObject = translatedText[topLevelKey];
-      const sanitizedTopLevelObject = {};
+//     for (const topLevelKey in translatedText) {
+//       const topLevelObject = translatedText[topLevelKey];
+//       const sanitizedTopLevelObject = {};
 
-      for (const key in topLevelObject) {
-        const sanitizedValue = topLevelObject[key].replace(/&#39;/g, "'").replace(/«/g,'"').replace(/»/g,'"').replace(/&quot;/g,'"');
-        // Add more sanitization rules as needed
+//       for (const key in topLevelObject) {
+//         const sanitizedValue = topLevelObject[key].replace(/&#39;/g, "'").replace(/«/g,'"').replace(/»/g,'"').replace(/&quot;/g,'"');
+//         // Add more sanitization rules as needed
 
-        sanitizedTopLevelObject[key] = sanitizedValue;
-      }
+//         sanitizedTopLevelObject[key] = sanitizedValue;
+//       }
 
-      sanitizedText[topLevelKey] = sanitizedTopLevelObject;
-    }
+//       sanitizedText[topLevelKey] = sanitizedTopLevelObject;
+//     }
 
-    return sanitizedText;
-  };
+//     return sanitizedText;
+//   };
 
   const sanitizeCountryNames = (countries) => {
     const sanitizedCountries = countries.map(country => ({
@@ -162,7 +135,17 @@ const { userIP } = useUserIP()
 // Update User Data
 
   const updateUser = data => {
-    setUserData(prevData => ({ ...prevData, ...data }));
+    setUserData(prevData => {
+      // Check if the new data actually changes the user data
+      const isDataChanged = Object.keys(data).some(key => data[key] !== prevData[key]);
+      if (isDataChanged) {
+        // If the data has changed, return the new data to update the state
+        return { ...prevData, ...data };
+      } else {
+        // If the data hasn't changed, return the previous data to prevent a state update
+        return prevData;
+      }
+    });
   };
 
 // Add User
@@ -195,46 +178,41 @@ const { userIP } = useUserIP()
     <Router>
       <Routes>
         <Route path="/" element={
-            <FrontPageStaticContainer>
-              <SignInFrontPageContainer 
-                users={users}
-                handleLogin={handleLogin}
-                userIP={userIP}
-                text={text}
-                userData={userData}
-                
-              />
-            </FrontPageStaticContainer>
-          } />
-        <Route 
-          path="/mockmail" 
-          element={<MockMailContainer   
-                    loggedIn={loggedIn}
-                    currentLoggedInUser={currentLoggedInUser}
-                    text={text}
-                    users={users}
-                    userData={userData}
-                    
-                  />} 
+            <SignInFrontPageContainer 
+              users={users}
+              handleLogin={handleLogin}
+              userIP={userIP}
+              text={text}
+              userData={userData}
+              updateUser={updateUser}
+            />
+          } 
+        />
+        <Route path="/mockmail" element={
+            <MockMailContainer   
+              loggedIn={loggedIn}
+              currentLoggedInUser={currentLoggedInUser}
+              text={text}
+              users={users}
+              userData={userData}
+              
+            />
+          } 
         />
         <Route path="/create-account" element={
             <CreateAccountContainer 
               updateUser={updateUser}
               userData={userData}
               text={text}
-              translationLoading={translationLoading}
-              
             />
           } 
         />
         <Route path="/basic-information" element={
-              <BirthdayAndGenderContainer
-                updateUser={updateUser}
-                userData={userData}
-                text={text}
-                translationLoading={translationLoading}
-                
-              />
+            <BirthdayAndGenderContainer
+              updateUser={updateUser}
+              userData={userData}
+              text={text}
+            />
           } 
         />
         <Route path="/choose-your-gmail-address" element={
@@ -242,8 +220,7 @@ const { userIP } = useUserIP()
               updateUser={updateUser} 
               users={users}
               text={text}
-              translationLoading={translationLoading}
-              
+              userData={userData}
             />
           } 
         />
@@ -252,8 +229,7 @@ const { userIP } = useUserIP()
               updateUser={updateUser} 
               users={users}
               text={text}
-              translationLoading={translationLoading}
-              
+              userData={userData}
             />
           } 
         />
@@ -267,9 +243,6 @@ const { userIP } = useUserIP()
               hasSelectedCYNARCountry={hasSelectedCYNARCountry}
               text={text}
               translatedCountries={translatedCountries}
-              hasTranslatedCountries={hasTranslatedCountries}
-              translationLoading={translationLoading}
-              
             />
           } 
         />
@@ -278,8 +251,6 @@ const { userIP } = useUserIP()
               updateUser={updateUser}
               userData={userData}
               text={text}
-              translationLoading={translationLoading}
-              
             />
           } 
         />
@@ -287,9 +258,7 @@ const { userIP } = useUserIP()
             <AddRecoveryEmailContainer
               updateUser={updateUser} 
               text={text}
-              translationLoading={translationLoading}
               userData={userData}
-              
             />
           } 
         />
@@ -298,8 +267,6 @@ const { userIP } = useUserIP()
               updateUser={updateUser}
               userData={userData}
               text={text}
-              translationLoading={translationLoading}
-              
             />
           } 
         />
@@ -307,9 +274,7 @@ const { userIP } = useUserIP()
             <ChooseYourSettingsContainer
               updateUser={updateUser}
               text={text}
-              translationLoading={translationLoading}
               userData={userData}
-              
             />
           } 
         />
@@ -318,9 +283,7 @@ const { userIP } = useUserIP()
               updateUser={updateUser}
               text={text}
               hidePrivacyRow={hidePrivacyRow}  
-              translationLoading={translationLoading}
               userData={userData}
-              
             />
           } 
         />
@@ -330,8 +293,6 @@ const { userIP } = useUserIP()
               userData={userData}
               updateUser={updateUser}
               text={text}
-              translationLoading={translationLoading}
-              
             />
           } 
         />
@@ -341,8 +302,6 @@ const { userIP } = useUserIP()
               userData={userData}
               updateUser={updateUser}
               text={text}
-              translationLoading={translationLoading}
-              
             />
           } 
         />
@@ -352,8 +311,6 @@ const { userIP } = useUserIP()
               userData={userData}
               updateUser={updateUser}
               text={text}
-              translationLoading={translationLoading}
-              
             />
           } 
         />
@@ -364,8 +321,6 @@ const { userIP } = useUserIP()
               updateUser={updateUser}
               text={text}
               makePrivacyRowVisible={makePrivacyRowVisible}
-              translationLoading={translationLoading}
-              
             />
           } 
         />
@@ -376,8 +331,6 @@ const { userIP } = useUserIP()
               userData={userData}
               updateUser={updateUser}
               showPrivacyRow={showPrivacyRow}
-              translationLoading={translationLoading}
-              
             />
           } 
         />
@@ -391,8 +344,6 @@ const { userIP } = useUserIP()
               handleLogin={handleLogin}
               users={users}
               loggedIn={loggedIn}
-              translationLoading={translationLoading}
-              
             />
           } 
         />

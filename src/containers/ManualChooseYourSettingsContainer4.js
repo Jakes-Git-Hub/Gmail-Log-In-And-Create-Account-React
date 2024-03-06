@@ -35,6 +35,13 @@ export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text,
         updateUser({ language: chosenLanguage })
     };
 
+    useEffect(() => {
+        window.scrollTo({
+            top: 0, // Scroll to the top of the viewport
+            behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
+        });
+    }, [userData.language]);
+
 // Handle Next & Back Click
 
     const repositionViewPortOnNextOrBackClick = () => {
@@ -73,7 +80,6 @@ export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text,
                 handleBackClick={handleBackClick}
                 toggleCheckBox={toggleCheckBox}
                 translationLoading={translationLoading}
-                
             />
         </>
     );

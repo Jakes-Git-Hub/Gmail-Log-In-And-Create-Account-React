@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SignInFrontPageComponent } from '../components/SignInFrontPageComponent';
 import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
+import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const SignInFrontPageContainer = ({ users, handleLogin, translationLoading, userData,  }) => {
+export const SignInFrontPageContainer = ({ users, handleLogin, translationLoading, userData, updateUser}) => {
 
     const navigate = useNavigate();
 
@@ -14,10 +15,25 @@ export const SignInFrontPageContainer = ({ users, handleLogin, translationLoadin
     const [passwordPlaceholder, setPasswordPlaceholder] = useState("Password...");
     const [emailIsEmpty, setEmailIsEmpty] = useState(false);
     const [passwordIsEmpty, setPasswordIsEmpty] = useState(false);
+    const [isImageLoaded, setIsImageLoaded] = useState(false);
+
+// Handle Slow Svg Load
+
+    useEffect(() => {
+        const image = new Image();
+        image.src = googleWritingSvg;
+        image.onload = () => {
+        setIsImageLoaded(true);
+        };
+    }, []);
 
     const isImagePreloaded = useImagePreload(errorImage);
 
+// Change Language
 
+    const handleLanguageSelection = (chosenLanguage) => {
+        updateUser({ language: chosenLanguage })
+    };
 
 // Email
 
@@ -97,7 +113,8 @@ export const SignInFrontPageContainer = ({ users, handleLogin, translationLoadin
                 isImagePreloaded={isImagePreloaded}
                 translationLoading={translationLoading}
                 userData={userData}
-                
+                handleLanguageSelection={handleLanguageSelection}
+                isImageLoaded={isImageLoaded}
             />
         </>
     );

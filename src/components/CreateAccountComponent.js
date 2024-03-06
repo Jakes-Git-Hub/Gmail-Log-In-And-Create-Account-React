@@ -36,8 +36,8 @@ export const CreateAccountcomponent = ({
 
                 <form>
 
-                    <h1 class="thin h1-space">{text.CreateAccount.h1}</h1>
-                    <h2 class='thin gap'>{text.CreateAccount.h2}</h2>
+                    <h1 class="thin h1-space">{text.CreateAccount.h1[userData.language]}</h1>
+                    <h2 class='thin gap'>{text.CreateAccount.h2[userData.language]}</h2>
 
                     <Box
                         component="form"
@@ -50,7 +50,7 @@ export const CreateAccountcomponent = ({
                         <TextField 
                             error={errorCondition}
                             id="firstNameInput" 
-                            label={text.CreateAccount.firstName}
+                            label={text.CreateAccount.firstName[userData.language]}
                             variant="outlined" 
                             fullWidth
                             value={firstName}
@@ -82,7 +82,7 @@ export const CreateAccountcomponent = ({
                             }
                         />
                         <TextField 
-                            label={text.CreateAccount.lastName}
+                            label={text.CreateAccount.lastName[userData.language]}
                             className='last-name-margin-top' 
                             variant="outlined" 
                             fullWidth
@@ -104,12 +104,12 @@ export const CreateAccountcomponent = ({
                     {errorCondition === "firstNameEmpty" && isImagePreloaded ? (
                         <div class='error-div'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.CreateAccount.error1}</p>
+                            <p class="input-error-message">{text.CreateAccount.error1[userData.language]}</p>
                         </div>
                     ) : errorCondition === "areYouSureCorrect" && isImagePreloaded ? (
                         <div class='error-div'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.CreateAccount.error2}</p>
+                            <p class="input-error-message">{text.CreateAccount.error2[userData.language]}</p>
                         </div>
                     ) : (
                         <div className='hidden-error-message-container-create-account'></div>
@@ -126,7 +126,7 @@ export const CreateAccountcomponent = ({
                             }}
                         >
                             <div class='next'>
-                                {text.CreateAccount.next}
+                                {text.CreateAccount.next[userData.language]}
                             </div>
                         </CustomNextButton>
                     </div>
