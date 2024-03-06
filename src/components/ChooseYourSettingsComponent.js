@@ -33,7 +33,7 @@ export const ChooseYourSettingsComponent = ({
                 </div>
                 <img src={googleWritingSvg} alt="Google Writing" id="google-writing-recovery-ryai"/>
 
-                <h1 class="thin h1-space">{text.ChooseYourSettings.h1}</h1>
+                <h1 class="thin h1-space">{text.ChooseYourSettings.h1[userData.language]}</h1>
                 
                 <RadioGroup
                     aria-label="settings"
@@ -58,8 +58,8 @@ export const ChooseYourSettingsComponent = ({
                             }
                             label={
                                 <div className='writting-container'>
-                                    <p className="setting-option-name">{text.ChooseYourSettings.express}</p>
-                                    <p className="setting-information setting-information-pointer">{text.ChooseYourSettings.expressInfo}</p>
+                                    <p className="setting-option-name">{text.ChooseYourSettings.express[userData.language]}</p>
+                                    <p className="setting-information setting-information-pointer">{text.ChooseYourSettings.expressInfo[userData.language]}</p>
                                 </div>
                             }
                             style={{
@@ -86,8 +86,8 @@ export const ChooseYourSettingsComponent = ({
                             }
                             label={
                                 <div className='writting-container'>
-                                    <p className="setting-option-name">{text.ChooseYourSettings.manual}</p>
-                                    <p className="setting-information setting-information-pointer">{text.ChooseYourSettings.manualInfo}</p>
+                                    <p className="setting-option-name">{text.ChooseYourSettings.manual[userData.language]}</p>
+                                    <p className="setting-information setting-information-pointer">{text.ChooseYourSettings.manualInfo[userData.language]}</p>
                                 </div>
                             }
                             style={{
@@ -103,12 +103,12 @@ export const ChooseYourSettingsComponent = ({
                 {errorCondition === "selectAnOption" && isImagePreloaded && (   
                     <div id='error-div-choose-your-settings'>
                         <img className='error-image' src={errorImage} alt='Error Image' />
-                        <p class="input-error-message">{text.ChooseYourSettings.error}</p>
+                        <p class="input-error-message">{text.ChooseYourSettings.error[userData.language]}</p>
                     </div>
                 )}
 
                 <div id="p-container-choose-your-settings">
-                    <p id="choose-your-settings-p">{text.ChooseYourSettings.postlude}</p>
+                    <p id="choose-your-settings-p">{text.ChooseYourSettings.postlude[userData.language]}</p>
                 </div>
 
                 <div id='next-button-choose-your-settings'>
@@ -122,7 +122,7 @@ export const ChooseYourSettingsComponent = ({
                         }}
                     >
                         <div class='next'>
-                            {text.ChooseYourSettings.next}
+                            {text.ChooseYourSettings.next[userData.language]}
                         </div>
                     </CustomNextButton>                
                     

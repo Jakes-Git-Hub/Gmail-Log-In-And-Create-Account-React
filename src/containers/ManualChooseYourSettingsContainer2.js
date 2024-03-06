@@ -73,12 +73,23 @@ export const ManualChooseYourSettingsContainer2 = ({ userData, updateUser, text,
 // Change Language
 
     const handleLanguageSelection = (chosenLanguage) => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'auto'
-        });
         updateUser({ language: chosenLanguage })
     };
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0, // Scroll to the top of the viewport
+            behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
+        });
+    }, [userData.language]);
+
+    useEffect(() => {
+        const image = new Image();
+        image.src = googleWritingSvg;
+        image.onload = () => {
+          setIsImageLoaded(true);
+        };
+    }, []);
 
 // Handle Radio Change
 

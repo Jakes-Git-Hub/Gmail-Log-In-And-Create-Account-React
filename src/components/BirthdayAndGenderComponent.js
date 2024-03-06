@@ -49,9 +49,9 @@ export const BirthdayAndGenderComponent = ({
             
                 <form>
 
-                    <h1 class="thin h1-space">{text.BirthdayAndGender.h1}</h1>
+                    <h1 class="thin h1-space">{text.BirthdayAndGender.h1[userData.language]}</h1>
 
-                    <h2 class='thin h2-bg'>{text.BirthdayAndGender.h2}</h2>
+                    <h2 class='thin h2-bg'>{text.BirthdayAndGender.h2[userData.language]}</h2>
 
                     <div class='third-container-basic-information'>
 
@@ -69,11 +69,11 @@ export const BirthdayAndGenderComponent = ({
                                         } : {}
                                     } 
                                 >
-                                    {text.BirthdayAndGender.month}
+                                    {text.BirthdayAndGender.month[userData.language]}
                                 </InputLabel>
                                 <Select
                                     value={month}
-                                    label={text.BirthdayAndGender.month}
+                                    label={text.BirthdayAndGender.month[userData.language]}
                                     onChange={(e) => handleSelectMonth(e, year, day)}
                                     native="true"
                                     sx={{
@@ -92,18 +92,18 @@ export const BirthdayAndGenderComponent = ({
                                     }}
                                 >
                                     <option value="" hidden></option>
-                                    <option value="January">{text.BirthdayAndGender.january}</option>
-                                    <option value="February">{text.BirthdayAndGender.february}</option>
-                                    <option value="March">{text.BirthdayAndGender.march}</option>
-                                    <option value="April">{text.BirthdayAndGender.april}</option>
-                                    <option value="May">{text.BirthdayAndGender.may}</option>
-                                    <option value="June">{text.BirthdayAndGender.june}</option>
-                                    <option value="July">{text.BirthdayAndGender.july}</option>
-                                    <option value="August">{text.BirthdayAndGender.august}</option>
-                                    <option value="September">{text.BirthdayAndGender.september}</option>
-                                    <option value="October">{text.BirthdayAndGender.october}</option>
-                                    <option value="November">{text.BirthdayAndGender.november}</option>
-                                    <option value="December">{text.BirthdayAndGender.december}</option>
+                                    <option value="January">{text.BirthdayAndGender.january[userData.language]}</option>
+                                    <option value="February">{text.BirthdayAndGender.february[userData.language]}</option>
+                                    <option value="March">{text.BirthdayAndGender.march[userData.language]}</option>
+                                    <option value="April">{text.BirthdayAndGender.april[userData.language]}</option>
+                                    <option value="May">{text.BirthdayAndGender.may[userData.language]}</option>
+                                    <option value="June">{text.BirthdayAndGender.june[userData.language]}</option>
+                                    <option value="July">{text.BirthdayAndGender.july[userData.language]}</option>
+                                    <option value="August">{text.BirthdayAndGender.august[userData.language]}</option>
+                                    <option value="September">{text.BirthdayAndGender.september[userData.language]}</option>
+                                    <option value="October">{text.BirthdayAndGender.october[userData.language]}</option>
+                                    <option value="November">{text.BirthdayAndGender.november[userData.language]}</option>
+                                    <option value="December">{text.BirthdayAndGender.december[userData.language]}</option>
 
                                 </Select>
                             </FormControl>
@@ -115,7 +115,7 @@ export const BirthdayAndGenderComponent = ({
                             <TextField
                                 fullWidth error={errorCondition}
                                 value={day}
-                                label={text.BirthdayAndGender.day}
+                                label={text.BirthdayAndGender.day[userData.language]}
                                 onChange={(e) => handleSelectDay(e, year, month)}
                                 maxLength="2"
                                 InputLabelProps={
@@ -152,7 +152,7 @@ export const BirthdayAndGenderComponent = ({
                             <TextField
                                 fullWidth error={errorCondition}
                                 value={year}
-                                label={text.BirthdayAndGender.year}
+                                label={text.BirthdayAndGender.year[userData.language]}
                                 onChange={(e) => handleSelectYear(e, day, month)}
                                 maxLength="4"
                                 InputLabelProps={
@@ -188,12 +188,12 @@ export const BirthdayAndGenderComponent = ({
                     {errorCondition === 'incompleteBirthday' && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space-basic-info'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.BirthdayAndGender.pleaseFillInCompleteBirthday}</p>
+                            <p class="input-error-message">{text.BirthdayAndGender.pleaseFillInCompleteBirthday[userData.language]}</p>
                         </div>
                     ) : errorCondition === 'isWrongFormat' && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space-basic-info'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.BirthdayAndGender.pleaseEnterVAlidDate}</p>
+                            <p class="input-error-message">{text.BirthdayAndGender.pleaseEnterVAlidDate[userData.language]}</p>
                         </div>
                     ) : (
                         <div className='hidden-error-message-container-create-account'></div>
@@ -214,11 +214,11 @@ export const BirthdayAndGenderComponent = ({
                                     } : {}
                                 } 
                                 >  
-                                    {text.BirthdayAndGender.gender}
+                                    {text.BirthdayAndGender.gender[userData.language]}
                                 </InputLabel>
                                 <Select
                                     value={gender}
-                                    label={text.BirthdayAndGender.gender}
+                                    label={text.BirthdayAndGender.gender[userData.language]}
                                     onChange={handleSelectGender}
                                     native="true"
                                     sx={{
@@ -237,10 +237,10 @@ export const BirthdayAndGenderComponent = ({
                                     }}
                                 >
                                     <option value="" hidden></option>
-                                    <option value="Female">{text.BirthdayAndGender.female}</option>
-                                    <option value="Male">{text.BirthdayAndGender.male}</option>
-                                    <option value="Rather not say">{text.BirthdayAndGender.ratherNotSay}</option>
-                                    <option value="Custom">{text.BirthdayAndGender.custom}</option>
+                                    <option value="Female">{text.BirthdayAndGender.female[userData.language]}</option>
+                                    <option value="Male">{text.BirthdayAndGender.male[userData.language]}</option>
+                                    <option value="Rather not say">{text.BirthdayAndGender.ratherNotSay[userData.language]}</option>
+                                    <option value="Custom">{text.BirthdayAndGender.custom[userData.language]}</option>
                                 </Select>
                             </FormControl>
                         </Box>
@@ -249,7 +249,7 @@ export const BirthdayAndGenderComponent = ({
                     {genderEmpty && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space-basic-info'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.BirthdayAndGender.pleaseSelectGender}</p>
+                            <p class="input-error-message">{text.BirthdayAndGender.pleaseSelectGender[userData.language]}</p>
                         </div>
                     ) : (
                         <div className='hidden-error-message-container-BI'></div>
@@ -266,7 +266,7 @@ export const BirthdayAndGenderComponent = ({
                                         <TextField
                                             fullWidth error={customGenderEmpty}
                                             value={customGender}
-                                            label={text.BirthdayAndGender.whatsYourGender}
+                                            label={text.BirthdayAndGender.whatsYourGender[userData.language]}
                                             onChange={handleSelectCustomGender}
                                             InputLabelProps={
                                                 customGenderEmpty ? 
@@ -300,7 +300,7 @@ export const BirthdayAndGenderComponent = ({
                             {customGenderEmpty && isImagePreloaded ? (
                                 <div class='error-div' id='error-div-space-basic-info'>
                                     <img className='error-image' src={errorImage} alt='Error Image' />
-                                    <p class="input-error-message">{text.BirthdayAndGender.pleaseIndicateGender}</p>
+                                    <p class="input-error-message">{text.BirthdayAndGender.pleaseIndicateGender[userData.language]}</p>
                                 </div>
                             ) : (
                                 <div className='hidden-error-message-container-BI'></div>
@@ -319,11 +319,11 @@ export const BirthdayAndGenderComponent = ({
                                             } : {}
                                         } 
                                         >  
-                                            {text.BirthdayAndGender.pleaseReferToMeAs}
+                                            {text.BirthdayAndGender.pleaseReferToMeAs[userData.language]}
                                         </InputLabel>
                                         <Select
                                             value={pronoun}
-                                            label={text.BirthdayAndGender.pleaseReferToMeAs}
+                                            label={text.BirthdayAndGender.pleaseReferToMeAs[userData.language]}
                                             onChange={handleSelectPronoun}
                                             native="true"
                                             sx={{
@@ -341,9 +341,9 @@ export const BirthdayAndGenderComponent = ({
                                             }}
                                         >
                                             <option value="" hidden></option>
-                                            <option value="Female">{text.BirthdayAndGender.female}</option>
-                                            <option value="Male">{text.BirthdayAndGender.male}</option>
-                                            <option value="Other">{text.BirthdayAndGender.other}</option>
+                                            <option value="Female">{text.BirthdayAndGender.female[userData.language]}</option>
+                                            <option value="Male">{text.BirthdayAndGender.male[userData.language]}</option>
+                                            <option value="Other">{text.BirthdayAndGender.other[userData.language]}</option>
                                         </Select>
                                     </FormControl>
                                 </Box>
@@ -352,7 +352,7 @@ export const BirthdayAndGenderComponent = ({
                             {pronounEmpty && isImagePreloaded ? (
                                 <div class='error-div' id='error-div-space-basic-info'>
                                     <img className='error-image' src={errorImage} alt='Error Image' />
-                                    <p class="input-error-message">{text.BirthdayAndGender.pleaseSelectPronoun}</p>
+                                    <p class="input-error-message">{text.BirthdayAndGender.pleaseSelectPronoun[userData.language]}</p>
                                 </div>
                             ) : (
                                 <div className='hidden-error-message-container-BI'></div>
@@ -372,7 +372,7 @@ export const BirthdayAndGenderComponent = ({
                             }}
                         >
                             <div class='next'>
-                                {text.BirthdayAndGender.next}
+                                {text.BirthdayAndGender.next[userData.language]}
                             </div>
                         </CustomNextButton>
                     </section>

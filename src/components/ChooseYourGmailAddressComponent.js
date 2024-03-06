@@ -35,9 +35,9 @@ export const ChooseYourGmailAddressComponent = ({
 
                 <form>
 
-                    <h1 class="thin h1-space">{text.ChooseYourGmailAddress.h1}</h1>
+                    <h1 class="thin h1-space">{text.ChooseYourGmailAddress.h1[userData.language]}</h1>
 
-                    <h2 class='thin gap center' id='h2'>{text.ChooseYourGmailAddress.h2}</h2>
+                    <h2 class='thin gap center' id='h2'>{text.ChooseYourGmailAddress.h2[userData.language]}</h2>
 
                     <div class="space line-height label-input-width input-label" id='username-input-width'>
                         <Box>
@@ -46,7 +46,7 @@ export const ChooseYourGmailAddressComponent = ({
                                 id='usernameInput'
                                 value={email}
                                 type='text'
-                                label={text.ChooseYourGmailAddress.username}
+                                label={text.ChooseYourGmailAddress.username[userData.language]}
                                 onChange={handleSelectEmail}
                                 InputLabelProps={
                                     errorCondition ? 
@@ -87,26 +87,26 @@ export const ChooseYourGmailAddressComponent = ({
                     {errorCondition === "isIncorrectLength" && isImagePreloaded ? (
                         <div class='long-error-div' id='error-div-space'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message-6-30">{text.ChooseYourGmailAddress.error1}</p>
+                            <p class="input-error-message-6-30">{text.ChooseYourGmailAddress.error1[userData.language]}</p>
                         </div>
                     ) : errorCondition === "usernameEmpty" && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.ChooseYourGmailAddress.error2}</p>
+                            <p class="input-error-message">{text.ChooseYourGmailAddress.error2[userData.language]}</p>
                         </div>
                     ) : errorCondition === "usesUnallowedChars" && isImagePreloaded ? (
                         <div class='long-error-div' id='error-div-space'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.ChooseYourGmailAddress.error3}</p>
+                            <p class="input-error-message">{text.ChooseYourGmailAddress.error3[userData.language]}</p>
                         </div>
                     ) : errorCondition === "usernameIsAlreadyTaken" && isImagePreloaded ? (
                         <div class='long-error-div' id='error-div-space'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.ChooseYourGmailAddress.error4}</p>
+                            <p class="input-error-message">{text.ChooseYourGmailAddress.error4[userData.language]}</p>
                         </div>
                     ) : (
                         <div class='below-input-small-grey'>
-                            <p class='small-grey'>{text.ChooseYourGmailAddress.youCanUse}</p>
+                            <p class='small-grey'>{text.ChooseYourGmailAddress.youCanUse[userData.language]}</p>
                         </div>
                     )}
 
@@ -121,7 +121,7 @@ export const ChooseYourGmailAddressComponent = ({
                             }}
                         >
                             <div class='next'>
-                                Next
+                                {text.BirthdayAndGender.next[userData.language]}
                             </div>
                         </CustomNextButton>
                     </div>
@@ -134,7 +134,6 @@ export const ChooseYourGmailAddressComponent = ({
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
-                
             />
 
         </>

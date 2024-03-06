@@ -16,12 +16,10 @@
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100vh;
+  height: 90vh;
   display: flex;
   justify-content: center;
   margin-top: 40px;
-  
-  /* margin-bottom: 725px; */
 }
 
 .test-overflow {
@@ -1811,6 +1809,7 @@ p-gap-ecys-tight {
   align-items: center;
   justify-content: space-between;
   margin-top: 7px;
+  margin-bottom: 7px;
 }
 
 #language-changer-dropdown {

@@ -38,9 +38,9 @@ export const EnterTheCodeComponent = ({
 
                 <form>
 
-                    <h1 class="thin h1-space">{text.EnterTheCode.h1}</h1>
+                    <h1 class="thin h1-space">{text.EnterTheCode.h1[userData.language]}</h1>
 
-                    <p id='p-enter-the-code'>{text.EnterTheCode.h2}</p>
+                    <p id='p-enter-the-code'>{text.EnterTheCode.h2[userData.language]}</p>
 
                     <div class="line-height label-input-width input-label" id='username-input-width'>
                         <Box>
@@ -53,7 +53,7 @@ export const EnterTheCodeComponent = ({
                                     id="code-input"
                                     fullWidth error={errorCondition}
                                     value={usersVerificationCodeInput}
-                                    label={text.EnterTheCode.enterCode}
+                                    label={text.EnterTheCode.enterCode[userData.language]}
                                     onChange={handleUserVerificationCodeInput}
                                     InputLabelProps={
                                         errorCondition ? 
@@ -92,22 +92,22 @@ export const EnterTheCodeComponent = ({
                     {errorCondition === "inputEmpty" && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space-etc'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.EnterTheCode.error1}</p>
+                            <p class="input-error-message">{text.EnterTheCode.error1[userData.language]}</p>
                         </div>
                     ) : errorCondition === "wrongNumberOfDigits" && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space-etc'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.EnterTheCode.error2}</p>
+                            <p class="input-error-message">{text.EnterTheCode.error2[userData.language]}</p>
                         </div>
                     ) : errorCondition === "wrongCode" && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space-etc'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.EnterTheCode.error3}</p>
+                            <p class="input-error-message">{text.EnterTheCode.error3[userData.language]}</p>
                         </div>
                     ) : errorCondition === "hasLetters" && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space-etc'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">C{text.EnterTheCode.error4}</p>
+                            <p class="input-error-message">C{text.EnterTheCode.error4[userData.language]}</p>
                         </div>
                     ) : (
                         <div className='hidden-error-message-container-BI'></div>
@@ -129,7 +129,7 @@ export const EnterTheCodeComponent = ({
                                         }}
                                 >
                                     <div className="get-new-code-text">
-                                        {text.EnterTheCode.getNewCode} {disabledCount} {text.EnterTheCode.seconds}
+                                        {text.EnterTheCode.getNewCode[userData.language]} {disabledCount} {text.EnterTheCode.seconds[userData.language]}
                                     </div>
                                 </SecondaryGreyButton>
                             </div>
@@ -145,7 +145,7 @@ export const EnterTheCodeComponent = ({
                                         }}
                                 >
                                     <div className="get-new-code-text">
-                                        {text.EnterTheCode.getNewCode}
+                                        {text.EnterTheCode.getNewCode[userData.language]}
                                     </div>
                                 </SecondaryGreyButton>
                             </div>
@@ -163,7 +163,7 @@ export const EnterTheCodeComponent = ({
                                     }}
                             >
                                 <div className="next">
-                                    {text.EnterTheCode.next}
+                                    {text.EnterTheCode.next[userData.language]}
                                 </div>
                             </CustomNextButton>
                         </div>
