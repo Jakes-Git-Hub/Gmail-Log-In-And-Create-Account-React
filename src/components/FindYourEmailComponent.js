@@ -1,25 +1,22 @@
 import React from "react";
-import errorImage from '../images/error-indicator-svg.svg';
+import errorImage from '../images/Daco_5575399.png';
 import LanguageChanger from "./LanguageChanger/LanguageChangerComponent";
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import TransparentSmallButtonSignInPage from "./buttons/TransparentSmallButtonSignInPageComponent";
 import CustomNextButton from "./buttons/CustomNextButtonComponent";
-import SecondaryGreyButton from "./buttons/SecondaryGreyButtonComponent";
 
-export const SignInFrontPageComponent = ({ 
+export const FindYourEmailComponent = ({ 
     isImageLoaded,
     handleLanguageSelection,
     handleCreateAccountClick,
     isImagePreloaded,
+    translationLoading,
     userData,
     errorCondition,
     emailOrPhone,
     onEmailOrPhoneChange,
-    handleForgotEmailButtonClick,
-    handleGuestModeInfoButtonClick,
-    handleNextClick,
     
 }) => {
 
@@ -86,41 +83,37 @@ export const SignInFrontPageComponent = ({
 
                     {errorCondition === 'emailOrPhoneEmpty' && isImagePreloaded && (
                         <div class='error-div'>
-                            <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
-                            </svg>
+                            <img className='error-image' src={errorImage} alt='Error Image' />
                             <p class="input-error-message">Enter an email or phone number</p>
                         </div>
                     )}
 
                     {errorCondition === 'couldntFindYourAccount' && isImagePreloaded && (
                         <div class='error-div'>
-                            <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
-                            </svg>
+                            <img className='error-image' src={errorImage} alt='Error Image' />
                             <p class="input-error-message">Couldn't find your Google Account</p>
                         </div>
                     )}    
                       
                     <div id='forgot-email-container'>
-                        <TransparentSmallButtonSignInPage onClick={handleForgotEmailButtonClick}>
+                        <TransparentSmallButtonSignInPage>
                             Forgot email?
                         </TransparentSmallButtonSignInPage>
                     </div>
 
                     <div id='sign-in-guest-mode-container'>
                         <p class='p-sign-in'>Not your computer? Use Guest mode to sign in privately.</p>
-                        <TransparentSmallButtonSignInPage onClick={handleGuestModeInfoButtonClick}>
+                        <TransparentSmallButtonSignInPage>
                             Learn more about using Guest mode
                         </TransparentSmallButtonSignInPage>
                     </div>  
 
                     <div id='create-account-and-next-button-div-sign-in-page'>
-                        <SecondaryGreyButton  onClick={handleCreateAccountClick} id='create-account-button-adjust-left'>
+                        <TransparentSmallButtonSignInPage  onClick={handleCreateAccountClick}>
                             Create account
-                        </SecondaryGreyButton>
+                        </TransparentSmallButtonSignInPage>
 
-                        <CustomNextButton onClick={handleNextClick}>
+                        <CustomNextButton>
                             Next  
                         </CustomNextButton>
                         

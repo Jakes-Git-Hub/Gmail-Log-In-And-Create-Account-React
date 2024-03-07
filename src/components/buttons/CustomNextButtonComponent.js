@@ -4,9 +4,10 @@ import Button from '@mui/material/Button';
 const CustomNextButton = styled(Button)({
     backgroundColor: '#1a73e8',
     color: 'white',
-    padding: '5px 23.59px',
-    fontSize: '15px',
+    padding: '5px 25px',
+    fontSize: '14px',
     boxShadow: "none",
+    height: '37px',
     '&:hover': {
         color: "white",
         backgroundColor: 'rgb(34 106 202)',
@@ -17,7 +18,6 @@ const CustomNextButton = styled(Button)({
         },
     },
     textTransform: 'none',
-    margin: 'margin: 7px 1.5px 20px 0;',
     '& .next, & .skip': {
         position: 'relative',
         zIndex: 1,

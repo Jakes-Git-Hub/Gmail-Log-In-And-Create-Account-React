@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SignInFrontPageComponent } from '../components/SignInFrontPageComponent';
+import { FindYourEmailComponent } from '../components/FindYourEmailComponent';
 import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const SignInFrontPageContainer = ({ users, userData, updateUser}) => {
+export const FindYourEmailContainer = ({ users, handleLogin, translationLoading, userData, updateUser}) => {
 
     const navigate = useNavigate();
 
@@ -39,20 +39,8 @@ export const SignInFrontPageContainer = ({ users, userData, updateUser}) => {
 
 // Forgot Email
 
-    const handleForgotEmailButtonClick = () => {
-        navigate('/find-your-email');
-    }
-
-// Guest Mode Info Click
-
-    const handleGuestModeInfoButtonClick = () => {
-        window.open('https://support.google.com/chrome/answer/6130773?hl=en', '_blank');
-    }
-
-// Create Account Click
-
-    const handleCreateAccountClick = () => {
-        navigate('/create-account');
+    const handleForgotEmailClick = () => {
+        navigate('/forgot-email');
     }
 
 // Error
@@ -67,7 +55,7 @@ export const SignInFrontPageContainer = ({ users, userData, updateUser}) => {
             error('emailOrPhoneEmpty');
             const emailOrPhoneInput = document.getElementById('emailOrPhoneInput');
             emailOrPhoneInput.focus();
-        } else if ((!users) || (!users.some(user => user.email === emailOrPhone || user.phoneNumber === emailOrPhone))) {
+        } else if (users.find(user => user.email !== emailOrPhone && user.phoneNumber !== emailOrPhone)) {
             error('couldntFindYourAccount');
             const emailOrPhoneInput = document.getElementById('emailOrPhoneInput');
             emailOrPhoneInput.focus();
@@ -76,25 +64,23 @@ export const SignInFrontPageContainer = ({ users, userData, updateUser}) => {
                 (user) => user.email === emailOrPhone || user.phoneNumber === emailOrPhone
             );
             if (registeredEmailOrPhone) {
-                navigate('/verify-with-password');
+                navigate('/login-with-password'); // Use Navigate.push to navigate
             }
         }
     };
 
     return(
         <>
-            <SignInFrontPageComponent
+            <FindYourEmailComponent
+                // handleCreateAccountClick={handleCreateAccountClick}
                 isImagePreloaded={isImagePreloaded}
+                translationLoading={translationLoading}
                 userData={userData}
                 handleLanguageSelection={handleLanguageSelection}
                 isImageLoaded={isImageLoaded}
                 errorCondition={errorCondition}
                 emailOrPhone={emailOrPhone}
                 onEmailOrPhoneChange={onEmailOrPhoneChange}
-                handleForgotEmailButtonClick={handleForgotEmailButtonClick}
-                handleGuestModeInfoButtonClick={handleGuestModeInfoButtonClick}
-                handleCreateAccountClick={handleCreateAccountClick}
-                handleNextClick={handleNextClick}
             />
         </>
     );

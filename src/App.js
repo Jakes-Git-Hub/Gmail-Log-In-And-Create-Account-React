@@ -6,6 +6,7 @@ import textData from './data/textData';
 import { filteredCountriesFromUtil } from './utils/countryDropDownOptions';
 import { SignInFrontPageContainer } from "./containers/SignInFrontPageContainer";
 import { MockMailContainer } from "./containers/MockMailContainer";
+import { FindYourEmailContainer } from "./containers/FindYourEmailContainer";
 import { CreateAccountContainer } from "./containers/CreateAccountContainer";
 import { BirthdayAndGenderContainer } from "./containers/BirthdayAndGenderContainer";
 import { ChooseYourGmailAddressContainer } from "./containers/ChooseYourGmailAddressContainer";
@@ -79,28 +80,6 @@ function App() {
         return null;
       }
   };
-  
-// // Translation Sanitisation 
-
-//   const sanitizeText = (translatedText) => {
-//     const sanitizedText = {};
-
-//     for (const topLevelKey in translatedText) {
-//       const topLevelObject = translatedText[topLevelKey];
-//       const sanitizedTopLevelObject = {};
-
-//       for (const key in topLevelObject) {
-//         const sanitizedValue = topLevelObject[key].replace(/&#39;/g, "'").replace(/«/g,'"').replace(/»/g,'"').replace(/&quot;/g,'"');
-//         // Add more sanitization rules as needed
-
-//         sanitizedTopLevelObject[key] = sanitizedValue;
-//       }
-
-//       sanitizedText[topLevelKey] = sanitizedTopLevelObject;
-//     }
-
-//     return sanitizedText;
-//   };
 
   const sanitizeCountryNames = (countries) => {
     const sanitizedCountries = countries.map(country => ({
@@ -196,6 +175,14 @@ const { userIP } = useUserIP()
               users={users}
               userData={userData}
               
+            />
+          } 
+        />
+        <Route path="/find-your-email" element={
+            <FindYourEmailContainer 
+              updateUser={updateUser}
+              userData={userData}
+              text={text}
             />
           } 
         />

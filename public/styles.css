@@ -1,4 +1,5 @@
 #body {
+  margin: 0;
   font-family: 'Noto-Sans',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -29,65 +30,6 @@
 #root {
   font-size: 16px;
   color: rgb(32,33,36);
-}
-
-/* Ellipsis Loader */
-
-@keyframes ellipsisAnimation{
-  0% {
-    transform: scale(0);
-  }
-  25% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(0);
-  }
-}
-
-.ellipsis-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  width: 64px;
-  height: 64px;
-}
-
-#ellipsis{
-  position: absolute;
-  top: 27px;
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background-color: rgb(219, 219, 219);
-  animation-timing-function: cubic-bezier(0, 1, 1, 0);
-}
-
-#ellipsis-div- {
-  left: 6px;
-  animation: ellipsisAnimation 0.6s infinite;
-}
-
-#ellipsis-div-2 {
-  left: 6px;
-  animation: ellipsisAnimation 0.6s infinite;
-  animation-delay: -0.2s;
-}
-
-#ellipsis-div-3 {
-  left: 26px;
-  animation: ellipsisAnimation 0.6s infinite;
-  animation-delay: -0.4s;
-}
-
-#ellipsis-div-4 {
-  left: 45px;
-  animation: ellipsisAnimation 0.6s infinite;
-  animation-delay: -0.6s;
 }
 
 /* Front Page Sign In */
@@ -131,22 +73,6 @@
   }
 }
 
-#google-container-front-page {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #dadce0;
-  border-radius: 10px;
-  flex-direction: column;
-  width: 448.18px;
-  min-width: 448.18px;
-  height: 550px;
-  margin-top: -10px;
-  @media (max-height: 623px) {
-    margin-top: 20px;
-  }
-}
-
 #google-container-create-password {
   display: flex;
   align-items: center;
@@ -177,6 +103,14 @@
 
 .button-space-basic-info {
   margin: 20px 1.5px 20px 0;
+}
+
+.no-margin{
+  margin: 0;
+}
+
+#create-account-button-adjust-left {
+  right: 10px;
 }
 
 .space {
@@ -233,6 +167,37 @@ form {
   margin-bottom: 15px;
   height: auto;
   width: 72px;
+}
+
+/* Sign In Front Page */
+
+#forgot-email-container {
+  display: flex;
+  justify-content: flex-start;
+  width: 90%;
+}
+
+#sign-in-guest-mode-container {
+  width: 90%;
+  display: flex;
+  align-items: flex-start;
+  margin-top: 36px;
+  flex-direction: column;
+}
+
+#create-account-and-next-button-div-sign-in-page{
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 0 80px 0;
+}
+
+.p-sign-in {
+  color: rgb(95, 99, 104);
+  font-size: 0.875rem;
+  line-height: 1.4286;
+  margin: 0;
 }
 
 .last {
@@ -746,14 +711,14 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .input-error-message {
-  color: rgb(217,48,37);
+  color: rgb(217, 48, 37);
   font-size: 0.73rem;
   font-weight: 200;
   margin: 1px 0 7.5px 10px;
 }
 
 .input-error-message-6-30 {
-  color: rgb(217,48,37);
+  color: rgb(217, 48, 37);
   font-size: 0.72rem;
   font-weight: 200;
   margin: 1px 0 7.5px 10px;
@@ -888,9 +853,6 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .error-image {
-  height: 13.33px;
-  width: 13.33px;
-  filter: hue-rotate(359deg); /* Rotate 30 degrees towards red */
   margin: 1px 0 7.5px 2px;
 }
 

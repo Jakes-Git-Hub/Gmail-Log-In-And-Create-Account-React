@@ -17,7 +17,6 @@ const SecondaryGreyButton = styled(Button)({
         },
     },
     textTransform: 'none',
-    margin: 'margin: 7px 1.5px 20px 0;',
     '& .get-new-code-text': {
         position: 'relative',
         zIndex: 1,

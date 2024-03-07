@@ -39,7 +39,7 @@ export const CreateAccountContainer = ({ updateUser, text, translationLoading, u
 
     const isLetters = (str) => /^[A-Za-z]*$/.test(str);
 
-    const onFirstNameInputChange = (e,) => {
+    const onFirstNameInputChange = (e) => {
         const { value } = e.target;
         if (isLetters(value)) {
           setFirstName(value);
