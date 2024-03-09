@@ -5,7 +5,7 @@ import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const SignInFrontPageContainer = ({ users, userData, updateUser}) => {
+export const SignInFrontPageContainer = ({ users, userData, updateUser, text, }) => {
 
     const navigate = useNavigate();
 
@@ -95,6 +95,7 @@ export const SignInFrontPageContainer = ({ users, userData, updateUser}) => {
                 handleGuestModeInfoButtonClick={handleGuestModeInfoButtonClick}
                 handleCreateAccountClick={handleCreateAccountClick}
                 handleNextClick={handleNextClick}
+                text={text}
             />
         </>
     );

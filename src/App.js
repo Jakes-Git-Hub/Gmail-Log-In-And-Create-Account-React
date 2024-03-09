@@ -26,7 +26,7 @@ import { PrivacyAndTermsContainer } from "./containers/PrivacyAndTermsContainer"
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([{ id: 0, email: 'test'}]);
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
   const [nextUserId, setNextUserId] = useState(1);
   const [userData, setUserData] = useState({ manualSetting4: 'no privacy reminders', language: 'en-GB' });

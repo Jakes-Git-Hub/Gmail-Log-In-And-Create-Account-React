@@ -1,22 +1,25 @@
-import React from "react";
+import React from 'react';
 import errorImage from '../images/Daco_5575399.png';
-import LanguageChanger from "./LanguageChanger/LanguageChangerComponent";
-import googleWritingSvg from "../images/google-writing-svg.svg";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import TransparentSmallButtonSignInPage from "./buttons/TransparentSmallButtonSignInPageComponent";
-import CustomNextButton from "./buttons/CustomNextButtonComponent";
+import CustomNextButton from './buttons/CustomNextButtonComponent';
+import googleWritingSvg from "../images/google-writing-svg.svg";
+import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
 
-export const FindYourEmailComponent = ({ 
-    isImageLoaded,
-    handleLanguageSelection,
-    handleCreateAccountClick,
+
+export const FindYourEmailcomponent = ({ 
+    firstName,
+    lastName,
+    handleNextClick,
     isImagePreloaded,
+    onFirstNameInputChange,
+    onLastNameInputChange,
+    errorCondition,
+    handleLanguageSelection,
+    text,
+    isImageLoaded,
     translationLoading,
     userData,
-    errorCondition,
-    emailOrPhone,
-    onEmailOrPhoneChange,
     
 }) => {
 
@@ -33,31 +36,30 @@ export const FindYourEmailComponent = ({
 
                 <form>
 
-                    <h1 class="thin h1-space">Sign In</h1>
-
-                    <h2 class='thin gap'>Use your Google Account</h2>
+                    <h1 class="thin h1-space">{text.CreateAccount.h1[userData.language]}</h1>
+                    <h2 class='thin gap'>{text.CreateAccount.h2[userData.language]}</h2>
 
                     <Box
                         component="form"
                         sx={{
-                            '& > :not(style)': { m: 1.25 },
+                            '& > :not(style)': { m: 1.25},
                             width: 363,
                             maxWidth: '100%',
                         }}
                     >
                         <TextField 
                             error={errorCondition}
-                            id="emailOrPhoneInput" 
-                            label={'Email or phone'}
+                            id="firstNameInput" 
+                            label={text.CreateAccount.firstName[userData.language]}
                             variant="outlined" 
                             fullWidth
-                            value={emailOrPhone}
-                            onChange={onEmailOrPhoneChange}
+                            value={firstName}
+                            onChange={onFirstNameInputChange}
                             InputLabelProps={
                                 errorCondition ? 
                                 { 
                                     sx: {
-                                        color: emailOrPhone ? '#d32f2f' : 'rgba(0, 0, 0, 0.6) !important',
+                                        color: firstName ? '#d32f2f' : 'rgba(0, 0, 0, 0.6) !important',
                                         '&.Mui-focused': {
                                             color: '#d32f2f !important',
                                         },
@@ -78,46 +80,58 @@ export const FindYourEmailComponent = ({
                                     }
                                 }
                             }
-                        />     
+                        />
+                        <TextField 
+                            label={text.CreateAccount.lastName[userData.language]}
+                            className='last-name-margin-top' 
+                            variant="outlined" 
+                            fullWidth
+                            value={lastName}
+                            onChange={onLastNameInputChange}
+                            sx={{
+                                "& .MuiOutlinedInput-root": {
+                                    "&:hover:not(.Mui-focused) fieldset": {
+                                    borderColor: "#dadce0"
+                                    },
+                                    "& fieldset": {
+                                        borderColor: "#dadce0"
+                                    },
+                                },
+                            }}
+                        />       
                     </Box>
 
-                    {errorCondition === 'emailOrPhoneEmpty' && isImagePreloaded && (
+                    {errorCondition === "firstNameEmpty" && isImagePreloaded ? (
                         <div class='error-div'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">Enter an email or phone number</p>
+                            <p class="input-error-message">{text.CreateAccount.error1[userData.language]}</p>
                         </div>
-                    )}
-
-                    {errorCondition === 'couldntFindYourAccount' && isImagePreloaded && (
+                    ) : errorCondition === "areYouSureCorrect" && isImagePreloaded ? (
                         <div class='error-div'>
                             <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">Couldn't find your Google Account</p>
+                            <p class="input-error-message">{text.CreateAccount.error2[userData.language]}</p>
                         </div>
-                    )}    
-                      
-                    <div id='forgot-email-container'>
-                        <TransparentSmallButtonSignInPage>
-                            Forgot email?
-                        </TransparentSmallButtonSignInPage>
-                    </div>
+                    ) : (
+                        <div className='hidden-error-message-container-create-account'></div>
+                    )} 
 
-                    <div id='sign-in-guest-mode-container'>
-                        <p class='p-sign-in'>Not your computer? Use Guest mode to sign in privately.</p>
-                        <TransparentSmallButtonSignInPage>
-                            Learn more about using Guest mode
-                        </TransparentSmallButtonSignInPage>
-                    </div>  
-
-                    <div id='create-account-and-next-button-div-sign-in-page'>
-                        <TransparentSmallButtonSignInPage  onClick={handleCreateAccountClick}>
-                            Create account
-                        </TransparentSmallButtonSignInPage>
-
-                        <CustomNextButton>
-                            Next  
+                    <div class={errorCondition === "firstNameEmpty" || errorCondition === "areYouSureCorrect" ? 'button-right-first-name-empty' : 'button-right-ca'}>
+                        <CustomNextButton 
+                            variant="contained" 
+                            onClick={handleNextClick}
+                            sx={{
+                                '&& .MuiTouchRipple-rippleVisible': {
+                                    animationDuration: '300ms',
+                                },
+                            }}
+                        >
+                            <div class='next'>
+                                {text.CreateAccount.next[userData.language]}
+                            </div>
                         </CustomNextButton>
-                        
                     </div>
+
+                    
 
                 </form>
 
@@ -130,7 +144,5 @@ export const FindYourEmailComponent = ({
             />
 
         </>
-  );
-}
-
-
+    );
+};

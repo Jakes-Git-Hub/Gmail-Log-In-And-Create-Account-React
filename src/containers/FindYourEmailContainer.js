@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { FindYourEmailComponent } from '../components/FindYourEmailComponent';
+import { FindYourEmailcomponent } from "../components/FindYourEmailComponent";
 import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const FindYourEmailContainer = ({ users, handleLogin, translationLoading, userData, updateUser}) => {
+export const FindYourEmailContainer = ({ updateUser, text, translationLoading, userData, }) => {
+
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [isFirstNameFocused, setIsFirstNameFocused] = useState(false);
+    const [errorCondition, setErrorCondition] = useState(null);
+    const [isImageLoaded, setIsImageLoaded] = useState(false);
 
     const navigate = useNavigate();
-
-    const [emailOrPhone, setEmailOrPhone] = useState("");
-    const [isImageLoaded, setIsImageLoaded] = useState(false);
-    const [errorCondition, setErrorCondition] = useState(null);
 
 // Handle Slow Svg Load
 
@@ -19,7 +21,7 @@ export const FindYourEmailContainer = ({ users, handleLogin, translationLoading,
         const image = new Image();
         image.src = googleWritingSvg;
         image.onload = () => {
-        setIsImageLoaded(true);
+          setIsImageLoaded(true);
         };
     }, []);
 
@@ -31,57 +33,82 @@ export const FindYourEmailContainer = ({ users, handleLogin, translationLoading,
         updateUser({ language: chosenLanguage })
     };
 
-// Email or Phone
+// First Name
 
-    const onEmailOrPhoneChange = (e) => {
-        setEmailOrPhone(e.target.value);
-    }
+    // Allow Only String Values to be Inputted
 
-// Forgot Email
+    const isLetters = (str) => /^[A-Za-z]*$/.test(str);
 
-    const handleForgotEmailClick = () => {
-        navigate('/forgot-email');
-    }
+    const onFirstNameInputChange = (e) => {
+        const { value } = e.target;
+        if (isLetters(value)) {
+          setFirstName(value);
+        }
+    };
 
-// Error
+// First Name Errors
 
-    const error = error => setErrorCondition(error);
+    const firstNameError = () => setErrorCondition("firstNameEmpty");
+
+    const unsureNameIsCorrect = () => setErrorCondition("areYouSureCorrect");
+
+// Last Name - Allow Only Letters
+
+    const onLastNameInputChange = (e) => {
+        if (isLetters(e.target.value)) {
+            setLastName(e.target.value);
+        }
+    };
 
 // Handle Next
 
-    const handleNextClick = (e) => {
-        e.preventDefault();
-        if (emailOrPhone === '') {
-            error('emailOrPhoneEmpty');
-            const emailOrPhoneInput = document.getElementById('emailOrPhoneInput');
-            emailOrPhoneInput.focus();
-        } else if (users.find(user => user.email !== emailOrPhone && user.phoneNumber !== emailOrPhone)) {
-            error('couldntFindYourAccount');
-            const emailOrPhoneInput = document.getElementById('emailOrPhoneInput');
-            emailOrPhoneInput.focus();
-        } else {
-            const registeredEmailOrPhone = users.find(
-                (user) => user.email === emailOrPhone || user.phoneNumber === emailOrPhone
-            );
-            if (registeredEmailOrPhone) {
-                navigate('/login-with-password'); // Use Navigate.push to navigate
+    const handleNextClick = () => {
+        const firstNameInput = document.getElementById('firstNameInput');
+
+        if (firstName !== '' && firstName.length > 2) {
+            setErrorCondition(null);
+            updateUser({ firstName: firstName, lastName: lastName });
+            navigate('/basic-information');
+            console.log(firstName);
+        } 
+
+        if (firstName.length > 0 && firstName.length <= 2) {
+            unsureNameIsCorrect();
+            if (firstNameInput) {
+                setIsFirstNameFocused(true); 
+                firstNameInput.focus();
+             }
+        }
+        if (firstName === '') {
+            firstNameError();
+            if (firstNameInput) {
+               setIsFirstNameFocused(true); 
+               firstNameInput.focus();
             }
         }
     };
 
     return(
         <>
-            <FindYourEmailComponent
-                // handleCreateAccountClick={handleCreateAccountClick}
+            <FindYourEmailcomponent
+                firstName={firstName}
+                setFirstName={setFirstName}
+                setLastName={setLastName}
+                lastName={lastName}
+                handleNextClick={handleNextClick}
                 isImagePreloaded={isImagePreloaded}
+                isFirstNameFocused={isFirstNameFocused}
+                setIsFirstNameFocused={setIsFirstNameFocused}
+                onFirstNameInputChange={onFirstNameInputChange}
+                onLastNameInputChange={onLastNameInputChange}
+                errorCondition={errorCondition}
+                handleLanguageSelection={handleLanguageSelection}
+                text={text}
+                isImageLoaded={isImageLoaded}
                 translationLoading={translationLoading}
                 userData={userData}
-                handleLanguageSelection={handleLanguageSelection}
-                isImageLoaded={isImageLoaded}
-                errorCondition={errorCondition}
-                emailOrPhone={emailOrPhone}
-                onEmailOrPhoneChange={onEmailOrPhoneChange}
+                
             />
         </>
     );
-};
+}

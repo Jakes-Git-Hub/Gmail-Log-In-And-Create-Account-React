@@ -1,5 +1,4 @@
 import React from "react";
-import errorImage from '../images/error-indicator-svg.svg';
 import LanguageChanger from "./LanguageChanger/LanguageChangerComponent";
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import Box from '@mui/material/Box';
@@ -20,6 +19,7 @@ export const SignInFrontPageComponent = ({
     handleForgotEmailButtonClick,
     handleGuestModeInfoButtonClick,
     handleNextClick,
+    text,
     
 }) => {
 
@@ -36,7 +36,7 @@ export const SignInFrontPageComponent = ({
 
                 <form>
 
-                    <h1 class="thin h1-space">Sign In</h1>
+                    <h1 class="thin h1-space">{text.SignIn.h1[userData.language]}</h1>
 
                     <h2 class='thin gap'>Use your Google Account</h2>
 
