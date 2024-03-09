@@ -5,7 +5,7 @@ import googleWritingSvg from "../images/google-writing-svg.svg";
 import errorImage from '../images/Daco_5575399.png';
 import useImagePreload from "../hooks/useImagePreload";
 
-export const ChooseYourSettingsContainer = ({ userData, updateUser, text, translationLoading,  }) => {
+export const ChooseYourSettingsContainer = ({ userData, updateUser, text,   }) => {
 
     const [setting, setSetting] = useState("");
     const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -72,7 +72,7 @@ export const ChooseYourSettingsContainer = ({ userData, updateUser, text, transl
                 isImagePreloaded={isImagePreloaded}
                 text={text}
                 handleLanguageSelection={handleLanguageSelection}
-                translationLoading={translationLoading}
+                
                 
             />
         </>

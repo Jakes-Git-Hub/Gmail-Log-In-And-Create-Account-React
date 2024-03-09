@@ -28,7 +28,7 @@ export const ConfirmYoureNotARobotComponent = ({
     text,
     unitedKingdom,
     handleLanguageSelection,
-    translationLoading,
+    
     userData,
     
 }) => {
@@ -38,7 +38,7 @@ export const ConfirmYoureNotARobotComponent = ({
         <>
 
             <div id='google-container-flexible'>
-                <div className={loading || translationLoading ? "empty-blue-snake-loader" : isImageLoaded ? 'empty-blue-snake-loader-placeholder' : "empty-blue-snake-loader"}>
+                <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                     <div className="blue-snake-loader"></div>
                 </div>
                 <img src={googleWritingSvg} alt="Google Writing" id="google-writing-BG"/>

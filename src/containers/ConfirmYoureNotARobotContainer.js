@@ -8,7 +8,7 @@ import axios from 'axios';
 import GBSVG from '../images/flags/gb2.svg';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, userIP, handleCYNARCountrySelect, hasSelectedCYNARCountry, text, translatedCountries, translationLoading,  }) => {
+export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, userIP, handleCYNARCountrySelect, hasSelectedCYNARCountry, text, translatedCountries,   }) => {
 
     const [formattedPhoneNumber, setFormattedPhoneNumber] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -418,7 +418,7 @@ const customStyles = {
                 text={text}
                 unitedKingdom={unitedKingdom}
                 handleLanguageSelection={handleLanguageSelection}
-                translationLoading={translationLoading}
+                
                 userData={userData}
                 
             />

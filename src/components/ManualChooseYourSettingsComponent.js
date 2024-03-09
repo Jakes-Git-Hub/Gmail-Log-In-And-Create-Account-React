@@ -27,7 +27,7 @@ export const ManualChooseYourSettingsComponent = ({
     animationOpen,
     animationClose,
     handleBackClick,
-    translationLoading,
+    
     userData,
     
 }) => {

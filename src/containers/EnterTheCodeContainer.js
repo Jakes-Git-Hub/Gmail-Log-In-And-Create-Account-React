@@ -6,7 +6,7 @@ import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import { createTheme } from '@mui/material/styles';
 
-export const EnterTheCodeContainer = ({ updateUser, userData, text, translationLoading,  }) => {
+export const EnterTheCodeContainer = ({ updateUser, userData, text,   }) => {
 
     const [errorCondition, setErrorCondition] = useState(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
@@ -137,7 +137,7 @@ const setError = errorType => setErrorCondition(errorType);
             disabledCount={disabledCount}
             text={text}
             handleLanguageSelection={handleLanguageSelection}
-            translationLoading={translationLoading}
+            
             userData={userData}
             
         />

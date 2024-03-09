@@ -5,7 +5,7 @@ import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const BirthdayAndGenderContainer = ({ updateUser, text, translationLoading, userData, }) => {
+export const BirthdayAndGenderContainer = ({ updateUser, text,  userData, }) => {
 
     const [month, setMonth] = useState('');
     const [day, setDay] = useState("");
@@ -161,7 +161,7 @@ export const BirthdayAndGenderContainer = ({ updateUser, text, translationLoadin
             handleSelectPronoun={handleSelectPronoun}
             isCustomChecked={isCustomChecked}
             text={text}
-            translationLoading={translationLoading}
+            
             handleLanguageSelection={handleLanguageSelection}
             userData={userData}
             

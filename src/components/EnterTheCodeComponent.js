@@ -21,7 +21,7 @@ export const EnterTheCodeComponent = ({
     disabledCount,
     text,
     handleLanguageSelection,
-    translationLoading,
+    
     userData,
     
 }) => {

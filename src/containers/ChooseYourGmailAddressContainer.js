@@ -5,7 +5,7 @@ import errorImage from '../images/Daco_5575399.png';
 import useImagePreload from "../hooks/useImagePreload";
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const ChooseYourGmailAddressContainer = ({ updateUser, users, text, translationLoading, userData,  }) => {
+export const ChooseYourGmailAddressContainer = ({ updateUser, users, text,  userData,  }) => {
 
   const [email, setEmail] = useState('');
   const [errorCondition, setErrorCondition] = useState(null);
@@ -78,7 +78,7 @@ export const ChooseYourGmailAddressContainer = ({ updateUser, users, text, trans
                 text={text}
                 handleLanguageSelection={handleLanguageSelection}
                 isImageLoaded={isImageLoaded}
-                translationLoading={translationLoading}
+                
                 userData={userData}
                 
             />

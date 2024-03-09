@@ -20,7 +20,7 @@ export const CreatePasswordComponent = ({
     text,
     handleLanguageSelection,
     isImageLoaded,
-    translationLoading,
+    
     userData,
     
 }) => {

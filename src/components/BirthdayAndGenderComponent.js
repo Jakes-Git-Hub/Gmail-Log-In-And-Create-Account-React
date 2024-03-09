@@ -31,7 +31,7 @@ export const BirthdayAndGenderComponent = ({
     handleSelectPronoun,
     isCustomChecked,
     text,
-    translationLoading,
+    
     handleLanguageSelection,
     userData,
     

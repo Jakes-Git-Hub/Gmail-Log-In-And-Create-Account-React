@@ -25,7 +25,7 @@ export const ExpressChooseYourSettingsComponent = ({
     text,
     handleLanguageSelection,
     handleRejectAllClick,
-    translationLoading,
+    
     userData,
     
 }) => {

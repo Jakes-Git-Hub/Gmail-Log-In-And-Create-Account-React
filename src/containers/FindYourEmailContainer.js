@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { FindYourEmailcomponent } from "../components/FindYourEmailComponent";
+import { FindYourEmailComponent } from "../components/FindYourEmailComponent";
 import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const FindYourEmailContainer = ({ updateUser, text, translationLoading, userData, }) => {
+export const FindYourEmailContainer = ({ updateUser, text,  userData, updateFindYourEmailCredentials }) => {
 
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
-    const [isFirstNameFocused, setIsFirstNameFocused] = useState(false);
+    const [phoneNumberOrEmail, setPhoneNumberOrEmail] = useState("");
     const [errorCondition, setErrorCondition] = useState(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false);
 
@@ -35,79 +33,49 @@ export const FindYourEmailContainer = ({ updateUser, text, translationLoading, u
 
 // First Name
 
-    // Allow Only String Values to be Inputted
-
-    const isLetters = (str) => /^[A-Za-z]*$/.test(str);
-
-    const onFirstNameInputChange = (e) => {
+    const onPhoneNumberOrEmailInputChange = (e) => {
         const { value } = e.target;
-        if (isLetters(value)) {
-          setFirstName(value);
-        }
+        setPhoneNumberOrEmail(value);
     };
 
-// First Name Errors
+// Errors
 
-    const firstNameError = () => setErrorCondition("firstNameEmpty");
-
-    const unsureNameIsCorrect = () => setErrorCondition("areYouSureCorrect");
-
-// Last Name - Allow Only Letters
-
-    const onLastNameInputChange = (e) => {
-        if (isLetters(e.target.value)) {
-            setLastName(e.target.value);
-        }
+    const error = error => {
+        setErrorCondition(error);
     };
 
 // Handle Next
 
     const handleNextClick = () => {
-        const firstNameInput = document.getElementById('firstNameInput');
+        const phoneNumberOrEmailInput = document.getElementById('firstNameInput');
 
-        if (firstName !== '' && firstName.length > 2) {
-            setErrorCondition(null);
-            updateUser({ firstName: firstName, lastName: lastName });
-            navigate('/basic-information');
-            console.log(firstName);
-        } 
-
-        if (firstName.length > 0 && firstName.length <= 2) {
-            unsureNameIsCorrect();
-            if (firstNameInput) {
-                setIsFirstNameFocused(true); 
-                firstNameInput.focus();
-             }
-        }
-        if (firstName === '') {
-            firstNameError();
-            if (firstNameInput) {
-               setIsFirstNameFocused(true); 
-               firstNameInput.focus();
+        if (phoneNumberOrEmail === '') {
+            error('phoneNumberOrEmailEmpty');
+            if (phoneNumberOrEmailInput) {
+               phoneNumberOrEmailInput.focus();
             }
         }
+
+        if (phoneNumberOrEmail !== '') {
+            error(null);
+            updateFindYourEmailCredentials({ phoneNumberOrEmail: phoneNumberOrEmail });
+            navigate('/whats-your-name');
+        } 
+        
     };
 
     return(
         <>
-            <FindYourEmailcomponent
-                firstName={firstName}
-                setFirstName={setFirstName}
-                setLastName={setLastName}
-                lastName={lastName}
+            <FindYourEmailComponent
                 handleNextClick={handleNextClick}
                 isImagePreloaded={isImagePreloaded}
-                isFirstNameFocused={isFirstNameFocused}
-                setIsFirstNameFocused={setIsFirstNameFocused}
-                onFirstNameInputChange={onFirstNameInputChange}
-                onLastNameInputChange={onLastNameInputChange}
                 errorCondition={errorCondition}
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
                 isImageLoaded={isImageLoaded}
-                translationLoading={translationLoading}
+                onPhoneNumberOrEmailInputChange={onPhoneNumberOrEmailInputChange}
                 userData={userData}
-                
+                phoneNumberOrEmail={phoneNumberOrEmail}
             />
         </>
     );

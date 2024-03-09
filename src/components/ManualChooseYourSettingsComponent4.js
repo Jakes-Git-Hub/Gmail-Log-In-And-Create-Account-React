@@ -15,7 +15,7 @@ export const ManualChooseYourSettingsComponent4 = ({
     handleBackClick,
     checked,
     toggleCheckBox,
-    translationLoading,
+    
     userData,
     
 }) => {

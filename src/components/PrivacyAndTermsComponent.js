@@ -11,7 +11,7 @@ export const PrivacyAndTermsComponent = ({
     handleLanguageSelection,
     text,
     handleBackClick,
-    translationLoading,
+    
     userData,
     
 }) => {

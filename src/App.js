@@ -30,6 +30,7 @@ function App() {
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
   const [nextUserId, setNextUserId] = useState(1);
   const [userData, setUserData] = useState({ manualSetting4: 'no privacy reminders', language: 'en-GB' });
+  const [findYourEmailCredentials, setFindYourEmailCredentials] = useState({});
   const [hasSelectedCYNARCountry, setHasSelectedCYNARCountry] = useState(false);
   const [text, setText] = useState(textData);
   const [translatedCountries, setTranslatedCountries] = useState(filteredCountriesFromUtil);
@@ -127,6 +128,22 @@ const { userIP } = useUserIP()
     });
   };
 
+// Find Email
+
+  const updateFindYourEmailCredentials = data => {
+    setFindYourEmailCredentials(prevData => {
+      // Check if the new data actually changes the user data
+      const isDataChanged = Object.keys(data).some(key => data[key] !== prevData[key]);
+      if (isDataChanged) {
+        // If the data has changed, return the new data to update the state
+        return { ...prevData, ...data };
+      } else {
+        // If the data hasn't changed, return the previous data to prevent a state update
+        return prevData;
+      }
+    });
+  }
+
 // Add User
 
   const addUser = () => {
@@ -183,6 +200,7 @@ const { userIP } = useUserIP()
               updateUser={updateUser}
               userData={userData}
               text={text}
+              updateFindYourEmailCredentials={updateFindYourEmailCredentials}
             />
           } 
         />

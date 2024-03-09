@@ -9,7 +9,7 @@ export const ReviewYourAccountInfoComponent = ({
     userData,
     handleLanguageSelection,
     text,
-    translationLoading,
+    
     
 
 }) => {

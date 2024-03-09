@@ -18,7 +18,7 @@ export const ChooseYourSettingsComponent = ({
     handleLanguageSelection,
     text,
     userData,
-    translationLoading,
+    
     
 }) => {
 

@@ -18,7 +18,7 @@ export const CreateAccountcomponent = ({
     handleLanguageSelection,
     text,
     isImageLoaded,
-    translationLoading,
+    
     userData,
     
 }) => {

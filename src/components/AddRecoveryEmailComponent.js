@@ -17,7 +17,7 @@ export const AddRecoveryEmailComponent = ({
     isImageLoaded,
     handleLanguageSelection,
     text,
-    translationLoading,
+    
     userData,
     
 }) => {

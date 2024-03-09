@@ -17,7 +17,7 @@ export const ChooseYourGmailAddressComponent = ({
     text,
     handleLanguageSelection,
     isImageLoaded,
-    translationLoading,
+    
     userData,
     
 }) => {
