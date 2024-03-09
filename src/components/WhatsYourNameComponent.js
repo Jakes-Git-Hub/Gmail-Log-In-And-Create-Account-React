@@ -7,7 +7,7 @@ import googleWritingSvg from "../images/google-writing-svg.svg";
 import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
 
 
-export const CreateAccountComponent = ({ 
+export const WhatsYourNameComponent = ({ 
     firstName,
     lastName,
     handleNextClick,
@@ -18,6 +18,7 @@ export const CreateAccountComponent = ({
     handleLanguageSelection,
     text,
     isImageLoaded,
+    
     userData,
     
 }) => {
@@ -35,8 +36,8 @@ export const CreateAccountComponent = ({
 
                 <form>
 
-                    <h1 class="thin h1-space">{text.CreateAccount.h1[userData.language]}</h1>
-                    <h2 class='thin gap'>{text.CreateAccount.h2[userData.language]}</h2>
+                    <h1 class="thin h1-space">{text.WhatsYourName.h1[userData.language]}</h1>
+                    <h2 class='thin gap'>Enter the name on your Google Account</h2>
 
                     <Box
                         component="form"
@@ -102,19 +103,16 @@ export const CreateAccountComponent = ({
 
                     {errorCondition === "firstNameEmpty" && isImagePreloaded ? (
                         <div class='error-div'>
-                            <img className='error-image' src={errorImage} alt='Error Image' />
+                            <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                            </svg>
                             <p class="input-error-message">{text.CreateAccount.error1[userData.language]}</p>
-                        </div>
-                    ) : errorCondition === "areYouSureCorrect" && isImagePreloaded ? (
-                        <div class='error-div'>
-                            <img className='error-image' src={errorImage} alt='Error Image' />
-                            <p class="input-error-message">{text.CreateAccount.error2[userData.language]}</p>
                         </div>
                     ) : (
                         <div className='hidden-error-message-container-create-account'></div>
                     )} 
 
-                    <div class={errorCondition === "firstNameEmpty" || errorCondition === "areYouSureCorrect" ? 'button-right-first-name-empty' : 'button-right-ca'}>
+                    <div class={errorCondition === "firstNameEmpty" ? 'button-right-first-name-empty' : 'button-right-ca'}>
                         <CustomNextButton 
                             variant="contained" 
                             onClick={handleNextClick}
@@ -125,7 +123,7 @@ export const CreateAccountComponent = ({
                             }}
                         >
                             <div class='next'>
-                                {text.CreateAccount.next[userData.language]}
+                                Next
                             </div>
                         </CustomNextButton>
                     </div>

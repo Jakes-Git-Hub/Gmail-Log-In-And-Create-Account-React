@@ -5,7 +5,7 @@ import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const FindYourEmailContainer = ({ updateUser, text,  userData, updateFindYourEmailCredentials }) => {
+export const FindYourEmailContainer = ({ updateUser, text,  userData, updateFindYourEmailCredentials, isWrongCredentials }) => {
 
     const [phoneNumberOrEmail, setPhoneNumberOrEmail] = useState("");
     const [errorCondition, setErrorCondition] = useState(null);
@@ -31,7 +31,7 @@ export const FindYourEmailContainer = ({ updateUser, text,  userData, updateFind
         updateUser({ language: chosenLanguage })
     };
 
-// First Name
+// Email or Phone Number
 
     const onPhoneNumberOrEmailInputChange = (e) => {
         const { value } = e.target;
@@ -44,24 +44,32 @@ export const FindYourEmailContainer = ({ updateUser, text,  userData, updateFind
         setErrorCondition(error);
     };
 
+    const phoneNumberOrEmailInput = document.getElementById('phoneNumberOrEmailInput');
+
+    useEffect(() => {
+        
+        if (isWrongCredentials) {
+            error('wrongCredentials');
+            if (phoneNumberOrEmailInput) {
+                phoneNumberOrEmailInput.focus();
+            }
+        }
+    }, [isWrongCredentials, phoneNumberOrEmailInput]);
+
 // Handle Next
 
     const handleNextClick = () => {
-        const phoneNumberOrEmailInput = document.getElementById('firstNameInput');
-
         if (phoneNumberOrEmail === '') {
             error('phoneNumberOrEmailEmpty');
             if (phoneNumberOrEmailInput) {
                phoneNumberOrEmailInput.focus();
             }
         }
-
         if (phoneNumberOrEmail !== '') {
             error(null);
             updateFindYourEmailCredentials({ phoneNumberOrEmail: phoneNumberOrEmail });
             navigate('/whats-your-name');
-        } 
-        
+        }        
     };
 
     return(

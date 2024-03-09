@@ -7,6 +7,7 @@ import { filteredCountriesFromUtil } from './utils/countryDropDownOptions';
 import { SignInFrontPageContainer } from "./containers/SignInFrontPageContainer";
 import { MockMailContainer } from "./containers/MockMailContainer";
 import { FindYourEmailContainer } from "./containers/FindYourEmailContainer";
+import { WhatsYourNameContainer } from "./containers/WhatsYourNameContainer";
 import { CreateAccountContainer } from "./containers/CreateAccountContainer";
 import { BirthdayAndGenderContainer } from "./containers/BirthdayAndGenderContainer";
 import { ChooseYourGmailAddressContainer } from "./containers/ChooseYourGmailAddressContainer";
@@ -35,6 +36,7 @@ function App() {
   const [text, setText] = useState(textData);
   const [translatedCountries, setTranslatedCountries] = useState(filteredCountriesFromUtil);
   const [showPrivacyRow, setShowPrivacyRow] = useState(false);
+  const [isWrongCredentials, setIsWrongCredentials] = useState(null);
 
 // Translation
 
@@ -44,6 +46,10 @@ function App() {
     handleLanguageSelection();
     console.log('chosenLanguage:', userData.language)
   }, [userData.language]);
+
+  useEffect(() => {
+    console.log('findYourEmailCredentials:', findYourEmailCredentials)
+  }, [findYourEmailCredentials]);
 
   const handleLanguageSelection = async () => {
     if (!userData.language) return;
@@ -144,6 +150,14 @@ const { userIP } = useUserIP()
     });
   }
 
+  const handleIncorrectEmailInfoSearch = () => {
+    setIsWrongCredentials(true);
+  }
+
+  const handleCorrectEmailInfoSearch = () => {
+    setIsWrongCredentials(false);
+  }
+
 // Add User
 
   const addUser = () => {
@@ -201,6 +215,20 @@ const { userIP } = useUserIP()
               userData={userData}
               text={text}
               updateFindYourEmailCredentials={updateFindYourEmailCredentials}
+              isWrongCredentials={isWrongCredentials}
+            />
+          } 
+        />
+        <Route path="/whats-your-name" element={
+            <WhatsYourNameContainer 
+              updateUser={updateUser}
+              userData={userData}
+              text={text}
+              updateFindYourEmailCredentials={updateFindYourEmailCredentials}
+              findYourEmailCredentials={findYourEmailCredentials}
+              users={users}
+              handleIncorrectEmailInfoSearch={handleIncorrectEmailInfoSearch}
+              handleCorrectEmailInfoSearch={handleCorrectEmailInfoSearch}
             />
           } 
         />

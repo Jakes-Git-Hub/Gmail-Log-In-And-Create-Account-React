@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { CreateAccountcomponent } from "../components/CreateAccountComponent";
+import { CreateAccountComponent } from "../components/CreateAccountComponent";
 import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
@@ -9,7 +9,6 @@ export const CreateAccountContainer = ({ updateUser, text,  userData, }) => {
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [isFirstNameFocused, setIsFirstNameFocused] = useState(false);
     const [errorCondition, setErrorCondition] = useState(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false);
 
@@ -75,14 +74,12 @@ export const CreateAccountContainer = ({ updateUser, text,  userData, }) => {
         if (firstName.length > 0 && firstName.length <= 2) {
             unsureNameIsCorrect();
             if (firstNameInput) {
-                setIsFirstNameFocused(true); 
                 firstNameInput.focus();
              }
         }
         if (firstName === '') {
             firstNameError();
             if (firstNameInput) {
-               setIsFirstNameFocused(true); 
                firstNameInput.focus();
             }
         }
@@ -90,22 +87,19 @@ export const CreateAccountContainer = ({ updateUser, text,  userData, }) => {
 
     return(
         <>
-            <CreateAccountcomponent
+            <CreateAccountComponent
                 firstName={firstName}
                 setFirstName={setFirstName}
                 setLastName={setLastName}
                 lastName={lastName}
                 handleNextClick={handleNextClick}
                 isImagePreloaded={isImagePreloaded}
-                isFirstNameFocused={isFirstNameFocused}
-                setIsFirstNameFocused={setIsFirstNameFocused}
                 onFirstNameInputChange={onFirstNameInputChange}
                 onLastNameInputChange={onLastNameInputChange}
                 errorCondition={errorCondition}
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
                 isImageLoaded={isImageLoaded}
-                
                 userData={userData}
                 
             />
