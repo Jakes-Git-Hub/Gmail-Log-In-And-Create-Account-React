@@ -40,7 +40,8 @@ export const CreatePasswordComponent = ({
                 <form>
 
                     <h1 class="thin h1-space">{text.CreatePassword.h1[userData.language]}</h1>
-                    <div id='create-password-h2'>
+
+                    <div class='width-h2'>
                         <h2 class='thin gap center'>{text.CreatePassword.h2[userData.language]}</h2>
                     </div>
 

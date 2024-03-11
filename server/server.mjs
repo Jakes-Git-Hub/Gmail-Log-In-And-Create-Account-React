@@ -74,3 +74,6 @@ app.post('/send-verification-code', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+// SendGrid API Endpoint
+

@@ -5,14 +5,13 @@ import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFindYourEmailCredentials, findYourEmailCredentials, users, handleIncorrectEmailInfoSearch, handleCorrectEmailInfoSearch, }) => {
+export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFindYourEmailCredentials, findYourEmailCredentials, users, handleIncorrectInfoSearch, handleCorrectInfoSearch, handleFindWithPhoneNubmer, handleFindWithEmail, findWith }) => {
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [errorCondition, setErrorCondition] = useState(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [proceedWithFindUser, setProceedWithFindUser] = useState(false);
-
     const navigate = useNavigate();
 
 // Handle Slow Svg Load
@@ -59,15 +58,18 @@ export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFind
     
     const findMatchingUser = () => {
         const matchingUser = users.find(user => {
-            // Check if phoneNumberOrEmail matches either email or phoneNumber
-            if (user.email === findYourEmailCredentials.phoneNumberOrEmail || user.phoneNumber === findYourEmailCredentials.phoneNumberOrEmail) {
-                // Check if firstName and lastName match
-                return user.firstName === findYourEmailCredentials.firstName && user.lastName === findYourEmailCredentials.lastName;
+            if (user.email === findYourEmailCredentials.phoneNumberOrEmail && user.firstName === findYourEmailCredentials.firstName && user.lastName === findYourEmailCredentials.lastName) { 
+                handleFindWithEmail();
+                return true;
+            } else if (user.phoneNumber === findYourEmailCredentials.phoneNumberOrEmail && user.firstName === findYourEmailCredentials.firstName && user.lastName === findYourEmailCredentials.lastName) {
+                handleFindWithPhoneNubmer();
+                return true;
             }
             return false;
         });
         return matchingUser;
     };
+
     const matchingUser = findMatchingUser();
 
 // Handle Next
@@ -90,10 +92,14 @@ export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFind
     useEffect(() => {
         if (proceedWithFindUser) {
             if (matchingUser) {
-                handleCorrectEmailInfoSearch();
-                navigate('/get-a-verification-code');
+                handleCorrectInfoSearch();
+                if (findWith === 'email') {
+                    navigate('/get-a-verification-code-email');
+                } else {
+                    navigate('/get-a-verification-code-phone-number');
+                }
             } else {
-                handleIncorrectEmailInfoSearch();
+                handleIncorrectInfoSearch();
                 navigate('/find-your-email');
             }  
         } 

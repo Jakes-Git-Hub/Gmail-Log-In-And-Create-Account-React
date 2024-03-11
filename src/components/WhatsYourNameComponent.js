@@ -18,7 +18,6 @@ export const WhatsYourNameComponent = ({
     handleLanguageSelection,
     text,
     isImageLoaded,
-    
     userData,
     
 }) => {

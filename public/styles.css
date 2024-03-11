@@ -173,6 +173,10 @@ form {
   width: 72px;
 }
 
+.width-h2 {
+  width: 90%;
+}
+
 /* Sign In Front Page */
 
 #forgot-email-container {
@@ -403,6 +407,109 @@ form {
   margin-top: 21.75px;
   margin-bottom: 167px;
 }
+
+/* Get a Verification Code */
+
+.h2-line-height {
+  line-height: 1.5;
+}
+
+.p17Urb {
+  background-image: -webkit-linear-gradient(to bottom, rgba(233, 233, 233, 0) 1%, rgba(233, 233, 233, 0) 60.22%, rgba(233, 233, 233, 1) 10.22%, rgba(233, 233, 233, 0) 65%);
+  background-image: linear-gradient(to bottom, rgba(233, 233, 233, 0) 1%, rgba(233, 233, 233, 0) 60.22%, rgba(233, 233, 233, 1) 10.22%, rgba(233, 233, 233, 0) 65%);  
+  height: 100%;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: -4.5%;
+  z-index: 2;
+}
+
+.p17Urb:before {
+  background-image: -webkit-linear-gradient(to bottom, rgba(243, 243, 243, 0) 0%, rgba(243, 243, 243, .9) 100%);
+  background-image: linear-gradient(to bottom, rgba(243, 243, 243, 0) 0%, rgba(243, 243, 243, .9) 100%);
+  bottom: -5%;
+}
+
+@media (min-width: 601px) {
+  .p17Urb:after
+  .p17Urb:before {
+      width: 150px;
+  }
+}
+
+.p17Urb:after {
+  background-image: -webkit-linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .9) 100%);
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .9) 100%);
+  bottom: -75%;
+}
+
+.p17Urb:after, .p17Urb:before {
+  content: "";
+  display: block;
+  height: 100%;
+  min-width: 110px;
+  position: absolute;
+  right: -10%;
+  -webkit-transform: rotate(-104deg);
+  transform: rotate(-105deg);
+  width: 10vh;
+  z-index: 2;
+}
+
+.xh7Wmd {
+  height: 25vh;
+  max-width: 100%;
+  min-height: 110px;
+  position: relative;
+  -webkit-transform: translate(-43%, -3%);
+  transform: translate(-43%,-3%);
+  z-index: 3;
+  right: 5%;
+}
+
+@media (min-width: 601px) {
+  .xh7Wmd {
+      height: 150px;
+  }
+}
+
+#mail-image-container{
+  height: 20px;
+}
+
+#white-backgorund-gavc{
+  width: 100%;
+  z-index: 2;
+  background: white;
+  border-radius: 2px;
+  padding-left: 5px;
+}
+
+.p-container-gavc {
+  width: 60%;
+  position: relative;
+  right: 16.125%;
+  margin-top: 5px;
+  margin-bottom: 35px;
+}
+
+.p-get-a-verification-code {
+  font-size: 0.875rem;
+  color: #202124;
+  margin: 0;
+  line-height: 1.43;
+}
+
+#button-get-a-verification-code-container {
+  width: 92%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 60px;
+}
+
 
 /* Create Account  */
 

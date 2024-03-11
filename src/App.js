@@ -24,6 +24,7 @@ import { ManualChooseYourSettingsContainer2 } from "./containers/ManualChooseYou
 import { ManualChooseYourSettingsContainer3 } from "./containers/ManualChooseYourSettingsContainer3";
 import { ManualChooseYourSettingsContainer4 } from "./containers/ManualChooseYourSettingsContainer4";
 import { PrivacyAndTermsContainer } from "./containers/PrivacyAndTermsContainer";
+import { GetAVerificationCodeEmailContainer } from "./containers/GetAVerificationCodeEmailContainer";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -37,6 +38,7 @@ function App() {
   const [translatedCountries, setTranslatedCountries] = useState(filteredCountriesFromUtil);
   const [showPrivacyRow, setShowPrivacyRow] = useState(false);
   const [isWrongCredentials, setIsWrongCredentials] = useState(null);
+  const [findWith, setFindWith] = useState('');
 
 // Translation
 
@@ -150,12 +152,20 @@ const { userIP } = useUserIP()
     });
   }
 
-  const handleIncorrectEmailInfoSearch = () => {
+  const handleIncorrectInfoSearch = () => {
     setIsWrongCredentials(true);
   }
 
-  const handleCorrectEmailInfoSearch = () => {
+  const handleCorrectInfoSearch = () => {
     setIsWrongCredentials(false);
+  }
+
+  const handleFindWithPhoneNubmer = () => {
+    setFindWith('phoneNumber');
+  }
+
+  const handleFindWithEmail = () => {
+    setFindWith('email');
   }
 
 // Add User
@@ -227,8 +237,20 @@ const { userIP } = useUserIP()
               updateFindYourEmailCredentials={updateFindYourEmailCredentials}
               findYourEmailCredentials={findYourEmailCredentials}
               users={users}
-              handleIncorrectEmailInfoSearch={handleIncorrectEmailInfoSearch}
-              handleCorrectEmailInfoSearch={handleCorrectEmailInfoSearch}
+              handleIncorrectInfoSearch={handleIncorrectInfoSearch}
+              handleCorrectInfoSearch={handleCorrectInfoSearch}
+              handleFindWithPhoneNubmer={handleFindWithPhoneNubmer}
+              handleFindWithEmail={handleFindWithEmail}
+              findWith={findWith}
+            />
+          } 
+        />
+        <Route path="/get-a-verification-code-email" element={
+            <GetAVerificationCodeEmailContainer 
+              userData={userData}
+              text={text}
+              updateUser={updateUser}
+              findWith={findWith}
             />
           } 
         />
