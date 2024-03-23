@@ -81,7 +81,7 @@ export const WhatsYourNameComponent = ({
                             }
                         />
                         <TextField 
-                            label={text.CreateAccount.lastName[userData.language]}
+                            label={text.WhatsYourName.lastName[userData.language]}
                             className='last-name-margin-top' 
                             variant="outlined" 
                             fullWidth

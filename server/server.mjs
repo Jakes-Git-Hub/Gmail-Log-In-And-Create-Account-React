@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';  // Added for parsing request bodies
 import twilio from 'twilio';  // Added for Twilio integration
+import sgMail from '@sendgrid/mail'
 
 dotenv.config();
 const app = express();
@@ -27,11 +28,8 @@ app.get('/get-user-ip', (request, response) => {
 
 // Twilio API Endpoint
 
-console.log(process.env.TWILIO_ACCOUNT_SID);
-console.log(process.env.TWILIO_AUTH_TOKEN);
-console.log(process.env.TWILIO_PHONE_NUMBER);
-
 // Twilio credentials
+
 const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID;
 const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
@@ -39,6 +37,7 @@ const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
 const client = twilio(twilioAccountSid, twilioAuthToken);
 
 // Endpoint to send verification code via SMS
+
 app.post('/send-verification-code', async (req, res) => {
   console.log('Endpoint reached: /send-verification-code');
   const { formattedPhoneNumber } = req.body;
@@ -77,3 +76,36 @@ app.post('/send-verification-code', async (req, res) => {
 
 // SendGrid API Endpoint
 
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+app.post('/send-verification-email', async (req, res) => {
+  console.log('Endpoint reached: /send-verification-email');
+  const { phoneNumberOrEmail } = req.body;
+
+  // Log the received data
+  console.log('Received request with email:', phoneNumberOrEmail);
+
+  try {
+    // Generate a random verification code
+    const verificationCode = Math.floor(100000 + Math.random() * 900000);
+
+    const msg = {
+      to: phoneNumberOrEmail,
+      from: 'jacmatthews7@gmail.com',
+      subject: 'Verification Code',
+      text: `G-${verificationCode} is your Google verification code.`,
+    };
+
+    await sgMail.send(msg);
+
+    console.log('Email sent successfully');
+    console.log('Verification code:', verificationCode);
+    res.json({ 
+      verificationCode: verificationCode,
+    });
+
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});

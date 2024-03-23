@@ -4,10 +4,12 @@ import { GetAVerificationCodeEmailComponent } from "../components/GetAVerificati
 import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
+import axios from "axios";
 
-export const GetAVerificationCodeEmailContainer = ({ updateUser, text,  userData, findWith}) => {
+export const GetAVerificationCodeEmailContainer = ({ updateUser, text,  userData, findYourEmailCredentials, updateFindYourEmailCredentials}) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
+    const [verificationCodeViaEmail, setVerificationCodeViaEmail] = useState('');
 
     const navigate = useNavigate();
 
@@ -21,6 +23,10 @@ export const GetAVerificationCodeEmailContainer = ({ updateUser, text,  userData
         };
     }, []);
 
+    useEffect(() => {
+        console.log('findYourEmailCredentials.phoneNumberOrEmail', findYourEmailCredentials.phoneNumberOrEmail);
+    }, []);
+
     const isImagePreloaded = useImagePreload(errorImage);
 
 // Change Language
@@ -29,10 +35,43 @@ export const GetAVerificationCodeEmailContainer = ({ updateUser, text,  userData
         updateUser({ language: chosenLanguage })
     };
 
+// Send Verification Email
+
+    const sendVerificationEmail = async () => {
+        console.log('findYourEmailCredentials.phoneNumberOrEmail', findYourEmailCredentials.phoneNumberOrEmail);
+        try {
+            const response = await axios.post('http://localhost:3001/send-verification-email', {
+                phoneNumberOrEmail: findYourEmailCredentials.phoneNumberOrEmail,
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            const data = response.data;
+
+            if (data.verificationCode) {
+                // Extract the verification code from the Twilio response
+                const verificationCode = data.verificationCode.toString();
+                console.log('Verification code:', verificationCode);
+                updateFindYourEmailCredentials({ verificationCode: verificationCode });
+                navigate('/enter-the-find-code');    
+            } else {
+                if (data.error) {
+                    console.error('Error sending verification code:', data.error);
+                } else {
+                    console.error('Unknown error sending verification code');
+                }
+            }
+        } catch (error) {
+            console.error('Error sending verification code:', error);
+        }
+    } 
+
 // Handle Send Click
 
     const handleSendClick = () => {
-
+        sendVerificationEmail();
     };
 
     return(
@@ -44,7 +83,8 @@ export const GetAVerificationCodeEmailContainer = ({ updateUser, text,  userData
                 text={text}
                 isImageLoaded={isImageLoaded}
                 userData={userData}
-                findWith={findWith}
+                findYourEmailCredentials={findYourEmailCredentials}
+                updateFindYourEmailCredentials={updateFindYourEmailCredentials}
             />
         </>
     );

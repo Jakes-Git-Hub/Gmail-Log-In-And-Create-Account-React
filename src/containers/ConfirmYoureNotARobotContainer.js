@@ -8,7 +8,7 @@ import axios from 'axios';
 import GBSVG from '../images/flags/gb2.svg';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, userIP, handleCYNARCountrySelect, hasSelectedCYNARCountry, text, translatedCountries,   }) => {
+export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, userIP, handleCYNARCountrySelect, hasSelectedCYNARCountry, text, translatedCountries, IPGeoLocationAPIKey, }) => {
 
     const [formattedPhoneNumber, setFormattedPhoneNumber] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -51,6 +51,12 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 
 // Get User's Country from IP and Set Placeholder SVG and Top Option Based on it
 
+    const apiKey = IPGeoLocationAPIKey;
+
+    useEffect(() => {
+        console.log('userIP:', userIP);
+    }, [userIP]);
+
     useEffect(() => { 
         if (userIP && hasSelectedCYNARCountry === true) {
             const countryFromSelection = userData.countryDetails;
@@ -60,8 +66,6 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
             }
         } else if (userIP && hasSelectedCYNARCountry === false) {
             console.log("actualSelectedOption:", actualSelectedOption)
-            const apiKey = 'b2ef0251b1264f88ae869467dfe144d8';
-
             axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}&ip=102.217.238.0`)
             .then((response) => {
                 const countryFromIP = response.data.country_name;
@@ -254,12 +258,6 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                     // Extract the verification code from the Twilio response
                     const verificationCode = data.verificationCode.toString();
                     updateUser({ verificationCode: verificationCode });
-                    setFormattedPhoneNumber('');
-                    setPhoneNumber('');
-                    setErrorCondition(null);
-                    setIsImageLoaded(false);  
-                    setUsersCountryFlagSVG('');
-                    setLoading(false);
                     console.log("actualSelectedOption:", actualSelectedOption);
                     navigate('/enter-the-verification-code');    
                 } else {
@@ -275,7 +273,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                 setLoading(false);
                 setError("incorrectNumber");
             }
-        }; 
+        } 
         if (formattedPhoneNumber) {
             sendVerificationCode();
         }
@@ -418,9 +416,7 @@ const customStyles = {
                 text={text}
                 unitedKingdom={unitedKingdom}
                 handleLanguageSelection={handleLanguageSelection}
-                
                 userData={userData}
-                
             />
         </>
     )

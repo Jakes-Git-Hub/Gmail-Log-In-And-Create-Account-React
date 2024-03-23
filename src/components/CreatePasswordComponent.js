@@ -123,35 +123,45 @@ export const CreatePasswordComponent = ({
 
                     {errorCondition === 'passwordEmpty' && isImagePreloaded && (
                         <div class='error-div' id='create-password-error-div'>
-                            <img className='error-image' src={errorImage} alt='Error Image' />
+                            <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                            </svg>
                             <p class="input-error-message">{text.CreatePassword.error1[userData.language]}</p>
                         </div>
                     )}
 
                     {errorCondition === 'confirmPasswordEmpty' && isImagePreloaded && ( 
                         <div class='error-div' id='create-password-error-div'>
-                            <img className='error-image' src={errorImage} alt='Error Image' />
+                            <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                            </svg>
                             <p class="input-error-message">{text.CreatePassword.error2[userData.language]}</p>
                         </div>
                     )} 
                     
                     {errorCondition === 'passwordMismatch' && isImagePreloaded && (
                         <div class='error-div' id='create-password-error-div'>
-                            <img className='error-image' src={errorImage} alt='Error Image' />
+                            <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                            </svg>
                             <p class="input-error-message">{text.CreatePassword.error3[userData.language]}</p>
                         </div>
                     )}
 
                     {errorCondition === 'needs8CharsOrMore' && isImagePreloaded && (
                         <div class='error-div' id='create-password-error-div'>
-                            <img className='error-image' src={errorImage} alt='Error Image' />
+                            <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                            </svg>
                             <p class="input-error-message">{text.CreatePassword.error4[userData.language]}</p>
                         </div>
                     )}
 
                     {errorCondition === 'pleaseChooseAStrongerPassword' && isImagePreloaded && (
                         <div class='error-div' id='create-password-error-div-stronger-password'>
-                            <img className='error-image' src={errorImage} alt='Error Image' />
+                            <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                            </svg>
                             <p class="input-error-message">{text.CreatePassword.error5[userData.language]}</p>
                         </div>
                     )}

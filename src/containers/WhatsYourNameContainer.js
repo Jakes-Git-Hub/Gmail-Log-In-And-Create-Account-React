@@ -5,13 +5,16 @@ import useImagePreload from "../hooks/useImagePreload";
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFindYourEmailCredentials, findYourEmailCredentials, users, handleIncorrectInfoSearch, handleCorrectInfoSearch, handleFindWithPhoneNubmer, handleFindWithEmail, findWith }) => {
+export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFindYourEmailCredentials, findYourEmailCredentials, users, handleIncorrectInfoSearch, handleCorrectInfoSearch }) => {
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [errorCondition, setErrorCondition] = useState(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [proceedWithFindUser, setProceedWithFindUser] = useState(false);
+    const [findWith, setFindWith] = useState('');
+    const [foundMatchingUser, setfoundMatchingUser] = useState(false);
+
     const navigate = useNavigate();
 
 // Handle Slow Svg Load
@@ -27,6 +30,10 @@ export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFind
     useEffect(() => {
         console.log('findYourEmailCredentials', findYourEmailCredentials);
     }, [findYourEmailCredentials]);
+
+    useEffect(() => {
+        console.log('findWith:', findWith);
+    }, [findWith]);
 
     const isImagePreloaded = useImagePreload(errorImage);
 
@@ -54,23 +61,49 @@ export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFind
         setErrorCondition(error);
     };
 
+// Find With
+
+    const handleFindWithPhoneNumber = () => {
+        setFindWith('phoneNumber');
+    }
+
+    const handleFindWithEmail = () => {
+        setFindWith('email');
+    }
+
 // Matching User
     
     const findMatchingUser = () => {
         const matchingUser = users.find(user => {
-            if (user.email === findYourEmailCredentials.phoneNumberOrEmail && user.firstName === findYourEmailCredentials.firstName && user.lastName === findYourEmailCredentials.lastName) { 
-                handleFindWithEmail();
+            if (
+                user.email === findYourEmailCredentials.phoneNumberOrEmail &&
+                user.firstName === findYourEmailCredentials.firstName &&
+                user.lastName === findYourEmailCredentials.lastName
+            ) {
                 return true;
-            } else if (user.phoneNumber === findYourEmailCredentials.phoneNumberOrEmail && user.firstName === findYourEmailCredentials.firstName && user.lastName === findYourEmailCredentials.lastName) {
-                handleFindWithPhoneNubmer();
+            } else if (
+                user.phoneNumber === findYourEmailCredentials.phoneNumberOrEmail &&
+                user.firstName === findYourEmailCredentials.firstName &&
+                user.lastName === findYourEmailCredentials.lastName
+            ) {
                 return true;
             }
             return false;
         });
+
+        if (matchingUser) {
+            console.log('matchingUser', matchingUser);
+            console.log('findYourEmailCredentials.phoneNumberOrEmail', findYourEmailCredentials.phoneNumberOrEmail);
+            if (matchingUser.email === findYourEmailCredentials.phoneNumberOrEmail) {
+                handleFindWithEmail();
+                console.log('findWith:', findWith);
+            } else if (matchingUser.phoneNumber === findYourEmailCredentials.phoneNumberOrEmail) {
+                handleFindWithPhoneNumber();
+                console.log('findWith:', findWith);
+            }
+        }
         return matchingUser;
     };
-
-    const matchingUser = findMatchingUser();
 
 // Handle Next
 
@@ -91,21 +124,27 @@ export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFind
 
     useEffect(() => {
         if (proceedWithFindUser) {
+            const matchingUser = findMatchingUser();
             if (matchingUser) {
-                handleCorrectInfoSearch();
-                if (findWith === 'email') {
-                    navigate('/get-a-verification-code-email');
-                } else {
-                    navigate('/get-a-verification-code-phone-number');
-                }
+                setfoundMatchingUser(true);
             } else {
                 handleIncorrectInfoSearch();
                 navigate('/find-your-email');
-            }  
+            }
         } 
     }, [proceedWithFindUser]);
 
 
+    useEffect(() => {
+        if (foundMatchingUser) {
+            handleCorrectInfoSearch();
+            if (findWith === 'email') {
+                navigate('/get-a-verification-code-email');
+            } else {
+                navigate('/get-a-verification-code-phone-number');
+            } 
+        } 
+    }, [foundMatchingUser]);
 
     return(
         <>

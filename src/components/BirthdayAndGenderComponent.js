@@ -187,12 +187,16 @@ export const BirthdayAndGenderComponent = ({
 
                     {errorCondition === 'incompleteBirthday' && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space-basic-info'>
-                            <img className='error-image' src={errorImage} alt='Error Image' />
+                            <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                            </svg>
                             <p class="input-error-message">{text.BirthdayAndGender.pleaseFillInCompleteBirthday[userData.language]}</p>
                         </div>
                     ) : errorCondition === 'isWrongFormat' && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space-basic-info'>
-                            <img className='error-image' src={errorImage} alt='Error Image' />
+                            <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                            </svg>
                             <p class="input-error-message">{text.BirthdayAndGender.pleaseEnterVAlidDate[userData.language]}</p>
                         </div>
                     ) : (
@@ -248,7 +252,9 @@ export const BirthdayAndGenderComponent = ({
 
                     {genderEmpty && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space-basic-info'>
-                            <img className='error-image' src={errorImage} alt='Error Image' />
+                            <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                            </svg>
                             <p class="input-error-message">{text.BirthdayAndGender.pleaseSelectGender[userData.language]}</p>
                         </div>
                     ) : (
@@ -299,7 +305,9 @@ export const BirthdayAndGenderComponent = ({
 
                             {customGenderEmpty && isImagePreloaded ? (
                                 <div class='error-div' id='error-div-space-basic-info'>
-                                    <img className='error-image' src={errorImage} alt='Error Image' />
+                                    <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                                    </svg>
                                     <p class="input-error-message">{text.BirthdayAndGender.pleaseIndicateGender[userData.language]}</p>
                                 </div>
                             ) : (
@@ -351,7 +359,9 @@ export const BirthdayAndGenderComponent = ({
 
                             {pronounEmpty && isImagePreloaded ? (
                                 <div class='error-div' id='error-div-space-basic-info'>
-                                    <img className='error-image' src={errorImage} alt='Error Image' />
+                                    <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                                    </svg>
                                     <p class="input-error-message">{text.BirthdayAndGender.pleaseSelectPronoun[userData.language]}</p>
                                 </div>
                             ) : (

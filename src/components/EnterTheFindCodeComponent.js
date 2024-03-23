@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import { ThemeProvider } from '@mui/material/styles';
 import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
 
-export const EnterTheCodeComponent = ({
+export const EnterTheFindCodeComponent = ({
     handleNextClick,
     isImagePreloaded,
     isImageLoaded,
@@ -16,14 +16,9 @@ export const EnterTheCodeComponent = ({
     usersVerificationCodeInput,
     errorCondition,
     theme,
-    getNewCode,
-    getNewCodeButtonDisabled,
-    disabledCount,
     text,
     handleLanguageSelection,
-    
     userData,
-    
 }) => {
     
     return (
@@ -122,44 +117,6 @@ export const EnterTheCodeComponent = ({
                     )}
 
                     <div id={errorCondition ? "buttons-container-enter-the-code-error" : "buttons-container-enter-the-code"}>
-                            
-                        {getNewCodeButtonDisabled ? (
-                            <div id="secondary-button-container-etc">
-                                <SecondaryGreyButton 
-                                        variant="contained" 
-                                        onClick={getNewCode}
-                                        disabled
-                                        sx={{
-                                            '&& .MuiTouchRipple-rippleVisible': {
-                                                animationDuration: '300ms',
-                                            },
-                                            backgroundColor: 'transparent !important',
-                                        }}
-                                >
-                                    <div className="get-new-code-text">
-                                        {text.EnterTheCode.getNewCode[userData.language]} {disabledCount} {text.EnterTheCode.seconds[userData.language]}
-                                    </div>
-                                </SecondaryGreyButton>
-                            </div>
-                        ) : (
-                            <div id="secondary-button-container-etc">
-                                <SecondaryGreyButton 
-                                        variant="contained" 
-                                        onClick={getNewCode}
-                                        sx={{
-                                            '&& .MuiTouchRipple-rippleVisible': {
-                                                animationDuration: '300ms',
-                                            },
-                                        }}
-                                >
-                                    <div className="get-new-code-text">
-                                        {text.EnterTheCode.getNewCode[userData.language]}
-                                    </div>
-                                </SecondaryGreyButton>
-                            </div>
-                        )}    
-                            
-
                         <div id="next-button-container-etc">
                             <CustomNextButton 
                                     variant="contained" 

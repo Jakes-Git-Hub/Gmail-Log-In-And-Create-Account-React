@@ -8,13 +8,12 @@ import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
 
 
 export const GetAVerificationCodeEmailComponent = ({ 
-    handleNextClick,
     handleLanguageSelection,
     text,
     isImageLoaded,
     userData,
-    findWith,
-    
+    findYourEmailCredentials,    
+    handleSendClick,
 }) => {
 
     return (
@@ -43,14 +42,14 @@ export const GetAVerificationCodeEmailComponent = ({
 
                     <div class='p-container-gavc'>
                         <p class='p-get-a-verification-code'>
-                            Google will send a verification code to jacmatthews7@gmail.com
+                            Google will send a verification code to {findYourEmailCredentials.phoneNumberOrEmail}.
                         </p>
                     </div>
 
                     <div id='button-get-a-verification-code-container'>
                         <CustomNextButton 
                             variant="contained" 
-                            onClick={handleNextClick}
+                            onClick={handleSendClick}
                             sx={{
                                 '&& .MuiTouchRipple-rippleVisible': {
                                     animationDuration: '300ms',

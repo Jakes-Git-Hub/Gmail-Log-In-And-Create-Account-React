@@ -25,10 +25,11 @@ import { ManualChooseYourSettingsContainer3 } from "./containers/ManualChooseYou
 import { ManualChooseYourSettingsContainer4 } from "./containers/ManualChooseYourSettingsContainer4";
 import { PrivacyAndTermsContainer } from "./containers/PrivacyAndTermsContainer";
 import { GetAVerificationCodeEmailContainer } from "./containers/GetAVerificationCodeEmailContainer";
+import { EnterTheFindCodeContainer } from "./containers/EnterTheFindCodeContainer";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [users, setUsers] = useState([{ id: 0, email: 'test'}]);
+  const [users, setUsers] = useState([{ id: 0, email: 'jacmatthews7@gmail.com', firstName: 'Jacob', lastName: 'Matthews'}]);
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
   const [nextUserId, setNextUserId] = useState(1);
   const [userData, setUserData] = useState({ manualSetting4: 'no privacy reminders', language: 'en-GB' });
@@ -38,7 +39,12 @@ function App() {
   const [translatedCountries, setTranslatedCountries] = useState(filteredCountriesFromUtil);
   const [showPrivacyRow, setShowPrivacyRow] = useState(false);
   const [isWrongCredentials, setIsWrongCredentials] = useState(null);
-  const [findWith, setFindWith] = useState('');
+
+  const IPGeoLocationAPIKey = process.env.REACT_APP_IP_GEO_LOCATION_API_KEY;
+
+  useEffect(() => {
+    console.log('IPGeoLocationAPIKey:', IPGeoLocationAPIKey);
+  }, [IPGeoLocationAPIKey]);
 
 // Translation
 
@@ -46,11 +52,11 @@ function App() {
 
   useEffect(() => {
     handleLanguageSelection();
-    console.log('chosenLanguage:', userData.language)
+    console.log('chosenLanguage:', userData.language);
   }, [userData.language]);
 
   useEffect(() => {
-    console.log('findYourEmailCredentials:', findYourEmailCredentials)
+    console.log('findYourEmailCredentials:', findYourEmailCredentials);
   }, [findYourEmailCredentials]);
 
   const handleLanguageSelection = async () => {
@@ -74,7 +80,7 @@ function App() {
     } catch (error) {
         console.error('Error translating text:', error);
     }
-  }; 
+  }
 
   const changeLanguageAndTranslate = async (text, chosenLanguage) => {
       updateUser({ language: chosenLanguage })
@@ -88,7 +94,7 @@ function App() {
         console.error('Error translating text:', error);
         return null;
       }
-  };
+  }
 
   const sanitizeCountryNames = (countries) => {
     const sanitizedCountries = countries.map(country => ({
@@ -158,14 +164,6 @@ const { userIP } = useUserIP()
 
   const handleCorrectInfoSearch = () => {
     setIsWrongCredentials(false);
-  }
-
-  const handleFindWithPhoneNubmer = () => {
-    setFindWith('phoneNumber');
-  }
-
-  const handleFindWithEmail = () => {
-    setFindWith('email');
   }
 
 // Add User
@@ -239,9 +237,6 @@ const { userIP } = useUserIP()
               users={users}
               handleIncorrectInfoSearch={handleIncorrectInfoSearch}
               handleCorrectInfoSearch={handleCorrectInfoSearch}
-              handleFindWithPhoneNubmer={handleFindWithPhoneNubmer}
-              handleFindWithEmail={handleFindWithEmail}
-              findWith={findWith}
             />
           } 
         />
@@ -250,7 +245,17 @@ const { userIP } = useUserIP()
               userData={userData}
               text={text}
               updateUser={updateUser}
-              findWith={findWith}
+              findYourEmailCredentials={findYourEmailCredentials}
+              updateFindYourEmailCredentials={updateFindYourEmailCredentials}
+            />
+          } 
+        />
+        <Route path="/enter-the-find-code" element={
+            <EnterTheFindCodeContainer 
+              userData={userData}
+              text={text}
+              updateUser={updateUser}
+              findYourEmailCredentials={findYourEmailCredentials}
             />
           } 
         />
@@ -298,6 +303,7 @@ const { userIP } = useUserIP()
               hasSelectedCYNARCountry={hasSelectedCYNARCountry}
               text={text}
               translatedCountries={translatedCountries}
+              IPGeoLocationAPIKey={IPGeoLocationAPIKey}
             />
           } 
         />
