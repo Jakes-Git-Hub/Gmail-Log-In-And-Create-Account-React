@@ -40,49 +40,42 @@ export const SignInFrontPageComponent = ({
 
                     <h2 class='thin gap'>Use your Google Account</h2>
 
-                    <Box
-                        component="form"
-                        sx={{
-                            '& > :not(style)': { m: 1.25 },
-                            width: 363,
-                            maxWidth: '100%',
-                        }}
-                    >
-                        <TextField 
-                            error={errorCondition}
-                            id="emailOrPhoneInput" 
-                            label={'Email or phone'}
-                            variant="outlined" 
-                            fullWidth
-                            value={emailOrPhone}
-                            onChange={onEmailOrPhoneChange}
-                            InputLabelProps={
-                                errorCondition ? 
-                                { 
-                                    sx: {
-                                        color: emailOrPhone ? '#d32f2f' : 'rgba(0, 0, 0, 0.6) !important',
-                                        '&.Mui-focused': {
-                                            color: '#d32f2f !important',
-                                        },
+
+                    <TextField 
+                        className="standard-text-field"
+                        error={errorCondition}
+                        id="emailOrPhoneInput" 
+                        label={'Email or phone'}
+                        variant="outlined" 
+                        fullWidth
+                        value={emailOrPhone}
+                        onChange={onEmailOrPhoneChange}
+                        InputLabelProps={
+                            errorCondition ? 
+                            { 
+                                sx: {
+                                    color: emailOrPhone ? '#d32f2f' : 'rgba(0, 0, 0, 0.6) !important',
+                                    '&.Mui-focused': {
+                                        color: '#d32f2f !important',
                                     },
-                                } : {}
-                            }
-                            sx={
-                                errorCondition ? 
-                                {} : 
-                                {
-                                    "& .MuiOutlinedInput-root": {
-                                        "&:hover:not(.Mui-focused) fieldset": {
-                                            borderColor: "#dadce0"
-                                        },
-                                        "& fieldset": {
-                                            borderColor: "#dadce0"
-                                        },
-                                    }
+                                },
+                            } : {}
+                        }
+                        sx={
+                            errorCondition ? 
+                            {} : 
+                            {
+                                "& .MuiOutlinedInput-root": {
+                                    "&:hover:not(.Mui-focused) fieldset": {
+                                        borderColor: "#dadce0"
+                                    },
+                                    "& fieldset": {
+                                        borderColor: "#dadce0"
+                                    },
                                 }
                             }
-                        />     
-                    </Box>
+                        }
+                    />     
 
                     {errorCondition === 'emailOrPhoneEmpty' && isImagePreloaded && (
                         <div class='error-div'>

@@ -4,7 +4,6 @@ import CustomNextAndSkipButton from './buttons/CustomNext&SkipButtonComponent';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
-import errorImage from '../images/Daco_5575399.png';
 import { Modal, Box } from '@mui/material';
 import { animated } from 'react-spring';
 import TransparentSmallButton from './buttons/TransparentSmallButtonComponent';
@@ -27,7 +26,6 @@ export const ManualChooseYourSettingsComponent = ({
     animationOpen,
     animationClose,
     handleBackClick,
-    
     userData,
     
 }) => {

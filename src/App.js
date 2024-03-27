@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useUserIP } from './utils/userIPModule';
 import axios from "axios";  
 import textData from './data/textData';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useUserIP } from './utils/userIPModule';
 import { filteredCountriesFromUtil } from './utils/countryDropDownOptions';
 import { SignInFrontPageContainer } from "./containers/SignInFrontPageContainer";
 import { MockMailContainer } from "./containers/MockMailContainer";
@@ -26,10 +26,12 @@ import { ManualChooseYourSettingsContainer4 } from "./containers/ManualChooseYou
 import { PrivacyAndTermsContainer } from "./containers/PrivacyAndTermsContainer";
 import { GetAVerificationCodeEmailContainer } from "./containers/GetAVerificationCodeEmailContainer";
 import { EnterTheFindCodeContainer } from "./containers/EnterTheFindCodeContainer";
+import { GetAVerificationCodePhoneContainer } from "./containers/GetAVerificationCodePhoneContainer";
+import { SelectAnAccountToSignInContainer } from "./containers/SelectAnAccountToSignInContainer";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [users, setUsers] = useState([{ id: 0, email: 'jacmatthews7@gmail.com', firstName: 'Jacob', lastName: 'Matthews'}]);
+  const [users, setUsers] = useState([{ id: 0, email: 'jacmatthews7@gmail.com', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143'}]);
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
   const [nextUserId, setNextUserId] = useState(1);
   const [userData, setUserData] = useState({ manualSetting4: 'no privacy reminders', language: 'en-GB' });
@@ -247,6 +249,25 @@ const { userIP } = useUserIP()
               updateUser={updateUser}
               findYourEmailCredentials={findYourEmailCredentials}
               updateFindYourEmailCredentials={updateFindYourEmailCredentials}
+            />
+          } 
+        />
+        <Route path="/select-an-account-to-sign-in" element={
+            <SelectAnAccountToSignInContainer
+              userData={userData}
+              text={text}
+              updateUser={updateUser}
+              findYourEmailCredentials={findYourEmailCredentials}
+              updateFindYourEmailCredentials={updateFindYourEmailCredentials}
+            />
+          } 
+        />
+        <Route path="/enter-the-find-code" element={
+            <EnterTheFindCodeContainer 
+              userData={userData}
+              text={text}
+              updateUser={updateUser}
+              findYourEmailCredentials={findYourEmailCredentials}
             />
           } 
         />

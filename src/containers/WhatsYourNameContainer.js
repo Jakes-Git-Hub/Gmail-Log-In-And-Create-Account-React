@@ -141,7 +141,7 @@ export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFind
             if (findWith === 'email') {
                 navigate('/get-a-verification-code-email');
             } else {
-                navigate('/get-a-verification-code-phone-number');
+                navigate('/get-a-verification-code-phone');
             } 
         } 
     }, [foundMatchingUser]);

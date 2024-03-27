@@ -19,7 +19,6 @@ export const ChooseYourSettingsComponent = ({
     text,
     userData,
     
-    
 }) => {
 
     return (

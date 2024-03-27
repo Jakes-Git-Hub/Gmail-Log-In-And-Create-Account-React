@@ -4,12 +4,14 @@
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100vh;
   display: flex;
+  justify-content: center;
   @media (min-height: 624px) {
     align-items: center;
   }
-  justify-content: center;
+  @media (min-width: 600px) {
+    height: 100vh;
+  }
 }
 
 #body-overflow {
@@ -30,6 +32,12 @@
 #root {
   font-size: 16px;
   color: rgb(32,33,36);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 }
 
 .next {
@@ -183,6 +191,7 @@ form {
   display: flex;
   justify-content: flex-start;
   width: 90%;
+  margin-top: 7.5px;
 }
 
 #sign-in-guest-mode-container {
@@ -408,7 +417,7 @@ form {
   margin-bottom: 167px;
 }
 
-/* Get a Verification Code */
+/* Get a Verification Code Email */
 
 .h2-line-height {
   line-height: 1.5;
@@ -511,6 +520,28 @@ form {
   z-index: 3;
 }
 
+/* Get a Verification Code Email */
+
+.phone-gif-z-index {
+  height: 20vh;
+  max-width: 100%;
+  min-height: 110px;
+  position: relative;
+  /* -webkit-transform: translate(-43%, -3%);
+  transform: translate(-43%,-3%); */
+  z-index: 3;
+  right: 5%;
+}
+
+/* Text Fields */
+
+.standard-text-field{
+  width: 363px !important;
+  max-width: 100%;
+  @media (max-width: 600px) {
+    width: 90% !important; 
+  }
+}
 
 /* Create Account  */
 
@@ -530,6 +561,9 @@ form {
   width: 363px;
   justify-content: flex-end;
   margin-bottom: 105px;
+  @media (max-width: 600px) {
+    width: 95%;
+  }
 }
 
 .button-right-first-name-empty {
@@ -558,6 +592,10 @@ form {
   position: relative;
   @media (max-height: 623px) {
     margin-top: 20px;
+  }
+  @media (max-width: 600px) {
+    border: none;
+    width: 100%;
   }
 }
 
@@ -1900,6 +1938,14 @@ p-gap-ecys-tight {
   justify-content: space-between;
   margin-top: 7px;
   margin-bottom: 7px;
+  @media (max-width: 600px) and (min-height: 537px) {
+    width: 85%;
+    position: fixed;
+    bottom: 0;
+  }
+  @media (max-height: 536px) {
+    display: none;
+  }
 }
 
 #language-changer-dropdown {
