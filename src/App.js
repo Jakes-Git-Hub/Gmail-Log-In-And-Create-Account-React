@@ -252,6 +252,16 @@ const { userIP } = useUserIP()
             />
           } 
         />
+        <Route path="/get-a-verification-code-phone" element={
+            <GetAVerificationCodePhoneContainer 
+              userData={userData}
+              text={text}
+              updateUser={updateUser}
+              findYourEmailCredentials={findYourEmailCredentials}
+              updateFindYourEmailCredentials={updateFindYourEmailCredentials}
+            />
+          } 
+        />
         <Route path="/select-an-account-to-sign-in" element={
             <SelectAnAccountToSignInContainer
               userData={userData}

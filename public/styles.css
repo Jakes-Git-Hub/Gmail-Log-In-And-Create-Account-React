@@ -1944,8 +1944,13 @@ p-gap-ecys-tight {
     bottom: 0;
   }
   @media (max-height: 536px) {
-    display: none;
+    animation: fade-out 1s ease-in-out;
   }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; display: inline-flex; width: 85%; position: fixed; bottom: 0; }
+  to { opacity: 0; display: none; width: 85%; }
 }
 
 #language-changer-dropdown {
