@@ -1,5 +1,4 @@
 import React from 'react';
-import errorImage from '../images/Daco_5575399.png';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import CustomNextButton from './buttons/CustomNextButtonComponent';

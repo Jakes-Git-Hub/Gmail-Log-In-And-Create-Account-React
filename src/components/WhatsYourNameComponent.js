@@ -38,67 +38,59 @@ export const WhatsYourNameComponent = ({
                     <h1 class="thin h1-space">{text.WhatsYourName.h1[userData.language]}</h1>
                     <h2 class='thin gap'>Enter the name on your Google Account</h2>
 
-                    <Box
-                        component="form"
-                        sx={{
-                            '& > :not(style)': { m: 1.25},
-                            width: 363,
-                            maxWidth: '100%',
-                        }}
-                    >
-                        <TextField 
-                            error={errorCondition}
-                            id="firstNameInput" 
-                            label={text.CreateAccount.firstName[userData.language]}
-                            variant="outlined" 
-                            fullWidth
-                            value={firstName}
-                            onChange={onFirstNameInputChange}
-                            InputLabelProps={
-                                errorCondition ? 
-                                { 
-                                    sx: {
-                                        color: firstName ? '#d32f2f' : 'rgba(0, 0, 0, 0.6) !important',
-                                        '&.Mui-focused': {
-                                            color: '#d32f2f !important',
-                                        },
+                    <TextField 
+                        className="standard-text-field"
+                        error={errorCondition}
+                        id="firstNameInput" 
+                        label={text.CreateAccount.firstName[userData.language]}
+                        variant="outlined" 
+                        fullWidth
+                        value={firstName}
+                        onChange={onFirstNameInputChange}
+                        InputLabelProps={
+                            errorCondition ? 
+                            { 
+                                sx: {
+                                    color: firstName ? '#d32f2f' : 'rgba(0, 0, 0, 0.6) !important',
+                                    '&.Mui-focused': {
+                                        color: '#d32f2f !important',
                                     },
-                                } : {}
-                            }
-                            sx={
-                                errorCondition ? 
-                                {} : 
-                                {
-                                    "& .MuiOutlinedInput-root": {
-                                        "&:hover:not(.Mui-focused) fieldset": {
-                                            borderColor: "#dadce0"
-                                        },
-                                        "& fieldset": {
-                                            borderColor: "#dadce0"
-                                        },
-                                    }
-                                }
-                            }
-                        />
-                        <TextField 
-                            label={text.WhatsYourName.lastName[userData.language]}
-                            className='last-name-margin-top' 
-                            variant="outlined" 
-                            fullWidth
-                            value={lastName}
-                            onChange={onLastNameInputChange}
-                            sx={{
+                                },
+                            } : {}
+                        }
+                        sx={
+                            errorCondition ? 
+                            {} : 
+                            {
                                 "& .MuiOutlinedInput-root": {
                                     "&:hover:not(.Mui-focused) fieldset": {
-                                    borderColor: "#dadce0"
+                                        borderColor: "#dadce0"
                                     },
                                     "& fieldset": {
                                         borderColor: "#dadce0"
                                     },
+                                }
+                            }
+                        }
+                    />
+                    <TextField 
+                        label={text.WhatsYourName.lastName[userData.language]}
+                        className='last-name-margin-top standard-text-field' 
+                        variant="outlined" 
+                        fullWidth
+                        value={lastName}
+                        onChange={onLastNameInputChange}
+                        sx={{
+                            "& .MuiOutlinedInput-root": {
+                                "&:hover:not(.Mui-focused) fieldset": {
+                                borderColor: "#dadce0"
                                 },
-                            }}
-                        />       
-                    </Box>
+                                "& fieldset": {
+                                    borderColor: "#dadce0"
+                                },
+                            },
+                        }}
+                    />       
 
                     {errorCondition === "firstNameEmpty" && isImagePreloaded ? (
                         <div class='error-div'>

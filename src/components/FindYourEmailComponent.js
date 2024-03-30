@@ -1,5 +1,4 @@
 import React from 'react';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import CustomNextButton from './buttons/CustomNextButtonComponent';
 import googleWritingSvg from "../images/google-writing-svg.svg";
@@ -35,49 +34,41 @@ export const FindYourEmailComponent = ({
                     <h1 class="thin h1-space">{text.FindYourEmail.h1[userData.language]}</h1>
                     <h2 class='thin gap'>Enter your phone number or recovery email</h2>
 
-                    <Box
-                        component="form"
-                        sx={{
-                            '& > :not(style)': { m: 1.25},
-                            width: 363,
-                            maxWidth: '100%',
-                        }}
-                    >
-                        <TextField 
-                            error={errorCondition}
-                            id="phoneNumberOrEmailInput" 
-                            label='Phone number or email'
-                            variant="outlined" 
-                            fullWidth
-                            value={phoneNumberOrEmail}
-                            onChange={onPhoneNumberOrEmailInputChange}
-                            InputLabelProps={
-                                errorCondition ? 
-                                { 
-                                    sx: {
-                                        color: phoneNumberOrEmail ? '#d32f2f' : 'rgba(0, 0, 0, 0.6) !important',
-                                        '&.Mui-focused': {
-                                            color: '#d32f2f !important',
-                                        },
+                    <TextField 
+                        className="standard-text-field"
+                        error={errorCondition}
+                        id="phoneNumberOrEmailInput" 
+                        label='Phone number or email'
+                        variant="outlined" 
+                        fullWidth
+                        value={phoneNumberOrEmail}
+                        onChange={onPhoneNumberOrEmailInputChange}
+                        InputLabelProps={
+                            errorCondition ? 
+                            { 
+                                sx: {
+                                    color: phoneNumberOrEmail ? '#d32f2f' : 'rgba(0, 0, 0, 0.6) !important',
+                                    '&.Mui-focused': {
+                                        color: '#d32f2f !important',
                                     },
-                                } : {}
-                            }
-                            sx={
-                                errorCondition ? 
-                                {} : 
-                                {
-                                    "& .MuiOutlinedInput-root": {
-                                        "&:hover:not(.Mui-focused) fieldset": {
-                                            borderColor: "#dadce0"
-                                        },
-                                        "& fieldset": {
-                                            borderColor: "#dadce0"
-                                        },
-                                    }
+                                },
+                            } : {}
+                        }
+                        sx={
+                            errorCondition ? 
+                            {} : 
+                            {
+                                "& .MuiOutlinedInput-root": {
+                                    "&:hover:not(.Mui-focused) fieldset": {
+                                        borderColor: "#dadce0"
+                                    },
+                                    "& fieldset": {
+                                        borderColor: "#dadce0"
+                                    },
                                 }
                             }
-                        />
-                    </Box>
+                        }
+                    />
 
                     {errorCondition === "phoneNumberOrEmailEmpty" && isImagePreloaded ? (
                         <div class='error-div'>
