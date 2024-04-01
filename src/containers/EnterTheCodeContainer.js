@@ -6,7 +6,7 @@ import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import { createTheme } from '@mui/material/styles';
 
-export const EnterTheCodeContainer = ({ updateUser, userData, text,   }) => {
+export const EnterTheCodeContainer = ({ updateUser, userData, text, }) => {
 
     const [errorCondition, setErrorCondition] = useState(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
@@ -14,6 +14,7 @@ export const EnterTheCodeContainer = ({ updateUser, userData, text,   }) => {
     const [verificationCode, setVerificationCode] = useState('');
     const [getNewCodeButtonDisabled, setGetNewCodeButtonDisabled] = useState(true);
     const [disabledCount, setDisabledCount] = useState(30);
+    const [isFocused, setIsFocused] = useState(false);
 
     const navigate = useNavigate();
 
@@ -85,9 +86,6 @@ const setError = errorType => setErrorCondition(errorType);
         if ((usersVerificationCodeInput !== emptyInput) && (!hasLetters && !sixDigits.test(usersVerificationCodeInput))) {
             setError("wrongNumberOfDigits");
         } 
-        if (usersVerificationCodeInput === verificationCode) {
-            navigate("/create-your-profile");
-        } 
         if (sixDigits.test(usersVerificationCodeInput) && (usersVerificationCodeInput !== verificationCode)) {
             setError("wrongCode");
         } 
@@ -96,31 +94,37 @@ const setError = errorType => setErrorCondition(errorType);
         }
     };
 
+// isFocused?
+
+const toggleFocus = () => {
+    setIsFocused(!isFocused);
+}
+
 // Custom MUI TextField
 
     const theme = createTheme({
-        components: {
-            MuiInputLabel: {
-                styleOverrides: {
-                    root: {
-                        paddingLeft: usersVerificationCodeInput ? "52px" : '38px',
-                        '&.Mui-focused': {
-                            paddingLeft: '52px',
-                        },
+    components: {
+        MuiInputLabel: {
+            styleOverrides: {
+                root: {
+                    paddingLeft: usersVerificationCodeInput || isFocused ? "14%" : '10.5%',
+                    '&.Mui-focused': {
+                        paddingLeft: '14%',
                     },
-            },
-            },
-            MuiOutlinedInput: {
-                styleOverrides: {
-                    notchedOutline: {
-                        paddingLeft:'46px',
-                    },
-                    input: {
-                        paddingLeft: '51px',
-                    },
+                },
+        },
+        },
+        MuiOutlinedInput: {
+            styleOverrides: {
+                notchedOutline: {
+                    paddingLeft:'12.4%',
+                },
+                input: {
+                    paddingLeft: '7.5%',
                 },
             },
         },
+    },
     })
 
     return (
@@ -137,9 +141,9 @@ const setError = errorType => setErrorCondition(errorType);
             disabledCount={disabledCount}
             text={text}
             handleLanguageSelection={handleLanguageSelection}
-            
+            toggleFocus={toggleFocus}
+            isFocused={isFocused}
             userData={userData}
-            
         />
     );
 };

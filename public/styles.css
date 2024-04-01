@@ -1176,6 +1176,9 @@ input[type="number"]::-webkit-outer-spin-button {
   margin-bottom: 20px;
   font-size: 0.875rem;
   width: 90%;
+  @media (max-width: 600px) {
+    text-align: center;
+  }
 }
 
 #textfield-container-etc {
@@ -1192,7 +1195,6 @@ input[type="number"]::-webkit-outer-spin-button {
   font-weight: 200;
   color: rgb(32,33,36);
   @media (max-width: 600px) {
-    position: absolute;
     top: 44%;
     left: 57.5px;
   }
@@ -1217,7 +1219,7 @@ input[type="number"]::-webkit-outer-spin-button {
   height: 50px;
   display: flex;
   align-items: center;
-  width: 92.5%;
+  width: 90%;
 }
 
 #buttons-container-enter-the-code-error{
@@ -1225,7 +1227,7 @@ input[type="number"]::-webkit-outer-spin-button {
   height: 50px;
   display: flex;
   align-items: center;
-  width: 92.5%;
+  width: 90%;
 }
 
 #secondary-button-container-etc{
@@ -1233,11 +1235,22 @@ input[type="number"]::-webkit-outer-spin-button {
   align-items: center;
   width: 60%;
   justify-content: flex-start;
-  right: 6px;
   position: relative;
 }
 
 #next-button-container-etc{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  position: relative;
+  right: 7px;
+  @media (max-width: 600px) {
+    right: 0;
+  }
+}
+
+#next-button-container-etfc{
   display: flex;
   align-items: center;
   justify-content: flex-end;

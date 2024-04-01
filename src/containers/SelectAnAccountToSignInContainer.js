@@ -63,8 +63,6 @@ export const SelectAnAccountToSignInContainer = ({ userData, updateUser, text })
                 userData={userData}
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
-                
-                
             />
         </>
     );

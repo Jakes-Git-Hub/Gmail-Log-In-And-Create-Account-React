@@ -1,12 +1,12 @@
 import React from 'react';
-import errorImage from '../images/Daco_5575399.png';
 import TextField from '@mui/material/TextField';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import SecondaryGreyButton from './buttons/SecondaryGreyButtonComponent';
 import CustomNextButton from './buttons/CustomNextButtonComponent'; 
-import Box from '@mui/material/Box';
 import { ThemeProvider } from '@mui/material/styles';
 import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
+import InputAdornment from '@mui/material/InputAdornment';
+import Typography from '@mui/material/Typography';
 
 export const EnterTheCodeComponent = ({
     handleNextClick,
@@ -21,9 +21,9 @@ export const EnterTheCodeComponent = ({
     disabledCount,
     text,
     handleLanguageSelection,
-    
     userData,
-    
+    toggleFocus,
+    isFocused,
 }) => {
     
     return (
@@ -42,52 +42,57 @@ export const EnterTheCodeComponent = ({
 
                     <p id='p-enter-the-code'>{text.EnterTheCode.h2[userData.language]}</p>
 
-                    <div class="line-height label-input-width input-label" id='username-input-width'>
-                        <Box>
-                            <span id={errorCondition ? 'static-G-error' : "static-G"}>
-                                G-
-                            </span>
-
-                            <ThemeProvider theme={theme}>
-                                <TextField
-                                    id="code-input"
-                                    fullWidth error={errorCondition}
-                                    value={usersVerificationCodeInput}
-                                    label={text.EnterTheCode.enterCode[userData.language]}
-                                    onChange={handleUserVerificationCodeInput}
-                                    InputLabelProps={
-                                        errorCondition ? 
-                                        { 
-                                            sx: {
-                                                color: usersVerificationCodeInput ? '#d32f2f' : 'rgb(95,99,104) !important',
-                                                '&.Mui-focused': {
-                                                    color: '#d32f2f !important',
-                                                },
-                                            },
-                                        } : {
-                                            sx: {
-                                                color: "rgb(95,99,104)",
-                                            }
-                                        }
+                    <ThemeProvider theme={theme} class="line-height">
+                        <TextField
+                            className='standard-text-field line-height'
+                            id="code-input"
+                            fullWidth error={errorCondition}
+                            value={usersVerificationCodeInput}
+                            label={text.EnterTheCode.enterCode[userData.language]}
+                            onChange={handleUserVerificationCodeInput}
+                            onFocus={toggleFocus}
+                            onBlur={toggleFocus}
+                            InputLabelProps={
+                                errorCondition ? 
+                                { 
+                                    shrink: usersVerificationCodeInput || isFocused ? true : false,
+                                    sx: {
+                                        color: usersVerificationCodeInput ? '#d32f2f' : 'rgb(95,99,104) !important',
+                                        '&.Mui-focused': {
+                                            color: '#d32f2f !important',
+                                        },
+                                    },
+                                } : {
+                                    shrink: usersVerificationCodeInput || isFocused ? true : false,
+                                    sx: {
+                                        color: "rgb(95,99,104)",
                                     }
-                                    sx={
-                                        errorCondition ? 
-                                        {} : 
-                                        {
-                                            "& .MuiOutlinedInput-root": {
-                                                "&:hover:not(.Mui-focused) fieldset": {
-                                                    borderColor: "#dadce0"
-                                                },
-                                                "& fieldset": {
-                                                    borderColor: "#dadce0"
-                                                },
-                                            },
-                                        }
-                                    }
-                                />
-                            </ThemeProvider>
-                        </Box>
-                    </div>
+                                }
+                            }
+                            sx={
+                                errorCondition ? 
+                                {} : 
+                                {
+                                    "& .MuiOutlinedInput-root": {
+                                        "&:hover:not(.Mui-focused) fieldset": {
+                                            borderColor: "#dadce0"
+                                        },
+                                        "& fieldset": {
+                                            borderColor: "#dadce0"
+                                        },
+                                    },
+                                }
+                            }
+                            InputProps={{
+                                startAdornment: 
+                                    <InputAdornment id='static-G'>
+                                        <Typography >
+                                            G-
+                                        </Typography>
+                                    </InputAdornment>
+                            }}
+                        />
+                    </ThemeProvider>
 
                     {errorCondition === "inputEmpty" && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space-etc'>

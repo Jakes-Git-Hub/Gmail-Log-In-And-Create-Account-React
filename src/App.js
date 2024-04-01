@@ -281,15 +281,6 @@ const { userIP } = useUserIP()
             />
           } 
         />
-        <Route path="/enter-the-find-code" element={
-            <EnterTheFindCodeContainer 
-              userData={userData}
-              text={text}
-              updateUser={updateUser}
-              findYourEmailCredentials={findYourEmailCredentials}
-            />
-          } 
-        />
         <Route path="/create-account" element={
             <CreateAccountContainer 
               updateUser={updateUser}

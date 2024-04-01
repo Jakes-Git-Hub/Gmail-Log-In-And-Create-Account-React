@@ -12,6 +12,7 @@ export const EnterTheFindCodeContainer = ({ updateUser, userData, text, findYour
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
     const [usersVerificationCodeInput, setUsersVerificationCodeInput] = useState('');
     const [verificationCode, setVerificationCode] = useState(findYourEmailCredentials.verificationCode);
+    const [isFocused, setIsFocused] = useState(false);
 
     const navigate = useNavigate();
 
@@ -41,6 +42,12 @@ export const EnterTheFindCodeContainer = ({ updateUser, userData, text, findYour
 
 const setError = errorType => setErrorCondition(errorType);
 
+// isFocused?
+
+    const toggleFocus = () => {
+        setIsFocused(!isFocused);
+    }
+
 // Handle Next Click
 
     const handleNextClick = () => {
@@ -56,14 +63,11 @@ const setError = errorType => setErrorCondition(errorType);
         if ((usersVerificationCodeInput !== emptyInput) && (!hasLetters && !sixDigits.test(usersVerificationCodeInput))) {
             setError("wrongNumberOfDigits");
         } 
-        if (usersVerificationCodeInput === verificationCode) {
-            navigate("/create-your-profile");
-        } 
         if (sixDigits.test(usersVerificationCodeInput) && (usersVerificationCodeInput !== verificationCode)) {
             setError("wrongCode");
         } 
         if (usersVerificationCodeInput === verificationCode) {
-            navigate("/add-recovery-email");
+            navigate("/select-an-account-to-sign-in");
         }
     };
 
@@ -74,9 +78,9 @@ const setError = errorType => setErrorCondition(errorType);
             MuiInputLabel: {
                 styleOverrides: {
                     root: {
-                        paddingLeft: usersVerificationCodeInput ? "52px" : '38px',
+                        paddingLeft: usersVerificationCodeInput || isFocused ? "14%" : '10.5%',
                         '&.Mui-focused': {
-                            paddingLeft: '52px',
+                            paddingLeft: '14%',
                         },
                     },
             },
@@ -84,10 +88,10 @@ const setError = errorType => setErrorCondition(errorType);
             MuiOutlinedInput: {
                 styleOverrides: {
                     notchedOutline: {
-                        paddingLeft:'46px',
+                        paddingLeft:'12.4%',
                     },
                     input: {
-                        paddingLeft: '51px',
+                        paddingLeft: '7.5%',
                     },
                 },
             },
@@ -105,9 +109,9 @@ const setError = errorType => setErrorCondition(errorType);
             theme={theme}
             text={text}
             handleLanguageSelection={handleLanguageSelection}
-            
+            toggleFocus={toggleFocus}
             userData={userData}
-            
+            isFocused={isFocused}
         />
     );
 };

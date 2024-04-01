@@ -9,26 +9,19 @@ export const SelectAnAccountToSignInComponent = ({
     userData,
     handleLanguageSelection,
     text,
-    
-    
-
 }) => {
 
     return (
 
         <>
 
-            <div className='google-container-flexible-ryai'>
-
+            <div id='google-container-BG'>
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                     <div className="blue-snake-loader"></div>
                 </div>
                 <img src={googleWritingSvg} alt="Google Writing" id="google-writing-recovery-ryai"/>
 
-                <h1 class="thin h1-space">{text.SelectAnAccountToSignIn.h1[userData.language]}</h1>
-                <div id='reduce-width-h2'>
-                    <h2 class='thin gap center'>{text.SelectAnAccountToSignIn.h2[userData.language]}</h2>
-                </div>
+                <h1 class="thin h1-space">{text.SelectAnAccount.h1[userData.language]}</h1>
                 
                 <div id="profile-card-container">
                     <div id="profile-initial-circle-container">
@@ -57,7 +50,7 @@ export const SelectAnAccountToSignInComponent = ({
                         }}
                     >
                         <div class='next'>
-                            {text.SelectAnAccountToSignIn.next[userData.language]}
+                            {text.CreateAccount.next[userData.language]}
                         </div>
                     </CustomNextButton>                
                     
