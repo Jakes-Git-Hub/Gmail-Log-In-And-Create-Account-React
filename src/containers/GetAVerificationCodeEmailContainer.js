@@ -9,8 +9,7 @@ import axios from "axios";
 export const GetAVerificationCodeEmailContainer = ({ updateUser, text,  userData, findYourEmailCredentials, updateFindYourEmailCredentials}) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
-    const [verificationCodeViaEmail, setVerificationCodeViaEmail] = useState('');
-
+    
     const navigate = useNavigate();
 
 // Handle Slow Svg Load

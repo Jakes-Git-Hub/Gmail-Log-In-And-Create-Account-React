@@ -527,8 +527,6 @@ form {
   max-width: 100%;
   min-height: 110px;
   position: relative;
-  /* -webkit-transform: translate(-43%, -3%);
-  transform: translate(-43%,-3%); */
   z-index: 3;
   right: 5%;
 }
@@ -897,7 +895,6 @@ input[type="number"]::-webkit-outer-spin-button {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  margin-top: -5.75px;
 }
 
 #error-div-space {
@@ -1962,11 +1959,14 @@ p-gap-ecys-tight {
   }
   @media (max-height: 536px) {
     animation: fade-out 0.5s ease-in-out;
-  }
+    display: none;
+    position: fixed;
+    bottom: 0;
+  } 
 }
 
 @keyframes fade-out {
-  from { opacity: 1; display: inline-flex; width: 85%; position: fixed; bottom: 0; }
+  from { opacity: 1; display: inline-flex; width: 85%; }
   to { opacity: 0; display: none; width: 85%; }
 }
 
@@ -1992,4 +1992,20 @@ p-gap-ecys-tight {
 #footer-trio-buttons-container {
   position: relative;
   left: 15px;
+}
+
+/* Select An Account */
+
+#account-list-sac {
+  width: 90%;
+}
+
+.list-item-button-sac {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root {
+  padding-left: 0 !important;
 }

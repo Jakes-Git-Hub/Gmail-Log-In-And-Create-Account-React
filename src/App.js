@@ -31,10 +31,10 @@ import { SelectAnAccountToSignInContainer } from "./containers/SelectAnAccountTo
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [users, setUsers] = useState([{ id: 0, email: 'jacmatthews7@gmail.com', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143'}]);
+  const [users, setUsers] = useState([{ id: 0, email: 'jacmatthews7@gmail.com', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143', profileCircleColor: 'blue',}]);
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
   const [nextUserId, setNextUserId] = useState(1);
-  const [userData, setUserData] = useState({ manualSetting4: 'no privacy reminders', language: 'en-GB' });
+  const [userData, setUserData] = useState({ manualSetting4: 'no privacy reminders', language: 'en-GB', id: 0, email: 'jacmatthews7@gmail.com', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143', profileCircleColor: 'blue', });
   const [findYourEmailCredentials, setFindYourEmailCredentials] = useState({});
   const [hasSelectedCYNARCountry, setHasSelectedCYNARCountry] = useState(false);
   const [text, setText] = useState(textData);

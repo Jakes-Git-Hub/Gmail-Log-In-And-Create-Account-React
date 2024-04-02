@@ -46,13 +46,13 @@ export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFind
 // First Name
 
     const onFirstNameInputChange = (e) => {
-        setFirstName(e.target.value);
+        setFirstName(e.target.value.toLowerCase());
     }
 
 // Last Name
 
     const onLastNameInputChange = (e) => {
-         setLastName(e.target.value);
+         setLastName(e.target.value.toLowerCase());
     }
 
 // Errors
@@ -71,39 +71,7 @@ export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFind
         setFindWith('email');
     }
 
-// Matching User
-    
-    const findMatchingUser = () => {
-        const matchingUser = users.find(user => {
-            if (
-                user.email === findYourEmailCredentials.phoneNumberOrEmail &&
-                user.firstName === findYourEmailCredentials.firstName &&
-                user.lastName === findYourEmailCredentials.lastName
-            ) {
-                return true;
-            } else if (
-                user.phoneNumber === findYourEmailCredentials.phoneNumberOrEmail &&
-                user.firstName === findYourEmailCredentials.firstName &&
-                user.lastName === findYourEmailCredentials.lastName
-            ) {
-                return true;
-            }
-            return false;
-        });
 
-        if (matchingUser) {
-            console.log('matchingUser', matchingUser);
-            console.log('findYourEmailCredentials.phoneNumberOrEmail', findYourEmailCredentials.phoneNumberOrEmail);
-            if (matchingUser.email === findYourEmailCredentials.phoneNumberOrEmail) {
-                handleFindWithEmail();
-                console.log('findWith:', findWith);
-            } else if (matchingUser.phoneNumber === findYourEmailCredentials.phoneNumberOrEmail) {
-                handleFindWithPhoneNumber();
-                console.log('findWith:', findWith);
-            }
-        }
-        return matchingUser;
-    };
 
 // Handle Next
 
@@ -134,6 +102,39 @@ export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFind
         } 
     }, [proceedWithFindUser]);
 
+// findMatchingUser
+    
+    const findMatchingUser = () => {
+        const matchingUser = users.find(user => {
+            if (
+                user.email === findYourEmailCredentials.phoneNumberOrEmail &&
+                user.firstName.toLowerCase() === findYourEmailCredentials.firstName &&
+                user.lastName.toLowerCase() === findYourEmailCredentials.lastName
+            ) {
+                return true;
+            } else if (
+                user.phoneNumber === findYourEmailCredentials.phoneNumberOrEmail &&
+                user.firstName.toLowerCase() === findYourEmailCredentials.firstName &&
+                user.lastName.toLowerCase() === findYourEmailCredentials.lastName
+            ) {
+                return true;
+            }
+            return false;
+        });
+
+        if (matchingUser) {
+            console.log('matchingUser', matchingUser);
+            console.log('findYourEmailCredentials.phoneNumberOrEmail', findYourEmailCredentials.phoneNumberOrEmail);
+            if (matchingUser.email === findYourEmailCredentials.phoneNumberOrEmail) {
+                handleFindWithEmail();
+                console.log('findWith:', findWith);
+            } else if (matchingUser.phoneNumber === findYourEmailCredentials.phoneNumberOrEmail) {
+                handleFindWithPhoneNumber();
+                console.log('findWith:', findWith);
+            }
+        }
+        return matchingUser;
+    };
 
     useEffect(() => {
         if (foundMatchingUser) {

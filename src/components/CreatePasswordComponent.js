@@ -1,5 +1,4 @@
 import React from 'react';
-import errorImage from '../images/Daco_5575399.png';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import CustomNextButton from './buttons/CustomNextButtonComponent';
@@ -20,9 +19,7 @@ export const CreatePasswordComponent = ({
     text,
     handleLanguageSelection,
     isImageLoaded,
-    
     userData,
-    
 }) => {
 
 
@@ -45,81 +42,77 @@ export const CreatePasswordComponent = ({
                         <h2 class='thin gap center'>{text.CreatePassword.h2[userData.language]}</h2>
                     </div>
 
-                    <div id='create-password-space'class=" line-height label-input-width input-label">
-                        <Box>
-                            <TextField
-                                fullWidth error={errorCondition && errorCondition !== 'confirmPasswordEmpty' && errorCondition !== 'passwordMismatch'}
-                                id='passwordInput'
-                                value={password}
-                                type={!showPassword ? 'password' : 'text'}
-                                label={text.CreatePassword.password[userData.language]}
-                                onChange={handleSelectPassword}
-                                InputLabelProps={
-                                    errorCondition && errorCondition !== 'confirmPasswordEmpty' && errorCondition !== 'passwordMismatch'? 
-                                    { 
-                                        sx: {
-                                            color: password ? '#d32f2f' : 'rgba(0, 0, 0, 0.6) !important',
-                                            '&.Mui-focused': {
-                                                color: '#d32f2f !important',
-                                            },
+                    <Box id='create-password-space'class=" line-height label-input-width input-label">
+                        <TextField
+                            fullWidth error={errorCondition && errorCondition !== 'confirmPasswordEmpty' && errorCondition !== 'passwordMismatch'}
+                            id='passwordInput'
+                            value={password}
+                            type={!showPassword ? 'password' : 'text'}
+                            label={text.CreatePassword.password[userData.language]}
+                            onChange={handleSelectPassword}
+                            InputLabelProps={
+                                errorCondition && errorCondition !== 'confirmPasswordEmpty' && errorCondition !== 'passwordMismatch'? 
+                                { 
+                                    sx: {
+                                        color: password ? '#d32f2f' : 'rgba(0, 0, 0, 0.6) !important',
+                                        '&.Mui-focused': {
+                                            color: '#d32f2f !important',
                                         },
-                                    } : {}
-                                }
-                                sx={
-                                    errorCondition && errorCondition !== 'confirmPasswordEmpty' && errorCondition !== 'passwordMismatch'? 
-                                    {} : 
-                                    {
-                                        "& .MuiOutlinedInput-root": {
-                                            "&:hover:not(.Mui-focused) fieldset": {
-                                                borderColor: "#dadce0"
-                                            },
-                                            "& fieldset": {
-                                                borderColor: "#dadce0"
-                                            },
-                                        }
+                                    },
+                                } : {}
+                            }
+                            sx={
+                                errorCondition && errorCondition !== 'confirmPasswordEmpty' && errorCondition !== 'passwordMismatch'? 
+                                {} : 
+                                {
+                                    "& .MuiOutlinedInput-root": {
+                                        "&:hover:not(.Mui-focused) fieldset": {
+                                            borderColor: "#dadce0"
+                                        },
+                                        "& fieldset": {
+                                            borderColor: "#dadce0"
+                                        },
                                     }
                                 }
-                            />
-                        </Box> 
-                    </div>
+                            }
+                        />
+                    </Box> 
 
-                    <div class="space line-height label-input-width input-label" id='error-message-margin'>
-                        <Box>
-                            <TextField
-                                fullWidth error={errorCondition && errorCondition !== 'passwordEmpty' && errorCondition !== 'needs8CharsOrMore'}
-                                id='confirmPasswordInput'
-                                value={confirmPassword}
-                                type={!showPassword ? 'password' : 'text'}
-                                label={text.CreatePassword.confirm[userData.language]}
-                                onChange={handleSelectConfirmPassword}
-                                InputLabelProps={
-                                    errorCondition && errorCondition !== 'passwordEmpty' && errorCondition !== 'needs8CharsOrMore' ? 
-                                    { 
-                                        sx: {
-                                            color: confirmPassword ? '#d32f2f' : 'rgba(0, 0, 0, 0.6) !important',
-                                            '&.Mui-focused': {
-                                                color: '#d32f2f !important',
-                                            },
+                    <Box class="space line-height label-input-width input-label" id='error-message-margin'>
+                        <TextField
+                            fullWidth error={errorCondition && errorCondition !== 'passwordEmpty' && errorCondition !== 'needs8CharsOrMore'}
+                            id='confirmPasswordInput'
+                            value={confirmPassword}
+                            type={!showPassword ? 'password' : 'text'}
+                            label={text.CreatePassword.confirm[userData.language]}
+                            onChange={handleSelectConfirmPassword}
+                            InputLabelProps={
+                                errorCondition && errorCondition !== 'passwordEmpty' && errorCondition !== 'needs8CharsOrMore' ? 
+                                { 
+                                    sx: {
+                                        color: confirmPassword ? '#d32f2f' : 'rgba(0, 0, 0, 0.6) !important',
+                                        '&.Mui-focused': {
+                                            color: '#d32f2f !important',
                                         },
-                                    } : {}
-                                }
-                                sx={
-                                    errorCondition && errorCondition !== 'passwordEmpty' && errorCondition !== 'needs8CharsOrMore' ? 
-                                    {} : 
-                                    {
-                                        "& .MuiOutlinedInput-root": {
-                                            "&:hover:not(.Mui-focused) fieldset": {
-                                                borderColor: "#dadce0"
-                                            },
-                                            "& fieldset": {
-                                                borderColor: "#dadce0"
-                                            },
-                                        }
+                                    },
+                                } : {}
+                            }
+                            sx={
+                                errorCondition && errorCondition !== 'passwordEmpty' && errorCondition !== 'needs8CharsOrMore' ? 
+                                {} : 
+                                {
+                                    "& .MuiOutlinedInput-root": {
+                                        "&:hover:not(.Mui-focused) fieldset": {
+                                            borderColor: "#dadce0"
+                                        },
+                                        "& fieldset": {
+                                            borderColor: "#dadce0"
+                                        },
                                     }
                                 }
-                            />
-                        </Box> 
-                    </div>
+                            }
+                        />
+                    </Box> 
 
                     {errorCondition === 'passwordEmpty' && isImagePreloaded && (
                         <div class='error-div' id='create-password-error-div'>
