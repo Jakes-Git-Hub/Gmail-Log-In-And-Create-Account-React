@@ -580,7 +580,7 @@ form {
 
 .button-right-first-name-empty {
   display: flex;
-  width: 363px;
+  width: 90%;
   justify-content: flex-end;
   margin-top: 25px;
   margin-bottom: 79px;
@@ -592,7 +592,7 @@ form {
 
 /* Basic Information (birthday and gender) */
 
-#google-container-BG {
+#google-container-responsive {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -667,7 +667,7 @@ form {
 
 .button-right-BI {
   display: flex;
-  width: 363px;
+  width: 90%;
   justify-content: flex-end;
   margin-bottom: 80px;
   margin-top: 50px;
@@ -675,7 +675,7 @@ form {
 
 .button-right-error-BI {
   display: flex;
-  width: 363px;
+  width: 90%;
   justify-content: flex-end;
   margin-top: 50px;
   margin-bottom: 60px;
@@ -988,7 +988,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 #create-password-next-button {
   display: flex;
-  width: 363px;
+  width: 90%;
   justify-content: flex-end;
   margin-bottom: 62px;
   margin-top: 40px;
@@ -1092,13 +1092,12 @@ input[type="number"]::-webkit-outer-spin-button {
   }
 }
 
-#h2-cynar-div{
+#h2-cynar-div {
   margin-top: 11.95px;
   margin-bottom: 20px;
   position: relative;
-  width: 266.57px;
+  width: 90%;
   text-align: left;
-  right: 45px;
 }
 
 #h2-cynar{
@@ -1148,7 +1147,7 @@ input[type="number"]::-webkit-outer-spin-button {
 
 #button-right-robot {
   display: flex;
-  width: 363px;
+  width: 90%;
   justify-content: flex-end;
   margin: 22.5px 0 110px 0;
 }
@@ -1971,8 +1970,29 @@ p-gap-ecys-tight {
     position: fixed;
     bottom: 0;
   }
-  @media (max-height: 536px) {
-    animation: fade-out 0.5s ease-in-out;
+  @media (max-width: 600px) and (max-height: 536px) {
+    animation: fade-out 0.4s ease-in-out;
+    display: none;
+    position: fixed;
+    bottom: 0;
+  } 
+}
+
+#language-changer-footer-medium-page {
+  width: 448.18px;
+  min-width: 448.18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 7px;
+  margin-bottom: 7px;
+  @media (max-width: 600px) and (min-height: 589px) {
+    width: 85%;
+    position: fixed;
+    bottom: 0;
+  }
+  @media (max-width: 600px) and (max-height: 588px) {
+    animation: fade-out 0.4s ease-in-out;
     display: none;
     position: fixed;
     bottom: 0;

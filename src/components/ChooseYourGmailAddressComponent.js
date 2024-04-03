@@ -25,7 +25,7 @@ export const ChooseYourGmailAddressComponent = ({
 
         <>
 
-            <div id='google-container-BG'>
+            <div id='google-container-responsive'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                 <div className="blue-snake-loader"></div>

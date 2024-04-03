@@ -5,11 +5,11 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import FooterGreyButton from '../buttons/FooterGreyButton';
 
-function LanguageChanger({ onChange, initialLanguage }) {
+function LanguageChangerMediumPage({ onChange, initialLanguage }) {
 
     const [selectedValue, setSelectedValue] = useState(initialLanguage || 'en-GB');
     const [open, setOpen] = useState(false);
-    const [maxHeight, setMaxHeight] = useState('500px');  // Default max height
+    const [maxHeight, setMaxHeight] = useState('500px'); 
 
 // Handle Language Selection
 
@@ -79,7 +79,7 @@ function LanguageChanger({ onChange, initialLanguage }) {
 
     return (
 
-        <div id='language-changer-footer'>
+        <div id='language-changer-footer-medium-page'>
 
             <FormControl 
                 id='language-changer-dropdown'
@@ -163,4 +163,4 @@ function LanguageChanger({ onChange, initialLanguage }) {
     );
 }
 
-export default LanguageChanger;
+export default LanguageChangerMediumPage;

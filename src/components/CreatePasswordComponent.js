@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import CustomNextButton from './buttons/CustomNextButtonComponent';
 import Checkbox from '@mui/material/Checkbox';
 import googleWritingSvg from "../images/google-writing-svg.svg";
-import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
+import LanguageChangerTallerPage from './LanguageChanger/LanguageChangerMediumPageComponent';
 
 export const CreatePasswordComponent = ({ 
     password,
@@ -27,7 +27,7 @@ export const CreatePasswordComponent = ({
 
         <>
 
-            <div id='google-container-BG'>
+            <div id='google-container-responsive'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                 <div className="blue-snake-loader"></div>
@@ -212,7 +212,8 @@ export const CreatePasswordComponent = ({
 
             </div>
 
-            <LanguageChanger 
+            <LanguageChangerTallerPage 
+                id='language-changer-footer-CP'
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}

@@ -1,6 +1,5 @@
 import React from 'react';
 import Select from 'react-select';
-import errorImage from '../images/Daco_5575399.png';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import googleWritingSvg from "../images/google-writing-svg.svg";
@@ -24,20 +23,17 @@ export const ConfirmYoureNotARobotComponent = ({
     errorCondition,
     actualSelectedOption,
     formattedPhoneNumber,
-    loading,
     text,
     unitedKingdom,
     handleLanguageSelection,
-    
     userData,
-    
 }) => {
 
     return (
 
         <>
 
-            <div id='google-container-flexible'>
+            <div id='google-container-responsive'>
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                     <div className="blue-snake-loader"></div>
                 </div>
@@ -174,11 +170,10 @@ export const ConfirmYoureNotARobotComponent = ({
 
             </div> 
 
-            <LanguageChanger 
+            <LanguageChanger
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
-                
             />
 
         </>            

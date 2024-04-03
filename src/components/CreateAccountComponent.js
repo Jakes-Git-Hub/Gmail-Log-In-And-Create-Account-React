@@ -24,7 +24,7 @@ export const CreateAccountComponent = ({
 
         <>
 
-            <div id='google-container-BG'>
+            <div id='google-container-responsive'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                 <div className="blue-snake-loader"></div>
@@ -131,6 +131,7 @@ export const CreateAccountComponent = ({
             </div>
 
             <LanguageChanger 
+            id='language-changer-footer'
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
