@@ -31,7 +31,7 @@ import { SelectAnAccountToSignInContainer } from "./containers/SelectAnAccountTo
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [users, setUsers] = useState([{ id: 0, email: 'jacmatthews7@gmail.com', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143', profileCircleColor: 'blue',}]);
+  const [users, setUsers] = useState([{ id: 0, email: 'jacmatthews7@gmail.com', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143', profileCircleColor: 'blue', day: '28', month: 'April', year:'1993', gender: 'Male', countryDetails: 'England', },{ id: 0, email: 'titanfx@gmail.com', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143', profileCircleColor: 'red',},]);
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
   const [nextUserId, setNextUserId] = useState(1);
   const [userData, setUserData] = useState({ manualSetting4: 'no privacy reminders', language: 'en-GB', id: 0, email: 'jacmatthews7@gmail.com', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143', profileCircleColor: 'blue', });
@@ -121,12 +121,18 @@ const { userIP } = useUserIP()
 
     if (correctLoginCredentials) {
       setLoggedIn(true);
-      setCurrentLoggedInUser(correctLoginCredentials.email);
+      setCurrentLoggedInUser(correctLoginCredentials);
       console.log("Logged in as:", correctLoginCredentials.email);
     } else {
       console.log("Invalid credentials");
     }
   };
+
+  const handleListItemLogIn = emailClicked => {
+    setLoggedIn(true);
+    const userForEmailClicked = users.find(user => user.email === emailClicked);
+    setCurrentLoggedInUser(userForEmailClicked);
+  }
 
 // Update User Data
 
@@ -213,9 +219,7 @@ const { userIP } = useUserIP()
               loggedIn={loggedIn}
               currentLoggedInUser={currentLoggedInUser}
               text={text}
-              users={users}
               userData={userData}
-              
             />
           } 
         />
@@ -267,8 +271,10 @@ const { userIP } = useUserIP()
               userData={userData}
               text={text}
               updateUser={updateUser}
+              users={users}
               findYourEmailCredentials={findYourEmailCredentials}
               updateFindYourEmailCredentials={updateFindYourEmailCredentials}
+              handleListItemLogIn={handleListItemLogIn}
             />
           } 
         />

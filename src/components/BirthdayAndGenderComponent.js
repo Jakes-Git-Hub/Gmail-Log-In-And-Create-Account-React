@@ -1,5 +1,4 @@
 import React from 'react';
-import errorImage from '../images/Daco_5575399.png';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';

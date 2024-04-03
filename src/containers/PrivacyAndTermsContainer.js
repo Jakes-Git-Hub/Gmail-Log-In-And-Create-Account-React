@@ -61,6 +61,7 @@ export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, 
     useEffect(() => {
         if (loggedIn) {
             document.body.id = 'body';
+            console.log('P&T UE triggered')
             navigate("/mockmail");
         }
     }, [loggedIn]);

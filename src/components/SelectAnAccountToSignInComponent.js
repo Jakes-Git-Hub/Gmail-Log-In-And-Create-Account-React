@@ -9,18 +9,20 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 
 export const SelectAnAccountToSignInComponent = ({ 
-    handleNextClick,
     isImageLoaded,
     userData,
     handleLanguageSelection,
     text,
+    matchingUsers,
+    onListItemClick,
+    navToHome,
 }) => {
 
     return (
 
         <>
 
-            <div id='google-container-BG'>
+            <div id='google-container-sac'>
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                     <div className="blue-snake-loader"></div>
                 </div>
@@ -29,32 +31,34 @@ export const SelectAnAccountToSignInComponent = ({
                 <h1 class="thin h1-space">{text.SelectAnAccount.h1[userData.language]}</h1>
 
                 <List id='account-list-sac'>
-                    <ListItem disablePadding>
+                    {matchingUsers.map(userAccount => (
+                        <ListItem disablePadding>
                         <ListItemButton 
                             disableRipple
                             sx={{
                                 borderRadius: '10px',
-                                marginLeft: '-3%', // Add this line
-                                marginRight: '-3%', // Add this line
+                                marginLeft: '-3%', 
+                                marginRight: '-3%', 
                                 '&:hover': {
-                                    backgroundColor: '#f0f4f9', // Add this line
+                                    backgroundColor: '#f0f4f9', 
                                 },
                             }}
+                            onClick={() => onListItemClick(userAccount.email)}
                         >
                             <ListItemText 
                                 primary={
                                     <div id="profile-card-container">
                                         <div id="profile-initial-circle-container">
-                                            <div id="profile-initial-circle" style={{backgroundColor: userData.profileCircleColor}}>
-                                                {userData.firstName ? userData.firstName.charAt(0) : ""}
+                                            <div id="profile-initial-circle" style={{backgroundColor: userAccount.profileCircleColor}}>
+                                                {userAccount.firstName ? userAccount.firstName.charAt(0) : ""}
                                             </div>
                                         </div>
                                         <div id="name-and-email-container">
                                             <div id="name-ryai">
-                                                {userData.firstName} {userData.lastName}
+                                                {userAccount.firstName} {userAccount.lastName}
                                             </div>
                                             <div id="email-address-ryai">
-                                                {userData.email}
+                                                {userAccount.email}
                                             </div>
                                         </div>
                                     </div>
@@ -63,20 +67,20 @@ export const SelectAnAccountToSignInComponent = ({
                             />
                         </ListItemButton>
                     </ListItem>
-                    <Divider 
-                        
-                    />
+                    ))}
+                    <Divider />
                     <ListItem disablePadding>
                         <ListItemButton 
                             disableRipple
                             sx={{
                                 borderRadius: '10px',
-                                marginLeft: '-3%', // Add this line
-                                marginRight: '-3%', // Add this line
+                                marginLeft: '-3%', 
+                                marginRight: '-3%', 
                                 '&:hover': {
-                                    backgroundColor: '#f0f4f9', // Add this line
+                                    backgroundColor: '#f0f4f9', 
                                 },
                             }}
+                            onClick={navToHome}
                         >
                             <ListItemText 
                                 primary={
@@ -98,23 +102,6 @@ export const SelectAnAccountToSignInComponent = ({
                         </ListItemButton>
                     </ListItem>
                 </List>
-
-                <div id='review-your-account-next-button' class="button-space-create-password">
-                    <CustomNextButton 
-                        variant="contained" 
-                        onClick={handleNextClick}
-                        sx={{
-                            '&& .MuiTouchRipple-rippleVisible': {
-                                animationDuration: '300ms',
-                            },
-                        }}
-                    >
-                        <div class='next'>
-                            {text.CreateAccount.next[userData.language]}
-                        </div>
-                    </CustomNextButton>                
-                    
-                </div>
 
             </div>
 

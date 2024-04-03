@@ -142,9 +142,7 @@ export const ExpressChooseYourSettingsContainer = ({ updateUser, text, hidePriva
                 text={text}
                 handleLanguageSelection={handleLanguageSelection}
                 handleRejectAllClick={handleRejectAllClick}
-                
                 userData={userData}
-                
             />
         </>
     );

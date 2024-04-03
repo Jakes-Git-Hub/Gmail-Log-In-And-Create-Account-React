@@ -1,23 +1,26 @@
-import { useEffect } from 'react';
 import { MockMail } from '../components/MockMailComponent';
+import { useEffect } from 'react';
 
-
-export const MockMailContainer = ({ loggedIn, currentLoggedInUser, users, userData,  }) => {
+export const MockMailContainer = ({ loggedIn, currentLoggedInUser, userData,  }) => {
 
     console.log("loggedIn:", loggedIn);
     console.log("currentLoggedInUser:", currentLoggedInUser);
 
+    // Add Overflow Body CSS
+
     useEffect(() => {
-        console.log("users:", users);
-    }, [users]);
+        document.body.id = 'body-mock-mail';
+        return () => {
+            document.body.id = 'body';
+        };
+    }, []);
+
 
     return (
         <MockMail 
             loggedIn={loggedIn}
             currentLoggedInUser={currentLoggedInUser}
-            users={users}
             userData={userData}
-            
         />
     )
 }

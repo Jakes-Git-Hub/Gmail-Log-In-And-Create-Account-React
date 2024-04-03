@@ -127,10 +127,8 @@ export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFind
             console.log('findYourEmailCredentials.phoneNumberOrEmail', findYourEmailCredentials.phoneNumberOrEmail);
             if (matchingUser.email === findYourEmailCredentials.phoneNumberOrEmail) {
                 handleFindWithEmail();
-                console.log('findWith:', findWith);
             } else if (matchingUser.phoneNumber === findYourEmailCredentials.phoneNumberOrEmail) {
                 handleFindWithPhoneNumber();
-                console.log('findWith:', findWith);
             }
         }
         return matchingUser;
@@ -141,7 +139,7 @@ export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFind
             handleCorrectInfoSearch();
             if (findWith === 'email') {
                 navigate('/get-a-verification-code-email');
-            } else {
+            } if (findWith === 'phoneNumber') {
                 navigate('/get-a-verification-code-phone');
             } 
         } 

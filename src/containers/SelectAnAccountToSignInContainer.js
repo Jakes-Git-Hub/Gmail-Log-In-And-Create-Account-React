@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import { SelectAnAccountToSignInComponent } from "../components/SelectAnAccountToSignInComponent";
 import googleWritingSvg from "../images/google-writing-svg.svg";
 
-export const SelectAnAccountToSignInContainer = ({ userData, updateUser, text }) => {
+export const SelectAnAccountToSignInContainer = ({ userData, updateUser, text, findYourEmailCredentials, users, handleListItemLogIn }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
+    const [emailAccountClicked, setEmailAccountClicked] = useState('');
 
     const navigate = useNavigate();
 
@@ -27,21 +28,54 @@ export const SelectAnAccountToSignInContainer = ({ userData, updateUser, text })
         updateUser({ language: chosenLanguage })
     };
 
-// Handle Next Click
+// Matching Users
 
-    const handleNextClick = (e) => {
-        e.preventDefault();
-        navigate('/choose-your-settings'); 
-    };
+    const matchingUsers = users.filter(user => {
+        return (
+            (user.email === findYourEmailCredentials.phoneNumberOrEmail || 
+            user.phoneNumber === findYourEmailCredentials.phoneNumberOrEmail) &&
+            user.firstName.toLowerCase() === findYourEmailCredentials.firstName.toLowerCase() &&
+            user.lastName.toLowerCase() === findYourEmailCredentials.lastName.toLowerCase()
+        );
+    });
+
+    useEffect(() => {
+        console.log('matchingUsers', matchingUsers)
+        console.log('users', users)
+        console.log('findYourEmailCredentials', findYourEmailCredentials)
+    }, [matchingUsers, users, findYourEmailCredentials]);
+
+// Handle List Item Click
+
+    const onListItemClick = email => {
+        setEmailAccountClicked(email);
+    }
+
+    useEffect(() => {
+        if (emailAccountClicked) {
+            handleListItemLogIn(emailAccountClicked);
+                navigate('/mockmail');
+            console.log('emailAccountClicked', emailAccountClicked);
+        }
+    }, [emailAccountClicked]);
+
+    const navToHome = () => {
+        navigate('/');
+    }
+
 
     return(
         <>
             <SelectAnAccountToSignInComponent
-                handleNextClick={handleNextClick}
                 isImageLoaded={isImageLoaded}
                 userData={userData}
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
+                findYourEmailCredentials={findYourEmailCredentials}
+                users={users}
+                matchingUsers={matchingUsers}
+                onListItemClick={onListItemClick}
+                navToHome={navToHome}
             />
         </>
     );
