@@ -1,10 +1,9 @@
 import React from 'react';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import CustomNextAndSkipButton from './buttons/CustomNext&SkipButtonComponent';
-import errorImage from '../images/Daco_5575399.png';
 import TickSVG from './svg\'s/tickSVG';
 import NullSVG from './svg\'s/nullSVG';
-import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
+import LanguageChangerOverflow from './LanguageChanger/LanguageChangerOverflowComponent';
 
 export const ConfirmYourSettingsComponent = ({ 
     handleNextClick,
@@ -176,7 +175,7 @@ export const ConfirmYourSettingsComponent = ({
 
             </div>
 
-            <LanguageChanger 
+            <LanguageChangerOverflow
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}

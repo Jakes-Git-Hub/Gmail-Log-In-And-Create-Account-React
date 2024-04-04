@@ -5,7 +5,7 @@ import { animated } from 'react-spring';
 import TransparentSmallButton from './buttons/TransparentSmallButtonComponent';
 import CustomNextAndSkipButton from './buttons/CustomNext&SkipButtonComponent';
 import SecondaryGreyButton2 from './buttons/SecondaryGreyButtonComponent2';
-import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
+import LanguageChangerOverflow from './LanguageChanger/LanguageChangerOverflowComponent';
 
 export const ExpressChooseYourSettingsComponent = ({ 
     handleNextClick,
@@ -345,7 +345,7 @@ export const ExpressChooseYourSettingsComponent = ({
 
             </div>
 
-            <LanguageChanger 
+            <LanguageChangerOverflow
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}

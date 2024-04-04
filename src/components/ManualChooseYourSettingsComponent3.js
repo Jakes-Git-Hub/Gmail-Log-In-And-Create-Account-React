@@ -4,12 +4,11 @@ import CustomNextAndSkipButton from './buttons/CustomNext&SkipButtonComponent';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
-import errorImage from '../images/Daco_5575399.png';
 import { Modal, Box } from '@mui/material';
 import { animated } from 'react-spring';
 import TransparentSmallButton from './buttons/TransparentSmallButtonComponent';
 import SecondaryGreyButton2 from './buttons/SecondaryGreyButtonComponent2';
-import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
+import LanguageChangerOverflow from './LanguageChanger/LanguageChangerOverflowComponent';
 
 export const ManualChooseYourSettingsComponent3 = ({ 
     handleNextClick,
@@ -231,7 +230,7 @@ export const ManualChooseYourSettingsComponent3 = ({
 
             </div>
 
-            <LanguageChanger 
+            <LanguageChangerOverflow 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}

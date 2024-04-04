@@ -47,7 +47,6 @@ export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, 
     const handleNextClick = (e) => {
         e.preventDefault();
         repositionViewPortOnNextOrBackClick();
-        updateUser({ language: 'en' })
         addUser();
         setNextClicked(true);
     };
@@ -61,7 +60,6 @@ export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, 
     useEffect(() => {
         if (loggedIn) {
             document.body.id = 'body';
-            console.log('P&T UE triggered')
             navigate("/mockmail");
         }
     }, [loggedIn]);

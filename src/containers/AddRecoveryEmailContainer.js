@@ -113,9 +113,7 @@ export const AddRecoveryEmailContainer = ({ updateUser, text,  userData,  }) => 
             handleSubmit={handleSubmit}
             handleLanguageSelection={handleLanguageSelection}
             text={text}
-            
             userData={userData}
-            
         />
     </>
  );

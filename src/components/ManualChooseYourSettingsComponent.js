@@ -8,7 +8,7 @@ import { Modal, Box } from '@mui/material';
 import { animated } from 'react-spring';
 import TransparentSmallButton from './buttons/TransparentSmallButtonComponent';
 import SecondaryGreyButton2 from './buttons/SecondaryGreyButtonComponent2';
-import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
+import LanguageChangerOverflow from './LanguageChanger/LanguageChangerOverflowComponent';
 
 export const ManualChooseYourSettingsComponent = ({ 
     handleNextClick,
@@ -267,7 +267,7 @@ export const ManualChooseYourSettingsComponent = ({
 
             </div>
 
-            <LanguageChanger 
+            <LanguageChangerOverflow 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}

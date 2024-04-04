@@ -4,7 +4,7 @@ import CustomNextAndSkipButton from './buttons/CustomNext&SkipButtonComponent';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
+import LanguageChangerMediumPage from './LanguageChanger/LanguageChangerMediumPageComponent';
 
 export const ManualChooseYourSettingsComponent4 = ({ 
     handleNextClick,
@@ -133,7 +133,7 @@ export const ManualChooseYourSettingsComponent4 = ({
 
             </div>
 
-            <LanguageChanger 
+            <LanguageChangerMediumPage 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}

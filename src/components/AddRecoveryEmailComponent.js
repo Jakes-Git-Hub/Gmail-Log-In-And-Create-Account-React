@@ -1,5 +1,4 @@
 import React from 'react';
-import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from "../images/google-writing-svg.svg";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -118,7 +117,7 @@ export const AddRecoveryEmailComponent = ({
                                 className="duo" 
                                 variant="contained" 
                                 onClick={handleNextClick}
-                                type="submit"
+                                type="button"
                                 sx={{
                                     '&& .MuiTouchRipple-rippleVisible': {
                                         animationDuration: '300ms',
@@ -140,7 +139,7 @@ export const AddRecoveryEmailComponent = ({
                                     },
                                 }}
                             >
-                                <div class='skip'>
+                                <div class='next'>
                                     {text.AddRecoveryEmail.skip[userData.language]}
                                 </div>
                             </CustomNextAndSkipButton>

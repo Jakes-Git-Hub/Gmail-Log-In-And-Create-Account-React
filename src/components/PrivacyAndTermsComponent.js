@@ -1,9 +1,8 @@
 import React from 'react';
 import googleWritingSvg from "../images/google-writing-svg.svg";
-import CustomNextAndSkipButton from './buttons/CustomNext&SkipButtonComponent';
 import SecondaryGreyButton2 from './buttons/SecondaryGreyButtonComponent2';
 import CustomNextButton from './buttons/CustomNextButtonComponent';
-import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
+import LanguageChangerOverflow from './LanguageChanger/LanguageChangerOverflowComponent';
 
 export const PrivacyAndTermsComponent = ({ 
     handleNextClick,
@@ -105,7 +104,7 @@ export const PrivacyAndTermsComponent = ({
 
             </div>
 
-            <LanguageChanger 
+            <LanguageChangerOverflow 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
