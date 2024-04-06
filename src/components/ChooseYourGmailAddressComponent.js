@@ -16,16 +16,14 @@ export const ChooseYourGmailAddressComponent = ({
     text,
     handleLanguageSelection,
     isImageLoaded,
-    
     userData,
-    
 }) => {
 
     return (
 
         <>
 
-            <div id='google-container-responsive'>
+            <main id='google-container-responsive'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                 <div className="blue-snake-loader"></div>
@@ -47,6 +45,8 @@ export const ChooseYourGmailAddressComponent = ({
                                 type='text'
                                 label={text.ChooseYourGmailAddress.username[userData.language]}
                                 onChange={handleSelectEmail}
+                                aria-label='Enter desired email address'
+                                aria-invalid={errorCondition}
                                 InputLabelProps={
                                     errorCondition ? 
                                     { 
@@ -135,12 +135,13 @@ export const ChooseYourGmailAddressComponent = ({
 
                 </form>
 
-            </div>
+            </main>
 
             <LanguageChanger 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
+                aria-label='Change language'
             />
 
         </>

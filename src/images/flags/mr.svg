@@ -1,8 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="16px" viewBox="0 0 24 16" version="1.1">
-<g id="surface1">
-<rect x="0" y="0" width="24" height="16" style="fill:rgb(81.568627%,10.980392%,12.156863%);fill-opacity:1;stroke:none;"/>
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,66.27451%,36.078431%);fill-opacity:1;" d="M 0 3.199219 L 24 3.199219 L 24 12.800781 L 0 12.800781 Z M 0 3.199219 "/>
-<path style=" stroke:none;fill-rule:nonzero;fill:rgb(100%,84.313725%,0%);fill-opacity:1;" d="M 10.390625 5.953125 L 11.617188 5.953125 L 12 4.800781 L 12.382812 5.953125 L 13.609375 5.953125 L 12.601562 6.6875 L 13.007812 7.855469 L 12 7.136719 L 10.992188 7.855469 L 11.398438 6.6875 Z M 6 5.359375 C 2.769531 5.359375 0.105469 7.445312 -0.0703125 10.109375 C -0.246094 12.777344 2.128906 15.089844 5.339844 15.378906 C 8.550781 15.667969 11.476562 13.832031 12 11.199219 Z M 6 5.359375 "/>
-</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" id="flag-icons-mr" viewBox="0 0 24 18" width="24" height="16"><path fill="#cd2a3e" d="M0 0h24v18H0z"/><path fill="#006233" d="M0 2.7h24v12.6H0z"/><path fill="#ffc400" d="M17.625 5.797a5.625 5.625 0 0 1 -11.25 0 5.813 5.813 0 0 0 -0.188 1.47 5.813 5.813 0 1 0 11.625 0 5.79 5.79 0 0 0 -0.188 -1.47" class="mr-st1"/><path fill="#ffc400" d="m12 3.517 -0.506 1.556H9.862l1.324 0.96 -0.506 1.552 1.324 -0.96 1.324 0.96 -0.506 -1.552 1.324 -0.96h-1.635z"/></svg>

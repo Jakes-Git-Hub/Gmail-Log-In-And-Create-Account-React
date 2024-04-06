@@ -6,13 +6,13 @@ const CustomNextAndSkipButton = styled(Button)({
     color: 'rgb(26,115,232)',
     padding: '8.5px 22.475px',
     fontSize: '15px',
-    boxShadow: "none",
-    border: "1px solid rgb(219, 219, 219)",
+    boxShadow: 'none',
+    border: '1px solid rgb(219, 219, 219)',
     borderRadius: '4px',
-    width: "49%",
+    width: '49%',
     lineHeight: '1rem',
     '&:hover': {
-        color: "rgb(23,78,166)",
+        color: 'rgb(23,78,166)',
         backgroundColor: '#f6fafe',
         boxShadow: 'none',    
         '& .MuiTouchRipple-child': {

@@ -25,11 +25,12 @@ export const ChooseYourSettingsComponent = ({
 
         <>
 
-            <div className='google-container-flexible-ryai'>
+            <main className='google-container-flexible-ryai'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                     <div className="blue-snake-loader"></div>
                 </div>
+                
                 <img src={googleWritingSvg} alt="Google Writing" id="google-writing-recovery-ryai"/>
 
                 <h1 class="thin h1-space">{text.ChooseYourSettings.h1[userData.language]}</h1>
@@ -129,7 +130,7 @@ export const ChooseYourSettingsComponent = ({
                     
                 </div>
 
-            </div>
+            </main>
 
             <LanguageChanger 
                 className='language-changer-div'

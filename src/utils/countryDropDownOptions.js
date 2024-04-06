@@ -1278,12 +1278,6 @@ const countries = [
         svg:'',
     },
     {
-        name: 'Eswatini',
-        abbreviation: 'sz',
-        dialingCode: '+268',
-        svg:'',
-    },
-    {
         name: 'Turks and Caicos Islands',
         abbreviation: 'tc',
         dialingCode: '+1',
@@ -1293,12 +1287,6 @@ const countries = [
         name: 'Chad',
         abbreviation: 'td',
         dialingCode: '+235',
-        svg:'',
-    },
-    {
-        name: 'French Southern Territories',
-        abbreviation: 'tf',
-        dialingCode: '', // No specific dialing code
         svg:'',
     },
     {

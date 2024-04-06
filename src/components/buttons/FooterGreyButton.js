@@ -9,8 +9,8 @@ const FooterGreyButton = styled(Button)({
     fontSize: '0.75rem',
     height: '50.25px',
     width: '48px',
-    boxShadow: "none",
-    borderRadius: "4px",
+    boxShadow: 'none',
+    borderRadius: '4px',
     '& .MuiTouchRipple-child': {
         color: 'rgb(26,115,232)',
         backgroundColor: 'transparent', // Change this to your desired ripple color

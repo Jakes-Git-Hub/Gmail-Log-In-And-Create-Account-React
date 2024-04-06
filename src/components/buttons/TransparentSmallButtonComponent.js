@@ -6,14 +6,14 @@ const TransparentSmallButton = styled(Button)({
     color: 'rgb(26,115,232)',
     padding: '0',
     fontSize: '0.75rem',
-    boxShadow: "none",
-    borderRadius: "2px",
+    boxShadow: 'none',
+    borderRadius: '2px',
     '& .MuiTouchRipple-child': {
         color: 'rgb(26,115,232)',
         backgroundColor: 'transparent', // Change this to your desired ripple color
     },
     '&:hover': {
-        color: "rgb(26,115,232)",
+        color: 'rgb(26,115,232)',
         backgroundColor: 'transparent',
         boxShadow: 'none',    
     },

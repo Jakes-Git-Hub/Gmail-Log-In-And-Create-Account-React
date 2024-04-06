@@ -24,7 +24,7 @@ function LanguageChangerMediumPage({ onChange, initialLanguage }) {
         const value = event.target.value;
         setSelectedValue(value);
         onChange(value);
-        console.log("value:", value);
+        console.log('value:', value);
     };
 
 // Handles Dynamic Dropdown Menu Height
@@ -82,15 +82,17 @@ function LanguageChangerMediumPage({ onChange, initialLanguage }) {
         <div id='language-changer-footer-medium-page'>
 
             <FormControl 
+                aria-role='combobox'
                 id='language-changer-dropdown'
                 onClick={toggleMenu}
                 sx={{
-                        backgroundColor: open ? '#eeeeee' : "",
+                        backgroundColor: open ? '#eeeeee' : '',
                         borderRadius: '4px',
                 }}
             >
                 <Select
                     open={open}
+                    aria-expanded={open}
                     onClose={() => setOpen(false)} 
                     onOpen={() => setOpen(true)} 
                     onChange={handleChange}
@@ -98,12 +100,12 @@ function LanguageChangerMediumPage({ onChange, initialLanguage }) {
                     value={selectedValue}
                     MenuProps={{
                         anchorOrigin: {
-                            vertical: "top",
-                            horizontal: "left"
+                            vertical: 'top',
+                            horizontal: 'left'
                             },
                         transformOrigin: {
-                            vertical: "bottom",
-                            horizontal: "left"
+                            vertical: 'bottom',
+                            horizontal: 'left'
                         },
                         getContentAnchorEl: () => document.getElementById('language-changer-dropdown'),
                         PaperProps: {
@@ -117,14 +119,14 @@ function LanguageChangerMediumPage({ onChange, initialLanguage }) {
                             color: '#202124',
                         },
                         fontSize: '12px',   
-                        boxShadow: "none",
-                        ".MuiOutlinedInput-notchedOutline": { 
+                        boxShadow: 'none',
+                        '.MuiOutlinedInput-notchedOutline': { 
                             border: 0 
                         },
-                        "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
+                        '&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
                             border: 0,
                         },
-                        "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        '&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
                             border: 0,
                         },
                         paddingRight: '25px',
@@ -146,17 +148,17 @@ function LanguageChangerMediumPage({ onChange, initialLanguage }) {
                 </Select>
             </FormControl>
 
-            <div id='footer-trio-buttons-container'>
-                <FooterGreyButton onClick={handleHelpButtonClicked}>
+            <nav id='footer-trio-buttons-container' aria-label='Footer links' role='navigation'>
+                <FooterGreyButton role='button' onClick={handleHelpButtonClicked}>
                     Help
                 </FooterGreyButton>
-                <FooterGreyButton onClick={handlePrivacyButtonClicked}>
+                <FooterGreyButton role='button' onClick={handlePrivacyButtonClicked}>
                     Privacy
                 </FooterGreyButton>
-                <FooterGreyButton onClick={handleTermsButtonClicked}>
+                <FooterGreyButton role='button' onClick={handleTermsButtonClicked}>
                     Terms
                 </FooterGreyButton>
-            </div>
+            </nav>
 
         </div>
 

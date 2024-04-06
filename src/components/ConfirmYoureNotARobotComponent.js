@@ -33,7 +33,7 @@ export const ConfirmYoureNotARobotComponent = ({
 
         <>
 
-            <div id='google-container-responsive'>
+            <main id='google-container-responsive'>
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                     <div className="blue-snake-loader"></div>
                 </div>
@@ -168,7 +168,7 @@ export const ConfirmYoureNotARobotComponent = ({
 
                 </form>
 
-            </div> 
+            </main> 
 
             <LanguageChanger
                 className='language-changer-div'

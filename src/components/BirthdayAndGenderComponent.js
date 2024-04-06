@@ -4,9 +4,10 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import googleWritingSvg from '../images/google-writing-svg.svg';
 import CustomNextButton from './buttons/CustomNextButtonComponent';
 import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
+import LanguageChangerOverflow from './LanguageChanger/LanguageChangerOverflowComponent';
 
 export const BirthdayAndGenderComponent = ({
     month, 
@@ -30,25 +31,23 @@ export const BirthdayAndGenderComponent = ({
     handleSelectPronoun,
     isCustomChecked,
     text,
-    
     handleLanguageSelection,
     userData,
-    
 }) => {
     
     return (
         <>
-            <div id='google-container-responsive'>
+            <main id='google-container-responsive'>
                 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
-                    <div className="blue-snake-loader"></div>
+                    <div className='blue-snake-loader'></div>
                 </div>
-                <img src={googleWritingSvg} alt="Google Writing" id="google-writing-BG"/>
+                <img src={googleWritingSvg} alt='Google Writing' id='google-writing-BG'/>
 
             
                 <form>
 
-                    <h1 class="thin h1-space">{text.BirthdayAndGender.h1[userData.language]}</h1>
+                    <h1 class='thin h1-space'>{text.BirthdayAndGender.h1[userData.language]}</h1>
 
                     <h2 class='thin h2-bg'>{text.BirthdayAndGender.h2[userData.language]}</h2>
 
@@ -74,35 +73,37 @@ export const BirthdayAndGenderComponent = ({
                                     value={month}
                                     label={text.BirthdayAndGender.month[userData.language]}
                                     onChange={(e) => handleSelectMonth(e, year, day)}
-                                    native="true"
+                                    native='true'
+                                    aria-label='select month of birth'
+                                    aria-invalid={errorCondition}
                                     sx={{
-                                        "&:hover:not(.Mui-focused)": {
-                                            "&& fieldset": {
-                                                borderColor: errorCondition ? "" : "#dadce0",
+                                        '&:hover:not(.Mui-focused)': {
+                                            '&& fieldset': {
+                                                borderColor: errorCondition ? '' : '#dadce0',
                                             },
                                         },
-                                        ".MuiOutlinedInput-notchedOutline": {
+                                        '.MuiOutlinedInput-notchedOutline': {
                                             borderColor: '#dadce0',
                                         },
                                         '.MuiSvgIcon-root ': {
-                                            fill: "#9e9e9e",
+                                            fill: '#9e9e9e',
                                             fontSize: '1.8rem',
                                         },
                                     }}
                                 >
-                                    <option value="" hidden></option>
-                                    <option value="January">{text.BirthdayAndGender.january[userData.language]}</option>
-                                    <option value="February">{text.BirthdayAndGender.february[userData.language]}</option>
-                                    <option value="March">{text.BirthdayAndGender.march[userData.language]}</option>
-                                    <option value="April">{text.BirthdayAndGender.april[userData.language]}</option>
-                                    <option value="May">{text.BirthdayAndGender.may[userData.language]}</option>
-                                    <option value="June">{text.BirthdayAndGender.june[userData.language]}</option>
-                                    <option value="July">{text.BirthdayAndGender.july[userData.language]}</option>
-                                    <option value="August">{text.BirthdayAndGender.august[userData.language]}</option>
-                                    <option value="September">{text.BirthdayAndGender.september[userData.language]}</option>
-                                    <option value="October">{text.BirthdayAndGender.october[userData.language]}</option>
-                                    <option value="November">{text.BirthdayAndGender.november[userData.language]}</option>
-                                    <option value="December">{text.BirthdayAndGender.december[userData.language]}</option>
+                                    <option value='' hidden></option>
+                                    <option value='January'>{text.BirthdayAndGender.january[userData.language]}</option>
+                                    <option value='February'>{text.BirthdayAndGender.february[userData.language]}</option>
+                                    <option value='March'>{text.BirthdayAndGender.march[userData.language]}</option>
+                                    <option value='April'>{text.BirthdayAndGender.april[userData.language]}</option>
+                                    <option value='May'>{text.BirthdayAndGender.may[userData.language]}</option>
+                                    <option value='June'>{text.BirthdayAndGender.june[userData.language]}</option>
+                                    <option value='July'>{text.BirthdayAndGender.july[userData.language]}</option>
+                                    <option value='August'>{text.BirthdayAndGender.august[userData.language]}</option>
+                                    <option value='September'>{text.BirthdayAndGender.september[userData.language]}</option>
+                                    <option value='October'>{text.BirthdayAndGender.october[userData.language]}</option>
+                                    <option value='November'>{text.BirthdayAndGender.november[userData.language]}</option>
+                                    <option value='December'>{text.BirthdayAndGender.december[userData.language]}</option>
 
                                 </Select>
                             </FormControl>
@@ -116,7 +117,9 @@ export const BirthdayAndGenderComponent = ({
                                 value={day}
                                 label={text.BirthdayAndGender.day[userData.language]}
                                 onChange={(e) => handleSelectDay(e, year, month)}
-                                maxLength="2"
+                                maxLength='2'
+                                aria-label='Enter day of birth'
+                                aria-invalid={errorCondition}
                                 InputLabelProps={
                                     errorCondition ? 
                                     { 
@@ -132,12 +135,12 @@ export const BirthdayAndGenderComponent = ({
                                     errorCondition ? 
                                     {} : 
                                     {
-                                        "& .MuiOutlinedInput-root": {
-                                            "&:hover:not(.Mui-focused) fieldset": {
-                                                borderColor: "#dadce0"
+                                        '& .MuiOutlinedInput-root': {
+                                            '&:hover:not(.Mui-focused) fieldset': {
+                                                borderColor: '#dadce0'
                                             },
-                                            "& fieldset": {
-                                                borderColor: "#dadce0"
+                                            '& fieldset': {
+                                                borderColor: '#dadce0'
                                             },
                                         }
                                     }
@@ -153,7 +156,9 @@ export const BirthdayAndGenderComponent = ({
                                 value={year}
                                 label={text.BirthdayAndGender.year[userData.language]}
                                 onChange={(e) => handleSelectYear(e, day, month)}
-                                maxLength="4"
+                                maxLength='4'
+                                aria-label='Enter year of birth'
+                                aria-invalid={errorCondition}
                                 InputLabelProps={
                                     errorCondition ? 
                                     { 
@@ -169,12 +174,12 @@ export const BirthdayAndGenderComponent = ({
                                     errorCondition ? 
                                     {} : 
                                     {
-                                        "& .MuiOutlinedInput-root": {
-                                            "&:hover:not(.Mui-focused) fieldset": {
-                                                borderColor: "#dadce0"
+                                        '& .MuiOutlinedInput-root': {
+                                            '&:hover:not(.Mui-focused) fieldset': {
+                                                borderColor: '#dadce0'
                                             },
-                                            "& fieldset": {
-                                                borderColor: "#dadce0"
+                                            '& fieldset': {
+                                                borderColor: '#dadce0'
                                             },
                                         }
                                     }
@@ -186,17 +191,17 @@ export const BirthdayAndGenderComponent = ({
 
                     {errorCondition === 'incompleteBirthday' && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space-basic-info'>
-                            <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                                <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class="input-error-message">{text.BirthdayAndGender.pleaseFillInCompleteBirthday[userData.language]}</p>
+                            <p class='input-error-message'>{text.BirthdayAndGender.pleaseFillInCompleteBirthday[userData.language]}</p>
                         </div>
                     ) : errorCondition === 'isWrongFormat' && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space-basic-info'>
-                            <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                                <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class="input-error-message">{text.BirthdayAndGender.pleaseEnterVAlidDate[userData.language]}</p>
+                            <p class='input-error-message'>{text.BirthdayAndGender.pleaseEnterVAlidDate[userData.language]}</p>
                         </div>
                     ) : (
                         <div className='hidden-error-message-container-create-account'></div>
@@ -223,27 +228,29 @@ export const BirthdayAndGenderComponent = ({
                                     value={gender}
                                     label={text.BirthdayAndGender.gender[userData.language]}
                                     onChange={handleSelectGender}
-                                    native="true"
+                                    aria-label='Select your gender'
+                                    aria-invalid={errorCondition}
+                                    native='true'
                                     sx={{
-                                        "&:hover:not(.Mui-focused)": {
-                                            "&& fieldset": {
-                                                borderColor: genderEmpty ? "" : "#dadce0",
+                                        '&:hover:not(.Mui-focused)': {
+                                            '&& fieldset': {
+                                                borderColor: genderEmpty ? '' : '#dadce0',
                                             },
                                         },
-                                        ".MuiOutlinedInput-notchedOutline": {
+                                        '.MuiOutlinedInput-notchedOutline': {
                                             borderColor: '#dadce0',
                                         },
                                         '.MuiSvgIcon-root ': {
-                                            fill: "#9e9e9e",
+                                            fill: '#9e9e9e',
                                             fontSize: '1.8rem',
                                         },
                                     }}
                                 >
-                                    <option value="" hidden></option>
-                                    <option value="Female">{text.BirthdayAndGender.female[userData.language]}</option>
-                                    <option value="Male">{text.BirthdayAndGender.male[userData.language]}</option>
-                                    <option value="Rather not say">{text.BirthdayAndGender.ratherNotSay[userData.language]}</option>
-                                    <option value="Custom">{text.BirthdayAndGender.custom[userData.language]}</option>
+                                    <option value='' hidden></option>
+                                    <option value='Female'>{text.BirthdayAndGender.female[userData.language]}</option>
+                                    <option value='Male'>{text.BirthdayAndGender.male[userData.language]}</option>
+                                    <option value='Rather not say'>{text.BirthdayAndGender.ratherNotSay[userData.language]}</option>
+                                    <option value='Custom'>{text.BirthdayAndGender.custom[userData.language]}</option>
                                 </Select>
                             </FormControl>
                         </Box>
@@ -251,10 +258,10 @@ export const BirthdayAndGenderComponent = ({
 
                     {genderEmpty && isImagePreloaded ? (
                         <div class='error-div' id='error-div-space-basic-info'>
-                            <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                                <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class="input-error-message">{text.BirthdayAndGender.pleaseSelectGender[userData.language]}</p>
+                            <p class='input-error-message'>{text.BirthdayAndGender.pleaseSelectGender[userData.language]}</p>
                         </div>
                     ) : (
                         <div className='hidden-error-message-container-BI'></div>
@@ -273,6 +280,8 @@ export const BirthdayAndGenderComponent = ({
                                             value={customGender}
                                             label={text.BirthdayAndGender.whatsYourGender[userData.language]}
                                             onChange={handleSelectCustomGender}
+                                            aria-label='State your gender identity'
+                                            aria-invalid={errorCondition}
                                             InputLabelProps={
                                                 customGenderEmpty ? 
                                                 { 
@@ -288,12 +297,12 @@ export const BirthdayAndGenderComponent = ({
                                                 customGenderEmpty ? 
                                                 {} : 
                                                 {
-                                                    "& .MuiOutlinedInput-root": {
-                                                        "&:hover:not(.Mui-focused) fieldset": {
-                                                            borderColor: "#dadce0"
+                                                    '& .MuiOutlinedInput-root': {
+                                                        '&:hover:not(.Mui-focused) fieldset': {
+                                                            borderColor: '#dadce0'
                                                         },
-                                                        "& fieldset": {
-                                                            borderColor: "#dadce0"
+                                                        '& fieldset': {
+                                                            borderColor: '#dadce0'
                                                         },
                                                     }
                                                 }
@@ -304,10 +313,10 @@ export const BirthdayAndGenderComponent = ({
 
                             {customGenderEmpty && isImagePreloaded ? (
                                 <div class='error-div' id='error-div-space-basic-info'>
-                                    <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
-                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                                    <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                                        <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                                     </svg>
-                                    <p class="input-error-message">{text.BirthdayAndGender.pleaseIndicateGender[userData.language]}</p>
+                                    <p class='input-error-message'>{text.BirthdayAndGender.pleaseIndicateGender[userData.language]}</p>
                                 </div>
                             ) : (
                                 <div className='hidden-error-message-container-BI'></div>
@@ -332,25 +341,27 @@ export const BirthdayAndGenderComponent = ({
                                             value={pronoun}
                                             label={text.BirthdayAndGender.pleaseReferToMeAs[userData.language]}
                                             onChange={handleSelectPronoun}
-                                            native="true"
+                                            aria-label='Select your gender'
+                                            aria-invalid={errorCondition}
+                                            native='true'
                                             sx={{
-                                                "&:hover:not(.Mui-focused)": {
-                                                    "&& fieldset": {
-                                                        borderColor: pronounEmpty ? "" : "#dadce0",
+                                                '&:hover:not(.Mui-focused)': {
+                                                    '&& fieldset': {
+                                                        borderColor: pronounEmpty ? '' : '#dadce0',
                                                     },
                                                 },
-                                                ".MuiOutlinedInput-notchedOutline": {
+                                                '.MuiOutlinedInput-notchedOutline': {
                                                     borderColor: '#dadce0',
                                                 },
                                                 '.MuiSvgIcon-root ': {
-                                                    fill: "#9e9e9e",
+                                                    fill: '#9e9e9e',
                                                 },
                                             }}
                                         >
-                                            <option value="" hidden></option>
-                                            <option value="Female">{text.BirthdayAndGender.female[userData.language]}</option>
-                                            <option value="Male">{text.BirthdayAndGender.male[userData.language]}</option>
-                                            <option value="Other">{text.BirthdayAndGender.other[userData.language]}</option>
+                                            <option value='' hidden></option>
+                                            <option value='Female'>{text.BirthdayAndGender.female[userData.language]}</option>
+                                            <option value='Male'>{text.BirthdayAndGender.male[userData.language]}</option>
+                                            <option value='Other'>{text.BirthdayAndGender.other[userData.language]}</option>
                                         </Select>
                                     </FormControl>
                                 </Box>
@@ -358,10 +369,10 @@ export const BirthdayAndGenderComponent = ({
 
                             {pronounEmpty && isImagePreloaded ? (
                                 <div class='error-div' id='error-div-space-basic-info'>
-                                    <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
-                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                                    <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                                        <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                                     </svg>
-                                    <p class="input-error-message">{text.BirthdayAndGender.pleaseSelectPronoun[userData.language]}</p>
+                                    <p class='input-error-message'>{text.BirthdayAndGender.pleaseSelectPronoun[userData.language]}</p>
                                 </div>
                             ) : (
                                 <div className='hidden-error-message-container-BI'></div>
@@ -372,7 +383,7 @@ export const BirthdayAndGenderComponent = ({
 
                     <section class={errorCondition || genderEmpty ? 'button-right-error-BI' : 'button-right-BI'}>
                         <CustomNextButton 
-                            variant="contained" 
+                            variant='contained' 
                             onClick={handleNextClick}
                             sx={{
                                 '&& .MuiTouchRipple-rippleVisible': {
@@ -388,13 +399,21 @@ export const BirthdayAndGenderComponent = ({
 
                 </form>
 
-            </div>
+            </main>
 
-            <LanguageChanger
-                onChange={handleLanguageSelection}
-                initialLanguage={userData.language}
-                
-            />
+            { isCustomChecked ? (
+                <LanguageChangerOverflow
+                    onChange={handleLanguageSelection}
+                    initialLanguage={userData.language}
+                    aria-label='Change language'
+                />
+            ) : (
+                <LanguageChanger
+                    onChange={handleLanguageSelection}
+                    initialLanguage={userData.language}
+                    aria-label='Change language'
+                />
+            )}
 
         </>
     )

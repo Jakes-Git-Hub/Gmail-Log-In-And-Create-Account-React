@@ -15,9 +15,7 @@ export const ManualChooseYourSettingsComponent4 = ({
     handleBackClick,
     checked,
     toggleCheckBox,
-    
     userData,
-    
 }) => {
 
     return (

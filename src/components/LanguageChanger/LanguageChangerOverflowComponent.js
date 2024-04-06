@@ -81,7 +81,8 @@ function LanguageChangerOverflow({ onChange, initialLanguage }) {
 
         <div id='language-changer-footer-overflow'>
 
-            <FormControl 
+            <FormControl
+                aria-role='combobox'
                 id='language-changer-dropdown'
                 onClick={toggleMenu}
                 sx={{
@@ -91,6 +92,7 @@ function LanguageChangerOverflow({ onChange, initialLanguage }) {
             >
                 <Select
                     open={open}
+                    aria-expanded={open}
                     onClose={() => setOpen(false)} 
                     onOpen={() => setOpen(true)} 
                     onChange={handleChange}
@@ -146,17 +148,17 @@ function LanguageChangerOverflow({ onChange, initialLanguage }) {
                 </Select>
             </FormControl>
 
-            <div id='footer-trio-buttons-container'>
-                <FooterGreyButton onClick={handleHelpButtonClicked}>
+            <nav id='footer-trio-buttons-container'>
+                <FooterGreyButton role='button' onClick={handleHelpButtonClicked}>
                     Help
                 </FooterGreyButton>
-                <FooterGreyButton onClick={handlePrivacyButtonClicked}>
+                <FooterGreyButton role='button' onClick={handlePrivacyButtonClicked}>
                     Privacy
                 </FooterGreyButton>
-                <FooterGreyButton onClick={handleTermsButtonClicked}>
+                <FooterGreyButton role='button' onClick={handleTermsButtonClicked}>
                     Terms
                 </FooterGreyButton>
-            </div>
+            </nav>
 
         </div>
 
