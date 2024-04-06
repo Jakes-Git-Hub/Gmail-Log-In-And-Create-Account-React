@@ -82,7 +82,7 @@ function LanguageChangerOverflow({ onChange, initialLanguage }) {
         <div id='language-changer-footer-overflow'>
 
             <FormControl
-                aria-role='combobox'
+                role='combobox'
                 id='language-changer-dropdown'
                 onClick={toggleMenu}
                 sx={{
@@ -97,6 +97,7 @@ function LanguageChangerOverflow({ onChange, initialLanguage }) {
                     onOpen={() => setOpen(true)} 
                     onChange={handleChange}
                     displayEmpty={true}
+                    aria-label='Select text language'
                     value={selectedValue}
                     MenuProps={{
                         anchorOrigin: {

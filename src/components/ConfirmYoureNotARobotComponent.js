@@ -54,6 +54,7 @@ export const ConfirmYoureNotARobotComponent = ({
                             styles={customStyles}
                             class="flag-drop-down"
                             options={customOptions}
+                            aria-label='Select your Country'
                             components={{ 
                                 DropdownIndicator: customDropdownIndicator, 
                                 SingleValue: chosenCountryFlagImage, 
@@ -79,6 +80,8 @@ export const ConfirmYoureNotARobotComponent = ({
                                         label={text.ConfirmYoureNotARobot.phoneNumber[userData.language]}
                                         type="number text"
                                         onChange={handleSelectPhoneNumber}
+                                        aria-label='Enter your Number (without dialing code)'
+                                        aria-invalid={errorCondition ? true : false}
                                         InputLabelProps={
                                             errorCondition ? 
                                             { 
@@ -154,6 +157,7 @@ export const ConfirmYoureNotARobotComponent = ({
                         <CustomNextButton 
                             variant="contained" 
                             onClick={handleNextClick}
+                            aria-label='Next button'
                             sx={{
                                 '&& .MuiTouchRipple-rippleVisible': {
                                     animationDuration: '300ms',
@@ -174,6 +178,7 @@ export const ConfirmYoureNotARobotComponent = ({
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
+                aria-label='Change language'
             />
 
         </>            

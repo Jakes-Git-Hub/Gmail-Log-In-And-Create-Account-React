@@ -26,7 +26,7 @@ export const EnterTheFindCodeComponent = ({
 
         <>
 
-            <div id='google-container-responsive'>
+            <main id='google-container-responsive'>
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                     <div className="blue-snake-loader"></div>
                 </div>
@@ -48,6 +48,8 @@ export const EnterTheFindCodeComponent = ({
                             onChange={handleUserVerificationCodeInput}
                             onFocus={toggleFocus}
                             onBlur={toggleFocus}
+                            aria-label='Enter the verification code'
+                            aria-invalid={errorCondition ? true : false}
                             InputLabelProps={
                                 errorCondition ? 
                                 { 
@@ -151,13 +153,13 @@ export const EnterTheFindCodeComponent = ({
 
                 </form>
 
-            </div>
+            </main>
 
             <LanguageChanger 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
-                
+                aria-label='Change language'
             />
 
         </>

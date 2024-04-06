@@ -97,7 +97,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
     }, [countryFromAPIOrSelection]);
     
     useEffect(() => {
-        const newTopOption = filteredCountries.find(country => country.svg === countryFromAPIOrSelection.svg) || { name: "United Kingdom" }.name;
+        const newTopOption = filteredCountries.find(country => country.svg === countryFromAPIOrSelection.svg) || 'United Kingdom';
         setTopOption(newTopOption);
         const newFilteredCountries = filteredCountries.sort((a, b) => a.name.localeCompare(b.name));
         setFilteredCountries(newFilteredCountries);
@@ -219,7 +219,6 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
             phoneNumberInput.focus();
         } else {
             const isPhoneNumberAlreadyRegistered = users.some(user => user.phoneNumber === phoneNumber);
-            
             if (isPhoneNumberAlreadyRegistered) {
                 setError("alreadyRegistered"); 
             } else {
@@ -237,48 +236,48 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
             }
         }
     };
-   
+
 // Send Verification Code When Formatted Phone Number Changes
 
     useEffect(() => {
-        const sendVerificationCode = async () => {
-            setLoading(true);
-            try {
-                const response = await axios.post('http://localhost:3001/send-verification-code', {
-                    formattedPhoneNumber: formattedPhoneNumber,
-                }, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
-    
-                const data = response.data;
-    
-                if (data.verificationCode) {
-                    // Extract the verification code from the Twilio response
-                    const verificationCode = data.verificationCode.toString();
-                    updateUser({ verificationCode: verificationCode });
-                    console.log("actualSelectedOption:", actualSelectedOption);
-                    navigate('/enter-the-verification-code');    
-                } else {
-                    setLoading(false);
-                    if (data.error) {
-                        console.error('Error sending verification code:', data.error);
-                    } else {
-                        console.error('Unknown error sending verification code');
-                    }
-                }
-            } catch (error) {
-                console.error('Error sending verification code:', error);
-                setLoading(false);
-                setError("incorrectNumber");
-            }
-        } 
         if (formattedPhoneNumber) {
             sendVerificationCode();
         }
-
     }, [formattedPhoneNumber]);
+
+    const sendVerificationCode = async () => {
+        setLoading(true);
+        try {
+            const response = await axios.post('http://localhost:3001/send-verification-code', {
+                formattedPhoneNumber: formattedPhoneNumber,
+            }, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            const data = response.data;
+
+            if (data.verificationCode) {
+                // Extract the verification code from the Twilio response
+                const verificationCode = data.verificationCode.toString();
+                updateUser({ verificationCode: verificationCode });
+                console.log("actualSelectedOption:", actualSelectedOption);
+                navigate('/enter-the-verification-code');    
+            } else {
+                setLoading(false);
+                if (data.error) {
+                    console.error('Error sending verification code:', data.error);
+                } else {
+                    console.error('Unknown error sending verification code');
+                }
+            }
+        } catch (error) {
+            console.error('Error sending verification code:', error);
+            setLoading(false);
+            setError("incorrectNumber");
+        }
+    } 
 
 // Custom React Select Components
 

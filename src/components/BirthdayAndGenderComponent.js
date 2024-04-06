@@ -75,7 +75,7 @@ export const BirthdayAndGenderComponent = ({
                                     onChange={(e) => handleSelectMonth(e, year, day)}
                                     native='true'
                                     aria-label='select month of birth'
-                                    aria-invalid={errorCondition}
+                                    aria-invalid={errorCondition ? true : false}
                                     sx={{
                                         '&:hover:not(.Mui-focused)': {
                                             '&& fieldset': {
@@ -119,7 +119,7 @@ export const BirthdayAndGenderComponent = ({
                                 onChange={(e) => handleSelectDay(e, year, month)}
                                 maxLength='2'
                                 aria-label='Enter day of birth'
-                                aria-invalid={errorCondition}
+                                aria-invalid={errorCondition ? true : false}
                                 InputLabelProps={
                                     errorCondition ? 
                                     { 
@@ -158,7 +158,7 @@ export const BirthdayAndGenderComponent = ({
                                 onChange={(e) => handleSelectYear(e, day, month)}
                                 maxLength='4'
                                 aria-label='Enter year of birth'
-                                aria-invalid={errorCondition}
+                                aria-invalid={errorCondition ? true : false}
                                 InputLabelProps={
                                     errorCondition ? 
                                     { 
@@ -229,7 +229,7 @@ export const BirthdayAndGenderComponent = ({
                                     label={text.BirthdayAndGender.gender[userData.language]}
                                     onChange={handleSelectGender}
                                     aria-label='Select your gender'
-                                    aria-invalid={errorCondition}
+                                    aria-invalid={errorCondition ? true : false}
                                     native='true'
                                     sx={{
                                         '&:hover:not(.Mui-focused)': {
@@ -281,7 +281,7 @@ export const BirthdayAndGenderComponent = ({
                                             label={text.BirthdayAndGender.whatsYourGender[userData.language]}
                                             onChange={handleSelectCustomGender}
                                             aria-label='State your gender identity'
-                                            aria-invalid={errorCondition}
+                                            aria-invalid={errorCondition ? true : false}
                                             InputLabelProps={
                                                 customGenderEmpty ? 
                                                 { 
@@ -342,7 +342,7 @@ export const BirthdayAndGenderComponent = ({
                                             label={text.BirthdayAndGender.pleaseReferToMeAs[userData.language]}
                                             onChange={handleSelectPronoun}
                                             aria-label='Select your gender'
-                                            aria-invalid={errorCondition}
+                                            aria-invalid={errorCondition ? true : false}
                                             native='true'
                                             sx={{
                                                 '&:hover:not(.Mui-focused)': {

@@ -45,7 +45,7 @@ export const AddRecoveryEmailComponent = ({
                                             value={recoveryEmail}
                                             label={text.AddRecoveryEmail.recoveryEmail[userData.language]}
                                             aria-label='Enter your recovery email address'
-                                            aria-invalid={errorCondition}
+                                            aria-invalid={errorCondition ? true : false}
                                             onChange={(e) => setRecoveryEmail(e.target.value)}
                                             InputLabelProps={
                                                 errorCondition ? 

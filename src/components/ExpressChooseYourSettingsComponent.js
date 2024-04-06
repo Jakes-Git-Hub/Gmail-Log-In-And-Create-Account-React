@@ -34,7 +34,7 @@ export const ExpressChooseYourSettingsComponent = ({
 
         <>
 
-            <div className='google-container-flexible-ryai' id='ecys-top-margin'>
+            <main className='google-container-flexible-ryai' id='ecys-top-margin'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                     <div className="blue-snake-loader"></div>
@@ -343,12 +343,13 @@ export const ExpressChooseYourSettingsComponent = ({
                     </CustomNextAndSkipButton>
                 </div>
 
-            </div>
+            </main>
 
             <LanguageChangerOverflow
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
+                aria-label='Change language'
             />
 
         </>                

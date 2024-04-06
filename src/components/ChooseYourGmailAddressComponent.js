@@ -46,7 +46,7 @@ export const ChooseYourGmailAddressComponent = ({
                                 label={text.ChooseYourGmailAddress.username[userData.language]}
                                 onChange={handleSelectEmail}
                                 aria-label='Enter desired email address'
-                                aria-invalid={errorCondition}
+                                aria-invalid={errorCondition ? true : false}
                                 InputLabelProps={
                                     errorCondition ? 
                                     { 

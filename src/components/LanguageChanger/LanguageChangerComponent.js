@@ -81,7 +81,7 @@ function LanguageChanger({ onChange, initialLanguage }) {
 
         <div id='language-changer-footer'>
             <FormControl 
-                aria-role='combobox'
+                role='combobox'
                 id='language-changer-dropdown'
                 onClick={toggleMenu}
                 sx={{
@@ -97,6 +97,7 @@ function LanguageChanger({ onChange, initialLanguage }) {
                     onChange={handleChange}
                     displayEmpty={true}
                     value={selectedValue}
+                    aria-label='Select text language'
                     MenuProps={{
                         anchorOrigin: {
                             vertical: 'top',

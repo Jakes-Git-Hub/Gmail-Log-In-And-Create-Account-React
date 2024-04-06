@@ -30,7 +30,7 @@ export const EnterTheCodeComponent = ({
 
         <>
 
-            <div id='google-container-responsive'>
+            <main id='google-container-responsive'>
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                 <div className="blue-snake-loader"></div>
                 </div>
@@ -52,6 +52,8 @@ export const EnterTheCodeComponent = ({
                             onChange={handleUserVerificationCodeInput}
                             onFocus={toggleFocus}
                             onBlur={toggleFocus}
+                            aria-label='Enter the verification code'
+                            aria-invalid={errorCondition ? true : false}
                             InputLabelProps={
                                 errorCondition ? 
                                 { 
@@ -169,6 +171,7 @@ export const EnterTheCodeComponent = ({
                             <CustomNextButton 
                                     variant="contained" 
                                     onClick={handleNextClick}
+                                    aria-label='Next button'
                                     sx={{
                                         '&& .MuiTouchRipple-rippleVisible': {
                                             animationDuration: '300ms',
@@ -184,13 +187,13 @@ export const EnterTheCodeComponent = ({
 
                 </form>
 
-            </div>
+            </main>
 
             <LanguageChanger 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
-                
+                aria-label='Change language'
             />
 
         </>

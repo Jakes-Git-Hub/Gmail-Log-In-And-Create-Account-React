@@ -82,7 +82,7 @@ function LanguageChangerMediumPage({ onChange, initialLanguage }) {
         <div id='language-changer-footer-medium-page'>
 
             <FormControl 
-                aria-role='combobox'
+                role='combobox'
                 id='language-changer-dropdown'
                 onClick={toggleMenu}
                 sx={{
@@ -96,6 +96,7 @@ function LanguageChangerMediumPage({ onChange, initialLanguage }) {
                     onClose={() => setOpen(false)} 
                     onOpen={() => setOpen(true)} 
                     onChange={handleChange}
+                    aria-label='Select text language'
                     displayEmpty={true}
                     value={selectedValue}
                     MenuProps={{
