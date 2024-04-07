@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ExpressChooseYourSettingsComponent } from "../components/ExpressChooseYourSettingsComponent";
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import { ExpressChooseYourSettingsComponent } from '../components/ExpressChooseYourSettingsComponent';
+import googleWritingSvg from '../images/google-writing-svg.svg';
 import { useSpring } from 'react-spring';
 
 export const ExpressChooseYourSettingsContainer = ({ updateUser, text, hidePrivacyRow,  userData,  }) => {

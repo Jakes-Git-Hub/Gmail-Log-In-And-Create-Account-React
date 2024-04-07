@@ -1,5 +1,5 @@
 import React from 'react';
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import googleWritingSvg from '../images/google-writing-svg.svg';
 import CustomNextAndSkipButton from './buttons/CustomNext&SkipButtonComponent';
 import TickSVG from './svg\'s/tickSVG';
 import NullSVG from './svg\'s/nullSVG';
@@ -26,17 +26,17 @@ export const ConfirmYourSettingsComponent = ({
             <div className='google-container-flexible-ryai'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
-                    <div className="blue-snake-loader"></div>
+                    <div className='blue-snake-loader'></div>
                 </div>
-                <img src={googleWritingSvg} alt="Google Writing" id="google-writing-recovery-ryai"/>
+                <img src={googleWritingSvg} alt='Google Writing' id='google-writing-recovery-ryai'/>
                 
-                <h1 class="thin h1-space h1-mcys">{text.ConfirmYourSettings.h1[userData.language]}</h1>
+                <h1 class='thin h1-space h1-mcys'>{text.ConfirmYourSettings.h1[userData.language]}</h1>
                 <div id='reduce-width-h2-confirm-your-settings'>
                     <h2 class='thin gap center'>{text.ConfirmYourSettings.h2}</h2>
                 </div>
                 
-                <div id="choose-your-settings-container-mcys">
-                    <div className="confirm-your-settings-configuration-container">
+                <div id='choose-your-settings-container-mcys'>
+                    <div className='confirm-your-settings-configuration-container'>
                         {userData.manualSetting1 === 'dont save' ? (
                                 <NullSVG />
                             ) : (
@@ -44,17 +44,17 @@ export const ConfirmYourSettingsComponent = ({
                             )
                         }
                         <div className='writting-container'>
-                            <p className="setting-option-name-confirm">{text.ConfirmYourSettings.webAndAppActivity}</p>
+                            <p className='setting-option-name-confirm'>{text.ConfirmYourSettings.webAndAppActivity}</p>
                             {userData.manualSetting1 === 'dont save' ? (
-                                    <p className="setting-information">{text.ConfirmYourSettings.off}</p> 
+                                    <p className='setting-information'>{text.ConfirmYourSettings.off}</p> 
                                 ) : (
-                                    <p className="setting-information">{text.ConfirmYourSettings.on}</p>
+                                    <p className='setting-information'>{text.ConfirmYourSettings.on}</p>
                                 )
                             }
                         </div>
                     </div>
 
-                    <div className="confirm-your-settings-configuration-container">
+                    <div className='confirm-your-settings-configuration-container'>
                         {userData.manualSetting2 === 'dont save' ? (
                                 <NullSVG />
                             ) : (
@@ -62,17 +62,17 @@ export const ConfirmYourSettingsComponent = ({
                             )
                         }
                         <div className='writting-container'>
-                            <p className="setting-option-name-confirm">{text.ConfirmYourSettings.youTubeHistory}</p>
+                            <p className='setting-option-name-confirm'>{text.ConfirmYourSettings.youTubeHistory}</p>
                             {userData.manualSetting2 === 'dont save' ? (
-                                    <p className="setting-information">{text.ConfirmYourSettings.off}</p> 
+                                    <p className='setting-information'>{text.ConfirmYourSettings.off}</p> 
                                 ) : (
-                                    <p className="setting-information">{text.ConfirmYourSettings.on}</p>
+                                    <p className='setting-information'>{text.ConfirmYourSettings.on}</p>
                                 )
                             }
                         </div>
                     </div>
 
-                    <div className="confirm-your-settings-configuration-container">
+                    <div className='confirm-your-settings-configuration-container'>
                         {userData.manualSetting3 === 'show me generic ads' ? (
                                 <NullSVG />
                             ) : (
@@ -80,29 +80,29 @@ export const ConfirmYourSettingsComponent = ({
                             )
                         }
                         <div className='writting-container'>
-                            <p className="setting-option-name-confirm">{text.ConfirmYourSettings.personalizedAds}</p>
+                            <p className='setting-option-name-confirm'>{text.ConfirmYourSettings.personalizedAds}</p>
                             {userData.manualSetting3 === 'show me generic ads' ? (
-                                    <p className="setting-information">{text.ConfirmYourSettings.off}</p> 
+                                    <p className='setting-information'>{text.ConfirmYourSettings.off}</p> 
                                 ) : (
-                                    <p className="setting-information">{text.ConfirmYourSettings.on}</p>
+                                    <p className='setting-information'>{text.ConfirmYourSettings.on}</p>
                                 )
                             }
                         </div>
                     </div>
 
                     {showPrivacyRow ? (
-                        <div className="confirm-your-settings-configuration-container">
+                        <div className='confirm-your-settings-configuration-container'>
                             {userData.manualSetting4 ? (
                                 <TickSVG />
                             ) : (
                                 <NullSVG />
                             )}
                             <div className='writting-container'>
-                                <p className="setting-option-name-confirm">{text.ConfirmYourSettings.privacyReminders}</p>
+                                <p className='setting-option-name-confirm'>{text.ConfirmYourSettings.privacyReminders}</p>
                                 {userData.manualSetting4 ? (
-                                    <p className="setting-information">{text.ConfirmYourSettings.onPrivacyReminders}</p> 
+                                    <p className='setting-information'>{text.ConfirmYourSettings.onPrivacyReminders}</p> 
                                 ) : (
-                                    <p className="setting-information">{text.ConfirmYourSettings.offPrivacyReminders}</p>
+                                    <p className='setting-information'>{text.ConfirmYourSettings.offPrivacyReminders}</p>
                                 )}
                             </div>
                         </div>
@@ -110,17 +110,17 @@ export const ConfirmYourSettingsComponent = ({
                     
                 </div>
 
-                {errorCondition === "selectAnOption" && isImagePreloaded && (   
+                {errorCondition === 'selectAnOption' && isImagePreloaded && (   
                     <div id='error-div-choose-your-settings'>
-                        <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                        <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                                <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                        <p class="input-error-message">{text.ManualChooseYourSettings2.error}</p>
+                        <p class='input-error-message'>{text.ManualChooseYourSettings2.error}</p>
                     </div>
                 )}
 
-                <div id="container-confirm-your-settings">
-                    <h2 class="mcys-h2">{text.ConfirmYourSettings.aboutCookies}</h2>
+                <div id='container-confirm-your-settings'>
+                    <h2 class='mcys-h2'>{text.ConfirmYourSettings.aboutCookies}</h2>
                     <p class='pconfirmys p-gap-ecys'>
                         {text.ConfirmYourSettings.aboutCookies1}
                         <a class='href' href='https://policies.google.com/technologies/cookies?hl=en&gl=GB' target='blank'>{text.ConfirmYourSettings.aboutCookies2}</a>
@@ -145,10 +145,10 @@ export const ConfirmYourSettingsComponent = ({
 
                 <div class='next-and-skip-button-duo button-space-mcys'>
                     <CustomNextAndSkipButton 
-                        className="duo" 
-                        variant="contained" 
+                        className='duo' 
+                        variant='contained' 
                         onClick={handleBackClick}
-                        type="submit"
+                        type='submit'
                         sx={{
                             '&& .MuiTouchRipple-rippleVisible': {
                                 animationDuration: '300ms',
@@ -159,10 +159,10 @@ export const ConfirmYourSettingsComponent = ({
                     </CustomNextAndSkipButton>
 
                     <CustomNextAndSkipButton
-                        className="duo"  
-                        variant="contained" 
+                        className='duo'  
+                        variant='contained' 
                         onClick={handleNextClick}
-                        type="button"
+                        type='button'
                         sx={{
                             '&& .MuiTouchRipple-rippleVisible': {
                                 animationDuration: '300ms',

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { EnterTheFindCodeComponent } from '../components/EnterTheFindCodeComponent';
-import useImagePreload from "../hooks/useImagePreload";
+import useImagePreload from '../hooks/useImagePreload';
 import errorImage from '../images/Daco_5575399.png';
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import googleWritingSvg from '../images/google-writing-svg.svg';
 import { createTheme } from '@mui/material/styles';
 
 export const EnterTheFindCodeContainer = ({ updateUser, userData, text, findYourEmailCredentials }) => {
@@ -51,23 +51,23 @@ const setError = errorType => setErrorCondition(errorType);
 // Handle Next Click
 
     const handleNextClick = () => {
-        const emptyInput = "";
+        const emptyInput = '';
         const hasLetters = /[a-zA-Z]/.test(usersVerificationCodeInput);
         const sixDigits = /^\d{6}$/;
         if (usersVerificationCodeInput === emptyInput) {
-            setError("inputEmpty");
+            setError('inputEmpty');
         }
         if (hasLetters) {
-            setError("hasLetters");
+            setError('hasLetters');
         } 
         if ((usersVerificationCodeInput !== emptyInput) && (!hasLetters && !sixDigits.test(usersVerificationCodeInput))) {
-            setError("wrongNumberOfDigits");
+            setError('wrongNumberOfDigits');
         } 
         if (sixDigits.test(usersVerificationCodeInput) && (usersVerificationCodeInput !== verificationCode)) {
-            setError("wrongCode");
+            setError('wrongCode');
         } 
         if (usersVerificationCodeInput === verificationCode) {
-            navigate("/select-an-account-to-sign-in");
+            navigate('/select-an-account-to-sign-in');
         }
     };
 
@@ -78,7 +78,7 @@ const setError = errorType => setErrorCondition(errorType);
             MuiInputLabel: {
                 styleOverrides: {
                     root: {
-                        paddingLeft: usersVerificationCodeInput || isFocused ? "14%" : '10.5%',
+                        paddingLeft: usersVerificationCodeInput || isFocused ? '14%' : '10.5%',
                         '&.Mui-focused': {
                             paddingLeft: '14%',
                         },

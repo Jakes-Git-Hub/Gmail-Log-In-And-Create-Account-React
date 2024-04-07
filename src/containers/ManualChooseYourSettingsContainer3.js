@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ManualChooseYourSettingsComponent3 } from "../components/ManualChooseYourSettingsComponent3";
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import { ManualChooseYourSettingsComponent3 } from '../components/ManualChooseYourSettingsComponent3';
+import googleWritingSvg from '../images/google-writing-svg.svg';
 import errorImage from '../images/Daco_5575399.png';
-import useImagePreload from "../hooks/useImagePreload";
+import useImagePreload from '../hooks/useImagePreload';
 import { useSpring } from 'react-spring';
 
 export const ManualChooseYourSettingsContainer3 = ({ userData, updateUser, text,   }) => {
 
-    const [manualSetting3, setManualSetting3] = useState("");
+    const [manualSetting3, setManualSetting3] = useState('');
     const [isImageLoaded, setIsImageLoaded] = useState(false);
-    const [errorCondition, setErrorCondition] = useState("");
+    const [errorCondition, setErrorCondition] = useState('');
     const [showYouTubeHistoryModal, setShowYouTubeHistoryModal] = useState(false);
     const [modalCondition, setModalCondition] = useState('closed');
 
@@ -84,8 +84,8 @@ export const ManualChooseYourSettingsContainer3 = ({ userData, updateUser, text,
 
     const handleRadioChange = (e) => {
         setManualSetting3(e.target.value);
-        if (errorCondition === "selectAnOption") {
-            setErrorCondition("");
+        if (errorCondition === 'selectAnOption') {
+            setErrorCondition('');
         }
     }
 
@@ -110,25 +110,25 @@ export const ManualChooseYourSettingsContainer3 = ({ userData, updateUser, text,
 
     const handleNextClick = (e) => {
         e.preventDefault();
-        if (manualSetting3 === "") {
-            setError("selectAnOption");
+        if (manualSetting3 === '') {
+            setError('selectAnOption');
             repositionViewPortOnError();
             return;
-        } if (manualSetting3 === "show personalized ads") {
-            updateUser({ manualSetting3: "show personalized ads" });
+        } if (manualSetting3 === 'show personalized ads') {
+            updateUser({ manualSetting3: 'show personalized ads' });
             repositionViewPortOnNextOrBackClick();
-        } if (manualSetting3 === "show generic ads") {
-            updateUser({ manualSetting3: "show me generic ads" });
+        } if (manualSetting3 === 'show generic ads') {
+            updateUser({ manualSetting3: 'show me generic ads' });
             repositionViewPortOnNextOrBackClick();
         }
         document.body.id = 'body';
-        navigate("/manual-choose-your-settings4");
+        navigate('/manual-choose-your-settings4');
     };
 
     const handleBackClick = (e) => {
         e.preventDefault();
         repositionViewPortOnNextOrBackClick();
-        navigate("/manual-choose-your-settings2")
+        navigate('/manual-choose-your-settings2')
     };
 
     const repositionViewPortOnNextOrBackClick = () => {

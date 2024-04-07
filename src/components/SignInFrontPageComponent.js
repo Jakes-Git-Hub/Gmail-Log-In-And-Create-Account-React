@@ -1,11 +1,11 @@
-import React from "react";
-import LanguageChanger from "./LanguageChanger/LanguageChangerComponent";
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import React from 'react';
+import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
+import googleWritingSvg from '../images/google-writing-svg.svg';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import TransparentSmallButtonSignInPage from "./buttons/TransparentSmallButtonSignInPageComponent";
-import CustomNextButton from "./buttons/CustomNextButtonComponent";
-import SecondaryGreyButton from "./buttons/SecondaryGreyButtonComponent";
+import TransparentSmallButtonSignInPage from './buttons/TransparentSmallButtonSignInPageComponent';
+import CustomNextButton from './buttons/CustomNextButtonComponent';
+import SecondaryGreyButton from './buttons/SecondaryGreyButtonComponent';
 
 export const SignInFrontPageComponent = ({ 
     isImageLoaded,
@@ -30,23 +30,23 @@ export const SignInFrontPageComponent = ({
             <div id='google-container-responsive'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
-                <div className="blue-snake-loader"></div>
+                <div className='blue-snake-loader'></div>
                 </div>
-                <img src={googleWritingSvg} alt="Google Writing" id="google-writing-BG"/>
+                <img src={googleWritingSvg} alt='Google Writing' id='google-writing-BG'/>
 
                 <form>
 
-                    <h1 class="thin h1-space">{text.SignIn.h1[userData.language]}</h1>
+                    <h1 class='thin h1-space'>{text.SignIn.h1[userData.language]}</h1>
 
                     <h2 class='thin gap'>Use your Google Account</h2>
 
 
                     <TextField 
-                        className="standard-text-field"
+                        className='standard-text-field'
                         error={errorCondition}
-                        id="emailOrPhoneInput" 
+                        id='emailOrPhoneInput' 
                         label={'Email or phone'}
-                        variant="outlined" 
+                        variant='outlined' 
                         fullWidth
                         value={emailOrPhone}
                         onChange={onEmailOrPhoneChange}
@@ -65,12 +65,12 @@ export const SignInFrontPageComponent = ({
                             errorCondition ? 
                             {} : 
                             {
-                                "& .MuiOutlinedInput-root": {
-                                    "&:hover:not(.Mui-focused) fieldset": {
-                                        borderColor: "#dadce0"
+                                '& .MuiOutlinedInput-root': {
+                                    '&:hover:not(.Mui-focused) fieldset': {
+                                        borderColor: '#dadce0'
                                     },
-                                    "& fieldset": {
-                                        borderColor: "#dadce0"
+                                    '& fieldset': {
+                                        borderColor: '#dadce0'
                                     },
                                 }
                             }
@@ -79,19 +79,19 @@ export const SignInFrontPageComponent = ({
 
                     {errorCondition === 'emailOrPhoneEmpty' && isImagePreloaded && (
                         <div class='error-div'>
-                            <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                                <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class="input-error-message">Enter an email or phone number</p>
+                            <p class='input-error-message'>Enter an email or phone number</p>
                         </div>
                     )}
 
                     {errorCondition === 'couldntFindYourAccount' && isImagePreloaded && (
                         <div class='error-div'>
-                            <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                                <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class="input-error-message">Couldn't find your Google Account</p>
+                            <p class='input-error-message'>Couldn't find your Google Account</p>
                         </div>
                     )}    
                       

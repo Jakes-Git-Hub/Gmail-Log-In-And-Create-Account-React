@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { BirthdayAndGenderComponent } from '../components/BirthdayAndGenderComponent';
-import useImagePreload from "../hooks/useImagePreload";
+import useImagePreload from '../hooks/useImagePreload';
 import errorImage from '../images/Daco_5575399.png';
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const BirthdayAndGenderContainer = ({ updateUser, text,  userData, }) => {
 
     const [month, setMonth] = useState('');
-    const [day, setDay] = useState("");
-    const [year, setYear] = useState("");
-    const [gender, setGender] = useState("");
+    const [day, setDay] = useState('');
+    const [year, setYear] = useState('');
+    const [gender, setGender] = useState('');
     const [genderEmpty, setGenderEmpty] = useState(false);
     const [errorCondition, setErrorCondition] = useState(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false);  
     const [isCustomChecked, setIsCustomChecked] = useState(false); 
-    const [customGender, setCustomGender] = useState("");
-    const [customGenderEmpty, setCustomGenderEmpty] = useState("");
-    const [pronoun, setPronoun] = useState("");
-    const [pronounEmpty, setPronounEmpty] = useState("");
+    const [customGender, setCustomGender] = useState('');
+    const [customGenderEmpty, setCustomGenderEmpty] = useState('');
+    const [pronoun, setPronoun] = useState('');
+    const [pronounEmpty, setPronounEmpty] = useState('');
 
     const navigate = useNavigate();
 

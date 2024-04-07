@@ -1,5 +1,5 @@
 import React from 'react';
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import googleWritingSvg from '../images/google-writing-svg.svg';
 import CustomNextAndSkipButton from './buttons/CustomNext&SkipButtonComponent';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -33,136 +33,146 @@ export const ManualChooseYourSettingsComponent2 = ({
 
         <>
 
-            <div className='google-container-flexible-ryai'>
+            <main className='google-container-flexible-ryai'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
-                    <div className="blue-snake-loader"></div>
+                    <div className='blue-snake-loader'></div>
                 </div>
-                <img src={googleWritingSvg} alt="Google Writing" id="google-writing-recovery-ryai"/>
+                <img src={googleWritingSvg} alt='Google Writing' id='google-writing-recovery-ryai'/>
 
-                <h1 class="thin h1-space h1-mcys">{text.ManualChooseYourSettings2.h1[userData.language]}</h1>
-                <p class="first-p-mcys">{text.ManualChooseYourSettings2.step}</p>
+                <h1 class='thin h1-space h1-mcys'>{text.ManualChooseYourSettings2.h1[userData.language]}</h1>
+                <p class='first-p-mcys'>{text.ManualChooseYourSettings2.step}</p>
 
-                <div id="container-choose-your-settings-m">
-                    <p class="regular-p">{text.ManualChooseYourSettings2.choose}</p>
+                <div id='container-choose-your-settings-m'>
+                    <p class='regular-p'>{text.ManualChooseYourSettings2.choose}</p>
                 </div>
                 
                 <RadioGroup
-                    aria-label="settings"
-                    name="settings"
+                    aria-label='settings'
+                    name='settings'
                     value={setting}
                     onChange={handleRadioChange}
-                    id="choose-your-settings-container-mcys"
+                    id='choose-your-settings-container-mcys'
                 >
-                    <div className="radio-input-container">
+                    <div className='radio-input-container'>
                         <FormControlLabel 
-                            value="keep until delete" 
+                            value='keep until delete' 
                             control={
                                 <Radio
+                                aria-label='Select keep until I delete option'
                                     className='cys-radio-manual'
                                     sx={{
                                         '&.MuiButtonBase-root:hover': {
                                             backgroundColor: 'transparent',
                                         },
-                                        color: errorCondition === "selectAnOption" ? 'rgb(217,48,37)' : 'default',
+                                        color: errorCondition === 'selectAnOption' ? 'rgb(217,48,37)' : 'default',
                                     }}
                                 />
                             }
                             label={
                                 <div className='writting-container'>
-                                    <p className="setting-option-name">{text.ManualChooseYourSettings2.keepUntil}</p>
+                                    <p className='setting-option-name'>{text.ManualChooseYourSettings2.keepUntil}</p>
                                 </div>
                             }
                             style={{
                                     margin: '2.5px 0 2.5px 11.5px',
-                                    width: "100%",
-                                    position: "relative",
-                                    right: "25px",
+                                    width: '100%',
+                                    position: 'relative',
+                                    right: '25px',
                             }}
                         />
                     </div>
-                    <div className="radio-input-container">
+                    <div className='radio-input-container'>
                         <FormControlLabel 
-                            value="36 months or delete" 
+                            value='36 months or delete' 
                             control={
                                 <Radio
                                     className='cys-radio-manual'
+                                    aria-label='Select keep Keep activity for 36 months option'
                                     sx={{
                                         '&.MuiButtonBase-root:hover': {
                                             backgroundColor: 'transparent',
                                         },
-                                        color: errorCondition === "selectAnOption" ? 'rgb(217,48,37)' : 'default',
+                                        color: errorCondition === 'selectAnOption' ? 'rgb(217,48,37)' : 'default',
                                     }}
                                     />
                             }
                             label={
                                 <div className='writting-container'>
-                                    <p className="setting-option-name">{text.ManualChooseYourSettings2.keepActivity}</p>
-                                    <p className="setting-information setting-information-pointer">{text.ManualChooseYourSettings2.keepActivity2}</p>
+                                    <p className='setting-option-name'>{text.ManualChooseYourSettings2.keepActivity}</p>
+                                    <p className='setting-information setting-information-pointer'>{text.ManualChooseYourSettings2.keepActivity2}</p>
                                 </div>
                             }
                             style={{
                                 marginLeft:'11.5px',
                                 marginBottom: '2.5px',
-                                width: "100%",
-                                position: "relative",
-                                right: "25px",
+                                width: '100%',
+                                position: 'relative',
+                                right: '25px',
                             }}
                         />
                     </div>
-                    <div className="radio-input-container">
+                    <div className='radio-input-container'>
                         <FormControlLabel 
-                            value="dont save" 
+                            value='dont save' 
                             control={
                                 <Radio
                                     className='cys-radio-manual'
+                                    aria-label='Select Dont save YouTube History in my account option'
                                     sx={{
                                         '&.MuiButtonBase-root:hover': {
                                             backgroundColor: 'transparent',
                                         },
-                                        color: errorCondition === "selectAnOption" ? 'rgb(217,48,37)' : 'default',
+                                        color: errorCondition === 'selectAnOption' ? 'rgb(217,48,37)' : 'default',
                                     }}
                                     />
                             }
                             label={
                                 <div className='writting-container'>
-                                    <p className="setting-option-name">{text.ManualChooseYourSettings2.dontSave}</p>
+                                    <p className='setting-option-name'>{text.ManualChooseYourSettings2.dontSave}</p>
                                 </div>
                             }
                             style={{
                                 marginLeft:'11.5px',
                                 marginBottom: '2.5px',
-                                width: "100%",
-                                position: "relative",
-                                right: "25px",
+                                width: '100%',
+                                position: 'relative',
+                                right: '25px',
                             }}
                         />
                     </div>
                 </RadioGroup>
 
-                {errorCondition === "selectAnOption" && isImagePreloaded && (   
+                {errorCondition === 'selectAnOption' && isImagePreloaded && (   
                     <div id='error-div-choose-your-settings'>
-                        <svg aria-hidden="true" class="error-image" fill="rgb(217, 48, 37)" focusable="false" width="16px" height="16px" viewBox="0 0 24 24" xmlns="https://www.w3.org/2000/svg">
-                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"></path>
+                        <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                            <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                         </svg>
-                        <p class="input-error-message">{text.ManualChooseYourSettings2.error}</p>
+                        <p class='input-error-message'>{text.ManualChooseYourSettings2.error}</p>
                     </div>
                 )}
 
-                <div id="container-choose-your-settings-m">
-                    <h2 class="mcys-h2">{text.ManualChooseYourSettings2.whatData}</h2>
+                <div id='container-choose-your-settings-m'>
+                    <h2 class='mcys-h2'>{text.ManualChooseYourSettings2.whatData}</h2>
                     <p class='pecys p-gap-ecys'>{text.ManualChooseYourSettings2.whatData1}</p>
-                    <h2 class="mcys-h2" id='more-margin-top-h2-mcys'>{text.ManualChooseYourSettings2.howWeUse}</h2>
+                    <h2 class='mcys-h2' id='more-margin-top-h2-mcys'>{text.ManualChooseYourSettings2.howWeUse}</h2>
                     <p class='pecys p-gap-ecys'>{text.ManualChooseYourSettings2.howWeUse1}</p>
-                    <h2 class="mcys-h2" id='more-margin-top-h2-mcys'>{text.ManualChooseYourSettings2.howYouCanManage}</h2>
+                    <h2 class='mcys-h2' id='more-margin-top-h2-mcys'>{text.ManualChooseYourSettings2.howYouCanManage}</h2>
                     <p class='pecys p-gap-ecys'>{text.ManualChooseYourSettings2.howYouCanManage1}</p>
 
-                    <TransparentSmallButton className="setting-information learn-more-mcys" onClick={openYouTubeHistoryModal}>{text.ManualChooseYourSettings2.learnMore}</TransparentSmallButton>
+                    <TransparentSmallButton 
+                        className='setting-information learn-more-mcys' 
+                        onClick={openYouTubeHistoryModal}
+                        aria-label='Open Learn more about how YouTube uses your history modal button'
+                    >
+                        {text.ManualChooseYourSettings2.learnMore}
+                    </TransparentSmallButton>
                     <Modal
                         open={showYouTubeHistoryModal}
                         onClose={closeYouTubeHistoryModal}
                         closeAfterTransition
                         className= 'modal-ecys'
+                        aria-modal={showYouTubeHistoryModal ? 'true' : 'false'}
                     >
                         <animated.div style={modalCondition === 'opening' ? animationOpen : modalCondition === 'closing' ? animationClose : {}}>  
                             <Box 
@@ -206,8 +216,9 @@ export const ManualChooseYourSettingsComponent2 = ({
                         </div>
                         <div className='modal-got-it-div'>
                             <SecondaryGreyButton2 
-                                    variant="contained"     
+                                    variant='contained'     
                                     onClick={closeYouTubeHistoryModal}
+                                    aria-label='close modal'
                                     sx={{
                                         '&& .MuiTouchRipple-rippleVisible': {
                                             animationDuration: '300ms',
@@ -229,10 +240,11 @@ export const ManualChooseYourSettingsComponent2 = ({
 
                 <div class='next-and-skip-button-duo button-space-mcys'>
                     <CustomNextAndSkipButton 
-                        className="duo" 
-                        variant="contained" 
+                        className='duo' 
+                        variant='contained' 
                         onClick={handleBackClick}
-                        type="submit"
+                        type='submit'
+                        aria-label='Back button'
                         sx={{
                             '&& .MuiTouchRipple-rippleVisible': {
                                 animationDuration: '300ms',
@@ -243,10 +255,11 @@ export const ManualChooseYourSettingsComponent2 = ({
                     </CustomNextAndSkipButton>
 
                     <CustomNextAndSkipButton
-                        className="duo"  
-                        variant="contained" 
+                        className='duo'  
+                        variant='contained' 
                         onClick={handleNextClick}
-                        type="button"
+                        type='button'
+                        aria-label='Skip button'
                         sx={{
                             '&& .MuiTouchRipple-rippleVisible': {
                                 animationDuration: '300ms',
@@ -257,12 +270,13 @@ export const ManualChooseYourSettingsComponent2 = ({
                     </CustomNextAndSkipButton>
                 </div>
 
-            </div>
+            </main>
 
             <LanguageChangerOverflow 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
+                aria-label='Change language'
             />
 
         </>

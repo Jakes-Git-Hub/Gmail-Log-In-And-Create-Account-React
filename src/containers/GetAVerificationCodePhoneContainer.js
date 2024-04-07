@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { GetAVerificationCodePhoneComponent } from "../components/GetAVerificationCodePhoneComponent";
-import useImagePreload from "../hooks/useImagePreload";
+import { GetAVerificationCodePhoneComponent } from '../components/GetAVerificationCodePhoneComponent';
+import useImagePreload from '../hooks/useImagePreload';
 import errorImage from '../images/Daco_5575399.png';
-import googleWritingSvg from "../images/google-writing-svg.svg";
-import axios from "axios";
+import googleWritingSvg from '../images/google-writing-svg.svg';
+import axios from 'axios';
 
 export const GetAVerificationCodePhoneContainer = ({ updateUser, text,  userData, findYourEmailCredentials, updateFindYourEmailCredentials}) => {
 

@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { WhatsYourNameComponent } from "../components/WhatsYourNameComponent";
-import useImagePreload from "../hooks/useImagePreload";
+import { WhatsYourNameComponent } from '../components/WhatsYourNameComponent';
+import useImagePreload from '../hooks/useImagePreload';
 import errorImage from '../images/Daco_5575399.png';
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFindYourEmailCredentials, findYourEmailCredentials, users, handleIncorrectInfoSearch, handleCorrectInfoSearch }) => {
 
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [errorCondition, setErrorCondition] = useState(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [proceedWithFindUser, setProceedWithFindUser] = useState(false);

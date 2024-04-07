@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { components } from 'react-select';
 import { useNavigate } from 'react-router-dom';
 import { ConfirmYoureNotARobotComponent } from '../components/ConfirmYoureNotARobotComponent';
-import useImagePreload from "../hooks/useImagePreload";
+import useImagePreload from '../hooks/useImagePreload';
 import errorImage from '../images/Daco_5575399.png';
 import axios from 'axios';
 import GBSVG from '../images/flags/gb2.svg';
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, userIP, handleCYNARCountrySelect, hasSelectedCYNARCountry, text, translatedCountries, IPGeoLocationAPIKey, }) => {
 
@@ -46,7 +46,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
         image.onload = () => {
           setIsImageLoaded(true);
         };
-        console.log("hasSelectedCYNARCountry:", hasSelectedCYNARCountry);
+        console.log('hasSelectedCYNARCountry:', hasSelectedCYNARCountry);
     }, []);
 
 // Get User's Country from IP and Set Placeholder SVG and Top Option Based on it
@@ -65,7 +65,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                 setCountryFromAPIOrSelection({name: countryFromSelection.name, svg:countryFromSelection.svg});
             }
         } else if (userIP && hasSelectedCYNARCountry === false) {
-            console.log("actualSelectedOption:", actualSelectedOption)
+            console.log('actualSelectedOption:', actualSelectedOption)
             axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}&ip=102.217.238.0`)
             .then((response) => {
                 const countryFromIP = response.data.country_name;
@@ -79,7 +79,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                 console.error('Error fetching geolocation data:', error);
             });
         } else {
-            console.log("didn't work, or still waiting for IP API request");
+            console.log('didn\'t work, or still waiting for IP API request');
         }
     }, [userIP, usersCountryFlagSVG]);
 
@@ -92,7 +92,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                 value: countryOption,
                 label: countryOption.name,
             });
-            console.log("countryOption:", countryOption);
+            console.log('countryOption:', countryOption);
         } 
     }, [countryFromAPIOrSelection]);
     
@@ -113,10 +113,10 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                 <div>
                     <img
                         src={require(`../images/flags/${countryFromAPIOrSelection.svg || 'gb2.svg'}`)}
-                        className="flag-image"
+                        className='flag-image'
                         alt={`${countryFromAPIOrSelection.name || 'GB Flag'} flag1`}
-                        width="24"
-                        height="16"
+                        width='24'
+                        height='16'
                     />
                     <span className='country-option'>
                         {usersCountryFlagSVG ? filteredCountries.find(country => country.svg === usersCountryFlagSVG).name : unitedKingdom.name} ({usersCountryFlagSVG ? filteredCountries.find(country => country.svg === usersCountryFlagSVG).dialingCode : unitedKingdom.dialingCode})
@@ -128,7 +128,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
         {
             value: 'separator',
             label: (
-                <div className="separator" />
+                <div className='separator' />
             ),
             isDisabled: true,
         },
@@ -139,10 +139,10 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                 <div>
                     <img
                     src={require(`../images/flags/${country.svg}`)}
-                    className="flag-image"
+                    className='flag-image'
                     alt={`${country.name} flag2`}
-                    width="24"
-                    height="16"
+                    width='24'
+                    height='16'
                     />
                     <span className='country-option'>
                         {country.name || country.name} ({country.dialingCode})
@@ -160,7 +160,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
             {props.data && props.data.value ? (
                 <img
                     src={require(`../images/flags/${props.data.value.svg || 'gb2.svg'}`)}
-                    className="flag-image"
+                    className='flag-image'
                     alt={`${props.data.value.name} flag3`}
                     style={{ 
                         marginLeft: '14px',
@@ -177,16 +177,16 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
     const placeholderContent = usersCountryFlagSVG ? (
         <img
             src={require(`../images/flags/${usersCountryFlagSVG}`)}
-            alt="Flag4"
-            width="24"
-            height="16"
+            alt='Flag4'
+            width='24'
+            height='16'
         />
     ) : (
         <img    
             src={GBSVG} 
-            alt="Flag5" 
-            width="24" 
-            height="16" 
+            alt='Flag5' 
+            width='24' 
+            height='16' 
         />
     );
     
@@ -198,7 +198,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 
     const handleCountrySelect = (selectedOption) => {
         setSelectedOption(selectedOption);
-        console.log("selectedOption:", selectedOption);
+        console.log('selectedOption:', selectedOption);
         setActualSelectedOption(true);
     };
 
@@ -212,15 +212,15 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
     const handleNextClick = () => {
         const phoneNumberInput = document.getElementById('phoneNumberInput');
         if (phoneNumber === '') {
-            setError("phoneNumberEmpty");
+            setError('phoneNumberEmpty');
             phoneNumberInput.focus();
         } else if (/[^0-9]/.test(phoneNumber)) {
-            setError("incorrectFormat");
+            setError('incorrectFormat');
             phoneNumberInput.focus();
         } else {
             const isPhoneNumberAlreadyRegistered = users.some(user => user.phoneNumber === phoneNumber);
             if (isPhoneNumberAlreadyRegistered) {
-                setError("alreadyRegistered"); 
+                setError('alreadyRegistered'); 
             } else {
                 if (actualSelectedOption) {
                     setFormattedPhoneNumber(selectedOption.value.dialingCode + phoneNumber);
@@ -262,7 +262,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                 // Extract the verification code from the Twilio response
                 const verificationCode = data.verificationCode.toString();
                 updateUser({ verificationCode: verificationCode });
-                console.log("actualSelectedOption:", actualSelectedOption);
+                console.log('actualSelectedOption:', actualSelectedOption);
                 navigate('/enter-the-verification-code');    
             } else {
                 setLoading(false);
@@ -275,7 +275,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
         } catch (error) {
             console.error('Error sending verification code:', error);
             setLoading(false);
-            setError("incorrectNumber");
+            setError('incorrectNumber');
         }
     } 
 
@@ -283,12 +283,12 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 
 const customDropdownIndicator = props => (
     components.DropdownIndicator && (
-    <components.DropdownIndicator {...props} className="custom-dropdown-indicator">
-        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="24" height="24" viewBox="0 0 24 24">
-        <g transform="matrix(1.1364 0 0 1.1364 12 12)">
-            <g vectorEffect="non-scaling-stroke">
-            <g transform="matrix(0.6667 0 0 0.6667 0 2)">
-                <path style={{fill: 'currentColor'}} transform=" translate(-12, -12.5)" d="M 7 10 l 5 5 l 5 -5" strokeLinecap="round"/>
+    <components.DropdownIndicator {...props} className='custom-dropdown-indicator'>
+        <svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='24' height='24' viewBox='0 0 24 24'>
+        <g transform='matrix(1.1364 0 0 1.1364 12 12)'>
+            <g vectorEffect='non-scaling-stroke'>
+            <g transform='matrix(0.6667 0 0 0.6667 0 2)'>
+                <path style={{fill: 'currentColor'}} transform=' translate(-12, -12.5)' d='M 7 10 l 5 5 l 5 -5' strokeLinecap='round'/>
             </g>
             </g>
         </g>
@@ -304,13 +304,13 @@ const customStyles = {
         ...styles,
         width: '360px',
         height: '325px',
-        top: "87%",
+        top: '87%',
         zIndex: '2',
     }),
     menuList: styles => ({
         ...styles,
-        maxHeight: "325px",
-        padding: "8px 0",
+        maxHeight: '325px',
+        padding: '8px 0',
     }),
     container: provided => ({
         ...provided,
@@ -337,9 +337,9 @@ const customStyles = {
         transform: state.selectProps.menuIsOpen ? 'rotate(180deg)' : null,
         padding: '0px',
         justifyContent: 'center',
-        color: state.selectProps.menuIsOpen ? "#2b7bfe" : "rgb(158,158,158)",
+        color: state.selectProps.menuIsOpen ? '#2b7bfe' : 'rgb(158,158,158)',
         ':hover': {
-            color: state.selectProps.menuIsOpen ? "#2b7bfe" : "#131313",
+            color: state.selectProps.menuIsOpen ? '#2b7bfe' : '#131313',
         },
     }),
     indicatorSeparator: provided => ({
@@ -370,8 +370,8 @@ const customStyles = {
     singleValue: provided => ({
         ...provided,
         marginTop: '2px',
-        minHeight: "100%",
-        minWidth: "100%",
+        minHeight: '100%',
+        minWidth: '100%',
         display: 'flex',
         flexWrap: 'nowrap',
         alignItems: 'center',
@@ -381,10 +381,10 @@ const customStyles = {
         ...provided,
         backgroundColor: state.isSelected ? '#d3e4fb' : state.isFocused ? 'rgb(245 245 245)' : '',
         ':active': {
-            backgroundColor: state.isFocused ? "#d3e4fb" :"#e8f0fe",
+            backgroundColor: state.isFocused ? '#d3e4fb' :'#e8f0fe',
         },
         cursor: 'pointer',
-        height: "48px",
+        height: '48px',
         display: 'flex',
         alignItems: 'center',
     }),

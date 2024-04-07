@@ -24,7 +24,7 @@ function LanguageChangerOverflow({ onChange, initialLanguage }) {
         const value = event.target.value;
         setSelectedValue(value);
         onChange(value);
-        console.log("value:", value);
+        console.log('value:', value);
     };
 
 // Handles Dynamic Dropdown Menu Height
@@ -86,7 +86,7 @@ function LanguageChangerOverflow({ onChange, initialLanguage }) {
                 id='language-changer-dropdown'
                 onClick={toggleMenu}
                 sx={{
-                        backgroundColor: open ? '#eeeeee' : "",
+                        backgroundColor: open ? '#eeeeee' : '',
                         borderRadius: '4px',
                 }}
             >
@@ -101,12 +101,12 @@ function LanguageChangerOverflow({ onChange, initialLanguage }) {
                     value={selectedValue}
                     MenuProps={{
                         anchorOrigin: {
-                            vertical: "top",
-                            horizontal: "left"
+                            vertical: 'top',
+                            horizontal: 'left'
                             },
                         transformOrigin: {
-                            vertical: "bottom",
-                            horizontal: "left"
+                            vertical: 'bottom',
+                            horizontal: 'left'
                         },
                         getContentAnchorEl: () => document.getElementById('language-changer-dropdown'),
                         PaperProps: {
@@ -120,14 +120,14 @@ function LanguageChangerOverflow({ onChange, initialLanguage }) {
                             color: '#202124',
                         },
                         fontSize: '12px',   
-                        boxShadow: "none",
-                        ".MuiOutlinedInput-notchedOutline": { 
+                        boxShadow: 'none',
+                        '.MuiOutlinedInput-notchedOutline': { 
                             border: 0 
                         },
-                        "&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
+                        '&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
                             border: 0,
                         },
-                        "&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        '&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
                             border: 0,
                         },
                         paddingRight: '25px',

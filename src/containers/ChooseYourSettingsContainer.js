@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChooseYourSettingsComponent } from "../components/ChooseYourSettingsComponent";
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import { ChooseYourSettingsComponent } from '../components/ChooseYourSettingsComponent';
+import googleWritingSvg from '../images/google-writing-svg.svg';
 import errorImage from '../images/Daco_5575399.png';
-import useImagePreload from "../hooks/useImagePreload";
+import useImagePreload from '../hooks/useImagePreload';
 
 export const ChooseYourSettingsContainer = ({ userData, updateUser, text, }) => {
 
-    const [setting, setSetting] = useState("");
+    const [setting, setSetting] = useState('');
     const [isImageLoaded, setIsImageLoaded] = useState(false);
-    const [errorCondition, setErrorCondition] = useState("");
+    const [errorCondition, setErrorCondition] = useState('');
 
     const navigate = useNavigate();
 
@@ -35,8 +35,8 @@ export const ChooseYourSettingsContainer = ({ userData, updateUser, text, }) => 
 
     const handleRadioChange = (e) => {
         setSetting(e.target.value);
-        if (errorCondition === "selectAnOption") {
-            setErrorCondition("");
+        if (errorCondition === 'selectAnOption') {
+            setErrorCondition('');
         }
     }
 
@@ -48,14 +48,14 @@ export const ChooseYourSettingsContainer = ({ userData, updateUser, text, }) => 
 
     const handleNextClick = (e) => {
         e.preventDefault();
-        if (setting === "") {
-            setError("selectAnOption");
-        } if (setting === "express") {
-            updateUser({ settings: "express" });
-            navigate("/express-choose-your-settings")
-        } if (setting === "manual") {
-            updateUser({ settings: "manual" });
-            navigate("/manual-choose-your-settings")
+        if (setting === '') {
+            setError('selectAnOption');
+        } if (setting === 'express') {
+            updateUser({ settings: 'express' });
+            navigate('/express-choose-your-settings')
+        } if (setting === 'manual') {
+            updateUser({ settings: 'manual' });
+            navigate('/manual-choose-your-settings')
         }
     };
 

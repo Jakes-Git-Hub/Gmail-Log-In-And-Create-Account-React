@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CreatePasswordComponent } from "../components/CreatePasswordComponent";
-import useImagePreload from "../hooks/useImagePreload";
+import { CreatePasswordComponent } from '../components/CreatePasswordComponent';
+import useImagePreload from '../hooks/useImagePreload';
 import errorImage from '../images/Daco_5575399.png';
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const CreatePasswordContainer = ({ updateUser, text,  userData,  }) => {
 
-    const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [errorCondition, setErrorCondition] = useState(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
@@ -52,8 +52,8 @@ export const CreatePasswordContainer = ({ updateUser, text,  userData,  }) => {
 // Error messages
 
     const confirmYourPassword = () => {
-        if (password !== '' && confirmPassword === "") {
-        setErrorCondition("confirmPasswordEmpty");
+        if (password !== '' && confirmPassword === '') {
+        setErrorCondition('confirmPasswordEmpty');
         } else {
         setErrorCondition(null);
         }
@@ -61,19 +61,19 @@ export const CreatePasswordContainer = ({ updateUser, text,  userData,  }) => {
     
     const passwordMismatch = () => {
         if (password !== confirmPassword && confirmPassword !== '') {
-        setErrorCondition("passwordMismatch");
+        setErrorCondition('passwordMismatch');
         } else {
         setErrorCondition(null);
         }
     };
     
-    const passwordEmpty = () => setErrorCondition("passwordEmpty");
+    const passwordEmpty = () => setErrorCondition('passwordEmpty');
 
 
-    const needs8CharsOrMore = () => setErrorCondition("needs8CharsOrMore");
+    const needs8CharsOrMore = () => setErrorCondition('needs8CharsOrMore');
 
     
-    const passwordIsntStrongEnough = () => setErrorCondition("pleaseChooseAStrongerPassword");
+    const passwordIsntStrongEnough = () => setErrorCondition('pleaseChooseAStrongerPassword');
 
 
 // Handle Next
@@ -86,10 +86,10 @@ export const CreatePasswordContainer = ({ updateUser, text,  userData,  }) => {
             const confirmPasswordTest = sufficientPasswordStrength.test(confirmPassword);
             if (!passwordTest && !confirmPasswordTest) {
                 passwordIsntStrongEnough();
-                console.log("not fine");
+                console.log('not fine');
                 return false;
             } else {
-                console.log("fine");
+                console.log('fine');
                 return true;
             }
         }
@@ -101,7 +101,7 @@ export const CreatePasswordContainer = ({ updateUser, text,  userData,  }) => {
         setErrorCondition(null);
         navigate('/confirm-youre-not-a-robot');
         } if (password.length >= 8) {
-            if (errorCondition === "passwordEmpty" || errorCondition === "needs8CharsOrMore") {
+            if (errorCondition === 'passwordEmpty' || errorCondition === 'needs8CharsOrMore') {
                 setErrorCondition(null);
             }
         } if (password === '') {
@@ -110,11 +110,11 @@ export const CreatePasswordContainer = ({ updateUser, text,  userData,  }) => {
         } if (password.length < 8 && password !== '') {
             needs8CharsOrMore();
             passwordInput.focus();
-        } if (password !== '' && password.length >= 8 && confirmPassword === "") {
+        } if (password !== '' && password.length >= 8 && confirmPassword === '') {
             confirmYourPassword();
             const confirmPasswordInput = document.getElementById('confirmPasswordInput');
             confirmPasswordInput.focus();
-        } if (password !== confirmPassword && password !== "" && confirmPassword !== '') {
+        } if (password !== confirmPassword && password !== '' && confirmPassword !== '') {
             passwordMismatch();
         } 
     }

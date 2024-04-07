@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ManualChooseYourSettingsComponent4 } from "../components/ManualChooseYourSettingsComponent4";
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import { ManualChooseYourSettingsComponent4 } from '../components/ManualChooseYourSettingsComponent4';
+import googleWritingSvg from '../images/google-writing-svg.svg';
 import errorImage from '../images/Daco_5575399.png';
-import useImagePreload from "../hooks/useImagePreload";
+import useImagePreload from '../hooks/useImagePreload';
 export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text, makePrivacyRowVisible,   }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -59,13 +59,13 @@ export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text,
         }
         updateUser({ manualSetting4: 'no privacy reminders' });
         makePrivacyRowVisible();
-        navigate("/confirm-your-settings")
+        navigate('/confirm-your-settings')
     };
 
     const handleBackClick = (e) => {
         e.preventDefault();
         repositionViewPortOnNextOrBackClick();
-        navigate("/manual-choose-your-settings3")
+        navigate('/manual-choose-your-settings3')
     };
 
     return(

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChooseYourGmailAddressComponent } from '../components/ChooseYourGmailAddressComponent';
 import errorImage from '../images/Daco_5575399.png';
-import useImagePreload from "../hooks/useImagePreload";
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import useImagePreload from '../hooks/useImagePreload';
+import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const ChooseYourGmailAddressContainer = ({ updateUser, users, text,  userData,  }) => {
 
@@ -37,13 +37,13 @@ export const ChooseYourGmailAddressContainer = ({ updateUser, users, text,  user
 
 // Errors
 
-    const usernameEmpty = () => setErrorCondition("usernameEmpty");
+    const usernameEmpty = () => setErrorCondition('usernameEmpty');
 
-    const incorrectLength = () => setErrorCondition("isIncorrectLength");
+    const incorrectLength = () => setErrorCondition('isIncorrectLength');
 
-    const unallowedChars = () => setErrorCondition("usesUnallowedChars");
+    const unallowedChars = () => setErrorCondition('usesUnallowedChars');
 
-    const usernameIsAlreadyTaken = () => setErrorCondition("usernameIsAlreadyTaken");
+    const usernameIsAlreadyTaken = () => setErrorCondition('usernameIsAlreadyTaken');
 
 // Handle Next Click
 

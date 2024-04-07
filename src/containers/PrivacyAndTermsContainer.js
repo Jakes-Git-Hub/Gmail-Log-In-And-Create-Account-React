@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { PrivacyAndTermsComponent } from "../components/PrivacyAndTermsComponent";
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import { PrivacyAndTermsComponent } from '../components/PrivacyAndTermsComponent';
+import googleWritingSvg from '../images/google-writing-svg.svg';
 import errorImage from '../images/Daco_5575399.png';
-import useImagePreload from "../hooks/useImagePreload";
+import useImagePreload from '../hooks/useImagePreload';
 
 export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, handleLogin, loggedIn,   }) => {
 
@@ -60,14 +60,14 @@ export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, 
     useEffect(() => {
         if (loggedIn) {
             document.body.id = 'body';
-            navigate("/mockmail");
+            navigate('/mockmail');
         }
     }, [loggedIn]);
     
     const handleBackClick = (e) => {
         e.preventDefault();
         repositionViewPortOnNextOrBackClick();
-        navigate("/confirm-your-settings");
+        navigate('/confirm-your-settings');
     };
 
     const repositionViewPortOnNextOrBackClick = () => {

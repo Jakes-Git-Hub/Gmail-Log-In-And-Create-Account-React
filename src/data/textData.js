@@ -10434,7 +10434,7 @@ const textData = {
         keepUntil: 'Keep until I delete manually',
         keepActivity: 'Keep activity for 18 months',
         keepActivity2: 'and manually delete any time',
-        dontSave: "Dont save Web & App Activity in my account",
+        dontSave: "Don\'t save Web & App Activity in my account",
         error: "Select an option to continue",
         whatData: 'What data is used',
         whatData1: 'Web & App Activity saves your activity on Google sites and apps, like Search and Maps, and includes associated info like location. It also saves synced Chrome history and activity from sites, apps, and devices that use Google services.',

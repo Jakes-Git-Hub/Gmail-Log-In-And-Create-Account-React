@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { SelectAnAccountToSignInComponent } from "../components/SelectAnAccountToSignInComponent";
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import { SelectAnAccountToSignInComponent } from '../components/SelectAnAccountToSignInComponent';
+import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const SelectAnAccountToSignInContainer = ({ userData, updateUser, text, findYourEmailCredentials, users, handleListItemLogIn }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
     const [emailAccountClicked, setEmailAccountClicked] = useState('');
+    const [indexOfAccounts, setIndexOfAccounts] = useState();
+
+    useEffect(() => {
+        console.log('indexOfAccounts', indexOfAccounts)
+    }, [indexOfAccounts]);
 
     const navigate = useNavigate();
 
@@ -27,6 +32,17 @@ export const SelectAnAccountToSignInContainer = ({ userData, updateUser, text, f
         });
         updateUser({ language: chosenLanguage })
     };
+
+// Set accounts index
+
+    const setAccountsIndex = matchingUsers => {
+        setIndexOfAccounts(matchingUsers.length);
+    }
+
+    useEffect(() => {
+        if(matchingUsers)
+        setAccountsIndex(matchingUsers);
+    }, [matchingUsers]);
 
 // Matching Users
 
@@ -76,6 +92,7 @@ export const SelectAnAccountToSignInContainer = ({ userData, updateUser, text, f
                 matchingUsers={matchingUsers}
                 onListItemClick={onListItemClick}
                 navToHome={navToHome}
+                indexOfAccounts={indexOfAccounts}
             />
         </>
     );

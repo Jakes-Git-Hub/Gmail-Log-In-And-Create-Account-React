@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SignInFrontPageComponent } from '../components/SignInFrontPageComponent';
-import useImagePreload from "../hooks/useImagePreload";
+import useImagePreload from '../hooks/useImagePreload';
 import errorImage from '../images/Daco_5575399.png';
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const SignInFrontPageContainer = ({ users, userData, updateUser, text, }) => {
 
     const navigate = useNavigate();
 
-    const [emailOrPhone, setEmailOrPhone] = useState("");
+    const [emailOrPhone, setEmailOrPhone] = useState('');
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [errorCondition, setErrorCondition] = useState(null);
 

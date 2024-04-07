@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { EnterTheCodeComponent } from '../components/EnterTheCodeComponent';
-import useImagePreload from "../hooks/useImagePreload";
+import useImagePreload from '../hooks/useImagePreload';
 import errorImage from '../images/Daco_5575399.png';
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import googleWritingSvg from '../images/google-writing-svg.svg';
 import { createTheme } from '@mui/material/styles';
 
 export const EnterTheCodeContainer = ({ updateUser, userData, text, }) => {
@@ -37,7 +37,7 @@ export const EnterTheCodeContainer = ({ updateUser, userData, text, }) => {
 // Verification Code
 
     useEffect(() => {   
-        console.log("userData", userData);
+        console.log('userData', userData);
         if (userData) {
             setVerificationCode(userData.verificationCode);
         }
@@ -68,29 +68,29 @@ const setError = errorType => setErrorCondition(errorType);
     }, [disabledCount]);
 
     const getNewCode = () => {
-        navigate("/confirm-youre-not-a-robot");
+        navigate('/confirm-youre-not-a-robot');
     }
 
 // Handle Next Click
 
     const handleNextClick = () => {
-        const emptyInput = "";
+        const emptyInput = '';
         const hasLetters = /[a-zA-Z]/.test(usersVerificationCodeInput);
         const sixDigits = /^\d{6}$/;
         if (usersVerificationCodeInput === emptyInput) {
-            setError("inputEmpty");
+            setError('inputEmpty');
         }
         if (hasLetters) {
-            setError("hasLetters");
+            setError('hasLetters');
         } 
         if ((usersVerificationCodeInput !== emptyInput) && (!hasLetters && !sixDigits.test(usersVerificationCodeInput))) {
-            setError("wrongNumberOfDigits");
+            setError('wrongNumberOfDigits');
         } 
         if (sixDigits.test(usersVerificationCodeInput) && (usersVerificationCodeInput !== verificationCode)) {
-            setError("wrongCode");
+            setError('wrongCode');
         } 
         if (usersVerificationCodeInput === verificationCode) {
-            navigate("/add-recovery-email");
+            navigate('/add-recovery-email');
         }
     };
 
@@ -107,7 +107,7 @@ const toggleFocus = () => {
         MuiInputLabel: {
             styleOverrides: {
                 root: {
-                    paddingLeft: usersVerificationCodeInput || isFocused ? "14%" : '10.5%',
+                    paddingLeft: usersVerificationCodeInput || isFocused ? '14%' : '10.5%',
                     '&.Mui-focused': {
                         paddingLeft: '14%',
                     },

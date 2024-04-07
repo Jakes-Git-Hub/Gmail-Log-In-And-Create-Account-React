@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FindYourEmailComponent } from "../components/FindYourEmailComponent";
-import useImagePreload from "../hooks/useImagePreload";
+import { FindYourEmailComponent } from '../components/FindYourEmailComponent';
+import useImagePreload from '../hooks/useImagePreload';
 import errorImage from '../images/Daco_5575399.png';
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const FindYourEmailContainer = ({ updateUser, text,  userData, updateFindYourEmailCredentials, isWrongCredentials }) => {
 
-    const [phoneNumberOrEmail, setPhoneNumberOrEmail] = useState("");
+    const [phoneNumberOrEmail, setPhoneNumberOrEmail] = useState('');
     const [errorCondition, setErrorCondition] = useState(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false);
 

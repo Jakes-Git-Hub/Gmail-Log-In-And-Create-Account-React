@@ -385,6 +385,7 @@ export const BirthdayAndGenderComponent = ({
                         <CustomNextButton 
                             variant='contained' 
                             onClick={handleNextClick}
+                            aria-label='Next button'
                             sx={{
                                 '&& .MuiTouchRipple-rippleVisible': {
                                     animationDuration: '300ms',

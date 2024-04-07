@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ManualChooseYourSettingsComponent } from "../components/ManualChooseYourSettingsComponent";
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import { ManualChooseYourSettingsComponent } from '../components/ManualChooseYourSettingsComponent';
+import googleWritingSvg from '../images/google-writing-svg.svg';
 import errorImage from '../images/Daco_5575399.png';
-import useImagePreload from "../hooks/useImagePreload";
+import useImagePreload from '../hooks/useImagePreload';
 import { useSpring } from 'react-spring';
 
 export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text,  }) => {
 
-    const [manualSetting1, setManualSetting1] = useState("");
+    const [manualSetting1, setManualSetting1] = useState('');
     const [isImageLoaded, setIsImageLoaded] = useState(false);
-    const [errorCondition, setErrorCondition] = useState("");
+    const [errorCondition, setErrorCondition] = useState('');
     const [showWebAndAppActivityModal, setShowWebAndAppActivityModal] = useState(false);
     const [modalCondition, setModalCondition] = useState('closed');
 
@@ -87,8 +87,8 @@ export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text, 
 
     const handleRadioChange = (e) => {
         setManualSetting1(e.target.value);
-        if (errorCondition === "selectAnOption") {
-            setErrorCondition("");
+        if (errorCondition === 'selectAnOption') {
+            setErrorCondition('');
         }
     }
 
@@ -113,27 +113,27 @@ export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text, 
 // Handle Next & Back Click
 
     const handleNextClick = () => {
-        if (manualSetting1 === "") {
-            setError("selectAnOption");
+        if (manualSetting1 === '') {
+            setError('selectAnOption');
             repositionViewPortOnError();
-        } if (manualSetting1 === "keep until delete") {
-            updateUser({ manualSetting1: "keep until delete" });
+        } if (manualSetting1 === 'keep until delete') {
+            updateUser({ manualSetting1: 'keep until delete' });
             repositionViewPortOnNextOrBackClick();
-            navigate("/manual-choose-your-settings2")
-        } if (manualSetting1 === "18 months or delete") {
-            updateUser({ manualSetting1: "18 months or delete" });
+            navigate('/manual-choose-your-settings2')
+        } if (manualSetting1 === '18 months or delete') {
+            updateUser({ manualSetting1: '18 months or delete' });
             repositionViewPortOnNextOrBackClick();
-            navigate("/manual-choose-your-settings2")
-        } if (manualSetting1 === "dont save") {
-            updateUser({ manualSetting1: "dont save" });
+            navigate('/manual-choose-your-settings2')
+        } if (manualSetting1 === 'dont save') {
+            updateUser({ manualSetting1: 'dont save' });
             repositionViewPortOnNextOrBackClick();
-            navigate("/manual-choose-your-settings2")
+            navigate('/manual-choose-your-settings2')
         }
     };
 
     const handleBackClick = (e) => {
         e.preventDefault();
-        navigate("/choose-your-settings")
+        navigate('/choose-your-settings')
     }
 
     const repositionViewPortOnNextOrBackClick = () => {

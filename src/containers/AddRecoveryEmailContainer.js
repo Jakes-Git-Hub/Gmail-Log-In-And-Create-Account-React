@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AddRecoveryEmailComponent } from "../components/AddRecoveryEmailComponent";
-import useImagePreload from "../hooks/useImagePreload";
+import { AddRecoveryEmailComponent } from '../components/AddRecoveryEmailComponent';
+import useImagePreload from '../hooks/useImagePreload';
 import errorImage from '../images/Daco_5575399.png';
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const AddRecoveryEmailContainer = ({ updateUser, text,  userData,  }) => {
 
-    const [recoveryEmail, setRecoveryEmail] = useState("");
+    const [recoveryEmail, setRecoveryEmail] = useState('');
     const [errorCondition, setErrorCondition] = useState(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false);  
 

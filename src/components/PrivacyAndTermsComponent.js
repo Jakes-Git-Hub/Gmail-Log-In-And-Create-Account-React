@@ -1,5 +1,5 @@
 import React from 'react';
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import googleWritingSvg from '../images/google-writing-svg.svg';
 import SecondaryGreyButton2 from './buttons/SecondaryGreyButtonComponent2';
 import CustomNextButton from './buttons/CustomNextButtonComponent';
 import LanguageChangerOverflow from './LanguageChanger/LanguageChangerOverflowComponent';
@@ -10,42 +10,68 @@ export const PrivacyAndTermsComponent = ({
     handleLanguageSelection,
     text,
     handleBackClick,
-    
     userData,
-    
 }) => {
 
     return (
 
         <>
 
-            <div className='google-container-flexible-ryai'>
+            <main className='google-container-flexible-ryai'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
-                    <div className="blue-snake-loader"></div>
+                    <div className='blue-snake-loader'></div>
                 </div>
-                <img src={googleWritingSvg} alt="Google Writing" id="google-writing-recovery-ryai"/>
+                <img src={googleWritingSvg} alt='Google Writing' id='google-writing-recovery-ryai'/>
                 
-                <h1 class="thin h1-space h1-mcys">{text.PrivacyAndTerms.h1[userData.language]}</h1>
+                <h1 class='thin h1-space h1-mcys'>{text.PrivacyAndTerms.h1[userData.language]}</h1>
 
-                <div id="container-choose-your-settings-m">
+                <div id='container-choose-your-settings-m'>
                     <p class='p-privacy-and-terms p-gap-ecys'>
                         {text.PrivacyAndTerms.pT1}
-                        <a class='href' href='https://policies.google.com/terms?hl=en&gl=GB' target='blank'>{text.PrivacyAndTerms.pT2}</a>
+                        <a 
+                            class='href' 
+                            href='https://policies.google.com/terms?hl=en&gl=GB' 
+                            target='blank'
+                            aria-label='Google Terms of Service hyperlink'
+                        >
+                            {text.PrivacyAndTerms.pT2}
+                        </a>
                         {text.PrivacyAndTerms.pT3}
-                        <a class='href' href='https://www.youtube.com/t/terms?gl=GB&hl=en&override_hl=1' target='blank'>{text.PrivacyAndTerms.pT4}</a>
+                        <a 
+                            class='href' 
+                            href='https://www.youtube.com/t/terms?gl=GB&hl=en&override_hl=1' 
+                            target='blank'
+                            aria-label='YouTube Terms of Service hyperlink'
+                        >
+                            {text.PrivacyAndTerms.pT4}
+                        </a>
                         {text.PrivacyAndTerms.pT5}
                     </p>
 
                     <p class='p-privacy-and-terms p-gap-ecys'>
                         {text.PrivacyAndTerms.pT6}
-                        <a class='href' href='https://policies.google.com/terms?hl=en&gl=GB' target='blank'>{text.PrivacyAndTerms.pT7}</a>
+                        <a 
+                            class='href' 
+                            href='https://policies.google.com/terms?hl=en&gl=GB' 
+                            target='blank'
+                            aria-label='Google Terms of Service hyperlink'
+                        >
+                            {text.PrivacyAndTerms.pT7}
+                        </a>
                         {text.PrivacyAndTerms.pT8}
                     </p>
 
                     <p class='p-privacy-and-terms p-gap-ecys'>
                         {text.PrivacyAndTerms.pT9}
-                        <a class='href' href='https://policies.google.com/terms?hl=en&gl=GB' target='blank'>{text.PrivacyAndTerms.pT10}</a>
+                        <a 
+                            class='href' 
+                            href='https://policies.google.com/terms?hl=en&gl=GB' 
+                            target='blank'
+                            aria-label="Google's privacy policy hyperlink"
+                        >
+                            {text.PrivacyAndTerms.pT10}
+                        </a>
                         {text.PrivacyAndTerms.pT11}
                     </p>
 
@@ -73,8 +99,9 @@ export const PrivacyAndTermsComponent = ({
 
                 <div class='i-agree-and-cancel-button-duo button-space-mcys'>
                     <SecondaryGreyButton2 
-                        variant="contained"     
+                        variant='contained'     
                         onClick={handleBackClick}
+                        aria-label='Cancel button'
                         sx={{
                             '&& .MuiTouchRipple-rippleVisible': {
                                 animationDuration: '300ms',
@@ -88,8 +115,9 @@ export const PrivacyAndTermsComponent = ({
                     </SecondaryGreyButton2>
 
                     <CustomNextButton 
-                            variant="contained" 
+                            variant='contained' 
                             onClick={handleNextClick}
+                            aria-label='I agree button'
                             sx={{
                                 '&& .MuiTouchRipple-rippleVisible': {
                                     animationDuration: '300ms',
@@ -102,13 +130,13 @@ export const PrivacyAndTermsComponent = ({
                     </CustomNextButton>
                 </div>
 
-            </div>
+            </main>
 
             <LanguageChangerOverflow 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
-                
+                aria-label='Change language'
             />
 
         </>

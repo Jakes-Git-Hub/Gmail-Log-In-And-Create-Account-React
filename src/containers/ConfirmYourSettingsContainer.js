@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ConfirmYourSettingsComponent } from "../components/ConfirmYourSettingsComponent";
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import { ConfirmYourSettingsComponent } from '../components/ConfirmYourSettingsComponent';
+import googleWritingSvg from '../images/google-writing-svg.svg';
 import errorImage from '../images/Daco_5575399.png';
-import useImagePreload from "../hooks/useImagePreload";
+import useImagePreload from '../hooks/useImagePreload';
 
 export const ConfirmYourSettingsContainer = ({ userData, updateUser, text, showPrivacyRow,   }) => {
 
@@ -47,13 +47,13 @@ export const ConfirmYourSettingsContainer = ({ userData, updateUser, text, showP
     const handleNextClick = (e) => {
         e.preventDefault();
         repositionViewPortOnNextOrBackClick();
-        navigate("/privacy-and-terms")
+        navigate('/privacy-and-terms')
     };
 
     const handleBackClick = (e) => {
         e.preventDefault();
         repositionViewPortOnNextOrBackClick();
-        navigate("/manual-choose-your-settings")
+        navigate('/manual-choose-your-settings')
     };
 
     const repositionViewPortOnNextOrBackClick = () => {

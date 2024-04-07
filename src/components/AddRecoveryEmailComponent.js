@@ -118,6 +118,7 @@ export const AddRecoveryEmailComponent = ({
                                 role='button'
                                 variant='contained' 
                                 onClick={handleNextClick}
+                                aria-label='Next button'
                                 type='button'
                                 sx={{
                                     '&& .MuiTouchRipple-rippleVisible': {
@@ -134,6 +135,8 @@ export const AddRecoveryEmailComponent = ({
                                 variant='contained' 
                                 onClick={handleSkip}
                                 type='button'
+                                role='button'
+                                aria-label='Skip button'
                                 sx={{
                                     '&& .MuiTouchRipple-rippleVisible': {
                                         animationDuration: '300ms',

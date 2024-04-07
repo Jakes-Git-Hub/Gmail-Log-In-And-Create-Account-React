@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CreateAccountComponent } from "../components/CreateAccountComponent";
-import useImagePreload from "../hooks/useImagePreload";
+import { CreateAccountComponent } from '../components/CreateAccountComponent';
+import useImagePreload from '../hooks/useImagePreload';
 import errorImage from '../images/Daco_5575399.png';
-import googleWritingSvg from "../images/google-writing-svg.svg";
+import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const CreateAccountContainer = ({ updateUser, text,  userData, }) => {
 
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [errorCondition, setErrorCondition] = useState(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false);
 
@@ -47,9 +47,9 @@ export const CreateAccountContainer = ({ updateUser, text,  userData, }) => {
 
 // First Name Errors
 
-    const firstNameError = () => setErrorCondition("firstNameEmpty");
+    const firstNameError = () => setErrorCondition('firstNameEmpty');
 
-    const unsureNameIsCorrect = () => setErrorCondition("areYouSureCorrect");
+    const unsureNameIsCorrect = () => setErrorCondition('areYouSureCorrect');
 
 // Last Name - Allow Only Letters
 
