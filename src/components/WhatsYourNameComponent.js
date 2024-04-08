@@ -26,7 +26,7 @@ export const WhatsYourNameComponent = ({
 
         <>
 
-            <div id='google-container-responsive'>
+            <main id='google-container-responsive'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                 <div className='blue-snake-loader'></div>
@@ -47,6 +47,8 @@ export const WhatsYourNameComponent = ({
                         fullWidth
                         value={firstName}
                         onChange={onFirstNameInputChange}
+                        aria-label='Enter your first name'
+                        aria-invalid={errorCondition ? 'true' : 'false'}
                         InputLabelProps={
                             errorCondition ? 
                             { 
@@ -78,6 +80,8 @@ export const WhatsYourNameComponent = ({
                         className='last-name-margin-top standard-text-field' 
                         variant='outlined' 
                         fullWidth
+                        aria-label='Enter your last name'
+                        aria-invalid={errorCondition ? 'true' : 'false'}
                         value={lastName}
                         onChange={onLastNameInputChange}
                         sx={{
@@ -123,12 +127,13 @@ export const WhatsYourNameComponent = ({
 
                 </form>
 
-            </div>
+            </main>
 
             <LanguageChanger 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
+                aria-label='Change language'
             />
 
         </>

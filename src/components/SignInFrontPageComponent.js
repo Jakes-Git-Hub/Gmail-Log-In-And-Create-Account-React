@@ -27,7 +27,7 @@ export const SignInFrontPageComponent = ({
 
         <>
 
-            <div id='google-container-responsive'>
+            <main id='google-container-responsive'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                 <div className='blue-snake-loader'></div>
@@ -50,6 +50,7 @@ export const SignInFrontPageComponent = ({
                         fullWidth
                         value={emailOrPhone}
                         onChange={onEmailOrPhoneChange}
+                        aria-label='Enter your email or phone number'
                         InputLabelProps={
                             errorCondition ? 
                             { 
@@ -96,24 +97,24 @@ export const SignInFrontPageComponent = ({
                     )}    
                       
                     <div id='forgot-email-container'>
-                        <TransparentSmallButtonSignInPage onClick={handleForgotEmailButtonClick}>
+                        <TransparentSmallButtonSignInPage onClick={handleForgotEmailButtonClick} aria-label='Forgot email button'>
                             Forgot email?
                         </TransparentSmallButtonSignInPage>
                     </div>
 
                     <div id='sign-in-guest-mode-container'>
                         <p class='p-sign-in'>Not your computer? Use Guest mode to sign in privately.</p>
-                        <TransparentSmallButtonSignInPage onClick={handleGuestModeInfoButtonClick}>
+                        <TransparentSmallButtonSignInPage onClick={handleGuestModeInfoButtonClick} aria-label='Learn more about using guest mode button'>
                             Learn more about using Guest mode
                         </TransparentSmallButtonSignInPage>
                     </div>  
 
                     <div id='create-account-and-next-button-div-sign-in-page'>
-                        <SecondaryGreyButton  onClick={handleCreateAccountClick} id='create-account-button-adjust-left'>
+                        <SecondaryGreyButton  onClick={handleCreateAccountClick} id='create-account-button-adjust-left' aria-label='Create account button'>
                             Create account
                         </SecondaryGreyButton>
 
-                        <CustomNextButton onClick={handleNextClick}>
+                        <CustomNextButton onClick={handleNextClick} aria-label='Next button'>
                             Next  
                         </CustomNextButton>
                         
@@ -121,12 +122,13 @@ export const SignInFrontPageComponent = ({
 
                 </form>
 
-            </div>
+            </main>
 
             <LanguageChanger 
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
+                aria-label='Change language'
             />
 
         </>

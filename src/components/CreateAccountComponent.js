@@ -24,7 +24,7 @@ export const CreateAccountComponent = ({
 
         <>
 
-            <div id='google-container-responsive'>
+            <main id='google-container-responsive'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                 <div className='blue-snake-loader'></div>
@@ -45,6 +45,8 @@ export const CreateAccountComponent = ({
                         fullWidth
                         value={firstName}
                         onChange={onFirstNameInputChange}
+                        aria-label='Enter your first name'
+                        aria-invalid={errorCondition ? 'true' : 'false'}
                         InputLabelProps={
                             errorCondition ? 
                             { 
@@ -78,6 +80,8 @@ export const CreateAccountComponent = ({
                         fullWidth
                         value={lastName}
                         onChange={onLastNameInputChange}
+                        aria-label='Enter your last name'
+                        aria-invalid={errorCondition ? 'true' : 'false'}
                         sx={{
                             '& .MuiOutlinedInput-root': {
                                 '&:hover:not(.Mui-focused) fieldset': {
@@ -128,13 +132,14 @@ export const CreateAccountComponent = ({
 
                 </form>
 
-            </div>
+            </main>
 
             <LanguageChanger 
-            id='language-changer-footer'
+                id='language-changer-footer'
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
+                aria-label='Change language'
             />
 
         </>
