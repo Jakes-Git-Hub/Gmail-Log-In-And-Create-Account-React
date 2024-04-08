@@ -16,7 +16,7 @@ export const SelectAnAccountToSignInComponent = ({
     matchingUsers,
     onListItemClick,
     navToHome,
-    indexOfAccounts
+    ammountOfAccounts,
 }) => {
 
     return (
@@ -111,7 +111,7 @@ export const SelectAnAccountToSignInComponent = ({
 
             </main>
 
-            { indexOfAccounts < 2 ? (
+            { ammountOfAccounts <= 2 ? (
                 <LanguageChanger 
                     className='language-changer-div'
                     onChange={handleLanguageSelection}

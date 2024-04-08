@@ -7,11 +7,12 @@ export const SelectAnAccountToSignInContainer = ({ userData, updateUser, text, f
 
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
     const [emailAccountClicked, setEmailAccountClicked] = useState('');
-    const [indexOfAccounts, setIndexOfAccounts] = useState();
+    const [ammountOfAccounts, setammountOfAccounts] = useState();
+    const [matchingUsers, setMatchingUsers] = useState([]);
 
     useEffect(() => {
-        console.log('indexOfAccounts', indexOfAccounts)
-    }, [indexOfAccounts]);
+        console.log('ammountOfAccounts', ammountOfAccounts)
+    }, [ammountOfAccounts]);
 
     const navigate = useNavigate();
 
@@ -33,33 +34,34 @@ export const SelectAnAccountToSignInContainer = ({ userData, updateUser, text, f
         updateUser({ language: chosenLanguage })
     };
 
-// Set accounts index
+// Matching Users
 
-    const setAccountsIndex = matchingUsers => {
-        setIndexOfAccounts(matchingUsers.length);
-    }
+    useEffect(() => {
+        const matchingUsersForState = users.filter(user => {
+            return (
+                (user.email === findYourEmailCredentials.phoneNumberOrEmail || 
+                user.phoneNumber === findYourEmailCredentials.phoneNumberOrEmail) &&
+                user.firstName.toLowerCase() === findYourEmailCredentials.firstName.toLowerCase() &&
+                user.lastName.toLowerCase() === findYourEmailCredentials.lastName.toLowerCase()
+            );
+        });
+        setMatchingUsers(matchingUsersForState);
+    }, [findYourEmailCredentials, users]);
+
+// Set accounts index
 
     useEffect(() => {
         if(matchingUsers)
         setAccountsIndex(matchingUsers);
-    }, [matchingUsers]);
+    }, [matchingUsers]);    
+    
+    const setAccountsIndex = matchingUsers => {
+        if (matchingUsers) {
+            setammountOfAccounts(matchingUsers.length);
+        }
+    }
 
-// Matching Users
-
-    const matchingUsers = users.filter(user => {
-        return (
-            (user.email === findYourEmailCredentials.phoneNumberOrEmail || 
-            user.phoneNumber === findYourEmailCredentials.phoneNumberOrEmail) &&
-            user.firstName.toLowerCase() === findYourEmailCredentials.firstName.toLowerCase() &&
-            user.lastName.toLowerCase() === findYourEmailCredentials.lastName.toLowerCase()
-        );
-    });
-
-    useEffect(() => {
-        console.log('matchingUsers', matchingUsers)
-        console.log('users', users)
-        console.log('findYourEmailCredentials', findYourEmailCredentials)
-    }, [matchingUsers, users, findYourEmailCredentials]);
+    console.log('matchingUsers', matchingUsers);
 
 // Handle List Item Click
 
@@ -92,7 +94,7 @@ export const SelectAnAccountToSignInContainer = ({ userData, updateUser, text, f
                 matchingUsers={matchingUsers}
                 onListItemClick={onListItemClick}
                 navToHome={navToHome}
-                indexOfAccounts={indexOfAccounts}
+                ammountOfAccounts={ammountOfAccounts}
             />
         </>
     );
