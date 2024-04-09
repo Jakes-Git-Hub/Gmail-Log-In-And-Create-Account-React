@@ -83,7 +83,7 @@ export const AddRecoveryEmailContainer = ({ updateUser, text,  userData,  }) => 
                 recoveryEmailInput.focus();
             }   
         } 
-    };
+    }
 
     // Handle Skip
 
@@ -91,13 +91,6 @@ export const AddRecoveryEmailContainer = ({ updateUser, text,  userData,  }) => 
         setRecoveryEmail('');
         setErrorCondition(null);
         navigate('/review-account-info');
-    }
-
-    // Handle Submit
-
-    const handleSubmit = (e) => {
-        e.preventDefault(); // Prevent default form submission
-        handleNextClick(); // Handle the submission as a Next button click
     }
 
  return(
@@ -110,7 +103,6 @@ export const AddRecoveryEmailContainer = ({ updateUser, text,  userData,  }) => 
             isImageLoaded={isImageLoaded}
             errorCondition={errorCondition}
             handleSkip={handleSkip}
-            handleSubmit={handleSubmit}
             handleLanguageSelection={handleLanguageSelection}
             text={text}
             userData={userData}

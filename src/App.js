@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";  
 import textData from './data/textData';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useUserIP } from './utils/userIPModule';
@@ -34,7 +33,7 @@ function App() {
   const [users, setUsers] = useState([{ id: 0, email: 'jacmatthews7@gmail.com', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143', profileCircleColor: 'blue', day: '28', month: 'April', year:'1993', gender: 'Male', countryDetails: 'England', },{ id: 0, email: 'titanfx@gmail.com', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143', profileCircleColor: 'red',},]);
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
   const [nextUserId, setNextUserId] = useState(1);
-  const [userData, setUserData] = useState({ manualSetting4: 'no privacy reminders', language: 'en-GB', id: 0, email: 'jacmatthews7@gmail.com', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143', profileCircleColor: 'blue', });
+  const [userData, setUserData] = useState({ language: 'en-GB', id: 0, email: 'jacmatthews7@gmail.com', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143', profileCircleColor: 'blue', });
   const [findYourEmailCredentials, setFindYourEmailCredentials] = useState({});
   const [hasSelectedCYNARCountry, setHasSelectedCYNARCountry] = useState(false);
   const [text, setText] = useState(textData);
@@ -42,74 +41,11 @@ function App() {
   const [showPrivacyRow, setShowPrivacyRow] = useState(false);
   const [isWrongCredentials, setIsWrongCredentials] = useState(null);
 
-  const IPGeoLocationAPIKey = process.env.REACT_APP_IP_GEO_LOCATION_API_KEY;
-
-  useEffect(() => {
-    console.log('IPGeoLocationAPIKey:', IPGeoLocationAPIKey);
-  }, [IPGeoLocationAPIKey]);
-
-// Translation
-
-  const googleAPIKey = process.env.REACT_APP_GOOGLE_API_KEY;
-
-  useEffect(() => {
-    handleLanguageSelection();
-    console.log('chosenLanguage:', userData.language);
-  }, [userData.language]);
-
-  useEffect(() => {
-    console.log('findYourEmailCredentials:', findYourEmailCredentials);
-  }, [findYourEmailCredentials]);
-
-  const handleLanguageSelection = async () => {
-    if (!userData.language) return;
-    const chosenLanguage = userData.language;
-
-    try {
-
-        const newTranslatedCountries = await Promise.all(filteredCountriesFromUtil.map(async (country) => {
-            const translatedName = await changeLanguageAndTranslate(country.name, chosenLanguage);
-            return { ...country, name: translatedName };
-        }));
-
-        const sanitizedTranslatedCountries = sanitizeCountryNames(newTranslatedCountries);
-
-        const orderedSanitizedTranslatedCountries = [...sanitizedTranslatedCountries].sort((a, b) => a.name.localeCompare(b.name));
-
-        // Update the translatedCountries state with new translated countries
-        setTranslatedCountries(orderedSanitizedTranslatedCountries);
-
-    } catch (error) {
-        console.error('Error translating text:', error);
-    }
-  }
-
-  const changeLanguageAndTranslate = async (text, chosenLanguage) => {
-      updateUser({ language: chosenLanguage })
-      try {
-        const res = await axios.post(`https://translation.googleapis.com/language/translate/v2?key=${googleAPIKey}`, {
-          q: text,
-          target: chosenLanguage,
-        });
-        return res.data.data.translations[0].translatedText;
-      } catch (error) {
-        console.error('Error translating text:', error);
-        return null;
-      }
-  }
-
-  const sanitizeCountryNames = (countries) => {
-    const sanitizedCountries = countries.map(country => ({
-      ...country,
-      name: country.name.replace(/&#39;/, "'")
-    }));
-  
-    return sanitizedCountries;
-  };
-
 // Grab User's IP
 
 const { userIP } = useUserIP()
+
+const IPGeoLocationAPIKey = process.env.REACT_APP_IP_GEO_LOCATION_API_KEY;
 
 // Handle Log Ins
 

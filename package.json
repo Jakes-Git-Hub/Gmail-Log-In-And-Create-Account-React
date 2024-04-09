@@ -22,6 +22,7 @@
     "google-libphonenumber": "^3.2.34",
     "googleapis": "^131.0.0",
     "https-browserify": "^1.0.0",
+    "jest-environment-jsdom": "^29.7.0",
     "jquery": "^3.7.1",
     "jsonwebtoken": "^9.0.2",
     "libphonenumber-js": "^1.10.53",

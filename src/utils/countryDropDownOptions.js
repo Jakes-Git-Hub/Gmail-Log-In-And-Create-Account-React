@@ -50,7 +50,7 @@ const countries = [
     {
         name: 'Antarctica',
         abbreviation: 'aq',
-        dialingCode: '', // No dialing code
+        dialingCode: '',
         svg:'',
     },
     {
@@ -1493,7 +1493,7 @@ const countries = [
 
 // Assigning SVG values and Populates in Countries Array
 
-function populateSvgForCountries(countries) {
+export function populateSvgForCountries(countries) {
     for (const country of countries) {
       if (country.abbreviation && !country.svg) {
         country.svg = `${country.abbreviation}.svg`;

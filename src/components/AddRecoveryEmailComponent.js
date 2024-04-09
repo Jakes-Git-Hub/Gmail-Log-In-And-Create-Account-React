@@ -12,7 +12,6 @@ export const AddRecoveryEmailComponent = ({
     isImagePreloaded,
     errorCondition,
     handleSkip,
-    handleSubmit,
     isImageLoaded,
     handleLanguageSelection,
     text,
@@ -30,7 +29,7 @@ export const AddRecoveryEmailComponent = ({
                 </div>
                 <img src={googleWritingSvg} alt='Google Writing' id='google-writing-recovery-email'/>
 
-                    <form onSubmit={handleSubmit} role='form'>
+                    <form role='form'>
 
                         <h1 class='thin h1-space'>{text.AddRecoveryEmail.h1[userData.language]}</h1>
                         <div id='reduce-width-h2'>
