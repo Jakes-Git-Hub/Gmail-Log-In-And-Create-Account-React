@@ -2,20 +2,25 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export const useUserIP = () => {
-  const [loading, setLoading] = useState(true);
   const [userIP, setUserIP] = useState('');
 
   useEffect(() => {
+    let isMounted = true; // Flag to track component mount status
+    
     axios.get('http://localhost:3001/get-user-ip')
       .then((response) => {
-        setUserIP(response.data.userIpAddress);
-        setLoading(false);
+        if (isMounted) { 
+          setUserIP(response.data.userIpAddress);
+        }
       })
       .catch((error) => {
         console.error('Error fetching user IP:', error);
-        setLoading(false);
       });
+  
+    return () => {
+      isMounted = false; 
+    };
   }, []);
 
-  return { userIP, loading };
+  return { userIP };
 };

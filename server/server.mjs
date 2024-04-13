@@ -22,6 +22,13 @@ app.listen(port, () => {
 
 app.get('/get-user-ip', (request, response) => {
   console.log('Received request for /get-user-ip');
+  const forwardedFor = request.headers['x-forwarded-for'];
+  if (forwardedFor) {
+    // Split the header value by commas and take the first IP address
+    const ips = forwardedFor.split(',');
+    const userIpAddress = ips[0].trim();
+    return response.json({ userIpAddress });
+  }
   const userIpAddress = request.socket.remoteAddress || '';
   return response.json({ userIpAddress });
 });
