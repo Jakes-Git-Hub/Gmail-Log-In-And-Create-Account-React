@@ -34,7 +34,7 @@ const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID;
 const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
 
-const client = twilio(twilioAccountSid, twilioAuthToken);
+export const client = twilio(twilioAccountSid, twilioAuthToken);
 
 // Endpoint to send verification code via SMS
 
@@ -109,3 +109,5 @@ app.post('/send-verification-email', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
+
+export default app;

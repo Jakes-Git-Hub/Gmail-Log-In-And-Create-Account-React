@@ -1,4 +1,8 @@
 module.exports = {
-    testEnvironment: 'node', // Use 'node' environment for running tests
+    transform: {
+        '^.+\\.jsx?$': 'babel-jest',
+        '^.+\\.m?js$': 'babel-jest',
+        "^.+\\.tsx$": "babel-jest"
+    }
 };
   
