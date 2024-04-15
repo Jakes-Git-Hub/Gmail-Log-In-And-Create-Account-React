@@ -45,6 +45,10 @@ function App() {
 
 const { userIP } = useUserIP()
 
+useEffect(() => {
+  console.log('userIP', userIP);
+}, [userIP]);
+
 const IPGeoLocationAPIKey = process.env.REACT_APP_IP_GEO_LOCATION_API_KEY;
 
 // Handle Log Ins

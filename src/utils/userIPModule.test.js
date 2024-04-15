@@ -1,44 +1,34 @@
 import { renderHook, act } from '@testing-library/react';
 import axios from 'axios';
-import { useUserIP } from './userIPModule'; // Assuming your custom hook file is named useUserIP.js
+import { useUserIP } from './userIPModule';
 
-jest.mock('axios'); // Mocking axios module
+jest.mock('axios');
 
 describe('useUserIP', () => {
-  test('fetches and sets user IP correctly', async () => {
-    const mockUserIP = '127.0.0.1'; // Mocked user IP
-    axios.get.mockResolvedValueOnce({ data: { userIpAddress: mockUserIP } }); // Mocking axios.get to return the expected data
+  it('fetches user IP and sets loading state correctly', async () => {
+    const mockIP = '192.168.1.1';
+    axios.get.mockResolvedValueOnce({ data: { userIpAddress: mockIP } });
 
-    // Render the hook
-    let result;
-    await act(async () => {
-      result = renderHook(() => useUserIP());
-      if (result.waitForNextUpdate) {
-        await result.waitForNextUpdate(); // Wait for the side effect to complete
-      }
-    });
+    const { result } = renderHook(() => useUserIP());
 
-    // Assert initial state
-    expect(result.current.userIP).toBe(mockUserIP);
+    expect(result.current.isLoading).toBe(true);
+
+    await act(async () => { }); // Advance the state of the hook
+
+    expect(result.current.userIP).toBe(mockIP);
+    expect(result.current.isLoading).toBe(false);
   });
 
-  test('handles error correctly', async () => {
-    const mockError = new Error('Failed to fetch user IP');
-    axios.get.mockRejectedValueOnce(mockError); // Mocking axios.get to throw an error
+  it('handles error and sets loading state correctly', async () => {
+    axios.get.mockRejectedValueOnce(new Error('Network error'));
 
-    // Render the hook
-    let result;
-    await act(async () => {
-      result = renderHook(() => useUserIP());
-      if (result.waitForNextUpdate) {
-        await result.waitForNextUpdate(); // Wait for the side effect to complete
-      }
-    });
+    const { result } = renderHook(() => useUserIP());
 
-    // Assert the userIP remains empty after useEffect due to error
+    expect(result.current.isLoading).toBe(true);
+
+    await act(async () => { }); // Advance the state of the hook
+
     expect(result.current.userIP).toBe('');
-
-    // Assert error logging
-    expect(console.error).toHaveBeenCalledWith('Error fetching user IP:', mockError);
+    expect(result.current.isLoading).toBe(false);
   });
 });

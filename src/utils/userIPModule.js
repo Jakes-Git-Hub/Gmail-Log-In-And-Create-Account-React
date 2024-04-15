@@ -3,24 +3,31 @@ import axios from 'axios';
 
 export const useUserIP = () => {
   const [userIP, setUserIP] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    let isMounted = true; // Flag to track component mount status
-    
-    axios.get('http://localhost:3001/get-user-ip')
-      .then((response) => {
-        if (isMounted) { 
+    let isMounted = true; 
+
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/get-user-ip');
+        if (isMounted) {
           setUserIP(response.data.userIpAddress);
+          setIsLoading(false); 
         }
-      })
-      .catch((error) => {
+      } catch (error) {
         console.error('Error fetching user IP:', error);
-      });
-  
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+
     return () => {
-      isMounted = false; 
+      isMounted = false;
     };
   }, []);
 
-  return { userIP };
+  return { userIP, isLoading };
 };
