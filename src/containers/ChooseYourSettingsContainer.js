@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ChooseYourSettingsComponent } from '../components/ChooseYourSettingsComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 import errorImage from '../images/Daco_5575399.png';
-import useImagePreload from '../hooks/useImagePreload';
+import useImagePreload from '../hooks/useIsImagePreloadedHook';
 
 export const ChooseYourSettingsContainer = ({ userData, updateUser, text, }) => {
 

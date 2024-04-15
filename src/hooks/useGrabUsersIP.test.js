@@ -1,6 +1,6 @@
 import { renderHook, act } from '@testing-library/react';
 import axios from 'axios';
-import { useUserIP } from './userIPModule';
+import { useUserIP } from './useGrabUsersIPHook';
 
 jest.mock('axios');
 

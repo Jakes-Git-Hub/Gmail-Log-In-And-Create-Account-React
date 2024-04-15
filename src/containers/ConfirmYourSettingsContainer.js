@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ConfirmYourSettingsComponent } from '../components/ConfirmYourSettingsComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 import errorImage from '../images/Daco_5575399.png';
-import useImagePreload from '../hooks/useImagePreload';
+import useImagePreload from '../hooks/useIsImagePreloadedHook';
 
 export const ConfirmYourSettingsContainer = ({ userData, updateUser, text, showPrivacyRow,   }) => {
 

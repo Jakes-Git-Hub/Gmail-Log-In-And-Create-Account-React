@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CreatePasswordComponent } from '../components/CreatePasswordComponent';
-import useImagePreload from '../hooks/useImagePreload';
+import useImagePreload from '../hooks/useIsImagePreloadedHook';
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 

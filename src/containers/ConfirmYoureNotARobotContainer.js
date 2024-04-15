@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { components } from 'react-select';
 import { useNavigate } from 'react-router-dom';
 import { ConfirmYoureNotARobotComponent } from '../components/ConfirmYoureNotARobotComponent';
-import useImagePreload from '../hooks/useImagePreload';
+import useImagePreload from '../hooks/useIsImagePreloadedHook';
 import errorImage from '../images/Daco_5575399.png';
 import axios from 'axios';
 import GBSVG from '../images/flags/gb2.svg';

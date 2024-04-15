@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { WhatsYourNameComponent } from '../components/WhatsYourNameComponent';
-import useImagePreload from '../hooks/useImagePreload';
+import useImagePreload from '../hooks/useIsImagePreloadedHook';
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 

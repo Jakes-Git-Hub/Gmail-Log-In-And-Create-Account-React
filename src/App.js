@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import textData from './data/textData';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useUserIP } from './utils/userIPModule';
+import { useUserIP } from './hooks/useGrabUsersIPHook';
 import { filteredCountriesFromUtil } from './utils/countryDropDownOptions';
 import { SignInFrontPageContainer } from "./containers/SignInFrontPageContainer";
 import { MockMailContainer } from "./containers/MockMailContainer";

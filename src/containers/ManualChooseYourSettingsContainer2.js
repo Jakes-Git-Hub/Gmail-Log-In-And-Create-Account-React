@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ManualChooseYourSettingsComponent2 } from '../components/ManualChooseYourSettingsComponent2';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 import errorImage from '../images/Daco_5575399.png';
-import useImagePreload from '../hooks/useImagePreload';
+import useImagePreload from '../hooks/useIsImagePreloadedHook';
 import { useSpring } from 'react-spring';
 
 export const ManualChooseYourSettingsContainer2 = ({ userData, updateUser, text,   }) => {

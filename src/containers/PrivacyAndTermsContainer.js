@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { PrivacyAndTermsComponent } from '../components/PrivacyAndTermsComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 import errorImage from '../images/Daco_5575399.png';
-import useImagePreload from '../hooks/useImagePreload';
+import useImagePreload from '../hooks/useIsImagePreloadedHook';
 
 export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, handleLogin, loggedIn,   }) => {
 
