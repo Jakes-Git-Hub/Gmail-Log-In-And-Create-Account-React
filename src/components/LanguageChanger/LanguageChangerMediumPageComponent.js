@@ -80,11 +80,12 @@ function LanguageChangerMediumPage({ onChange, initialLanguage }) {
     return (
 
         <div id='language-changer-footer-medium-page'>
-
             <FormControl 
                 role='combobox'
-                id='language-changer-dropdown'
                 onClick={toggleMenu}
+                id='language-changer-dropdown'
+                aria-expanded={open}
+                data-testid='language-changer-dropdown'
                 sx={{
                         backgroundColor: open ? '#eeeeee' : '',
                         borderRadius: '4px',
@@ -98,6 +99,9 @@ function LanguageChangerMediumPage({ onChange, initialLanguage }) {
                     onChange={handleChange}
                     aria-label='Select text language'
                     displayEmpty={true}
+                    inputProps={{
+                        'data-testid': 'language-selector-dropdown',
+                    }}
                     value={selectedValue}
                     MenuProps={{
                         anchorOrigin: {

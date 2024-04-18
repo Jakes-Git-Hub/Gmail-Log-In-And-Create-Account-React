@@ -93,19 +93,15 @@ function LanguageChanger({ onChange, initialLanguage }) {
                 
             >
                 <Select
-                    role='language-selector-dropdown'
                     open={open}
-                    id='language-selector'
                     onClose={() => setOpen(false)} 
                     onOpen={() => setOpen(true)} 
                     onChange={handleChange}
                     displayEmpty={true}
                     value={selectedValue}
-                    aria-label={selectedValue}
-                    name='language-selector-dropdown'
+                    aria-label='Select text language'
                     inputProps={{
                         'data-testid': 'language-selector-dropdown',
-                        'name': 'language-selector-dropdown'
                     }}
                     MenuProps={{
                         anchorOrigin: {

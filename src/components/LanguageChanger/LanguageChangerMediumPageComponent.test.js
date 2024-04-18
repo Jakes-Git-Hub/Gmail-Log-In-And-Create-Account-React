@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, fireEvent, screen } from '@testing-library/react'; // Import necessary functions
-import LanguageChanger from './LanguageChangerComponent';
+import LanguageChangerMediumPage from './LanguageChangerMediumPageComponent';
 import '@testing-library/jest-dom';
 import languageOptions from '../../utils/languageOptions';
 
@@ -10,15 +10,15 @@ const mockUserData = {
 
 const mockOnChange = jest.fn();
 
-describe('LanguageChanger component', () => {
+describe('LanguageChangerMediumPage component', () => {
   test('renders without crashing', () => {
-    render(<LanguageChanger initialLanguage={mockUserData.language} onChange={mockOnChange}/>);
+    render(<LanguageChangerMediumPage initialLanguage={mockUserData.language} onChange={mockOnChange}/>);
     const dropDownComponent = screen.getByTestId('language-changer-dropdown'); // Assuming this is the data-testid of the intended combobox
     expect(dropDownComponent).toBeInTheDocument();
   });
 
   test.each(languageOptions)('selectedValue should be a valid language option or en-GB', ({ value }) => {
-    render(<LanguageChanger initialLanguage={value} onChange={mockOnChange} />);
+    render(<LanguageChangerMediumPage initialLanguage={value} onChange={mockOnChange} />);
 
     let selectElement = screen.getByTestId('language-selector-dropdown');
     expect(selectElement.value).toBe(value || 'en-GB');
@@ -26,7 +26,7 @@ describe('LanguageChanger component', () => {
 
   test('changes language selection and calls onChange', () => {
     const mockOnChange = jest.fn();
-    render(<LanguageChanger onChange={mockOnChange} />);
+    render(<LanguageChangerMediumPage onChange={mockOnChange} />);
 
     const select = screen.getByTestId('language-selector-dropdown');
     fireEvent.change(select, { target: { value: 'es-ES' } });
@@ -38,7 +38,7 @@ describe('LanguageChanger component', () => {
   test('handleChange should update selectedValue and call onChange', () => { 
     const valueToSet = 'es-ES';
   
-    render(<LanguageChanger initialLanguage={mockUserData.language} onChange={mockOnChange}/>);
+    render(<LanguageChangerMediumPage initialLanguage={mockUserData.language} onChange={mockOnChange}/>);
   
     const select = screen.getByTestId('language-selector-dropdown');
   
@@ -53,7 +53,7 @@ describe('LanguageChanger component', () => {
   });
 
   test('toggles menu open state when clicked', () => {
-    render(<LanguageChanger initialLanguage={mockUserData.language} onChange={mockOnChange} />);
+    render(<LanguageChangerMediumPage initialLanguage={mockUserData.language} onChange={mockOnChange} />);
     const dropdown = screen.getByTestId('language-changer-dropdown');
 
     // Initially, the menu should be closed
@@ -74,7 +74,7 @@ describe('LanguageChanger component', () => {
 
   test('opens link in new tab on help button click', () => {
     const mockWindowOpen = jest.spyOn(window, 'open');
-    render(<LanguageChanger />);
+    render(<LanguageChangerMediumPage />);
 
     const helpButton = screen.getByText('Help');
     fireEvent.click(helpButton);
@@ -84,7 +84,7 @@ describe('LanguageChanger component', () => {
 
   test('opens link in new tab on privacy button click', () => {
     const mockWindowOpen = jest.spyOn(window, 'open');
-    render(<LanguageChanger />);
+    render(<LanguageChangerMediumPage />);
 
     const privacyButton = screen.getByText('Privacy');
     fireEvent.click(privacyButton);
@@ -94,7 +94,7 @@ describe('LanguageChanger component', () => {
 
   test('opens link in new tab on terms button click', () => {
     const mockWindowOpen = jest.spyOn(window, 'open');
-    render(<LanguageChanger />);
+    render(<LanguageChangerMediumPage />);
 
     const termsButton = screen.getByText('Terms');
     fireEvent.click(termsButton);
