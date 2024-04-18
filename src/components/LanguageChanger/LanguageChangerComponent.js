@@ -82,22 +82,31 @@ function LanguageChanger({ onChange, initialLanguage }) {
         <div id='language-changer-footer'>
             <FormControl 
                 role='combobox'
-                id='language-changer-dropdown'
                 onClick={toggleMenu}
+                id='language-changer-dropdown'
+                aria-expanded={open}
+                data-testid='language-changer-dropdown'
                 sx={{
                         backgroundColor: open ? '#eeeeee' : '',
                         borderRadius: '4px',
                 }}
+                
             >
                 <Select
+                    role='language-selector-dropdown'
                     open={open}
-                    aria-expanded={open}
+                    id='language-selector'
                     onClose={() => setOpen(false)} 
                     onOpen={() => setOpen(true)} 
                     onChange={handleChange}
                     displayEmpty={true}
                     value={selectedValue}
-                    aria-label='Select text language'
+                    aria-label={selectedValue}
+                    name='language-selector-dropdown'
+                    inputProps={{
+                        'data-testid': 'language-selector-dropdown',
+                        'name': 'language-selector-dropdown'
+                    }}
                     MenuProps={{
                         anchorOrigin: {
                             vertical: 'top',

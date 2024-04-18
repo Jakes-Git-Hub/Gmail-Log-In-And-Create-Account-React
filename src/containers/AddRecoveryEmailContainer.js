@@ -31,32 +31,31 @@ export const AddRecoveryEmailContainer = ({ updateUser, text,  userData,  }) => 
 
 // Handle Next
 
-    const handleNextClick = (e) => {
-        e.preventDefault();
-        const recoveryEmailInput = document.getElementById('recoveryEmailInput');
+    const recoveryEmailInput = document.getElementById('recoveryEmailInput');
 
-        const isEmailValid = recoveryEmail => {
-            const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
-            return emailPattern.test(recoveryEmail);
-        };
+    const isEmailValid = recoveryEmail => {
+        const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+        return emailPattern.test(recoveryEmail);
+    };
 
-        const isAtSymbolThere = recoveryEmail => {
-            return /^[A-Za-z0-9._%+-]+@$/g.test(recoveryEmail);
-        }
+    const isAtSymbolThere = recoveryEmail => {
+        return /^[A-Za-z0-9._%+-]+@$/g.test(recoveryEmail);
+    }
 
-        const isEmailInvalid = recoveryEmail => {
-            return /^[A-Za-z0-9._%+-]+@+[A-Za-z0-9._%+-]+$/g.test(recoveryEmail);
-        };
+    const isEmailInvalid = recoveryEmail => {
+        return /^[A-Za-z0-9._%+-]+@+[A-Za-z0-9._%+-]+$/g.test(recoveryEmail);
+    };
 
-        const isDomainNameNotThere = recoveryEmail => {
-            return /^[A-Za-z0-9._%+-]+@$/g.test(recoveryEmail);
-        }
+    const isDomainNameNotThere = recoveryEmail => {
+        return /^[A-Za-z0-9._%+-]+@$/g.test(recoveryEmail);
+    }
 
-        const isEmailNotValid = recoveryEmail => {
-            const invalidEmailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9._%+-]+(\.[A-Za-z]{0,1})?$/;
-            return invalidEmailPattern.test(recoveryEmail);
-        };
-    
+    const isEmailNotValid = recoveryEmail => {
+        const invalidEmailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9._%+-]+(\.[A-Za-z]{0,1})?$/;
+        return invalidEmailPattern.test(recoveryEmail);
+    };
+
+    const handleEmailValidation = (recoveryEmail) => {
         if (isEmailValid(recoveryEmail)) {
             updateUser({ recoveryEmail: recoveryEmail });
             setRecoveryEmail('');
@@ -83,6 +82,11 @@ export const AddRecoveryEmailContainer = ({ updateUser, text,  userData,  }) => 
                 recoveryEmailInput.focus();
             }   
         } 
+    }
+
+    const handleNextClick = (e) => {
+        e.preventDefault();
+        handleEmailValidation();
     }
 
     // Handle Skip

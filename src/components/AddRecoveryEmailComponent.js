@@ -7,6 +7,7 @@ import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
 
 export const AddRecoveryEmailComponent = ({ 
     recoveryEmail,
+    
     setRecoveryEmail,
     handleNextClick,
     isImagePreloaded,
