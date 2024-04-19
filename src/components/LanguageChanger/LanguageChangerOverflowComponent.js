@@ -83,8 +83,10 @@ function LanguageChangerOverflow({ onChange, initialLanguage }) {
 
             <FormControl
                 role='combobox'
-                id='language-changer-dropdown'
                 onClick={toggleMenu}
+                id='language-changer-dropdown'
+                aria-expanded={open}
+                data-testid='language-changer-dropdown'
                 sx={{
                         backgroundColor: open ? '#eeeeee' : '',
                         borderRadius: '4px',
@@ -97,6 +99,9 @@ function LanguageChangerOverflow({ onChange, initialLanguage }) {
                     onOpen={() => setOpen(true)} 
                     onChange={handleChange}
                     displayEmpty={true}
+                    inputProps={{
+                        'data-testid': 'language-selector-dropdown',
+                    }}
                     aria-label='Select text language'
                     value={selectedValue}
                     MenuProps={{
