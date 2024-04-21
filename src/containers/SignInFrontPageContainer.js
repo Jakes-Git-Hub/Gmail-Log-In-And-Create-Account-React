@@ -5,7 +5,7 @@ import useImagePreload from '../hooks/useIsImagePreloadedHook';
 import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
-export const SignInFrontPageContainer = ({ users, userData, updateUser, text, }) => {
+export const SignInFrontPageContainer = ({ users, userData, updateUser, text, passFoundUser, }) => {
 
     const navigate = useNavigate();
 
@@ -67,15 +67,16 @@ export const SignInFrontPageContainer = ({ users, userData, updateUser, text, })
             error('emailOrPhoneEmpty');
             const emailOrPhoneInput = document.getElementById('emailOrPhoneInput');
             emailOrPhoneInput.focus();
-        } else if ((!users) || (!users.some(user => user.email === emailOrPhone || user.phoneNumber === emailOrPhone))) {
+        } else if ((!users.some(user => user.email === emailOrPhone || user.phoneNumber === emailOrPhone))) {
             error('couldntFindYourAccount');
             const emailOrPhoneInput = document.getElementById('emailOrPhoneInput');
             emailOrPhoneInput.focus();
         } else {
-            const registeredEmailOrPhone = users.find(
+            const registeredUser = users.find(
                 (user) => user.email === emailOrPhone || user.phoneNumber === emailOrPhone
             );
-            if (registeredEmailOrPhone) {
+            if (registeredUser) {
+                passFoundUser(registeredUser)
                 navigate('/verify-with-password');
             }
         }

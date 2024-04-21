@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, } from "react";
 import textData from './data/textData';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
 import { useUserIP } from './hooks/useGrabUsersIPHook';
 import { filteredCountriesFromUtil } from './utils/countryDropDownOptions';
 import { SignInFrontPageContainer } from "./containers/SignInFrontPageContainer";
@@ -27,10 +27,11 @@ import { GetAVerificationCodeEmailContainer } from "./containers/GetAVerificatio
 import { EnterTheFindCodeContainer } from "./containers/EnterTheFindCodeContainer";
 import { GetAVerificationCodePhoneContainer } from "./containers/GetAVerificationCodePhoneContainer";
 import { SelectAnAccountToSignInContainer } from "./containers/SelectAnAccountToSignInContainer";
+import { VerifyWithPasswordContainer } from "./containers/VerifyWithPasswordContainer";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [users, setUsers] = useState([{ id: 0, email: 'jacmatthews7@gmail.com', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143', profileCircleColor: 'blue', day: '28', month: 'April', year:'1993', gender: 'Male', countryDetails: 'England', },{ id: 0, email: 'titanfx@gmail.com', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143', profileCircleColor: 'red',},]);
+  const [users, setUsers] = useState([{ id: 0, email: 'jacmatthews7@gmail.com', password: '1234', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143', profileCircleColor: 'blue', day: '28', month: 'April', year:'1993', gender: 'Male', country: 'England', },{ id: 0, email: 'titanfx@gmail.com', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143', profileCircleColor: 'red',},]);
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
   const [nextUserId, setNextUserId] = useState(1);
   const [userData, setUserData] = useState({ language: 'en-GB', id: 0, email: 'jacmatthews7@gmail.com', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143', profileCircleColor: 'blue', });
@@ -40,6 +41,7 @@ function App() {
   const [translatedCountries, setTranslatedCountries] = useState(filteredCountriesFromUtil);
   const [showPrivacyRow, setShowPrivacyRow] = useState(false);
   const [isWrongCredentials, setIsWrongCredentials] = useState(null);
+  const [userToVerifyWithPassword, setUserToVerifyWithPassword] = useState('');
 
 // Grab User's IP
 
@@ -140,17 +142,35 @@ const IPGeoLocationAPIKey = process.env.REACT_APP_IP_GEO_LOCATION_API_KEY;
     console.log('users', users);
   }, [users]);
 
+  // Pass user Inputted Email to Verify with Password
+
+  const passFoundUser = registeredUserProfile => {
+    setUserToVerifyWithPassword(registeredUserProfile);
+  }
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={
             <SignInFrontPageContainer 
               users={users}
-              handleLogin={handleLogin}
               userIP={userIP}
               text={text}
               userData={userData}
               updateUser={updateUser}
+              passFoundUser={passFoundUser}
+            />
+          } 
+        />
+        <Route path="/verify-with-password" element={
+            <VerifyWithPasswordContainer
+              text={text}
+              userData={userData}
+              updateUser={updateUser}
+              handleLogin={handleLogin}
+              users={users}
+              loggedIn={loggedIn}
+              userToVerifyWithPassword={userToVerifyWithPassword}
             />
           } 
         />
