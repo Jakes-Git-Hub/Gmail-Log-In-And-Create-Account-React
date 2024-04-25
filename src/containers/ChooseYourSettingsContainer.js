@@ -27,9 +27,7 @@ export const ChooseYourSettingsContainer = ({ userData, updateUser, text, }) => 
 
 // Change Language
 
-    const handleLanguageSelection = (chosenLanguage) => {
-        updateUser({ language: chosenLanguage})
-    };
+    const handleLanguageSelection = chosenLanguage => updateUser({ language: chosenLanguage})
 
 // Handle Radio Change
 

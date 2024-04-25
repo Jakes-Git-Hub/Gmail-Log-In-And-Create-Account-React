@@ -32,9 +32,7 @@ export const VerifyWithPasswordContainer = ({ updateUser, text,  userData,  hand
 
 // Change Language
 
-    const handleLanguageSelection = (chosenLanguage) => {
-        updateUser({ language: chosenLanguage })
-    };
+    const handleLanguageSelection = chosenLanguage => updateUser({ language: chosenLanguage})
     
 // Password
 

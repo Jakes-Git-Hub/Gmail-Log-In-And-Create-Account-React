@@ -27,9 +27,7 @@ export const FindYourEmailContainer = ({ updateUser, text,  userData, updateFind
 
 // Change Language
 
-    const handleLanguageSelection = (chosenLanguage) => {
-        updateUser({ language: chosenLanguage })
-    };
+    const handleLanguageSelection = chosenLanguage => updateUser({ language: chosenLanguage})
 
 // Email or Phone Number
 

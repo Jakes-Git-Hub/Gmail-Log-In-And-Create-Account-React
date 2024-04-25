@@ -72,9 +72,7 @@ export const ManualChooseYourSettingsContainer2 = ({ userData, updateUser, text,
 
 // Change Language
 
-    const handleLanguageSelection = (chosenLanguage) => {
-        updateUser({ language: chosenLanguage })
-    };
+    const handleLanguageSelection = chosenLanguage => updateUser({ language: chosenLanguage})
 
     useEffect(() => {
         window.scrollTo({

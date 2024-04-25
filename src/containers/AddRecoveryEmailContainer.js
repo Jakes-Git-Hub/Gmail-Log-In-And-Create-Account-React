@@ -11,6 +11,10 @@ export const AddRecoveryEmailContainer = ({ updateUser, text,  userData,  }) => 
     const [errorCondition, setErrorCondition] = useState(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false);  
 
+    useEffect(() => {
+        console.log('errorCondition', errorCondition)
+    }, [errorCondition]);
+
     const navigate = useNavigate();
 
     const isImagePreloaded = useImagePreload(errorImage);
@@ -20,14 +24,12 @@ export const AddRecoveryEmailContainer = ({ updateUser, text,  userData,  }) => 
         image.src = googleWritingSvg;
         image.onload = () => {
           setIsImageLoaded(true);
-        };
+        }
     }, []);
 
 // Change Language
 
-    const handleLanguageSelection = (chosenLanguage) => {
-        updateUser({ language: chosenLanguage})
-    };
+    const handleLanguageSelection = chosenLanguage => updateUser({ language: chosenLanguage})
 
 // Handle Next
 
@@ -36,24 +38,25 @@ export const AddRecoveryEmailContainer = ({ updateUser, text,  userData,  }) => 
     const isEmailValid = recoveryEmail => {
         const emailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
         return emailPattern.test(recoveryEmail);
-    };
+    }
 
-    const isAtSymbolThere = recoveryEmail => {
-        return /^[A-Za-z0-9._%+-]+@$/g.test(recoveryEmail);
+    const isStringAndAtSymbolThere = recoveryEmail => {
+        return /^[A-Za-z0-9._%+-]+@.*$/g.test(recoveryEmail);
     }
 
     const isEmailInvalid = recoveryEmail => {
         return /^[A-Za-z0-9._%+-]+@+[A-Za-z0-9._%+-]+$/g.test(recoveryEmail);
-    };
+    }
 
     const isDomainNameNotThere = recoveryEmail => {
         return /^[A-Za-z0-9._%+-]+@$/g.test(recoveryEmail);
     }
 
     const isEmailNotValid = recoveryEmail => {
-        const invalidEmailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9._%+-]+(\.[A-Za-z]{0,1})?$/;
-        return invalidEmailPattern.test(recoveryEmail);
-    };
+        const invalidEmailPattern = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
+        const multipleAtSymbolPattern = /@.*@/;
+        return invalidEmailPattern.test(recoveryEmail) || multipleAtSymbolPattern.test(recoveryEmail);
+    }
 
     const handleEmailValidation = (recoveryEmail) => {
         if (isEmailValid(recoveryEmail)) {
@@ -61,22 +64,24 @@ export const AddRecoveryEmailContainer = ({ updateUser, text,  userData,  }) => 
             setRecoveryEmail('');
             setErrorCondition(null);
             navigate('/review-account-info');
-        } else if (recoveryEmail === '') {
+        } if (recoveryEmail === '') {
             setErrorCondition('enterValidEmail');
             if (recoveryEmailInput) {
                 recoveryEmailInput.focus();
             }    
-        } else if (isEmailNotValid(recoveryEmail)) {
+        } if (isEmailNotValid(recoveryEmail)) {
             setErrorCondition('emailAddressNotValid');
             if (recoveryEmailInput) {
                 recoveryEmailInput.focus();
             }   
-        } else if (!isAtSymbolThere(recoveryEmail)) {
+        } 
+        if (recoveryEmail !== '' && !isStringAndAtSymbolThere(recoveryEmail)) {
             setErrorCondition('dontForgetAtSymbol');
             if (recoveryEmailInput) {
                 recoveryEmailInput.focus();
             }   
-        } else if (isDomainNameNotThere(recoveryEmail) && !isEmailInvalid(recoveryEmail)) {
+        } 
+        if (isDomainNameNotThere(recoveryEmail) && !isEmailInvalid(recoveryEmail)) {
             setErrorCondition('enterADomainName');
             if (recoveryEmailInput) {
                 recoveryEmailInput.focus();
@@ -84,9 +89,9 @@ export const AddRecoveryEmailContainer = ({ updateUser, text,  userData,  }) => 
         } 
     }
 
-    const handleNextClick = (e) => {
+    const handleNextClick = e => {
         e.preventDefault();
-        handleEmailValidation();
+        handleEmailValidation(recoveryEmail);
     }
 
     // Handle Skip
@@ -113,4 +118,4 @@ export const AddRecoveryEmailContainer = ({ updateUser, text,  userData,  }) => 
         />
     </>
  );
-};
+}

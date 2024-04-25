@@ -27,9 +27,7 @@ export const SignInFrontPageContainer = ({ users, userData, updateUser, text, pa
 
 // Change Language
 
-    const handleLanguageSelection = (chosenLanguage) => {
-        updateUser({ language: chosenLanguage })
-    };
+    const handleLanguageSelection = chosenLanguage => updateUser({ language: chosenLanguage})
 
 // Email or Phone
 

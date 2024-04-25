@@ -26,9 +26,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 
 // Change Language
 
-    const handleLanguageSelection = (chosenLanguage) => {
-        updateUser({ language: chosenLanguage})
-    };
+    const handleLanguageSelection = chosenLanguage => updateUser({ language: chosenLanguage})
 
 // Populate the filteredCountries state with the translatedCountries
 
