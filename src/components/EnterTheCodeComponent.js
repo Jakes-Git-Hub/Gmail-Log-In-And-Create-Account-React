@@ -38,11 +38,11 @@ export const EnterTheCodeComponent = ({
 
                 <form>
 
-                    <h1 class='thin h1-space'>{text.EnterTheCode.h1[userData.language]}</h1>
+                    <h1 className='thin h1-space'>{text.EnterTheCode.h1[userData.language]}</h1>
 
                     <p id='p-enter-the-code'>{text.EnterTheCode.h2[userData.language]}</p>
 
-                    <ThemeProvider theme={theme} class='line-height'>
+                    <ThemeProvider theme={theme} className='line-height'>
                         <TextField
                             className='standard-text-field line-height'
                             id='code-input'
@@ -97,32 +97,32 @@ export const EnterTheCodeComponent = ({
                     </ThemeProvider>
 
                     {errorCondition === 'inputEmpty' && isImagePreloaded ? (
-                        <div class='error-div' id='error-div-space-etc'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='error-div' id='error-div-space-etc'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>{text.EnterTheCode.error1[userData.language]}</p>
+                            <p className='input-error-message'>{text.EnterTheCode.error1[userData.language]}</p>
                         </div>
                     ) : errorCondition === 'wrongNumberOfDigits' && isImagePreloaded ? (
-                        <div class='error-div' id='error-div-space-etc'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='error-div' id='error-div-space-etc'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>{text.EnterTheCode.error2[userData.language]}</p>
+                            <p className='input-error-message'>{text.EnterTheCode.error2[userData.language]}</p>
                         </div>
                     ) : errorCondition === 'wrongCode' && isImagePreloaded ? (
-                        <div class='error-div' id='error-div-space-etc'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='error-div' id='error-div-space-etc'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>{text.EnterTheCode.error3[userData.language]}</p>
+                            <p className='input-error-message'>{text.EnterTheCode.error3[userData.language]}</p>
                         </div>
                     ) : errorCondition === 'hasLetters' && isImagePreloaded ? (
-                        <div class='error-div' id='error-div-space-etc'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='error-div' id='error-div-space-etc'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>C{text.EnterTheCode.error4[userData.language]}</p>
+                            <p className='input-error-message'>C{text.EnterTheCode.error4[userData.language]}</p>
                         </div>
                     ) : (
                         <div className='hidden-error-message-container-BI'></div>

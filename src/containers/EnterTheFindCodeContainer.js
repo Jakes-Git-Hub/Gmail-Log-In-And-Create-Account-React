@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EnterTheFindCodeComponent } from '../components/EnterTheFindCodeComponent';
-import useImagePreload from '../hooks/useIsImagePreloadedHook';
-import errorImage from '../images/Daco_5575399.png';
+
+
 import googleWritingSvg from '../images/google-writing-svg.svg';
 import { createTheme } from '@mui/material/styles';
 
@@ -16,7 +16,7 @@ export const EnterTheFindCodeContainer = ({ updateUser, userData, text, findYour
 
     const navigate = useNavigate();
 
-    const isImagePreloaded = useImagePreload(errorImage);
+    
 
     useEffect(() => {
         const image = new Image();
@@ -99,7 +99,7 @@ const setError = errorType => setErrorCondition(errorType);
     return (
         <EnterTheFindCodeComponent
             handleNextClick={handleNextClick}
-            isImagePreloaded={isImagePreloaded}
+            
             errorCondition={errorCondition}
             isImageLoaded={isImageLoaded}
             handleUserVerificationCodeInput={handleUserVerificationCodeInput}

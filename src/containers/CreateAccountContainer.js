@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CreateAccountComponent } from '../components/CreateAccountComponent';
-import useImagePreload from '../hooks/useIsImagePreloadedHook';
-import errorImage from '../images/Daco_5575399.png';
+
+
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const CreateAccountContainer = ({ updateUser, text,  userData, }) => {
@@ -24,7 +24,7 @@ export const CreateAccountContainer = ({ updateUser, text,  userData, }) => {
         };
     }, []);
 
-    const isImagePreloaded = useImagePreload(errorImage);
+    
 
 // Change Language
 
@@ -91,7 +91,7 @@ export const CreateAccountContainer = ({ updateUser, text,  userData, }) => {
                 setLastName={setLastName}
                 lastName={lastName}
                 handleNextClick={handleNextClick}
-                isImagePreloaded={isImagePreloaded}
+                
                 onFirstNameInputChange={onFirstNameInputChange}
                 onLastNameInputChange={onLastNameInputChange}
                 errorCondition={errorCondition}

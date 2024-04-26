@@ -4,7 +4,7 @@ import CustomNextButton from './buttons/CustomNextButtonComponent';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
-import errorImage from '../images/Daco_5575399.png';
+
 import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
 
 
@@ -33,7 +33,7 @@ export const ChooseYourSettingsComponent = ({
                 
                 <img src={googleWritingSvg} alt='Google Writing' id='google-writing-recovery-ryai'/>
 
-                <h1 class='thin h1-space'>{text.ChooseYourSettings.h1[userData.language]}</h1>
+                <h1 className='thin h1-space'>{text.ChooseYourSettings.h1[userData.language]}</h1>
                 
                 <RadioGroup
                     aria-label='settings'
@@ -104,10 +104,10 @@ export const ChooseYourSettingsComponent = ({
 
                 {errorCondition === 'selectAnOption' && isImagePreloaded && (   
                     <div id='error-div-choose-your-settings'>
-                        <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                             <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                         </svg>
-                        <p class='input-error-message'>{text.ChooseYourSettings.error[userData.language]}</p>
+                        <p className='input-error-message'>{text.ChooseYourSettings.error[userData.language]}</p>
                     </div>
                 )}
 
@@ -126,7 +126,7 @@ export const ChooseYourSettingsComponent = ({
                             },
                         }}
                     >
-                        <div class='next'>
+                        <div className='next'>
                             {text.ChooseYourSettings.next[userData.language]}
                         </div>
                     </CustomNextButton>                

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ManualChooseYourSettingsComponent4 } from '../components/ManualChooseYourSettingsComponent4';
 import googleWritingSvg from '../images/google-writing-svg.svg';
-import errorImage from '../images/Daco_5575399.png';
-import useImagePreload from '../hooks/useIsImagePreloadedHook';
+
+
 export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text, makePrivacyRowVisible,   }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -13,7 +13,7 @@ export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text,
 
 // Check for Image Loads
 
-    const isImagePreloaded = useImagePreload(errorImage);
+    
 
     useEffect(() => {
         const image = new Image();
@@ -72,7 +72,7 @@ export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text,
                 handleNextClick={handleNextClick}
                 isImageLoaded={isImageLoaded}
                 userData={userData}
-                isImagePreloaded={isImagePreloaded}
+                
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
                 handleBackClick={handleBackClick}

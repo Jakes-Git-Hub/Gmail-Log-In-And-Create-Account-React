@@ -1,5 +1,5 @@
 import React from 'react';
-import errorImage from '../images/Daco_5575399.png';
+
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import CustomNextButton from './buttons/CustomNextButtonComponent';
@@ -29,19 +29,19 @@ export const GetAVerificationCodePhoneComponent = ({
 
                 <form>
 
-                    <h1 class='thin h1-space'>{text.GetAVerificationCode.h1[userData.language]}</h1>
+                    <h1 className='thin h1-space'>{text.GetAVerificationCode.h1[userData.language]}</h1>
 
-                    <div class='width-h2'>
-                        <h2 class='thin gap center h2-line-height'>To help keep your account safe, Google wants to make sure it's really you trying to sign in</h2>
+                    <div className='width-h2'>
+                        <h2 className='thin gap center h2-line-height'>To help keep your account safe, Google wants to make sure it's really you trying to sign in</h2>
                     </div>  
 
-                    <div class='p17Urb'>
+                    <div className='p17Urb'>
                     </div>
                  
-                    <img src='https://ssl.gstatic.com/accounts/account-recovery-sms-pin.gif' class='phone-gif-z-index' aria-hidden='true' alt=''></img>
+                    <img src='https://ssl.gstatic.com/accounts/account-recovery-sms-pin.gif' className='phone-gif-z-index' aria-hidden='true' alt=''></img>
 
-                    <div class='p-container-gavc'>
-                        <p class='p-get-a-verification-code'>
+                    <div className='p-container-gavc'>
+                        <p className='p-get-a-verification-code'>
                             Google will send a verification code to {findYourEmailCredentials.phoneNumberOrEmail}.
                         </p>
                     </div>
@@ -57,7 +57,7 @@ export const GetAVerificationCodePhoneComponent = ({
                                 },
                             }}
                         >
-                            <div class='next'>
+                            <div className='next'>
                                 Send
                             </div>
                         </CustomNextButton>

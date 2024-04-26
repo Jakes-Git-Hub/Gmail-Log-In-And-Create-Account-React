@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ManualChooseYourSettingsComponent2 } from '../components/ManualChooseYourSettingsComponent2';
 import googleWritingSvg from '../images/google-writing-svg.svg';
-import errorImage from '../images/Daco_5575399.png';
-import useImagePreload from '../hooks/useIsImagePreloadedHook';
+
+
 import { useSpring } from 'react-spring';
 
 export const ManualChooseYourSettingsContainer2 = ({ userData, updateUser, text,   }) => {
@@ -18,7 +18,7 @@ export const ManualChooseYourSettingsContainer2 = ({ userData, updateUser, text,
 
 // Check for Image Loads
 
-    const isImagePreloaded = useImagePreload(errorImage);
+    
 
     useEffect(() => {
         const image = new Image();
@@ -160,7 +160,7 @@ export const ManualChooseYourSettingsContainer2 = ({ userData, updateUser, text,
                 manualSetting2={manualSetting2}
                 handleRadioChange={handleRadioChange}
                 errorCondition={errorCondition}
-                isImagePreloaded={isImagePreloaded}
+                
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
                 openYouTubeHistoryModal={openYouTubeHistoryModal}

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BirthdayAndGenderComponent } from '../components/BirthdayAndGenderComponent';
-import useImagePreload from '../hooks/useIsImagePreloadedHook';
-import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const BirthdayAndGenderContainer = ({ updateUser, text,  userData, }) => {
@@ -31,8 +29,6 @@ export const BirthdayAndGenderContainer = ({ updateUser, text,  userData, }) => 
         setIsImageLoaded(true);
         };
     }, []);
-
-    const isImagePreloaded = useImagePreload(errorImage);
 
 // Change Language
 
@@ -147,7 +143,6 @@ export const BirthdayAndGenderContainer = ({ updateUser, text,  userData, }) => 
             gender={gender}
             handleSelectGender={handleSelectGender}
             handleNextClick={handleNextClick}
-            isImagePreloaded={isImagePreloaded}
             genderEmpty={genderEmpty}
             errorCondition={errorCondition}
             isImageLoaded={isImageLoaded}
@@ -159,10 +154,8 @@ export const BirthdayAndGenderContainer = ({ updateUser, text,  userData, }) => 
             handleSelectPronoun={handleSelectPronoun}
             isCustomChecked={isCustomChecked}
             text={text}
-            
             handleLanguageSelection={handleLanguageSelection}
             userData={userData}
-            
         />
     );
 };

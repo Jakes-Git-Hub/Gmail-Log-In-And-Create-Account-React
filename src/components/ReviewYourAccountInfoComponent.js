@@ -23,9 +23,9 @@ export const ReviewYourAccountInfoComponent = ({
                 </div>
                 <img src={googleWritingSvg} alt='Google Writing' id='google-writing-recovery-ryai'/>
 
-                <h1 class='thin h1-space'>{text.ReviewYourAccountInfo.h1[userData.language]}</h1>
+                <h1 className='thin h1-space'>{text.ReviewYourAccountInfo.h1[userData.language]}</h1>
                 <div id='reduce-width-h2'>
-                    <h2 class='thin gap center'>{text.ReviewYourAccountInfo.h2[userData.language]}</h2>
+                    <h2 className='thin gap center'>{text.ReviewYourAccountInfo.h2[userData.language]}</h2>
                 </div>
                 
                 <div id='profile-card-container' aria-label='profile card container'>
@@ -44,7 +44,7 @@ export const ReviewYourAccountInfoComponent = ({
                     </div>
                 </div>
 
-                <div id='review-your-account-next-button' class='button-space-create-password'>
+                <div id='review-your-account-next-button' className='button-space-create-password'>
                     <CustomNextButton 
                         variant='contained' 
                         onClick={handleNextClick}
@@ -55,7 +55,7 @@ export const ReviewYourAccountInfoComponent = ({
                             },
                         }}
                     >
-                        <div class='next'>
+                        <div className='next'>
                             {text.ReviewYourAccountInfo.next[userData.language]}
                         </div>
                     </CustomNextButton>                

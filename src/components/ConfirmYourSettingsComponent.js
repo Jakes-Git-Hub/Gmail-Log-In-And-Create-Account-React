@@ -30,9 +30,9 @@ export const ConfirmYourSettingsComponent = ({
                 </div>
                 <img src={googleWritingSvg} alt='Google Writing' id='google-writing-recovery-ryai'/>
                 
-                <h1 class='thin h1-space h1-mcys'>{text.ConfirmYourSettings.h1[userData.language]}</h1>
+                <h1 className='thin h1-space h1-mcys'>{text.ConfirmYourSettings.h1[userData.language]}</h1>
                 <div id='reduce-width-h2-confirm-your-settings'>
-                    <h2 class='thin gap center'>{text.ConfirmYourSettings.h2}</h2>
+                    <h2 className='thin gap center'>{text.ConfirmYourSettings.h2}</h2>
                 </div>
                 
                 <div id='choose-your-settings-container-mcys'>
@@ -112,38 +112,38 @@ export const ConfirmYourSettingsComponent = ({
 
                 {errorCondition === 'selectAnOption' && isImagePreloaded && (   
                     <div id='error-div-choose-your-settings'>
-                        <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                        <p class='input-error-message'>{text.ManualChooseYourSettings2.error}</p>
+                        <p className='input-error-message'>{text.ManualChooseYourSettings2.error}</p>
                     </div>
                 )}
 
                 <div id='container-confirm-your-settings'>
-                    <h2 class='mcys-h2'>{text.ConfirmYourSettings.aboutCookies}</h2>
-                    <p class='pconfirmys p-gap-ecys'>
+                    <h2 className='mcys-h2'>{text.ConfirmYourSettings.aboutCookies}</h2>
+                    <p className='pconfirmys p-gap-ecys'>
                         {text.ConfirmYourSettings.aboutCookies1}
-                        <a class='href' href='https://policies.google.com/technologies/cookies?hl=en&gl=GB' target='blank'>{text.ConfirmYourSettings.aboutCookies2}</a>
+                        <a className='href' href='https://policies.google.com/technologies/cookies?hl=en&gl=GB' target='blank'>{text.ConfirmYourSettings.aboutCookies2}</a>
                         {text.ConfirmYourSettings.aboutCookies3}
                     </p>
                     <ul id='bullet-points-mcys'>
                         <li className='pconfirmys confirm-list'>{text.ConfirmYourSettings.aboutCookies4}</li>
                         <li className='pconfirmys confirm-list'>{text.ConfirmYourSettings.aboutCookies5}</li>
                     </ul>
-                    <p class='pconfirmys p-gap-ecys'>{text.ConfirmYourSettings.aboutCookies6}</p>
+                    <p className='pconfirmys p-gap-ecys'>{text.ConfirmYourSettings.aboutCookies6}</p>
                     <ul id='bullet-points-mcys'>
                         <li className='pconfirmys confirm-list'>{text.ConfirmYourSettings.aboutCookies7}</li>
                         <li className='pconfirmys confirm-list'>{text.ConfirmYourSettings.aboutCookies8}</li>
                         <li className='pconfirmys confirm-list'>{text.ConfirmYourSettings.aboutCookies9}</li>
                         <li className='pconfirmys confirm-list'>{text.ConfirmYourSettings.aboutCookies10}</li>
                     </ul>
-                    <p class='pconfirmys p-gap-ecys'>{text.ConfirmYourSettings.aboutCookies11}</p>
-                    <p class='pconfirmys p-gap-ecys'>{text.ConfirmYourSettings.aboutCookies12}</p>
+                    <p className='pconfirmys p-gap-ecys'>{text.ConfirmYourSettings.aboutCookies11}</p>
+                    <p className='pconfirmys p-gap-ecys'>{text.ConfirmYourSettings.aboutCookies12}</p>
                 </div>
 
                 
 
-                <div class='next-and-skip-button-duo button-space-mcys'>
+                <div className='next-and-skip-button-duo button-space-mcys'>
                     <CustomNextAndSkipButton 
                         className='duo' 
                         variant='contained' 

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SignInFrontPageComponent } from '../components/SignInFrontPageComponent';
-import useImagePreload from '../hooks/useIsImagePreloadedHook';
-import errorImage from '../images/Daco_5575399.png';
+
+
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const SignInFrontPageContainer = ({ users, userData, updateUser, text, passFoundUser, }) => {
@@ -23,7 +23,7 @@ export const SignInFrontPageContainer = ({ users, userData, updateUser, text, pa
         };
     }, []);
 
-    const isImagePreloaded = useImagePreload(errorImage);
+    
 
 // Change Language
 
@@ -83,7 +83,7 @@ export const SignInFrontPageContainer = ({ users, userData, updateUser, text, pa
     return(
         <>
             <SignInFrontPageComponent
-                isImagePreloaded={isImagePreloaded}
+                
                 userData={userData}
                 handleLanguageSelection={handleLanguageSelection}
                 isImageLoaded={isImageLoaded}

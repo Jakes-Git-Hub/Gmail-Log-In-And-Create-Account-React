@@ -42,7 +42,7 @@ export const ConfirmYoureNotARobotComponent = ({
                 <form>
 
 
-                    <h1 class='thin' id='h1-cynar'>{text.ConfirmYoureNotARobot.h1[userData.language]}</h1>
+                    <h1 className='thin' id='h1-cynar'>{text.ConfirmYoureNotARobot.h1[userData.language]}</h1>
 
                     <div id='h2-cynar-div'>
                         <h2 id='h2-cynar'>{text.ConfirmYoureNotARobot.h2[userData.language]}</h2>
@@ -52,7 +52,7 @@ export const ConfirmYoureNotARobotComponent = ({
                     <div id='add-phone-number-dropdown-and-input'>
                         <Select
                             styles={customStyles}
-                            class='flag-drop-down'
+                            className='flag-drop-down'
                             options={customOptions}
                             aria-label='Select your Country'
                             components={{ 
@@ -70,7 +70,7 @@ export const ConfirmYoureNotARobotComponent = ({
                             }}
                         />
 
-                        <div class='line-height gender-input-width' id='phoneNumber-input-width'>
+                        <div className='line-height gender-input-width' id='phoneNumber-input-width'>
                             <Box>
                                     <TextField
                                         autoFocus
@@ -120,37 +120,37 @@ export const ConfirmYoureNotARobotComponent = ({
                     </div>
 
                     {errorCondition === 'phoneNumberEmpty' && isImagePreloaded ? (
-                        <div class='long-error-div' id='error-div-space-cynar'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='long-error-div' id='error-div-space-cynar'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>{text.ConfirmYoureNotARobot.error1[userData.language]}</p>
+                            <p className='input-error-message'>{text.ConfirmYoureNotARobot.error1[userData.language]}</p>
                         </div>
                     ) : errorCondition === 'incorrectFormat' && isImagePreloaded ? (
-                        <div class='error-div' id='error-div-space-cynar'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='error-div' id='error-div-space-cynar'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>{text.ConfirmYoureNotARobot.error2[userData.language]}</p>
+                            <p className='input-error-message'>{text.ConfirmYoureNotARobot.error2[userData.language]}</p>
                         </div>
                     ) : errorCondition === 'alreadyRegistered' && isImagePreloaded ? (
-                        <div class='error-div' id='error-div-space-cynar'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='error-div' id='error-div-space-cynar'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>{text.ConfirmYoureNotARobot.error3[userData.language]}</p>
+                            <p className='input-error-message'>{text.ConfirmYoureNotARobot.error3[userData.language]}</p>
                         </div>
                     ) : errorCondition === 'incorrectNumber' && isImagePreloaded ? (
-                        <div class='error-div' id='error-div-space-cynar'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='error-div' id='error-div-space-cynar'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>{text.ConfirmYoureNotARobot.error4[userData.language]}</p>
+                            <p className='input-error-message'>{text.ConfirmYoureNotARobot.error4[userData.language]}</p>
                         </div>
                     ) : null}
 
-                    <div class='below-input-small-grey-cynar'>
-                        <p class='small-grey-cynar'>{text.ConfirmYoureNotARobot.googleWillVerify[userData.language]}</p>
+                    <div className='below-input-small-grey-cynar'>
+                        <p className='small-grey-cynar'>{text.ConfirmYoureNotARobot.googleWillVerify[userData.language]}</p>
                     </div>
                     
                     <div id={formattedPhoneNumber ? 'button-right-robot-confirm' : 'button-right-robot'}>
@@ -164,7 +164,7 @@ export const ConfirmYoureNotARobotComponent = ({
                                 },
                             }}
                         >
-                            <div class='next'>
+                            <div className='next'>
                             {text.ConfirmYoureNotARobot.next[userData.language]}
                             </div>
                         </CustomNextButton>

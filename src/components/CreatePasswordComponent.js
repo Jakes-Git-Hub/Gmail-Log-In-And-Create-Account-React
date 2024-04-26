@@ -36,13 +36,13 @@ export const CreatePasswordComponent = ({
 
                 <form>
 
-                    <h1 class='thin h1-space'>{text.CreatePassword.h1[userData.language]}</h1>
+                    <h1 className='thin h1-space'>{text.CreatePassword.h1[userData.language]}</h1>
 
-                    <div class='width-h2'>
-                        <h2 class='thin gap center'>{text.CreatePassword.h2[userData.language]}</h2>
+                    <div className='width-h2'>
+                        <h2 className='thin gap center'>{text.CreatePassword.h2[userData.language]}</h2>
                     </div>
 
-                    <Box id='create-password-space'class=' line-height label-input-width input-label'>
+                    <Box id='create-password-space'className=' line-height label-input-width input-label'>
                         <TextField
                             fullWidth error={errorCondition && errorCondition !== 'confirmPasswordEmpty' && errorCondition !== 'passwordMismatch'}
                             id='passwordInput'
@@ -78,7 +78,7 @@ export const CreatePasswordComponent = ({
                         />
                     </Box> 
 
-                    <Box class='space line-height label-input-width input-label' id='error-message-margin'>
+                    <Box className='space line-height label-input-width input-label' id='error-message-margin'>
                         <TextField
                             fullWidth error={errorCondition && errorCondition !== 'passwordEmpty' && errorCondition !== 'needs8CharsOrMore'}
                             id='confirmPasswordInput'
@@ -115,47 +115,47 @@ export const CreatePasswordComponent = ({
                     </Box> 
 
                     {errorCondition === 'passwordEmpty' && isImagePreloaded && (
-                        <div class='error-div' id='create-password-error-div'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='error-div' id='create-password-error-div'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>{text.CreatePassword.error1[userData.language]}</p>
+                            <p className='input-error-message'>{text.CreatePassword.error1[userData.language]}</p>
                         </div>
                     )}
 
                     {errorCondition === 'confirmPasswordEmpty' && isImagePreloaded && ( 
-                        <div class='error-div' id='create-password-error-div'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='error-div' id='create-password-error-div'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>{text.CreatePassword.error2[userData.language]}</p>
+                            <p className='input-error-message'>{text.CreatePassword.error2[userData.language]}</p>
                         </div>
                     )} 
                     
                     {errorCondition === 'passwordMismatch' && isImagePreloaded && (
-                        <div class='error-div' id='create-password-error-div'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='error-div' id='create-password-error-div'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>{text.CreatePassword.error3[userData.language]}</p>
+                            <p className='input-error-message'>{text.CreatePassword.error3[userData.language]}</p>
                         </div>
                     )}
 
                     {errorCondition === 'needs8CharsOrMore' && isImagePreloaded && (
-                        <div class='error-div' id='create-password-error-div'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='error-div' id='create-password-error-div'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>{text.CreatePassword.error4[userData.language]}</p>
+                            <p className='input-error-message'>{text.CreatePassword.error4[userData.language]}</p>
                         </div>
                     )}
 
                     {errorCondition === 'pleaseChooseAStrongerPassword' && isImagePreloaded && (
-                        <div class='error-div' id='create-password-error-div-stronger-password'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='error-div' id='create-password-error-div-stronger-password'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>{text.CreatePassword.error5[userData.language]}</p>
+                            <p className='input-error-message'>{text.CreatePassword.error5[userData.language]}</p>
                         </div>
                     )}
 
@@ -191,7 +191,7 @@ export const CreatePasswordComponent = ({
                         <p id='show-password-checkbox'>{text.CreatePassword.show[userData.language]}</p>
                     </div>
 
-                    <div id='create-password-next-button' class='button-space-create-password'>
+                    <div id='create-password-next-button' className='button-space-create-password'>
                         <CustomNextButton 
                             variant='contained' 
                             onClick={handleNextClick}
@@ -201,7 +201,7 @@ export const CreatePasswordComponent = ({
                                 },
                             }}
                         >
-                            <div class='next'>
+                            <div className='next'>
                             {text.CreatePassword.next[userData.language]}
                             </div>
                         </CustomNextButton>                

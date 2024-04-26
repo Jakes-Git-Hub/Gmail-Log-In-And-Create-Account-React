@@ -40,11 +40,11 @@ export const ManualChooseYourSettingsComponent2 = ({
                 </div>
                 <img src={googleWritingSvg} alt='Google Writing' id='google-writing-recovery-ryai'/>
 
-                <h1 class='thin h1-space h1-mcys'>{text.ManualChooseYourSettings2.h1[userData.language]}</h1>
-                <p class='first-p-mcys'>{text.ManualChooseYourSettings2.step}</p>
+                <h1 className='thin h1-space h1-mcys'>{text.ManualChooseYourSettings2.h1[userData.language]}</h1>
+                <p className='first-p-mcys'>{text.ManualChooseYourSettings2.step}</p>
 
                 <div id='container-choose-your-settings-m'>
-                    <p class='regular-p'>{text.ManualChooseYourSettings2.choose}</p>
+                    <p className='regular-p'>{text.ManualChooseYourSettings2.choose}</p>
                 </div>
                 
                 <RadioGroup
@@ -145,20 +145,20 @@ export const ManualChooseYourSettingsComponent2 = ({
 
                 {errorCondition === 'selectAnOption' && isImagePreloaded && (   
                     <div id='error-div-choose-your-settings'>
-                        <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                             <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                         </svg>
-                        <p class='input-error-message'>{text.ManualChooseYourSettings2.error}</p>
+                        <p className='input-error-message'>{text.ManualChooseYourSettings2.error}</p>
                     </div>
                 )}
 
                 <div id='container-choose-your-settings-m'>
-                    <h2 class='mcys-h2'>{text.ManualChooseYourSettings2.whatData}</h2>
-                    <p class='pecys p-gap-ecys'>{text.ManualChooseYourSettings2.whatData1}</p>
-                    <h2 class='mcys-h2' id='more-margin-top-h2-mcys'>{text.ManualChooseYourSettings2.howWeUse}</h2>
-                    <p class='pecys p-gap-ecys'>{text.ManualChooseYourSettings2.howWeUse1}</p>
-                    <h2 class='mcys-h2' id='more-margin-top-h2-mcys'>{text.ManualChooseYourSettings2.howYouCanManage}</h2>
-                    <p class='pecys p-gap-ecys'>{text.ManualChooseYourSettings2.howYouCanManage1}</p>
+                    <h2 className='mcys-h2'>{text.ManualChooseYourSettings2.whatData}</h2>
+                    <p className='pecys p-gap-ecys'>{text.ManualChooseYourSettings2.whatData1}</p>
+                    <h2 className='mcys-h2' id='more-margin-top-h2-mcys'>{text.ManualChooseYourSettings2.howWeUse}</h2>
+                    <p className='pecys p-gap-ecys'>{text.ManualChooseYourSettings2.howWeUse1}</p>
+                    <h2 className='mcys-h2' id='more-margin-top-h2-mcys'>{text.ManualChooseYourSettings2.howYouCanManage}</h2>
+                    <p className='pecys p-gap-ecys'>{text.ManualChooseYourSettings2.howYouCanManage1}</p>
 
                     <TransparentSmallButton 
                         className='setting-information learn-more-mcys' 
@@ -238,7 +238,7 @@ export const ManualChooseYourSettingsComponent2 = ({
 
                 
 
-                <div class='next-and-skip-button-duo button-space-mcys'>
+                <div className='next-and-skip-button-duo button-space-mcys'>
                     <CustomNextAndSkipButton 
                         className='duo' 
                         variant='contained' 

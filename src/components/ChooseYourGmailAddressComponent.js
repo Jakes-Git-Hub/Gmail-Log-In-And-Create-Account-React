@@ -32,11 +32,11 @@ export const ChooseYourGmailAddressComponent = ({
 
                 <form>
 
-                    <h1 class='thin h1-space'>{text.ChooseYourGmailAddress.h1[userData.language]}</h1>
+                    <h1 className='thin h1-space'>{text.ChooseYourGmailAddress.h1[userData.language]}</h1>
 
-                    <h2 class='thin gap center' id='h2'>{text.ChooseYourGmailAddress.h2[userData.language]}</h2>
+                    <h2 className='thin gap center' id='h2'>{text.ChooseYourGmailAddress.h2[userData.language]}</h2>
 
-                    <div class='space line-height label-input-width input-label' id='username-input-width'>
+                    <div className='space line-height label-input-width input-label' id='username-input-width'>
                         <Box>
                             <TextField
                                 fullWidth error={errorCondition}
@@ -84,36 +84,36 @@ export const ChooseYourGmailAddressComponent = ({
                     </div>
 
                     {errorCondition === 'isIncorrectLength' && isImagePreloaded ? (
-                        <div class='long-error-div' id='error-div-space'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='long-error-div' id='error-div-space'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message-6-30'>{text.ChooseYourGmailAddress.error1[userData.language]}</p>
+                            <p className='input-error-message-6-30'>{text.ChooseYourGmailAddress.error1[userData.language]}</p>
                         </div>
                     ) : errorCondition === 'usernameEmpty' && isImagePreloaded ? (
-                        <div class='error-div' id='error-div-space'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='error-div' id='error-div-space'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>{text.ChooseYourGmailAddress.error2[userData.language]}</p>
+                            <p className='input-error-message'>{text.ChooseYourGmailAddress.error2[userData.language]}</p>
                         </div>
                     ) : errorCondition === 'usesUnallowedChars' && isImagePreloaded ? (
-                        <div class='long-error-div' id='error-div-space'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='long-error-div' id='error-div-space'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>{text.ChooseYourGmailAddress.error3[userData.language]}</p>
+                            <p className='input-error-message'>{text.ChooseYourGmailAddress.error3[userData.language]}</p>
                         </div>
                     ) : errorCondition === 'usernameIsAlreadyTaken' && isImagePreloaded ? (
-                        <div class='long-error-div' id='error-div-space'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='long-error-div' id='error-div-space'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>{text.ChooseYourGmailAddress.error4[userData.language]}</p>
+                            <p className='input-error-message'>{text.ChooseYourGmailAddress.error4[userData.language]}</p>
                         </div>
                     ) : (
-                        <div class='below-input-small-grey'>
-                            <p class='small-grey'>{text.ChooseYourGmailAddress.youCanUse[userData.language]}</p>
+                        <div className='below-input-small-grey'>
+                            <p className='small-grey'>{text.ChooseYourGmailAddress.youCanUse[userData.language]}</p>
                         </div>
                     )}
 
@@ -128,7 +128,7 @@ export const ChooseYourGmailAddressComponent = ({
                                 },
                             }}
                         >
-                            <div class='next'>
+                            <div className='next'>
                                 {text.BirthdayAndGender.next[userData.language]}
                             </div>
                         </CustomNextButton>

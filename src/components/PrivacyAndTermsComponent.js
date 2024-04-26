@@ -24,13 +24,13 @@ export const PrivacyAndTermsComponent = ({
                 </div>
                 <img src={googleWritingSvg} alt='Google Writing' id='google-writing-recovery-ryai'/>
                 
-                <h1 class='thin h1-space h1-mcys'>{text.PrivacyAndTerms.h1[userData.language]}</h1>
+                <h1 className='thin h1-space h1-mcys'>{text.PrivacyAndTerms.h1[userData.language]}</h1>
 
                 <div id='container-choose-your-settings-m'>
-                    <p class='p-privacy-and-terms p-gap-ecys'>
+                    <p className='p-privacy-and-terms p-gap-ecys'>
                         {text.PrivacyAndTerms.pT1}
                         <a 
-                            class='href' 
+                            className='href' 
                             href='https://policies.google.com/terms?hl=en&gl=GB' 
                             target='blank'
                             aria-label='Google Terms of Service hyperlink'
@@ -39,7 +39,7 @@ export const PrivacyAndTermsComponent = ({
                         </a>
                         {text.PrivacyAndTerms.pT3}
                         <a 
-                            class='href' 
+                            className='href' 
                             href='https://www.youtube.com/t/terms?gl=GB&hl=en&override_hl=1' 
                             target='blank'
                             aria-label='YouTube Terms of Service hyperlink'
@@ -49,10 +49,10 @@ export const PrivacyAndTermsComponent = ({
                         {text.PrivacyAndTerms.pT5}
                     </p>
 
-                    <p class='p-privacy-and-terms p-gap-ecys'>
+                    <p className='p-privacy-and-terms p-gap-ecys'>
                         {text.PrivacyAndTerms.pT6}
                         <a 
-                            class='href' 
+                            className='href' 
                             href='https://policies.google.com/terms?hl=en&gl=GB' 
                             target='blank'
                             aria-label='Google Terms of Service hyperlink'
@@ -62,10 +62,10 @@ export const PrivacyAndTermsComponent = ({
                         {text.PrivacyAndTerms.pT8}
                     </p>
 
-                    <p class='p-privacy-and-terms p-gap-ecys'>
+                    <p className='p-privacy-and-terms p-gap-ecys'>
                         {text.PrivacyAndTerms.pT9}
                         <a 
-                            class='href' 
+                            className='href' 
                             href='https://policies.google.com/terms?hl=en&gl=GB' 
                             target='blank'
                             aria-label="Google's privacy policy hyperlink"
@@ -75,7 +75,7 @@ export const PrivacyAndTermsComponent = ({
                         {text.PrivacyAndTerms.pT11}
                     </p>
 
-                    <p class='p-privacy-and-terms p-gap-ecys'>{text.PrivacyAndTerms.pT12}</p>
+                    <p className='p-privacy-and-terms p-gap-ecys'>{text.PrivacyAndTerms.pT12}</p>
 
 
                     <ul id='bullet-points-mcys'>
@@ -92,12 +92,12 @@ export const PrivacyAndTermsComponent = ({
                         <li className='p-privacy-and-terms confirm-list bullet-point-privacy-and-terms'>{text.PrivacyAndTerms.pT23}</li>
                     </ul>
 
-                    <p class='p-privacy-and-terms p-gap-ecys'>{text.PrivacyAndTerms.pT24}</p>
+                    <p className='p-privacy-and-terms p-gap-ecys'>{text.PrivacyAndTerms.pT24}</p>
                 </div>
 
                 
 
-                <div class='i-agree-and-cancel-button-duo button-space-mcys'>
+                <div className='i-agree-and-cancel-button-duo button-space-mcys'>
                     <SecondaryGreyButton2 
                         variant='contained'     
                         onClick={handleBackClick}
@@ -124,7 +124,7 @@ export const PrivacyAndTermsComponent = ({
                                 },
                             }}
                         >
-                            <div class='next'>
+                            <div className='next'>
                               {text.PrivacyAndTerms.iAgree}
                             </div>
                     </CustomNextButton>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FindYourEmailComponent } from '../components/FindYourEmailComponent';
-import useImagePreload from '../hooks/useIsImagePreloadedHook';
-import errorImage from '../images/Daco_5575399.png';
+
+
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const FindYourEmailContainer = ({ updateUser, text,  userData, updateFindYourEmailCredentials, isWrongCredentials }) => {
@@ -23,7 +23,7 @@ export const FindYourEmailContainer = ({ updateUser, text,  userData, updateFind
         };
     }, []);
 
-    const isImagePreloaded = useImagePreload(errorImage);
+    
 
 // Change Language
 
@@ -74,7 +74,7 @@ export const FindYourEmailContainer = ({ updateUser, text,  userData, updateFind
         <>
             <FindYourEmailComponent
                 handleNextClick={handleNextClick}
-                isImagePreloaded={isImagePreloaded}
+                
                 errorCondition={errorCondition}
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}

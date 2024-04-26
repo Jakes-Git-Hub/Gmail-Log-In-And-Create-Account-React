@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { components } from 'react-select';
 import { useNavigate } from 'react-router-dom';
 import { ConfirmYoureNotARobotComponent } from '../components/ConfirmYoureNotARobotComponent';
-import useImagePreload from '../hooks/useIsImagePreloadedHook';
-import errorImage from '../images/Daco_5575399.png';
+
+
 import axios from 'axios';
 import GBSVG from '../images/flags/gb2.svg';
 import googleWritingSvg from '../images/google-writing-svg.svg';
@@ -36,7 +36,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 
 // Loads Error Image
 
-    const isImagePreloaded = useImagePreload(errorImage);
+    
 
     useEffect(() => {
         const image = new Image();
@@ -395,7 +395,7 @@ const customStyles = {
                 value={phoneNumber}
                 setValue={setPhoneNumber}
                 handleNextClick={handleNextClick}
-                isImagePreloaded={isImagePreloaded}
+                
                 customOptions={customOptions}
                 customStyles={customStyles}
                 userIP={userIP}

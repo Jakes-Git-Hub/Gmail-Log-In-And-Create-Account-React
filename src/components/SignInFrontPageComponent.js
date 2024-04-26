@@ -36,9 +36,9 @@ export const SignInFrontPageComponent = ({
 
                 <form>
 
-                    <h1 class='thin h1-space'>{text.SignIn.h1[userData.language]}</h1>
+                    <h1 className='thin h1-space'>{text.SignIn.h1[userData.language]}</h1>
 
-                    <h2 class='thin gap'>Use your Google Account</h2>
+                    <h2 className='thin gap'>Use your Google Account</h2>
 
 
                     <TextField 
@@ -79,20 +79,20 @@ export const SignInFrontPageComponent = ({
                     />     
 
                     {errorCondition === 'emailOrPhoneEmpty' && isImagePreloaded && (
-                        <div class='error-div'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='error-div'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>Enter an email or phone number</p>
+                            <p className='input-error-message'>Enter an email or phone number</p>
                         </div>
                     )}
 
                     {errorCondition === 'couldntFindYourAccount' && isImagePreloaded && (
-                        <div class='error-div'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='error-div'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>Couldn't find your Google Account</p>
+                            <p className='input-error-message'>Couldn't find your Google Account</p>
                         </div>
                     )}    
                       
@@ -103,7 +103,7 @@ export const SignInFrontPageComponent = ({
                     </div>
 
                     <div id='sign-in-guest-mode-container'>
-                        <p class='p-sign-in'>Not your computer? Use Guest mode to sign in privately.</p>
+                        <p className='p-sign-in'>Not your computer? Use Guest mode to sign in privately.</p>
                         <TransparentSmallButtonSignInPage onClick={handleGuestModeInfoButtonClick} aria-label='Learn more about using guest mode button'>
                             Learn more about using Guest mode
                         </TransparentSmallButtonSignInPage>

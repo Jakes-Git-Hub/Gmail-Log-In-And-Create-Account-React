@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { VerifyWithPasswordComponent } from '../components/VerifyWithPasswordComponent';
-import useImagePreload from '../hooks/useIsImagePreloadedHook';
-import errorImage from '../images/Daco_5575399.png';
+
+
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const VerifyWithPasswordContainer = ({ updateUser, text,  userData,  handleLogin, userToVerifyWithPassword }) => {
@@ -28,7 +28,7 @@ export const VerifyWithPasswordContainer = ({ updateUser, text,  userData,  hand
         console.log('userToVerifyWithPassword:', userToVerifyWithPassword.password)
     }, []);
 
-    const isImagePreloaded = useImagePreload(errorImage);
+    
 
 // Change Language
 
@@ -91,7 +91,7 @@ export const VerifyWithPasswordContainer = ({ updateUser, text,  userData,  hand
             handleLanguageSelection={handleLanguageSelection}
             isImageLoaded={isImageLoaded}
             userData={userData}
-            isImagePreloaded={isImagePreloaded}
+            
         />
     </>
  );

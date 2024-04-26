@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AddRecoveryEmailComponent } from '../components/AddRecoveryEmailComponent';
-import useImagePreload from '../hooks/useIsImagePreloadedHook';
-import errorImage from '../images/Daco_5575399.png';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
-export const AddRecoveryEmailContainer = ({ updateUser, text,  userData,  }) => {
+export const AddRecoveryEmailContainer = ({ updateUser, text, userData }) => {
 
     const [recoveryEmail, setRecoveryEmail] = useState('');
     const [errorCondition, setErrorCondition] = useState(null);
@@ -16,8 +14,6 @@ export const AddRecoveryEmailContainer = ({ updateUser, text,  userData,  }) => 
     }, [errorCondition]);
 
     const navigate = useNavigate();
-
-    const isImagePreloaded = useImagePreload(errorImage);
 
     useEffect(() => {
         const image = new Image();
@@ -102,20 +98,19 @@ export const AddRecoveryEmailContainer = ({ updateUser, text,  userData,  }) => 
         navigate('/review-account-info');
     }
 
- return(
-    <>
-        <AddRecoveryEmailComponent
-            recoveryEmail={recoveryEmail}
-            setRecoveryEmail={setRecoveryEmail}
-            handleNextClick={handleNextClick}
-            isImagePreloaded={isImagePreloaded}
-            isImageLoaded={isImageLoaded}
-            errorCondition={errorCondition}
-            handleSkip={handleSkip}
-            handleLanguageSelection={handleLanguageSelection}
-            text={text}
-            userData={userData}
-        />
-    </>
- );
+    return(
+        <>
+            <AddRecoveryEmailComponent
+                recoveryEmail={recoveryEmail}
+                setRecoveryEmail={setRecoveryEmail}
+                handleNextClick={handleNextClick}
+                isImageLoaded={isImageLoaded}
+                errorCondition={errorCondition}
+                handleSkip={handleSkip}
+                handleLanguageSelection={handleLanguageSelection}
+                text={text}
+                userData={userData}
+            />
+        </>
+    );
 }

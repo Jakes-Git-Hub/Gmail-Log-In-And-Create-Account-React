@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChooseYourGmailAddressComponent } from '../components/ChooseYourGmailAddressComponent';
-import errorImage from '../images/Daco_5575399.png';
-import useImagePreload from '../hooks/useIsImagePreloadedHook';
+
+
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const ChooseYourGmailAddressContainer = ({ updateUser, users, text,  userData,  }) => {
@@ -13,7 +13,7 @@ export const ChooseYourGmailAddressContainer = ({ updateUser, users, text,  user
 
   const navigate = useNavigate();
 
-  const isImagePreloaded = useImagePreload(errorImage);
+  
 
   useEffect(() => {
     const image = new Image();
@@ -72,7 +72,7 @@ export const ChooseYourGmailAddressContainer = ({ updateUser, users, text,  user
                 email={email}
                 setEmail={setEmail}
                 handleNextClick={handleNextClick}
-                isImagePreloaded={isImagePreloaded}
+                
                 errorCondition={errorCondition}
                 handleSelectEmail={handleSelectEmail}
                 text={text}

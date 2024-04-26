@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CreatePasswordComponent } from '../components/CreatePasswordComponent';
-import useImagePreload from '../hooks/useIsImagePreloadedHook';
-import errorImage from '../images/Daco_5575399.png';
+
+
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const CreatePasswordContainer = ({ updateUser, text,  userData,  }) => {
@@ -25,7 +25,7 @@ export const CreatePasswordContainer = ({ updateUser, text,  userData,  }) => {
         };
     }, []);
 
-    const isImagePreloaded = useImagePreload(errorImage);
+    
 
 // Change Language
 
@@ -132,7 +132,7 @@ export const CreatePasswordContainer = ({ updateUser, text,  userData,  }) => {
             handleTogglePassword={handleTogglePassword}
             confirmYourPassword={confirmYourPassword}
             passwordMismatch={passwordMismatch}
-            isImagePreloaded={isImagePreloaded}
+            
             errorCondition={errorCondition}
             text={text}
             handleLanguageSelection={handleLanguageSelection}

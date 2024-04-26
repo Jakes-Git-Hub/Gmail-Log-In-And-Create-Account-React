@@ -8,6 +8,7 @@ import googleWritingSvg from '../images/google-writing-svg.svg';
 import CustomNextButton from './buttons/CustomNextButtonComponent';
 import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
 import LanguageChangerOverflow from './LanguageChanger/LanguageChangerOverflowComponent';
+import ErrorSVG from '../images/error-exclamation-indicator.svg';
 
 export const BirthdayAndGenderComponent = ({
     month, 
@@ -47,11 +48,11 @@ export const BirthdayAndGenderComponent = ({
             
                 <form>
 
-                    <h1 class='thin h1-space'>{text.BirthdayAndGender.h1[userData.language]}</h1>
+                    <h1 className='thin h1-space'>{text.BirthdayAndGender.h1[userData.language]}</h1>
 
-                    <h2 class='thin h2-bg'>{text.BirthdayAndGender.h2[userData.language]}</h2>
+                    <h2 className='thin h2-bg'>{text.BirthdayAndGender.h2[userData.language]}</h2>
 
-                    <div class='third-container-basic-information'>
+                    <div className='third-container-basic-information'>
 
 {/* Month */}
 
@@ -190,18 +191,18 @@ export const BirthdayAndGenderComponent = ({
                     </div>
 
                     {errorCondition === 'incompleteBirthday' && isImagePreloaded ? (
-                        <div class='error-div' id='error-div-space-basic-info'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='error-div' id='error-div-space-basic-info'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>{text.BirthdayAndGender.pleaseFillInCompleteBirthday[userData.language]}</p>
+                            <p className='input-error-message'>{text.BirthdayAndGender.pleaseFillInCompleteBirthday[userData.language]}</p>
                         </div>
                     ) : errorCondition === 'isWrongFormat' && isImagePreloaded ? (
-                        <div class='error-div' id='error-div-space-basic-info'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='error-div' id='error-div-space-basic-info'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>{text.BirthdayAndGender.pleaseEnterVAlidDate[userData.language]}</p>
+                            <p className='input-error-message'>{text.BirthdayAndGender.pleaseEnterVAlidDate[userData.language]}</p>
                         </div>
                     ) : (
                         <div className='hidden-error-message-container-create-account'></div>
@@ -209,7 +210,7 @@ export const BirthdayAndGenderComponent = ({
 
 {/* Gender */}
 
-                    <div class='line-height gender-input-width' id='gender-space'>
+                    <div className='line-height gender-input-width' id='gender-space'>
                         <Box>
                             <FormControl fullWidth error={genderEmpty}>
                                 <InputLabel 
@@ -257,11 +258,11 @@ export const BirthdayAndGenderComponent = ({
                     </div>  
 
                     {genderEmpty && isImagePreloaded ? (
-                        <div class='error-div' id='error-div-space-basic-info'>
-                            <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                        <div className='error-div' id='error-div-space-basic-info'>
+                            <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p class='input-error-message'>{text.BirthdayAndGender.pleaseSelectGender[userData.language]}</p>
+                            <p className='input-error-message'>{text.BirthdayAndGender.pleaseSelectGender[userData.language]}</p>
                         </div>
                     ) : (
                         <div className='hidden-error-message-container-BI'></div>
@@ -273,7 +274,7 @@ export const BirthdayAndGenderComponent = ({
 
                     {isCustomChecked && (
                         <>
-                            <div class='line-height gender-input-width' id='gender-space'>
+                            <div className='line-height gender-input-width' id='gender-space'>
                                 <Box>
                                         <TextField
                                             fullWidth error={customGenderEmpty}
@@ -312,17 +313,17 @@ export const BirthdayAndGenderComponent = ({
                             </div>
 
                             {customGenderEmpty && isImagePreloaded ? (
-                                <div class='error-div' id='error-div-space-basic-info'>
-                                    <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                                <div className='error-div' id='error-div-space-basic-info'>
+                                    <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                         <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                                     </svg>
-                                    <p class='input-error-message'>{text.BirthdayAndGender.pleaseIndicateGender[userData.language]}</p>
+                                    <p className='input-error-message'>{text.BirthdayAndGender.pleaseIndicateGender[userData.language]}</p>
                                 </div>
                             ) : (
                                 <div className='hidden-error-message-container-BI'></div>
                             )}
 
-                            <div class='line-height gender-input-width' id='gender-space'>
+                            <div className='line-height gender-input-width' id='gender-space'>
                                 <Box>
                                     <FormControl fullWidth error={pronounEmpty}>
                                         <InputLabel 
@@ -368,11 +369,11 @@ export const BirthdayAndGenderComponent = ({
                             </div>
 
                             {pronounEmpty && isImagePreloaded ? (
-                                <div class='error-div' id='error-div-space-basic-info'>
-                                    <svg aria-hidden='true' class='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
+                                <div className='error-div' id='error-div-space-basic-info'>
+                                    <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                         <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                                     </svg>
-                                    <p class='input-error-message'>{text.BirthdayAndGender.pleaseSelectPronoun[userData.language]}</p>
+                                    <p className='input-error-message'>{text.BirthdayAndGender.pleaseSelectPronoun[userData.language]}</p>
                                 </div>
                             ) : (
                                 <div className='hidden-error-message-container-BI'></div>
@@ -381,7 +382,7 @@ export const BirthdayAndGenderComponent = ({
                     )}
         
 
-                    <section class={errorCondition || genderEmpty ? 'button-right-error-BI' : 'button-right-BI'}>
+                    <section className={errorCondition || genderEmpty ? 'button-right-error-BI' : 'button-right-BI'}>
                         <CustomNextButton 
                             variant='contained' 
                             onClick={handleNextClick}
@@ -392,7 +393,7 @@ export const BirthdayAndGenderComponent = ({
                                 },
                             }}
                         >
-                            <div class='next'>
+                            <div className='next'>
                                 {text.BirthdayAndGender.next[userData.language]}
                             </div>
                         </CustomNextButton>

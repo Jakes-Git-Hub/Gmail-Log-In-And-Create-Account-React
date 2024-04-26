@@ -1,4 +1,9 @@
 import { jest } from '@jest/globals';
+import { AddRecoveryEmailContainer } from './AddRecoveryEmailContainer';
+import { render, screen } from '@testing-library/react'
+import { BrowserRouter as Router } from 'react-router-dom';
+import textData from '../data/textData'
+import '@testing-library/jest-dom/extend-expect';
 
 describe('AddRecoveryEmailContainer', () => {
     const recoveryEmail1 = 'test@gmail.com';
@@ -7,7 +12,17 @@ describe('AddRecoveryEmailContainer', () => {
     const recoveryEmail4 = 'test';
     const recoveryEmail5 = 'test@gmail';
     const recoveryEmail6 = 'te@asdfasdf@7';
-
+    it('renders without crashing', () => {
+        const mockUpdateUser = jest.fn();
+        const mockUserData = {};
+        render(
+            <Router>
+                <AddRecoveryEmailContainer updateUser={mockUpdateUser} text={textData} userData={mockUserData}/>
+            </Router>
+        );
+        const AREComp = screen.getByTestId('AREComp');
+        expect(AREComp).toBeInTheDocument();
+    });
     describe('handleLanguageSelection', () => {
         it('should call updateUser with the correct language', () => {
             updateUser = jest.fn();
@@ -343,15 +358,16 @@ describe('AddRecoveryEmailContainer', () => {
     });
     describe('handleNextClick', () => {
         it('calls preventDefault and handleEmailValidation', () => {
-            let handleEmailValidation, recoveryEmail;
-
-            const handleNextClick = jest.fn(e => {
+            const handleEmailValidation = jest.fn();
+            let recoveryEmail;
+    
+            const handleNextClick = e => {
                 e.preventDefault();
                 handleEmailValidation(recoveryEmail);
-            });
+            };
             
             const e = { preventDefault: jest.fn() };
-
+    
             handleNextClick(e);
             expect(e.preventDefault).toHaveBeenCalled();
             expect(handleEmailValidation).toHaveBeenCalledWith(recoveryEmail);

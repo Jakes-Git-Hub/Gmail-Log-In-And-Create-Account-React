@@ -29,11 +29,11 @@ export const ManualChooseYourSettingsComponent4 = ({
                 </div>
                 <img src={googleWritingSvg} alt='Google Writing' id='google-writing-recovery-ryai'/>
 
-                <h1 class='thin h1-space h1-mcys'>{text.ManualChooseYourSettings4.h1[userData.language]}</h1>
-                <p class='first-p-mcys'>{text.ManualChooseYourSettings4.step}</p>
+                <h1 className='thin h1-space h1-mcys'>{text.ManualChooseYourSettings4.h1[userData.language]}</h1>
+                <p className='first-p-mcys'>{text.ManualChooseYourSettings4.step}</p>
 
                 <div id='container-choose-your-settings-m'>
-                    <p class='regular-p'>{text.ManualChooseYourSettings4.choose}</p>
+                    <p className='regular-p'>{text.ManualChooseYourSettings4.choose}</p>
                     <ul id='bullet-points-mcys'>
                         <li className='modal-li'>{text.ManualChooseYourSettings4.bullet1}</li>
                         <li className='modal-li'>{text.ManualChooseYourSettings4.bullet2}</li>
@@ -98,10 +98,10 @@ export const ManualChooseYourSettingsComponent4 = ({
                 </RadioGroup>
 
                 <div id='container-choose-your-settings-m'>
-                    <p class='regular-p grey-mcys'>{text.ManualChooseYourSettings4.youCanChange}</p>
+                    <p className='regular-p grey-mcys'>{text.ManualChooseYourSettings4.youCanChange}</p>
                 </div>
 
-                <div class='next-and-skip-button-duo button-space-mcys'>
+                <div className='next-and-skip-button-duo button-space-mcys'>
                     <CustomNextAndSkipButton 
                         className='duo' 
                         variant='contained' 

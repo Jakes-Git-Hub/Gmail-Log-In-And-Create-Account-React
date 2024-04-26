@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GetAVerificationCodeEmailComponent } from '../components/GetAVerificationCodeEmailComponent';
-import useImagePreload from '../hooks/useIsImagePreloadedHook';
-import errorImage from '../images/Daco_5575399.png';
+
+
 import googleWritingSvg from '../images/google-writing-svg.svg';
 import axios from 'axios';
 
@@ -26,7 +26,7 @@ export const GetAVerificationCodeEmailContainer = ({ updateUser, text,  userData
         console.log('findYourEmailCredentials.phoneNumberOrEmail', findYourEmailCredentials.phoneNumberOrEmail);
     }, []);
 
-    const isImagePreloaded = useImagePreload(errorImage);
+    
 
 // Change Language
 
@@ -75,7 +75,7 @@ export const GetAVerificationCodeEmailContainer = ({ updateUser, text,  userData
         <>
             <GetAVerificationCodeEmailComponent
                 handleSendClick={handleSendClick}
-                isImagePreloaded={isImagePreloaded}
+                
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
                 isImageLoaded={isImageLoaded}

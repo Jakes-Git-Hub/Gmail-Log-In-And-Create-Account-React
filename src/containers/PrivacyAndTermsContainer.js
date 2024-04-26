@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PrivacyAndTermsComponent } from '../components/PrivacyAndTermsComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
-import errorImage from '../images/Daco_5575399.png';
-import useImagePreload from '../hooks/useIsImagePreloadedHook';
+
+
 
 export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, handleLogin, loggedIn,   }) => {
 
@@ -16,7 +16,7 @@ export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, 
 
 // Check for Image Loads
 
-    const isImagePreloaded = useImagePreload(errorImage);
+    
 
     useEffect(() => {
         const image = new Image();
@@ -83,7 +83,7 @@ export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, 
                 handleNextClick={handleNextClick}
                 isImageLoaded={isImageLoaded}
                 userData={userData}
-                isImagePreloaded={isImagePreloaded}
+                
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
                 handleBackClick={handleBackClick}
