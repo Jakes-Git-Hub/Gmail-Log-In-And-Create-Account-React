@@ -1,6 +1,6 @@
 import { jest } from '@jest/globals';
 import { AddRecoveryEmailContainer } from './AddRecoveryEmailContainer';
-import { render, screen } from '@testing-library/react'
+import { render, screen, act } from '@testing-library/react'
 import { BrowserRouter as Router } from 'react-router-dom';
 import textData from '../data/textData'
 import '@testing-library/jest-dom/extend-expect';
@@ -12,9 +12,9 @@ describe('AddRecoveryEmailContainer', () => {
     const recoveryEmail4 = 'test';
     const recoveryEmail5 = 'test@gmail';
     const recoveryEmail6 = 'te@asdfasdf@7';
+    const mockUpdateUser = jest.fn();
+    const mockUserData = {};
     it('renders without crashing', () => {
-        const mockUpdateUser = jest.fn();
-        const mockUserData = {};
         render(
             <Router>
                 <AddRecoveryEmailContainer updateUser={mockUpdateUser} text={textData} userData={mockUserData}/>
@@ -22,6 +22,29 @@ describe('AddRecoveryEmailContainer', () => {
         );
         const AREComp = screen.getByTestId('AREComp');
         expect(AREComp).toBeInTheDocument();
+    });
+    it('loads image', () => {
+        const googleWritingSvg = 'google-writing-svg.svg';
+    
+        jest.spyOn(global, 'Image').mockImplementation(function() {
+          this.src = '';
+        });
+    
+        act(() => {
+            render(
+                <Router>
+                    <AddRecoveryEmailContainer 
+                        updateUser={mockUpdateUser} 
+                        text={textData} 
+                        userData={mockUserData}
+                    />
+                </Router>
+            );
+        });
+    
+        expect(global.Image).toHaveBeenCalled();
+        const imageInstance = global.Image.mock.instances[0];
+        expect(imageInstance.src).toBe(googleWritingSvg);
     });
     describe('handleLanguageSelection', () => {
         it('should call updateUser with the correct language', () => {
