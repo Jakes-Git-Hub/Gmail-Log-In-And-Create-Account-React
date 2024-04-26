@@ -30,23 +30,27 @@ export const BirthdayAndGenderContainer = ({ updateUser, text,  userData, }) => 
         };
     }, []);
 
+    useEffect(() => {
+        console.log('month', month);
+    }, [month])
+
 // Change Language
 
     const handleLanguageSelection = chosenLanguage => updateUser({ language: chosenLanguage})
 
 // Month
 
-    const handleSelectMonth = (event, day, year) => {
-        setMonth(event.target.value);
+    const handleSelectMonth = e => {
+        setMonth(e.target.value);
         if (day && year) {
             setErrorCondition(null);
         }
-    };
+    }
 
 // Day
 
-    const handleSelectDay = (event, year, month) => {
-        const inputDay = event.target.value;
+    const handleSelectDay = e => {
+        const inputDay = e.target.value;
         const maxDayLength = 2;
         if (inputDay.length <= maxDayLength) {
             setDay(inputDay);
@@ -54,58 +58,58 @@ export const BirthdayAndGenderContainer = ({ updateUser, text,  userData, }) => 
                 setErrorCondition(null);
             } 
         }
-    };
+    }
 
 // Year
 
-    const handleSelectYear = (event, day, month) => {
-        const inputYear = event.target.value;
+    const handleSelectYear = e => {
+        const inputYear = e.target.value;
         setYear(inputYear);
         if (inputYear.length === 4 && month && day && day.length === 2 && !isNaN(Number(day)) && !isNaN(Number(inputYear))) {
-                setErrorCondition(null);
+            setErrorCondition(null);
         }
-    };
+    }
 
 // Gender
 
-    const handleSelectGender = (event) => {
-        setGender(event.target.value);
+    const handleSelectGender = e => {
+        setGender(e.target.value);
         setGenderEmpty(false);
-        if (event.target.value === 'Custom') {
+        if (e.target.value === 'Custom') {
             setIsCustomChecked(true);
         } else {
             setIsCustomChecked(false);
         }
-    };
+    }
 
 // Custom Gender
 
-    const handleSelectCustomGender = (e) => {
+    const handleSelectCustomGender = e => {
         setCustomGender(e.target.value);
-    };
+    }
 
 // Pronoun
 
-    const handleSelectPronoun = (e) => {
+    const handleSelectPronoun = e => {
         setPronoun(e.target.value);
         setPronounEmpty(false);
-    };
+    }
 
 // Error Messages
 
-    const birthdayError = () => setErrorCondition('incompleteBirthday');
+    const birthdayError = () => setErrorCondition('incompleteBirthday')
 
-    const wrongFormat = () => setErrorCondition('isWrongFormat');
+    const wrongFormat = () => setErrorCondition('isWrongFormat')
     
-    const genderError = () => setGenderEmpty(true);
+    const genderError = () => setGenderEmpty(true)
 
-    const customGenderError = () => setCustomGenderEmpty(true);
+    const customGenderError = () => setCustomGenderEmpty(true)
 
-    const pronounError = () => setPronounEmpty(true);
+    const pronounError = () => setPronounEmpty(true)
 
-// Handle Next Click
+// Validate User Basic Info
 
-    const handleNextClick = () => {
+    const validateUserBasicInfo = () => {
         const isGenderEmpty = gender === '';
         const numericDay = +day;
         const numericYear = +year;
@@ -129,8 +133,12 @@ export const BirthdayAndGenderContainer = ({ updateUser, text,  userData, }) => 
         } if (isPronounEmpty && isCustomChecked) {
             pronounError();
         }
-        
-    };
+    }
+
+// Handle Next Click
+
+    const handleNextClick = () => validateUserBasicInfo();
+
 
     return (
         <BirthdayAndGenderComponent

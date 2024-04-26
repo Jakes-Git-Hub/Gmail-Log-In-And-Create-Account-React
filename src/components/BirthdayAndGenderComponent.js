@@ -73,7 +73,7 @@ export const BirthdayAndGenderComponent = ({
                                 <Select
                                     value={month}
                                     label={text.BirthdayAndGender.month[userData.language]}
-                                    onChange={(e) => handleSelectMonth(e, year, day)}
+                                    onChange={e => handleSelectMonth(e)}
                                     native='true'
                                     aria-label='select month of birth'
                                     aria-invalid={errorCondition ? true : false}
