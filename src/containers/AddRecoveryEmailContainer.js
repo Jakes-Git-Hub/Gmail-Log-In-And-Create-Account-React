@@ -9,10 +9,6 @@ export const AddRecoveryEmailContainer = ({ updateUser, text, userData }) => {
     const [errorCondition, setErrorCondition] = useState(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false);  
 
-    useEffect(() => {
-        console.log('errorCondition', errorCondition)
-    }, [errorCondition]);
-
     const navigate = useNavigate();
 
     useEffect(() => {

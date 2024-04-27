@@ -11,7 +11,6 @@ export const ConfirmYoureNotARobotComponent = ({
     phoneNumber,
     handleSelectPhoneNumber,
     handleNextClick,
-    isImagePreloaded,
     customOptions,
     customStyles,
     customDropdownIndicator,
@@ -33,7 +32,7 @@ export const ConfirmYoureNotARobotComponent = ({
 
         <>
 
-            <main id='google-container-responsive'>
+            <main id='google-container-responsive' data-testid='CYNAR'>
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                     <div className='blue-snake-loader'></div>
                 </div>
@@ -41,18 +40,16 @@ export const ConfirmYoureNotARobotComponent = ({
 
                 <form>
 
-
                     <h1 className='thin' id='h1-cynar'>{text.ConfirmYoureNotARobot.h1[userData.language]}</h1>
 
                     <div id='h2-cynar-div'>
                         <h2 id='h2-cynar'>{text.ConfirmYoureNotARobot.h2[userData.language]}</h2>
                     </div>
                     
-
                     <div id='add-phone-number-dropdown-and-input'>
                         <Select
                             styles={customStyles}
-                            className='flag-drop-down'
+                            class='flag-drop-down'
                             options={customOptions}
                             aria-label='Select your Country'
                             components={{ 
@@ -119,28 +116,28 @@ export const ConfirmYoureNotARobotComponent = ({
                         </div>
                     </div>
 
-                    {errorCondition === 'phoneNumberEmpty' && isImagePreloaded ? (
+                    {errorCondition === 'phoneNumberEmpty'  ? (
                         <div className='long-error-div' id='error-div-space-cynar'>
                             <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
                             <p className='input-error-message'>{text.ConfirmYoureNotARobot.error1[userData.language]}</p>
                         </div>
-                    ) : errorCondition === 'incorrectFormat' && isImagePreloaded ? (
+                    ) : errorCondition === 'incorrectFormat'  ? (
                         <div className='error-div' id='error-div-space-cynar'>
                             <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
                             <p className='input-error-message'>{text.ConfirmYoureNotARobot.error2[userData.language]}</p>
                         </div>
-                    ) : errorCondition === 'alreadyRegistered' && isImagePreloaded ? (
+                    ) : errorCondition === 'alreadyRegistered'  ? (
                         <div className='error-div' id='error-div-space-cynar'>
                             <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
                             <p className='input-error-message'>{text.ConfirmYoureNotARobot.error3[userData.language]}</p>
                         </div>
-                    ) : errorCondition === 'incorrectNumber' && isImagePreloaded ? (
+                    ) : errorCondition === 'incorrectNumber'  ? (
                         <div className='error-div' id='error-div-space-cynar'>
                             <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>

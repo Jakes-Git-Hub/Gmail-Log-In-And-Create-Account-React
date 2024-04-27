@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { components } from 'react-select';
 import { useNavigate } from 'react-router-dom';
 import { ConfirmYoureNotARobotComponent } from '../components/ConfirmYoureNotARobotComponent';
-
-
 import axios from 'axios';
 import GBSVG from '../images/flags/gb2.svg';
 import googleWritingSvg from '../images/google-writing-svg.svg';
@@ -23,6 +21,14 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
     const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
+    
+    useEffect(() => {
+        const image = new Image();
+        image.src = googleWritingSvg;
+        image.onload = () => {
+          setIsImageLoaded(true);
+        };
+    }, []);
 
 // Change Language
 
@@ -33,19 +39,6 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
     useEffect(() => {
         setFilteredCountries(translatedCountries);
     }, [translatedCountries]);
-
-// Loads Error Image
-
-    
-
-    useEffect(() => {
-        const image = new Image();
-        image.src = googleWritingSvg;
-        image.onload = () => {
-          setIsImageLoaded(true);
-        };
-        console.log('hasSelectedCYNARCountry:', hasSelectedCYNARCountry);
-    }, []);
 
 // Get User's Country from IP and Set Placeholder SVG and Top Option Based on it
 
@@ -395,7 +388,6 @@ const customStyles = {
                 value={phoneNumber}
                 setValue={setPhoneNumber}
                 handleNextClick={handleNextClick}
-                
                 customOptions={customOptions}
                 customStyles={customStyles}
                 userIP={userIP}

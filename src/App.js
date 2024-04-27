@@ -1,5 +1,6 @@
 import React, { useState, useEffect, } from "react";
 import textData from './data/textData';
+import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
 import { useUserIP } from './hooks/useGrabUsersIPHook';
 import { filteredCountriesFromUtil } from './utils/countryDropDownOptions';
@@ -43,15 +44,78 @@ function App() {
   const [isWrongCredentials, setIsWrongCredentials] = useState(null);
   const [userToVerifyWithPassword, setUserToVerifyWithPassword] = useState('');
 
+// Translation
+
+  const googleAPIKey = process.env.REACT_APP_GOOGLE_API_KEY;
+
+  useEffect(() => {
+    handleLanguageSelection();
+    console.log('chosenLanguage:', userData.language);
+  }, [userData.language]);
+
+  useEffect(() => {
+    console.log('findYourEmailCredentials:', findYourEmailCredentials);
+  }, [findYourEmailCredentials]);
+
+  useEffect(() => {
+    console.log('translatedCountries:', translatedCountries);
+  }, [translatedCountries]);
+
+  const handleLanguageSelection = async () => {
+    if (!userData.language) return;
+    const chosenLanguage = userData.language;
+
+    try {
+
+        const newTranslatedCountries = await Promise.all(filteredCountriesFromUtil.map(async (country) => {
+            const translatedName = await changeLanguageAndTranslate(country.name, chosenLanguage);
+            return { ...country, name: translatedName };
+        }));
+
+        const sanitizedTranslatedCountries = sanitizeCountryNames(newTranslatedCountries);
+
+        const orderedSanitizedTranslatedCountries = [...sanitizedTranslatedCountries].sort((a, b) => a.name.localeCompare(b.name));
+
+        // Update the translatedCountries state with new translated countries
+        setTranslatedCountries(orderedSanitizedTranslatedCountries);
+
+    } catch (error) {
+        console.error('Error translating text:', error);
+    }
+  }
+
+  const changeLanguageAndTranslate = async (text, chosenLanguage) => {
+      updateUser({ language: chosenLanguage })
+      try {
+        const res = await axios.post(`https://translation.googleapis.com/language/translate/v2?key=${googleAPIKey}`, {
+          q: text,
+          target: chosenLanguage,
+        });
+        return res.data.data.translations[0].translatedText;
+      } catch (error) {
+        console.error('Error translating text:', error);
+        return null;
+      }
+  }
+
+  const sanitizeCountryNames = (countries) => {
+    const sanitizedCountries = countries.map(country => ({
+      ...country,
+      name: country.name.replace(/&#39;/, "'")
+    }));
+
+    return sanitizedCountries;
+  };
+
 // Grab User's IP
 
-const { userIP } = useUserIP()
+  const { userIP } = useUserIP()  
 
-useEffect(() => {
-  console.log('userIP', userIP);
-}, [userIP]);
+  useEffect(() => {
+    console.log('userIP', userIP);
+  }, [userIP]);
 
-const IPGeoLocationAPIKey = process.env.REACT_APP_IP_GEO_LOCATION_API_KEY;
+  const IPGeoLocationAPIKey = process.env.REACT_APP_IP_GEO_LOCATION_API_KEY;
 
 // Handle Log Ins
 
