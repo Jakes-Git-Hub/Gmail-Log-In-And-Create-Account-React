@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { ChooseYourSettingsComponent } from '../components/ChooseYourSettingsComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
-
-
 export const ChooseYourSettingsContainer = ({ userData, updateUser, text, }) => {
 
     const [setting, setSetting] = useState('');
@@ -14,8 +12,6 @@ export const ChooseYourSettingsContainer = ({ userData, updateUser, text, }) => 
     const navigate = useNavigate();
 
 // Check for Image Loads
-
-    
 
     useEffect(() => {
         const image = new Image();
@@ -31,7 +27,7 @@ export const ChooseYourSettingsContainer = ({ userData, updateUser, text, }) => 
 
 // Handle Radio Change
 
-    const handleRadioChange = (e) => {
+    const handleRadioChange = e => {
         setSetting(e.target.value);
         if (errorCondition === 'selectAnOption') {
             setErrorCondition('');
@@ -40,11 +36,11 @@ export const ChooseYourSettingsContainer = ({ userData, updateUser, text, }) => 
 
 // Errors
 
-    const setError = (error) => setErrorCondition(error);
+    const setError = error => setErrorCondition(error);
 
 // Handle Next Click
 
-    const handleNextClick = (e) => {
+    const handleNextClick = e => {
         e.preventDefault();
         if (setting === '') {
             setError('selectAnOption');
@@ -57,7 +53,6 @@ export const ChooseYourSettingsContainer = ({ userData, updateUser, text, }) => 
         }
     };
 
-
     return(
         <>
             <ChooseYourSettingsComponent
@@ -67,11 +62,8 @@ export const ChooseYourSettingsContainer = ({ userData, updateUser, text, }) => 
                 setting={setting}
                 handleRadioChange={handleRadioChange}
                 errorCondition={errorCondition}
-                
                 text={text}
                 handleLanguageSelection={handleLanguageSelection}
-                
-                
             />
         </>
     );

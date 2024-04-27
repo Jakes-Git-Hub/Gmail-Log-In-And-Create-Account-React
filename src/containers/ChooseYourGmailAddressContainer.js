@@ -4,7 +4,7 @@ import { ChooseYourGmailAddressComponent } from '../components/ChooseYourGmailAd
 
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
-export const ChooseYourGmailAddressContainer = ({ updateUser, users, text,  userData,  }) => {
+export const ChooseYourGmailAddressContainer = ({ updateUser, users, text,  userData, }) => {
 
   const [email, setEmail] = useState('');
   const [errorCondition, setErrorCondition] = useState(null);
