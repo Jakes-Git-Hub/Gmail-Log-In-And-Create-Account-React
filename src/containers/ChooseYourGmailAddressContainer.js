@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChooseYourGmailAddressComponent } from '../components/ChooseYourGmailAddressComponent';
 
-
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const ChooseYourGmailAddressContainer = ({ updateUser, users, text,  userData,  }) => {
@@ -12,8 +11,6 @@ export const ChooseYourGmailAddressContainer = ({ updateUser, users, text,  user
   const [isImageLoaded, setIsImageLoaded] = useState(false); 
 
   const navigate = useNavigate();
-
-  
 
   useEffect(() => {
     const image = new Image();
@@ -25,46 +22,42 @@ export const ChooseYourGmailAddressContainer = ({ updateUser, users, text,  user
 
 // Change Language
 
-  const handleLanguageSelection = (chosenLanguage) => {
-    updateUser({ language: chosenLanguage})
-  };
+  const handleLanguageSelection = chosenLanguage => updateUser({ language: chosenLanguage});
 
 // Email
 
-    const handleSelectEmail = (e) => {
-        setEmail(e.target.value);
-    };
+  const handleSelectEmail = e => setEmail(e.target.value);
 
 // Errors
 
-    const usernameEmpty = () => setErrorCondition('usernameEmpty');
+  const error = error => setErrorCondition(error);
 
-    const incorrectLength = () => setErrorCondition('isIncorrectLength');
+// Validate Email Address
 
-    const unallowedChars = () => setErrorCondition('usesUnallowedChars');
-
-    const usernameIsAlreadyTaken = () => setErrorCondition('usernameIsAlreadyTaken');
+  const validateEmail = () => {
+    setEmail(email)
+    const usernameInput = document.getElementById('usernameInput');
+    if (email === '') {
+      error('usernameEmpty');
+      usernameInput.focus();
+    } else if (!/^[a-zA-Z0-9.]+$/.test(email)) {
+      error('usesUnallowedChars');
+      usernameInput.focus();
+    } else if (email.length < 6 || email.length > 30) {
+      error('isIncorrectLength');
+      usernameInput.focus();
+    } else if (users.find(user => user.email === email + '@gmail.com')) {
+      error('usernameIsAlreadyTaken');
+      usernameInput.focus();
+    } else {
+      updateUser({ email: email + '@gmail.com' })
+      navigate('/create-password')
+    }
+  };
 
 // Handle Next Click
 
-  const handleNextClick = () => {
-      setEmail(email)
-      if (email === '') {
-        const usernameInput = document.getElementById('usernameInput');
-        usernameEmpty();
-        usernameInput.focus();
-      } else if (!/^[a-zA-Z0-9.]+$/.test(email)) {
-        // Check if the email contains unallowed characters
-        unallowedChars();
-      } else if (email.length < 6 || email.length > 30) {
-        incorrectLength();
-      } else if (users.find(user => user.email === email + '@gmail.com')) {
-        usernameIsAlreadyTaken();
-      } else {
-        updateUser({ email: email + '@gmail.com' })
-        navigate('/create-password')
-      }
-  };
+  const handleNextClick = () => validateEmail();
 
     return (
         <>
@@ -72,17 +65,13 @@ export const ChooseYourGmailAddressContainer = ({ updateUser, users, text,  user
                 email={email}
                 setEmail={setEmail}
                 handleNextClick={handleNextClick}
-                
                 errorCondition={errorCondition}
                 handleSelectEmail={handleSelectEmail}
                 text={text}
                 handleLanguageSelection={handleLanguageSelection}
                 isImageLoaded={isImageLoaded}
-                
                 userData={userData}
-                
             />
         </>
     )
-    
 }
