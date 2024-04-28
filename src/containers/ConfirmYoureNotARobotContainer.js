@@ -57,7 +57,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
             }
         } else if (userIP && hasSelectedCYNARCountry === false) {
             console.log('actualSelectedOption:', actualSelectedOption)
-            axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}&ip=102.217.238.0`)
+            axios.get(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}&ip=${userIP}`)
             .then((response) => {
                 const countryFromIP = response.data.country_name;
                 const matchingCountry = filteredCountries.find(country => country.name === countryFromIP);
@@ -119,8 +119,8 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                     />
                     <span className='country-option'>
                         {usersCountryFlagSVG 
-                            ? (filteredCountries.find(country => country.svg === usersCountryFlagSVG) || {}).name 
-                            : (unitedKingdom || {}).name} 
+                            ? (filteredCountries.find(country => country.svg === usersCountryFlagSVG) || {}).name + ' ' 
+                            : (unitedKingdom || {}).name + ' '} 
                         ({usersCountryFlagSVG 
                             ? (filteredCountries.find(country => country.svg === usersCountryFlagSVG) || {}).dialingCode 
                             : (unitedKingdom || {}).dialingCode})
