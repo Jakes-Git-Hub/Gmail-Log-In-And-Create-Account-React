@@ -1,13 +1,10 @@
 import { jest } from '@jest/globals';
 import { ConfirmYourSettingsContainer } from './ConfirmYourSettingsContainer';
-import { render, screen, waitFor} from '@testing-library/react'
+import { render, screen, } from '@testing-library/react'
 import { BrowserRouter as Router } from 'react-router-dom';
 import textData from '../data/textData'
 import '@testing-library/jest-dom/extend-expect';
-import React, { useEffect } from 'react';
-import { unmountComponentAtNode } from 'react-dom';
-import { act } from 'react-dom/test-utils';
-import axios from 'axios';
+import React from 'react';
 
 describe('ConfirmYourSettingsContainer', () => {
     const mockUpdateUser = jest.fn();

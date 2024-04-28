@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CreateAccountComponent } from '../components/CreateAccountComponent';
 
-
 import googleWritingSvg from '../images/google-writing-svg.svg';
+import { error } from 'jquery';
 
 export const CreateAccountContainer = ({ updateUser, text,  userData, }) => {
 
@@ -25,7 +25,6 @@ export const CreateAccountContainer = ({ updateUser, text,  userData, }) => {
     }, []);
 
     
-
 // Change Language
 
     const handleLanguageSelection = chosenLanguage => updateUser({ language: chosenLanguage})
@@ -34,20 +33,18 @@ export const CreateAccountContainer = ({ updateUser, text,  userData, }) => {
 
     // Allow Only String Values to be Inputted
 
-    const isLetters = (str) => /^[A-Za-z]*$/.test(str);
+    const isLetters = str => /^[A-Za-z]+$/.test(str);
 
-    const onFirstNameInputChange = (e) => {
+    const onFirstNameInputChange = e => {
         const { value } = e.target;
         if (isLetters(value)) {
           setFirstName(value);
         }
     };
 
-// First Name Errors
+// Errors
 
-    const firstNameError = () => setErrorCondition('firstNameEmpty');
-
-    const unsureNameIsCorrect = () => setErrorCondition('areYouSureCorrect');
+    const setError = error => setErrorCondition(error);
 
 // Last Name - Allow Only Letters
 
@@ -70,13 +67,13 @@ export const CreateAccountContainer = ({ updateUser, text,  userData, }) => {
         } 
 
         if (firstName.length > 0 && firstName.length <= 2) {
-            unsureNameIsCorrect();
+            setError('areYouSureCorrect');
             if (firstNameInput) {
                 firstNameInput.focus();
              }
         }
         if (firstName === '') {
-            firstNameError();
+            setError('firstNameEmpty');
             if (firstNameInput) {
                firstNameInput.focus();
             }
@@ -91,7 +88,6 @@ export const CreateAccountContainer = ({ updateUser, text,  userData, }) => {
                 setLastName={setLastName}
                 lastName={lastName}
                 handleNextClick={handleNextClick}
-                
                 onFirstNameInputChange={onFirstNameInputChange}
                 onLastNameInputChange={onLastNameInputChange}
                 errorCondition={errorCondition}
@@ -99,7 +95,6 @@ export const CreateAccountContainer = ({ updateUser, text,  userData, }) => {
                 text={text}
                 isImageLoaded={isImageLoaded}
                 userData={userData}
-                
             />
         </>
     );

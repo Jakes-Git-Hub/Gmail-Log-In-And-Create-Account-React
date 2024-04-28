@@ -24,7 +24,7 @@ export const CreateAccountComponent = ({
 
         <>
 
-            <main id='google-container-responsive'>
+            <main id='google-container-responsive' data-testid='CA'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                 <div className='blue-snake-loader'></div>
