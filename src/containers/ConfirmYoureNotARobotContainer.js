@@ -77,7 +77,9 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 // Custom Options
 
     useEffect(() => {
-        const countryOption = filteredCountries.find(country => country.svg === countryFromAPIOrSelection.svg);
+        const countryOption = filteredCountries && Array.isArray(filteredCountries) 
+            ? filteredCountries.find(country => country.svg === countryFromAPIOrSelection.svg)
+            : undefined;
         if (countryOption && hasSelectedCYNARCountry === false) {
             setSelectedOption({
                 value: countryOption,
@@ -88,13 +90,19 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
     }, [countryFromAPIOrSelection]);
     
     useEffect(() => {
-        const newTopOption = filteredCountries.find(country => country.svg === countryFromAPIOrSelection.svg) || 'United Kingdom';
+        const newTopOption = filteredCountries && Array.isArray(filteredCountries) 
+            ? filteredCountries.find(country => country.svg === countryFromAPIOrSelection.svg) 
+            : 'United Kingdom';
         setTopOption(newTopOption);
-        const newFilteredCountries = filteredCountries.sort((a, b) => a.name.localeCompare(b.name));
+        const newFilteredCountries = Array.isArray(filteredCountries) 
+            ? filteredCountries.sort((a, b) => a.name.localeCompare(b.name)) 
+            : [];
         setFilteredCountries(newFilteredCountries);
     }, [selectedOption, countryFromAPIOrSelection]);
 
-    const unitedKingdom = filteredCountries.find(country => country.abbreviation === 'gb');
+    const unitedKingdom = filteredCountries && Array.isArray(filteredCountries) 
+    ? filteredCountries.find(country => country.abbreviation === 'gb')
+    : undefined;
 
     const customOptions = [
         // Top Option
@@ -110,7 +118,12 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                         height='16'
                     />
                     <span className='country-option'>
-                        {usersCountryFlagSVG ? filteredCountries.find(country => country.svg === usersCountryFlagSVG).name : unitedKingdom.name} ({usersCountryFlagSVG ? filteredCountries.find(country => country.svg === usersCountryFlagSVG).dialingCode : unitedKingdom.dialingCode})
+                        {usersCountryFlagSVG 
+                            ? (filteredCountries.find(country => country.svg === usersCountryFlagSVG) || {}).name 
+                            : (unitedKingdom || {}).name} 
+                        ({usersCountryFlagSVG 
+                            ? (filteredCountries.find(country => country.svg === usersCountryFlagSVG) || {}).dialingCode 
+                            : (unitedKingdom || {}).dialingCode})
                     </span>
                 </div>
             ),
@@ -124,7 +137,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
             isDisabled: true,
         },
         // Add the rest of the translatedCountries
-        ...filteredCountries.map((country) => ({
+        ...(Array.isArray(filteredCountries) ? filteredCountries : []).map((country) => ({
             value: country,
             label: (
                 <div>
@@ -147,19 +160,19 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 
     const chosenCountryFlagImage = ({ children, ...props }) => {
         return (
-        <components.SingleValue {...props}>
-            {props.data && props.data.value ? (
-                <img
-                    src={require(`../images/flags/${props.data.value.svg || 'gb2.svg'}`)}
-                    className='flag-image'
-                    alt={`${props.data.value.name} flag3`}
-                    style={{ 
-                        marginLeft: '14px',
-                        marginBottom: '2px',
-                    }}
-                />
-            ) : null}
-        </components.SingleValue>
+            <components.SingleValue {...props}>
+                {props.data && props.data.value ? (
+                    <img
+                        src={require(`../images/flags/${props.data.value.svg || 'gb2.svg'}`)}
+                        className='flag-image'
+                        alt={`${props.data.value.name} flag3`}
+                        style={{ 
+                            marginLeft: '14px',
+                            marginBottom: '2px',
+                        }}
+                    />
+                ) : null}
+            </components.SingleValue>
         );
     };
 
@@ -196,7 +209,6 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
     const handleSelectPhoneNumber = (e) => {
         setPhoneNumber(e.target.value);
     };
-
 
 // Handle Next Click
 
