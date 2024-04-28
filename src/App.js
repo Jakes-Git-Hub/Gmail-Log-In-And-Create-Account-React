@@ -53,14 +53,6 @@ function App() {
     console.log('chosenLanguage:', userData.language);
   }, [userData.language]);
 
-  useEffect(() => {
-    console.log('findYourEmailCredentials:', findYourEmailCredentials);
-  }, [findYourEmailCredentials]);
-
-  useEffect(() => {
-    console.log('translatedCountries:', translatedCountries);
-  }, [translatedCountries]);
-
   const handleLanguageSelection = async () => {
     if (!userData.language) return;
     const chosenLanguage = userData.language;
@@ -101,7 +93,7 @@ function App() {
   const sanitizeCountryNames = (countries) => {
     const sanitizedCountries = countries.map(country => ({
       ...country,
-      name: country.name.replace(/&#39;/, "'")
+      name: country.name.replace(/&#39;/g, "'")
     }));
 
     return sanitizedCountries;
