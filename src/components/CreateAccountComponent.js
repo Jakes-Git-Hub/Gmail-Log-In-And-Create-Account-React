@@ -4,12 +4,10 @@ import CustomNextButton from './buttons/CustomNextButtonComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
 
-
 export const CreateAccountComponent = ({ 
     firstName,
     lastName,
     handleNextClick,
-    isImagePreloaded,
     onFirstNameInputChange,
     onLastNameInputChange,
     errorCondition,
@@ -17,7 +15,6 @@ export const CreateAccountComponent = ({
     text,
     isImageLoaded,
     userData,
-    
 }) => {
 
     return (
@@ -127,8 +124,6 @@ export const CreateAccountComponent = ({
                             </div>
                         </CustomNextButton>
                     </div>
-
-                    
 
                 </form>
 

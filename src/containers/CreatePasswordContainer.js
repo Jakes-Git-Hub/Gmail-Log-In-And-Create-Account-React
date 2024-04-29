@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CreatePasswordComponent } from '../components/CreatePasswordComponent';
-
-
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const CreatePasswordContainer = ({ updateUser, text,  userData,  }) => {
@@ -25,29 +23,23 @@ export const CreatePasswordContainer = ({ updateUser, text,  userData,  }) => {
         };
     }, []);
 
-    
-
 // Change Language
 
     const handleLanguageSelection = chosenLanguage => updateUser({ language: chosenLanguage})
     
 // Password
 
-    const handleSelectPassword = (e) => {
-        setPassword(e.target.value);
-    };
+    const handleSelectPassword = e => setPassword(e.target.value);
 
-    const handleTogglePassword = () => {
-        setShowPassword(!showPassword);
-    };
+    const handleTogglePassword = () => setShowPassword(!showPassword);
 
 // Confirm
 
-    const handleSelectConfirmPassword = (e) => {
-        setConfirmPassword(e.target.value);     
-    };
+    const handleSelectConfirmPassword = e => setConfirmPassword(e.target.value);     
 
 // Error messages
+
+    const setError = error => setErrorCondition(error);
 
     const confirmYourPassword = () => {
         if (password !== '' && confirmPassword === '') {
@@ -65,15 +57,6 @@ export const CreatePasswordContainer = ({ updateUser, text,  userData,  }) => {
         }
     };
     
-    const passwordEmpty = () => setErrorCondition('passwordEmpty');
-
-
-    const needs8CharsOrMore = () => setErrorCondition('needs8CharsOrMore');
-
-    
-    const passwordIsntStrongEnough = () => setErrorCondition('pleaseChooseAStrongerPassword');
-
-
 // Handle Next
 
     const handleNextClick = () => {
@@ -83,7 +66,7 @@ export const CreatePasswordContainer = ({ updateUser, text,  userData,  }) => {
             const passwordTest = sufficientPasswordStrength.test(password);
             const confirmPasswordTest = sufficientPasswordStrength.test(confirmPassword);
             if (!passwordTest && !confirmPasswordTest) {
-                passwordIsntStrongEnough();
+                setError('pleaseChooseAStrongerPassword');
                 console.log('not fine');
                 return false;
             } else {
@@ -94,19 +77,16 @@ export const CreatePasswordContainer = ({ updateUser, text,  userData,  }) => {
         checkIfPasswordIsStrongEnough();
         if (password === confirmPassword && password !== '' && confirmPassword !== '' && checkIfPasswordIsStrongEnough()) {
         updateUser({ password: password });
-        setPassword('');
-        setConfirmPassword('');
-        setErrorCondition(null);
         navigate('/confirm-youre-not-a-robot');
         } if (password.length >= 8) {
             if (errorCondition === 'passwordEmpty' || errorCondition === 'needs8CharsOrMore') {
                 setErrorCondition(null);
             }
         } if (password === '') {
-            passwordEmpty();
+            setError('passwordEmpty');
             passwordInput.focus();
         } if (password.length < 8 && password !== '') {
-            needs8CharsOrMore();
+            setError('needs8CharsOrMore');
             passwordInput.focus();
         } if (password !== '' && password.length >= 8 && confirmPassword === '') {
             confirmYourPassword();
@@ -132,14 +112,11 @@ export const CreatePasswordContainer = ({ updateUser, text,  userData,  }) => {
             handleTogglePassword={handleTogglePassword}
             confirmYourPassword={confirmYourPassword}
             passwordMismatch={passwordMismatch}
-            
             errorCondition={errorCondition}
             text={text}
             handleLanguageSelection={handleLanguageSelection}
             isImageLoaded={isImageLoaded}
-            
             userData={userData}
-            
         />
     </>
  );

@@ -14,7 +14,6 @@ export const CreatePasswordComponent = ({
     handleNextClick,
     showPassword,
     handleTogglePassword,
-    isImagePreloaded,
     errorCondition,
     text,
     handleLanguageSelection,
@@ -22,12 +21,11 @@ export const CreatePasswordComponent = ({
     userData,
 }) => {
 
-
     return (
 
         <>
 
-            <div id='google-container-responsive'>
+            <div id='google-container-responsive' data-testid='CP'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                 <div className='blue-snake-loader'></div>
@@ -114,7 +112,7 @@ export const CreatePasswordComponent = ({
                         />
                     </Box> 
 
-                    {errorCondition === 'passwordEmpty'  && (
+                    {errorCondition === 'passwordEmpty' && (
                         <div className='error-div' id='create-password-error-div'>
                             <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
@@ -123,7 +121,7 @@ export const CreatePasswordComponent = ({
                         </div>
                     )}
 
-                    {errorCondition === 'confirmPasswordEmpty'  && ( 
+                    {errorCondition === 'confirmPasswordEmpty' && ( 
                         <div className='error-div' id='create-password-error-div'>
                             <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
@@ -132,7 +130,7 @@ export const CreatePasswordComponent = ({
                         </div>
                     )} 
                     
-                    {errorCondition === 'passwordMismatch'  && (
+                    {errorCondition === 'passwordMismatch' && (
                         <div className='error-div' id='create-password-error-div'>
                             <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
@@ -141,7 +139,7 @@ export const CreatePasswordComponent = ({
                         </div>
                     )}
 
-                    {errorCondition === 'needs8CharsOrMore'  && (
+                    {errorCondition === 'needs8CharsOrMore' && (
                         <div className='error-div' id='create-password-error-div'>
                             <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
@@ -150,7 +148,7 @@ export const CreatePasswordComponent = ({
                         </div>
                     )}
 
-                    {errorCondition === 'pleaseChooseAStrongerPassword'  && (
+                    {errorCondition === 'pleaseChooseAStrongerPassword' && (
                         <div className='error-div' id='create-password-error-div-stronger-password'>
                             <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
@@ -217,7 +215,6 @@ export const CreatePasswordComponent = ({
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
-                
             />
 
         </>
