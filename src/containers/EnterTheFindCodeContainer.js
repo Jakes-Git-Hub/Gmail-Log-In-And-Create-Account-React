@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EnterTheFindCodeComponent } from '../components/EnterTheFindCodeComponent';
-
-
 import googleWritingSvg from '../images/google-writing-svg.svg';
 import { createTheme } from '@mui/material/styles';
 
@@ -11,12 +9,10 @@ export const EnterTheFindCodeContainer = ({ updateUser, userData, text, findYour
     const [errorCondition, setErrorCondition] = useState(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
     const [usersVerificationCodeInput, setUsersVerificationCodeInput] = useState('');
-    const [verificationCode, setVerificationCode] = useState(findYourEmailCredentials.verificationCode);
+    const [verificationCode, setVerificationCode] = useState(findYourEmailCredentials.verificationCode? findYourEmailCredentials.verificationCode : '');
     const [isFocused, setIsFocused] = useState(false);
 
     const navigate = useNavigate();
-
-    
 
     useEffect(() => {
         const image = new Image();
@@ -32,9 +28,7 @@ export const EnterTheFindCodeContainer = ({ updateUser, userData, text, findYour
 
 // Verification Code
 
-    const handleUserVerificationCodeInput = (e) => {
-        setUsersVerificationCodeInput(e.target.value);
-    }
+    const handleUserVerificationCodeInput = e => setUsersVerificationCodeInput(e.target.value);
 
 // Errors
 
@@ -42,9 +36,7 @@ const setError = errorType => setErrorCondition(errorType);
 
 // isFocused?
 
-    const toggleFocus = () => {
-        setIsFocused(!isFocused);
-    }
+    const toggleFocus = () => setIsFocused(!isFocused);
 
 // Handle Next Click
 
@@ -99,7 +91,6 @@ const setError = errorType => setErrorCondition(errorType);
     return (
         <EnterTheFindCodeComponent
             handleNextClick={handleNextClick}
-            
             errorCondition={errorCondition}
             isImageLoaded={isImageLoaded}
             handleUserVerificationCodeInput={handleUserVerificationCodeInput}
