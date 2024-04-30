@@ -40,6 +40,11 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
         setFilteredCountries(translatedCountries);
     }, [translatedCountries]);
 
+    useEffect(() => {
+        console.log('filteredCountries', filteredCountries);   
+        console.log('selectedOption', selectedOption);  
+    }, [filteredCountries, selectedOption]);
+
 // Get User's Country from IP and Set Placeholder SVG and Top Option Based on it
 
     const apiKey = IPGeoLocationAPIKey;
@@ -53,7 +58,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
             const countryFromSelection = userData.countryDetails;
             if (countryFromSelection) {
                 setUsersCountryFlagSVG(countryFromSelection.svg);
-                setCountryFromAPIOrSelection({name: countryFromSelection.name, svg:countryFromSelection.svg});
+                setCountryFromAPIOrSelection({name: countryFromSelection.name, svg: countryFromSelection.svg});
             }
         } else if (userIP && hasSelectedCYNARCountry === false) {
             console.log('actualSelectedOption:', actualSelectedOption)
@@ -63,7 +68,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                 const matchingCountry = filteredCountries.find(country => country.name === countryFromIP);
                 if (matchingCountry) {
                     setUsersCountryFlagSVG(matchingCountry.svg);
-                    setCountryFromAPIOrSelection({name: matchingCountry.name, svg:matchingCountry.svg});
+                    setCountryFromAPIOrSelection({name: matchingCountry.name, svg: matchingCountry.svg});
                 }
             })
             .catch((error) => {
@@ -78,8 +83,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 
     useEffect(() => {
         const countryOption = filteredCountries && Array.isArray(filteredCountries) 
-            ? filteredCountries.find(country => country.svg === countryFromAPIOrSelection.svg)
-            : undefined;
+            ? filteredCountries.find(country => country.svg === countryFromAPIOrSelection.svg) : null;
         if (countryOption && hasSelectedCYNARCountry === false) {
             setSelectedOption({
                 value: countryOption,
@@ -87,12 +91,21 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
             });
             console.log('countryOption:', countryOption);
         } 
+        // else {
+        //     const backUpOption = filteredCountries && Array.isArray(filteredCountries)
+        //     ? filteredCountries.find(country => country.abbreviation === "gb") : null;
+        //     setSelectedOption({
+        //         value: backUpOption,
+        //         label: backUpOption.name,
+        //     });
+        //     console.log('backUpOption:', backUpOption);
+        // }
     }, [countryFromAPIOrSelection]);
     
     useEffect(() => {
         const newTopOption = filteredCountries && Array.isArray(filteredCountries) 
             ? filteredCountries.find(country => country.svg === countryFromAPIOrSelection.svg) 
-            : 'United Kingdom';
+            : null;
         setTopOption(newTopOption);
         const newFilteredCountries = Array.isArray(filteredCountries) 
             ? filteredCountries.sort((a, b) => a.name.localeCompare(b.name)) 
@@ -104,10 +117,14 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
     ? filteredCountries.find(country => country.abbreviation === 'gb')
     : undefined;
 
+    useEffect(() => {
+        console.log('topOption:', topOption);
+    }, [topOption])
+
     const customOptions = [
         // Top Option
         {
-            value: topOption,
+            value: topOption === undefined ? unitedKingdom : topOption,
             label: (
                 <div>
                     <img
@@ -120,10 +137,12 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                     <span className='country-option'>
                         {usersCountryFlagSVG 
                             ? (filteredCountries.find(country => country.svg === usersCountryFlagSVG) || {}).name + ' ' 
-                            : (unitedKingdom || {}).name + ' '} 
-                        ({usersCountryFlagSVG 
-                            ? (filteredCountries.find(country => country.svg === usersCountryFlagSVG) || {}).dialingCode 
-                            : (unitedKingdom || {}).dialingCode})
+                            : (unitedKingdom || {}).name + ' '
+                        } 
+                        ({usersCountryFlagSVG
+                            ? (filteredCountries.find(country => country.svg === usersCountryFlagSVG) || {}).dialingCode
+                            : (unitedKingdom || {}).dialingCode
+                        })
                     </span>
                 </div>
             ),
@@ -200,15 +219,13 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 
 // phoneNumber
 
-    const handleCountrySelect = (selectedOption) => {
+    const handleCountrySelect = selectedOption => {
         setSelectedOption(selectedOption);
         console.log('selectedOption:', selectedOption);
         setActualSelectedOption(true);
     };
 
-    const handleSelectPhoneNumber = (e) => {
-        setPhoneNumber(e.target.value);
-    };
+    const handleSelectPhoneNumber = e => setPhoneNumber(e.target.value);
 
 // Handle Next Click
 
@@ -402,7 +419,6 @@ const customStyles = {
                 handleNextClick={handleNextClick}
                 customOptions={customOptions}
                 customStyles={customStyles}
-                userIP={userIP}
                 customDropdownIndicator={customDropdownIndicator}
                 chosenCountryFlagImage={chosenCountryFlagImage}
                 placeholderContent={placeholderContent}

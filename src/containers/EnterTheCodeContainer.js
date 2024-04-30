@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { EnterTheCodeComponent } from '../components/EnterTheCodeComponent';
-
-
 import googleWritingSvg from '../images/google-writing-svg.svg';
 import { createTheme } from '@mui/material/styles';
 
@@ -17,8 +15,6 @@ export const EnterTheCodeContainer = ({ updateUser, userData, text, }) => {
     const [isFocused, setIsFocused] = useState(false);
 
     const navigate = useNavigate();
-
-    
 
     useEffect(() => {
         const image = new Image();
@@ -41,9 +37,7 @@ export const EnterTheCodeContainer = ({ updateUser, userData, text, }) => {
         }
     }, [userData.verificationCode]);
 
-    const handleUserVerificationCodeInput = (e) => {
-        setUsersVerificationCodeInput(e.target.value);
-    }
+    const handleUserVerificationCodeInput = e => setUsersVerificationCodeInput(e.target.value);
 
 // Errors
 
@@ -128,7 +122,6 @@ const toggleFocus = () => {
     return (
         <EnterTheCodeComponent
             handleNextClick={handleNextClick}
-            
             errorCondition={errorCondition}
             isImageLoaded={isImageLoaded}
             handleUserVerificationCodeInput={handleUserVerificationCodeInput}

@@ -93,8 +93,8 @@ export const ConfirmYoureNotARobotComponent = ({
                                         InputProps={{
                                             startAdornment: actualSelectedOption ? (
                                             <InputAdornment position='start' sx={{color: 'rgba(0, 0, 0, 0.87)', marginTop: '2.5px'}}>
-                                                    {selectedOption.value.dialingCode || unitedKingdom.dialingCode}
-                                                </InputAdornment>
+                                                    {selectedOption.value.dialingCode ? selectedOption.value.dialingCode : unitedKingdom.dialingCode}
+                                            </InputAdornment>
                                             ) : null,
                                         }}
                                         sx={

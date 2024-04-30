@@ -10,7 +10,6 @@ import Typography from '@mui/material/Typography';
 
 export const EnterTheCodeComponent = ({
     handleNextClick,
-    isImagePreloaded,
     isImageLoaded,
     handleUserVerificationCodeInput,
     usersVerificationCodeInput,
@@ -30,7 +29,7 @@ export const EnterTheCodeComponent = ({
 
         <>
 
-            <main id='google-container-responsive'>
+            <main id='google-container-responsive' data-testid='ETC'>
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                 <div className='blue-snake-loader'></div>
                 </div>
@@ -96,7 +95,7 @@ export const EnterTheCodeComponent = ({
                         />
                     </ThemeProvider>
 
-                    {errorCondition === 'inputEmpty'  ? (
+                    {errorCondition === 'inputEmpty' ? (
                         <div className='error-div' id='error-div-space-etc'>
                             <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
@@ -110,14 +109,14 @@ export const EnterTheCodeComponent = ({
                             </svg>
                             <p className='input-error-message'>{text.EnterTheCode.error2[userData.language]}</p>
                         </div>
-                    ) : errorCondition === 'wrongCode'  ? (
+                    ) : errorCondition === 'wrongCode' ? (
                         <div className='error-div' id='error-div-space-etc'>
                             <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
                             <p className='input-error-message'>{text.EnterTheCode.error3[userData.language]}</p>
                         </div>
-                    ) : errorCondition === 'hasLetters'  ? (
+                    ) : errorCondition === 'hasLetters' ? (
                         <div className='error-div' id='error-div-space-etc'>
                             <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
