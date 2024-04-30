@@ -4,11 +4,9 @@ import CustomNextButton from './buttons/CustomNextButtonComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
 
-
 export const FindYourEmailComponent = ({ 
     phoneNumberOrEmail,
     handleNextClick,
-    isImagePreloaded,
     errorCondition,
     handleLanguageSelection,
     text,
@@ -22,7 +20,7 @@ export const FindYourEmailComponent = ({
 
         <>
 
-            <main id='google-container-responsive'>
+            <main id='google-container-responsive' data-testid='FYE'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                 <div className='blue-snake-loader'></div>

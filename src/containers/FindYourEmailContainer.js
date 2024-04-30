@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FindYourEmailComponent } from '../components/FindYourEmailComponent';
 
-
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const FindYourEmailContainer = ({ updateUser, text,  userData, updateFindYourEmailCredentials, isWrongCredentials }) => {
@@ -23,29 +22,21 @@ export const FindYourEmailContainer = ({ updateUser, text,  userData, updateFind
         };
     }, []);
 
-    
-
 // Change Language
 
     const handleLanguageSelection = chosenLanguage => updateUser({ language: chosenLanguage})
 
 // Email or Phone Number
 
-    const onPhoneNumberOrEmailInputChange = (e) => {
-        const { value } = e.target;
-        setPhoneNumberOrEmail(value);
-    };
+    const onPhoneNumberOrEmailInputChange = e => setPhoneNumberOrEmail(e.target.value);
 
 // Errors
 
-    const error = error => {
-        setErrorCondition(error);
-    };
+    const error = error => setErrorCondition(error);
 
     const phoneNumberOrEmailInput = document.getElementById('phoneNumberOrEmailInput');
 
     useEffect(() => {
-        
         if (isWrongCredentials) {
             error('wrongCredentials');
             if (phoneNumberOrEmailInput) {
@@ -74,7 +65,6 @@ export const FindYourEmailContainer = ({ updateUser, text,  userData, updateFind
         <>
             <FindYourEmailComponent
                 handleNextClick={handleNextClick}
-                
                 errorCondition={errorCondition}
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
