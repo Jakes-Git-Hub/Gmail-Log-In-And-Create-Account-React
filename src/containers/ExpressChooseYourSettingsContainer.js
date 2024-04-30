@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ExpressChooseYourSettingsComponent } from '../components/ExpressChooseYourSettingsComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 import { useSpring } from 'react-spring';
+import e from 'cors';
 
 export const ExpressChooseYourSettingsContainer = ({ updateUser, text, hidePrivacyRow,  userData,  }) => {
 
@@ -109,7 +110,7 @@ export const ExpressChooseYourSettingsContainer = ({ updateUser, text, hidePriva
         });
     };
 
-    const handleNextClick = (e) => {
+    const handleNextClick = e => {
         e.preventDefault();
         hidePrivacyRow();
         updateUser({ manualSetting1: 'keep until delete', manualSetting2: 'keep until delete', manualSetting3: 'show personalized ads' });
@@ -117,7 +118,7 @@ export const ExpressChooseYourSettingsContainer = ({ updateUser, text, hidePriva
         navigate('/confirm-your-settings'); 
     };
 
-    const handleRejectAllClick = (e) => {
+    const handleRejectAllClick = e => {
         e.preventDefault();
         navigate('/choose-your-settings');
     }

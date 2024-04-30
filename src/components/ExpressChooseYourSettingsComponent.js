@@ -24,8 +24,7 @@ export const ExpressChooseYourSettingsComponent = ({
     showPersonalizedAdsModal,
     text,
     handleLanguageSelection,
-    handleRejectAllClick,
-    
+    handleRejectAllClick,   
     userData,
     
 }) => {
@@ -34,7 +33,7 @@ export const ExpressChooseYourSettingsComponent = ({
 
         <>
 
-            <main className='google-container-flexible-ryai' id='ecys-top-margin'>
+            <main className='google-container-flexible-ryai' id='ecys-top-margin' data-testid='ECYS'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                     <div className='blue-snake-loader'></div>
