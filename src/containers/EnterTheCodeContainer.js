@@ -59,9 +59,7 @@ const setError = errorType => setErrorCondition(errorType);
         }
     }, [disabledCount]);
 
-    const getNewCode = () => {
-        navigate('/confirm-youre-not-a-robot');
-    }
+    const getNewCode = () => navigate('/confirm-youre-not-a-robot');
 
 // Handle Next Click
 
@@ -88,9 +86,7 @@ const setError = errorType => setErrorCondition(errorType);
 
 // isFocused?
 
-const toggleFocus = () => {
-    setIsFocused(!isFocused);
-}
+const toggleFocus = () => setIsFocused(!isFocused);
 
 // Custom MUI TextField
 

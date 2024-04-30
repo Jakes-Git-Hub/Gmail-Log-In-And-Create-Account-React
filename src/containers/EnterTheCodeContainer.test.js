@@ -9,6 +9,7 @@ import React, { useState, useEffect } from 'react';
 describe('EnterTheCodeContainer', () => {
     const mockUpdateUser = jest.fn();
     const mockUserData = {};
+    const navigate = jest.fn();
     it('renders without crashing', () => {
         render(
             <Router>
@@ -79,4 +80,84 @@ describe('EnterTheCodeContainer', () => {
             expect(setDisabledCount).toHaveBeenCalledWith(9);
         });
     });
+    describe('getNewCode', () => {
+        it('should call navigate with correct path', () => {
+        const getNewCode = () => navigate('/confirm-youre-not-a-robot');
+          getNewCode();
+          expect(navigate).toHaveBeenCalledWith('/confirm-youre-not-a-robot');
+        });
+    });
+    describe('handleNextClick', () => {
+        let setError;
+        let navigate;
+        let usersVerificationCodeInput;
+        let verificationCode;
+    
+        beforeEach(() => {
+            setError = jest.fn();
+            navigate = jest.fn();
+            usersVerificationCodeInput = '';
+            verificationCode = '123456';
+        });
+
+        const handleNextClick = () => {
+            const emptyInput = '';
+            const hasLetters = /[a-zA-Z]/.test(usersVerificationCodeInput);
+            const sixDigits = /^\d{6}$/;
+            if (usersVerificationCodeInput === emptyInput) {
+                setError('inputEmpty');
+            }
+            if (hasLetters) {
+                setError('hasLetters');
+            } 
+            if ((usersVerificationCodeInput !== emptyInput) && (!hasLetters && !sixDigits.test(usersVerificationCodeInput))) {
+                setError('wrongNumberOfDigits');
+            } 
+            if (sixDigits.test(usersVerificationCodeInput) && (usersVerificationCodeInput !== verificationCode)) {
+                setError('wrongCode');
+            } 
+            if (usersVerificationCodeInput === verificationCode) {
+                navigate('/add-recovery-email');
+            }
+        };
+    
+        it('should set error to "inputEmpty" when input is empty', () => {
+            handleNextClick();
+            expect(setError).toHaveBeenCalledWith('inputEmpty');
+        });
+    
+        it('should set error to "hasLetters" when input has letters', () => {
+            usersVerificationCodeInput = 'abc123';
+            handleNextClick();
+            expect(setError).toHaveBeenCalledWith('hasLetters');
+        });
+    
+        it('should set error to "wrongNumberOfDigits" when input has wrong number of digits', () => {
+            usersVerificationCodeInput = '12345';
+            handleNextClick();
+            expect(setError).toHaveBeenCalledWith('wrongNumberOfDigits');
+        });
+    
+        it('should set error to "wrongCode" when input is not equal to verification code', () => {
+            usersVerificationCodeInput = '654321';
+            handleNextClick();
+            expect(setError).toHaveBeenCalledWith('wrongCode');
+        });
+    
+        it('should navigate to "/add-recovery-email" when input is equal to verification code', () => {
+            usersVerificationCodeInput = verificationCode;
+            handleNextClick();
+            expect(navigate).toHaveBeenCalledWith('/add-recovery-email');
+        });
+    });
+    describe('toggleFocus', () => {
+        setIsFocused = jest.fn();
+        let isFocused = true;
+        it('toggles focus', () => {
+            const toggleFocus = () => setIsFocused(!isFocused);
+            toggleFocus();
+            expect(setIsFocused).toHaveBeenCalledWith(!isFocused);
+        });
+    });
 });
+

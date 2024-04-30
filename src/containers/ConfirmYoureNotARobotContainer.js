@@ -91,15 +91,6 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
             });
             console.log('countryOption:', countryOption);
         } 
-        // else {
-        //     const backUpOption = filteredCountries && Array.isArray(filteredCountries)
-        //     ? filteredCountries.find(country => country.abbreviation === "gb") : null;
-        //     setSelectedOption({
-        //         value: backUpOption,
-        //         label: backUpOption.name,
-        //     });
-        //     console.log('backUpOption:', backUpOption);
-        // }
     }, [countryFromAPIOrSelection]);
     
     useEffect(() => {
