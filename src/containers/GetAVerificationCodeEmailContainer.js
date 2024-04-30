@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GetAVerificationCodeEmailComponent } from '../components/GetAVerificationCodeEmailComponent';
-
-
 import googleWritingSvg from '../images/google-writing-svg.svg';
 import axios from 'axios';
 
@@ -25,8 +23,6 @@ export const GetAVerificationCodeEmailContainer = ({ updateUser, text,  userData
     useEffect(() => {
         console.log('findYourEmailCredentials.phoneNumberOrEmail', findYourEmailCredentials.phoneNumberOrEmail);
     }, []);
-
-    
 
 // Change Language
 
@@ -67,15 +63,12 @@ export const GetAVerificationCodeEmailContainer = ({ updateUser, text,  userData
 
 // Handle Send Click
 
-    const handleSendClick = () => {
-        sendVerificationEmail();
-    };
+    const handleSendClick = () => sendVerificationEmail();
 
     return(
         <>
             <GetAVerificationCodeEmailComponent
                 handleSendClick={handleSendClick}
-                
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
                 isImageLoaded={isImageLoaded}
