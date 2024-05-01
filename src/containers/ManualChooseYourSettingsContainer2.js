@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ManualChooseYourSettingsComponent2 } from '../components/ManualChooseYourSettingsComponent2';
 import googleWritingSvg from '../images/google-writing-svg.svg';
-
-
 import { useSpring } from 'react-spring';
 
 export const ManualChooseYourSettingsContainer2 = ({ userData, updateUser, text,   }) => {
@@ -17,8 +15,6 @@ export const ManualChooseYourSettingsContainer2 = ({ userData, updateUser, text,
     const navigate = useNavigate();
 
 // Check for Image Loads
-
-    
 
     useEffect(() => {
         const image = new Image();
@@ -91,7 +87,7 @@ export const ManualChooseYourSettingsContainer2 = ({ userData, updateUser, text,
 
 // Handle Radio Change
 
-    const handleRadioChange = (e) => {
+    const handleRadioChange = e => {
         setManualSetting2(e.target.value);
         if (errorCondition === 'selectAnOption') {
             setErrorCondition('');
@@ -100,7 +96,7 @@ export const ManualChooseYourSettingsContainer2 = ({ userData, updateUser, text,
 
 // Errors
 
-    const setError = (error) => setErrorCondition(error);
+    const setError = e => setErrorCondition(error);
 
     const repositionViewPortOnError = () => {
         const settingsContainer = document.getElementById('container-choose-your-settings-m');
@@ -118,7 +114,7 @@ export const ManualChooseYourSettingsContainer2 = ({ userData, updateUser, text,
 
 // Handle Next & Back Click
 
-    const handleNextClick = (e) => {
+    const handleNextClick = e => {
         e.preventDefault();
         if (manualSetting2 === '') {
             setError('selectAnOption');
@@ -138,7 +134,7 @@ export const ManualChooseYourSettingsContainer2 = ({ userData, updateUser, text,
         }
     };
 
-    const handleBackClick = (e) => {
+    const handleBackClick = e => {
         e.preventDefault();
         repositionViewPortOnNextOrBackClick();
         navigate('/manual-choose-your-settings')
@@ -160,7 +156,6 @@ export const ManualChooseYourSettingsContainer2 = ({ userData, updateUser, text,
                 manualSetting2={manualSetting2}
                 handleRadioChange={handleRadioChange}
                 errorCondition={errorCondition}
-                
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
                 openYouTubeHistoryModal={openYouTubeHistoryModal}
@@ -170,8 +165,6 @@ export const ManualChooseYourSettingsContainer2 = ({ userData, updateUser, text,
                 animationOpen={animationOpen}
                 animationClose={animationClose}
                 handleBackClick={handleBackClick}
-                
-                
             />
         </>
     );
