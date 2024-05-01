@@ -96,7 +96,7 @@ export const ManualChooseYourSettingsContainer2 = ({ userData, updateUser, text,
 
 // Errors
 
-    const setError = e => setErrorCondition(error);
+    const setError = e => setErrorCondition(e);
 
     const repositionViewPortOnError = () => {
         const settingsContainer = document.getElementById('container-choose-your-settings-m');

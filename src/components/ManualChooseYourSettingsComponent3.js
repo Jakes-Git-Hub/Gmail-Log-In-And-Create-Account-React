@@ -16,7 +16,6 @@ export const ManualChooseYourSettingsComponent3 = ({
     handleRadioChange,
     setting,
     errorCondition,
-    isImagePreloaded,
     handleLanguageSelection,
     text,
     openYouTubeHistoryModal,
@@ -35,7 +34,7 @@ export const ManualChooseYourSettingsComponent3 = ({
 
         <>
 
-            <main className='google-container-flexible-ryai'>
+            <main className='google-container-flexible-ryai' data-testid='MCYS3'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                     <div className='blue-snake-loader'></div>

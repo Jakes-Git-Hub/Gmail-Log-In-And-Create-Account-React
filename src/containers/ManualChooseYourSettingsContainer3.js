@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ManualChooseYourSettingsComponent3 } from '../components/ManualChooseYourSettingsComponent3';
 import googleWritingSvg from '../images/google-writing-svg.svg';
-
-
 import { useSpring } from 'react-spring';
 
 export const ManualChooseYourSettingsContainer3 = ({ userData, updateUser, text,   }) => {
@@ -17,8 +15,6 @@ export const ManualChooseYourSettingsContainer3 = ({ userData, updateUser, text,
     const navigate = useNavigate();
 
 // Check for Image Loads
-
-    
 
     useEffect(() => {
         const image = new Image();
@@ -80,7 +76,7 @@ export const ManualChooseYourSettingsContainer3 = ({ userData, updateUser, text,
 
 // Handle Radio Change
 
-    const handleRadioChange = (e) => {
+    const handleRadioChange = e => {
         setManualSetting3(e.target.value);
         if (errorCondition === 'selectAnOption') {
             setErrorCondition('');
@@ -89,7 +85,7 @@ export const ManualChooseYourSettingsContainer3 = ({ userData, updateUser, text,
 
 // Errors
 
-    const setError = (error) => setErrorCondition(error);
+    const setError = error => setErrorCondition(error);
 
     const repositionViewPortOnError = () => {
         const settingsContainer = document.getElementById('container-choose-your-settings-m');
@@ -106,7 +102,7 @@ export const ManualChooseYourSettingsContainer3 = ({ userData, updateUser, text,
 
 // Handle Next & Back Click
 
-    const handleNextClick = (e) => {
+    const handleNextClick = e => {
         e.preventDefault();
         if (manualSetting3 === '') {
             setError('selectAnOption');
@@ -123,7 +119,7 @@ export const ManualChooseYourSettingsContainer3 = ({ userData, updateUser, text,
         navigate('/manual-choose-your-settings4');
     };
 
-    const handleBackClick = (e) => {
+    const handleBackClick = e => {
         e.preventDefault();
         repositionViewPortOnNextOrBackClick();
         navigate('/manual-choose-your-settings2')
@@ -144,7 +140,6 @@ export const ManualChooseYourSettingsContainer3 = ({ userData, updateUser, text,
                 userData={userData}
                 handleRadioChange={handleRadioChange}
                 errorCondition={errorCondition}
-                
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
                 openYouTubeHistoryModal={openYouTubeHistoryModal}
@@ -154,8 +149,6 @@ export const ManualChooseYourSettingsContainer3 = ({ userData, updateUser, text,
                 animationOpen={animationOpen}
                 animationClose={animationClose}
                 handleBackClick={handleBackClick}
-                
-                
             />
         </>
     );
