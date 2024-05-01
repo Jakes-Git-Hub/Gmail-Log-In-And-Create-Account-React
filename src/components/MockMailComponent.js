@@ -1,13 +1,13 @@
 import React from 'react';
 
-export const MockMail = ({ loggedIn, currentLoggedInUser, userData,  }) => {
+export const MockMail = ({ loggedIn, currentLoggedInUser, }) => {
 
     return (
         <>
             {loggedIn && currentLoggedInUser && (
 
                 <>  
-                    <h1 className='logged-in-user'>Welcome, {currentLoggedInUser.firstName}</h1>
+                    <h1 className='logged-in-user' data-testid='MM'>Welcome, {currentLoggedInUser.firstName}</h1>
 
                     <h2>User Info:</h2>
 
