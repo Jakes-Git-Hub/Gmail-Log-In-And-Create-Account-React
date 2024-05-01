@@ -6,7 +6,7 @@ import textData from '../data/textData'
 import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
 
-describe('ManualChooseYourSettingsContainer2', () => {
+describe('ManualChooseYourSettingsContainer3', () => {
     const mockUpdateUser = jest.fn();
     const mockUserData = {};
     it('renders without crashing', () => {

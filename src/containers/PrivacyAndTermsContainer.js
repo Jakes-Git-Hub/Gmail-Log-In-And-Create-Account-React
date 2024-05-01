@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { PrivacyAndTermsComponent } from '../components/PrivacyAndTermsComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
-
-
 export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, handleLogin, loggedIn,   }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -15,8 +13,6 @@ export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, 
     const navigate = useNavigate();
 
 // Check for Image Loads
-
-    
 
     useEffect(() => {
         const image = new Image();
@@ -30,11 +26,14 @@ export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, 
 
     useEffect(() => {
         document.body.id = 'body-overflow';
+        return () => {
+            document.body.id = 'body';
+        };
     }, []);
 
 // Change Language
 
-    const handleLanguageSelection = (chosenLanguage) => {
+    const handleLanguageSelection = chosenLanguage => {
         window.scrollTo({
             top: 0, // Scroll to the top of the viewport
             behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
@@ -44,7 +43,7 @@ export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, 
 
 // Handle Next & Back Click
 
-    const handleNextClick = (e) => {
+    const handleNextClick = e => {
         e.preventDefault();
         repositionViewPortOnNextOrBackClick();
         addUser();
@@ -64,7 +63,7 @@ export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, 
         }
     }, [loggedIn]);
     
-    const handleBackClick = (e) => {
+    const handleBackClick = e => {
         e.preventDefault();
         repositionViewPortOnNextOrBackClick();
         navigate('/confirm-your-settings');
@@ -83,12 +82,9 @@ export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, 
                 handleNextClick={handleNextClick}
                 isImageLoaded={isImageLoaded}
                 userData={userData}
-                
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
                 handleBackClick={handleBackClick}
-                
-                
             />
         </>
     );

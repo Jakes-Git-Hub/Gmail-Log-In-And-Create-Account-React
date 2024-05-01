@@ -17,7 +17,7 @@ export const PrivacyAndTermsComponent = ({
 
         <>
 
-            <main className='google-container-flexible-ryai'>
+            <main className='google-container-flexible-ryai' data-testid='PAT'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                     <div className='blue-snake-loader'></div>
