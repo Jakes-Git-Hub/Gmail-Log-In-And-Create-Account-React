@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ReviewYourAccountInfoComponent } from '../components/ReviewYourAccountInfoComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
-export const ReviewYourAccountInfoContainer = ({ userData, updateUser, text,   }) => {
+export const ReviewYourAccountInfoContainer = ({ userData, updateUser, text, }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
 
@@ -50,7 +50,7 @@ export const ReviewYourAccountInfoContainer = ({ userData, updateUser, text,   }
 
 // Handle Next Click
 
-    const handleNextClick = (e) => {
+    const handleNextClick = e => {
         e.preventDefault();
         navigate('/choose-your-settings'); 
     };
@@ -63,8 +63,6 @@ export const ReviewYourAccountInfoContainer = ({ userData, updateUser, text,   }
                 userData={userData}
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
-                
-                
             />
         </>
     );

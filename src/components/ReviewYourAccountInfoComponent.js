@@ -9,14 +9,13 @@ export const ReviewYourAccountInfoComponent = ({
     userData,
     handleLanguageSelection,
     text,
-
 }) => {
 
     return (
 
         <>
 
-            <main className='google-container-flexible-ryai'>
+            <main className='google-container-flexible-ryai' data-testid='RYAI'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                     <div className='blue-snake-loader'></div>
