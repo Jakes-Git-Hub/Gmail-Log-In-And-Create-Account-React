@@ -16,7 +16,6 @@ export const ManualChooseYourSettingsComponent = ({
     handleRadioChange,
     setting,
     errorCondition,
-    isImagePreloaded,
     handleLanguageSelection,
     text,
     openWebAndAppActivityModal,
@@ -34,7 +33,7 @@ export const ManualChooseYourSettingsComponent = ({
 
         <>
 
-            <main className='google-container-flexible-ryai'>
+            <main className='google-container-flexible-ryai' data-testid='MCYS1'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                     <div className='blue-snake-loader'></div>
@@ -243,8 +242,6 @@ export const ManualChooseYourSettingsComponent = ({
                         </animated.div>  
                     </Modal>
                 </div>
-
-                
 
                 <div className='next-and-skip-button-duo button-space-mcys'>
                     <CustomNextAndSkipButton 

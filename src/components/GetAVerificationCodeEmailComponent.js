@@ -38,7 +38,7 @@ export const GetAVerificationCodeEmailComponent = ({
 
                     <div className='p-container-gavc'>
                         <p className='p-get-a-verification-code'>
-                            Google will send a verification code to {findYourEmailCredentials.phoneNumberOrEmail}.
+                            Google will send a verification code to {findYourEmailCredentials.phoneNumberOrEmail ? findYourEmailCredentials.phoneNumberOrEmail : ''}.
                         </p>
                     </div>
 

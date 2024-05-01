@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ManualChooseYourSettingsComponent } from '../components/ManualChooseYourSettingsComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
-
-
 import { useSpring } from 'react-spring';
 
 export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text,  }) => {
@@ -17,8 +15,6 @@ export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text, 
     const navigate = useNavigate();
 
 // Check for Image Loads
-
-    
 
     useEffect(() => {
         const image = new Image();
@@ -83,7 +79,7 @@ export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text, 
 
 // Handle Radio Change
 
-    const handleRadioChange = (e) => {
+    const handleRadioChange = e => {
         setManualSetting1(e.target.value);
         if (errorCondition === 'selectAnOption') {
             setErrorCondition('');
@@ -129,7 +125,7 @@ export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text, 
         }
     };
 
-    const handleBackClick = (e) => {
+    const handleBackClick = e => {
         e.preventDefault();
         navigate('/choose-your-settings')
     }
@@ -150,7 +146,6 @@ export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text, 
                 manualSetting1={manualSetting1}
                 handleRadioChange={handleRadioChange}
                 errorCondition={errorCondition}
-                
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
                 openWebAndAppActivityModal={openWebAndAppActivityModal}
@@ -160,8 +155,6 @@ export const ManualChooseYourSettingsContainer = ({ userData, updateUser, text, 
                 animationOpen={animationOpen}
                 animationClose={animationClose}
                 handleBackClick={handleBackClick}
-                
-                
             />
         </>
     );

@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GetAVerificationCodePhoneComponent } from '../components/GetAVerificationCodePhoneComponent';
-
-
 import googleWritingSvg from '../images/google-writing-svg.svg';
 import axios from 'axios';
 
 export const GetAVerificationCodePhoneContainer = ({ updateUser, text,  userData, findYourEmailCredentials, updateFindYourEmailCredentials}) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
-    const [verificationCodeViaEmail, setVerificationCodeViaEmail] = useState('');
 
     const navigate = useNavigate();
 
@@ -26,8 +23,6 @@ export const GetAVerificationCodePhoneContainer = ({ updateUser, text,  userData
     useEffect(() => {
         console.log('findYourEmailCredentials.phoneNumberOrEmail', findYourEmailCredentials.phoneNumberOrEmail);
     }, []);
-
-    
 
 // Change Language
 
@@ -67,15 +62,12 @@ export const GetAVerificationCodePhoneContainer = ({ updateUser, text,  userData
 
 // Handle Send Click
 
-    const handleSendClick = () => {
-        sendVerificationSMS();
-    };
+    const handleSendClick = () => sendVerificationSMS();
 
     return(
         <>
             <GetAVerificationCodePhoneComponent
                 handleSendClick={handleSendClick}
-                
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
                 isImageLoaded={isImageLoaded}

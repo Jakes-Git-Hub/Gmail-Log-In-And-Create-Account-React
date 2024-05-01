@@ -1,11 +1,7 @@
 import React from 'react';
-
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
 import CustomNextButton from './buttons/CustomNextButtonComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
-
 
 export const GetAVerificationCodePhoneComponent = ({ 
     handleLanguageSelection,
@@ -20,7 +16,7 @@ export const GetAVerificationCodePhoneComponent = ({
 
         <>
 
-            <main id='google-container-responsive'>
+            <main id='google-container-responsive' data-testid='GAVCP'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                     <div className='blue-snake-loader'></div>
@@ -62,8 +58,6 @@ export const GetAVerificationCodePhoneComponent = ({
                             </div>
                         </CustomNextButton>
                     </div>
-
-                    
 
                 </form>
 
