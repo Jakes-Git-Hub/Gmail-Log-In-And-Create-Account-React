@@ -22,7 +22,7 @@ export const ManualChooseYourSettingsComponent4 = ({
 
         <>
 
-            <main className='google-container-flexible-ryai'>
+            <main className='google-container-flexible-ryai' data-testid='MCYS4'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                     <div className='blue-snake-loader'></div>

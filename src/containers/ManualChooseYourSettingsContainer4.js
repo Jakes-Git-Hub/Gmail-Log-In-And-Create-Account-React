@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ManualChooseYourSettingsComponent4 } from '../components/ManualChooseYourSettingsComponent4';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
-
-export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text, makePrivacyRowVisible,   }) => {
+export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text, makePrivacyRowVisible, }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [checked, setChecked] = useState(false);
@@ -12,8 +11,6 @@ export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text,
     const navigate = useNavigate();
 
 // Check for Image Loads
-
-    
 
     useEffect(() => {
         const image = new Image();
@@ -25,9 +22,7 @@ export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text,
 
 // Check Box
 
-    const toggleCheckBox = () => {
-        setChecked(!checked);
-    };
+    const toggleCheckBox = () => setChecked(!checked);
 
 // Change Language
 
@@ -49,7 +44,7 @@ export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text,
         });
     };
 
-    const handleNextClick = (e) => {
+    const handleNextClick = e => {
         e.preventDefault();
         if (checked) {
             updateUser({ manualSetting4: 'get privacy reminders' });
@@ -60,7 +55,7 @@ export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text,
         navigate('/confirm-your-settings')
     };
 
-    const handleBackClick = (e) => {
+    const handleBackClick = e => {
         e.preventDefault();
         repositionViewPortOnNextOrBackClick();
         navigate('/manual-choose-your-settings3')
@@ -72,12 +67,10 @@ export const ManualChooseYourSettingsContainer4 = ({ userData, updateUser, text,
                 handleNextClick={handleNextClick}
                 isImageLoaded={isImageLoaded}
                 userData={userData}
-                
                 handleLanguageSelection={handleLanguageSelection}
                 text={text}
                 handleBackClick={handleBackClick}
-                toggleCheckBox={toggleCheckBox}
-                
+                toggleCheckBox={toggleCheckBox}              
             />
         </>
     );
