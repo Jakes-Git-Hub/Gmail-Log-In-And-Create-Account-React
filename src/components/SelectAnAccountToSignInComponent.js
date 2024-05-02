@@ -23,7 +23,7 @@ export const SelectAnAccountToSignInComponent = ({
 
         <>
 
-            <main id='google-container-sac'>
+            <main id='google-container-sac' data-testid='SAATSI'>
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                     <div className='blue-snake-loader'></div>
                 </div>

@@ -26,7 +26,7 @@ export const SelectAnAccountToSignInContainer = ({ userData, updateUser, text, f
 
 // Change Language
 
-    const handleLanguageSelection = (chosenLanguage) => {
+    const handleLanguageSelection = chosenLanguage => {
         window.scrollTo({
             top: 0, // Scroll to the top of the viewport
             behavior: 'auto' // Optionally, you can use 'auto' for instant scrolling
@@ -37,15 +37,16 @@ export const SelectAnAccountToSignInContainer = ({ userData, updateUser, text, f
 // Matching Users
 
     useEffect(() => {
-        const matchingUsersForState = users.filter(user => {
-            return (
-                (user.email === findYourEmailCredentials.phoneNumberOrEmail || 
-                user.phoneNumber === findYourEmailCredentials.phoneNumberOrEmail) &&
-                user.firstName.toLowerCase() === findYourEmailCredentials.firstName.toLowerCase() &&
-                user.lastName.toLowerCase() === findYourEmailCredentials.lastName.toLowerCase()
-            );
-        });
-        setMatchingUsers(matchingUsersForState);
+        if (users) {
+            const matchingUsersForState = users.filter(user => {
+                return (
+                    (user.email === findYourEmailCredentials.phoneNumberOrEmail || 
+                    user.phoneNumber === findYourEmailCredentials.phoneNumberOrEmail) &&
+                    user.state === findYourEmailCredentials.state
+                );
+            });
+            setMatchingUsers(matchingUsersForState);
+        }
     }, [findYourEmailCredentials, users]);
 
 // Set accounts index
@@ -65,9 +66,7 @@ export const SelectAnAccountToSignInContainer = ({ userData, updateUser, text, f
 
 // Handle List Item Click
 
-    const onListItemClick = email => {
-        setEmailAccountClicked(email);
-    }
+    const onListItemClick = email => setEmailAccountClicked(email);
 
     useEffect(() => {
         if (emailAccountClicked) {
@@ -77,10 +76,7 @@ export const SelectAnAccountToSignInContainer = ({ userData, updateUser, text, f
         }
     }, [emailAccountClicked]);
 
-    const navToHome = () => {
-        navigate('/');
-    }
-
+    const navToHome = () => navigate('/');
 
     return(
         <>

@@ -1,6 +1,6 @@
 import { jest } from '@jest/globals';
 import { ReviewYourAccountInfoContainer } from './ReviewYourAccountInfoContainer';
-import { render, screen, act } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { BrowserRouter as Router } from 'react-router-dom';
 import textData from '../data/textData'
 import '@testing-library/jest-dom/extend-expect';
