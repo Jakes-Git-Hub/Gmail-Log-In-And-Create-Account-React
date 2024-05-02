@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SignInFrontPageComponent } from '../components/SignInFrontPageComponent';
-
-
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const SignInFrontPageContainer = ({ users, userData, updateUser, text, passFoundUser, }) => {
@@ -23,35 +21,25 @@ export const SignInFrontPageContainer = ({ users, userData, updateUser, text, pa
         };
     }, []);
 
-    
-
 // Change Language
 
     const handleLanguageSelection = chosenLanguage => updateUser({ language: chosenLanguage})
 
 // Email or Phone
 
-    const onEmailOrPhoneChange = (e) => {
-        setEmailOrPhone(e.target.value);
-    }
+    const onEmailOrPhoneChange = e => setEmailOrPhone(e.target.value);
 
 // Forgot Email
 
-    const handleForgotEmailButtonClick = () => {
-        navigate('/find-your-email');
-    }
+    const handleForgotEmailButtonClick = () => navigate('/find-your-email');
 
 // Guest Mode Info Click
 
-    const handleGuestModeInfoButtonClick = () => {
-        window.open('https://support.google.com/chrome/answer/6130773?hl=en', '_blank');
-    }
+    const handleGuestModeInfoButtonClick = () => window.open('https://support.google.com/chrome/answer/6130773?hl=en', '_blank');
 
 // Create Account Click
 
-    const handleCreateAccountClick = () => {
-        navigate('/create-account');
-    }
+    const handleCreateAccountClick = () => navigate('/create-account');
 
 // Error
 
@@ -59,7 +47,7 @@ export const SignInFrontPageContainer = ({ users, userData, updateUser, text, pa
 
 // Handle Next
 
-    const handleNextClick = (e) => {
+    const handleNextClick = e => {
         e.preventDefault();
         if (emailOrPhone === '') {
             error('emailOrPhoneEmpty');
@@ -78,12 +66,11 @@ export const SignInFrontPageContainer = ({ users, userData, updateUser, text, pa
                 navigate('/verify-with-password');
             }
         }
-    };
+    }
 
     return(
         <>
             <SignInFrontPageComponent
-                
                 userData={userData}
                 handleLanguageSelection={handleLanguageSelection}
                 isImageLoaded={isImageLoaded}

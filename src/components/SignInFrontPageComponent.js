@@ -1,7 +1,6 @@
 import React from 'react';
 import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import TransparentSmallButtonSignInPage from './buttons/TransparentSmallButtonSignInPageComponent';
 import CustomNextButton from './buttons/CustomNextButtonComponent';
@@ -11,7 +10,6 @@ export const SignInFrontPageComponent = ({
     isImageLoaded,
     handleLanguageSelection,
     handleCreateAccountClick,
-    isImagePreloaded,
     userData,
     errorCondition,
     emailOrPhone,
@@ -27,7 +25,7 @@ export const SignInFrontPageComponent = ({
 
         <>
 
-            <main id='google-container-responsive'>
+            <main id='google-container-responsive' data-testid='SIFP'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                 <div className='blue-snake-loader'></div>
@@ -78,7 +76,7 @@ export const SignInFrontPageComponent = ({
                         }
                     />     
 
-                    {errorCondition === 'emailOrPhoneEmpty'  && (
+                    {errorCondition === 'emailOrPhoneEmpty' && (
                         <div className='error-div'>
                             <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
@@ -87,7 +85,7 @@ export const SignInFrontPageComponent = ({
                         </div>
                     )}
 
-                    {errorCondition === 'couldntFindYourAccount'  && (
+                    {errorCondition === 'couldntFindYourAccount' && (
                         <div className='error-div'>
                             <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
@@ -117,7 +115,6 @@ export const SignInFrontPageComponent = ({
                         <CustomNextButton onClick={handleNextClick} aria-label='Next button'>
                             Next  
                         </CustomNextButton>
-                        
                     </div>
 
                 </form>
