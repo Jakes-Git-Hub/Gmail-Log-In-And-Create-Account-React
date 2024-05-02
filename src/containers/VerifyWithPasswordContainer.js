@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { VerifyWithPasswordComponent } from '../components/VerifyWithPasswordComponent';
-
-
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
-export const VerifyWithPasswordContainer = ({ updateUser, text,  userData,  handleLogin, userToVerifyWithPassword }) => {
+export const VerifyWithPasswordContainer = ({ updateUser, text,  userData,  handleLogin, userToVerifyWithPassword, }) => {
 
     const [password, setPassword] =useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -25,10 +23,10 @@ export const VerifyWithPasswordContainer = ({ updateUser, text,  userData,  hand
     }, []);
 
     useEffect(() => {
-        console.log('userToVerifyWithPassword:', userToVerifyWithPassword.password)
+        if (userToVerifyWithPassword) {
+            console.log('userToVerifyWithPassword:', userToVerifyWithPassword.password)
+        }
     }, []);
-
-    
 
 // Change Language
 
@@ -36,13 +34,9 @@ export const VerifyWithPasswordContainer = ({ updateUser, text,  userData,  hand
     
 // Password
 
-    const handlePasswordInput = (e) => {
-        setPassword(e.target.value);
-    };
+    const handlePasswordInput = e => setPassword(e.target.value);
 
-    const handleTogglePassword = () => {
-        setShowPassword(!showPassword);
-    };
+    const handleTogglePassword = () => setShowPassword(!showPassword);
 
 // Error messages
     
@@ -69,30 +63,26 @@ export const VerifyWithPasswordContainer = ({ updateUser, text,  userData,  hand
         } 
     }
 
-
 // Handle Next
 
-    const handleNextClick = () => {
-        validatePassword();
-    }
+    const handleNextClick = () => validatePassword();
 
  return(
-    <>
-        <VerifyWithPasswordComponent
-            password={password}
-            setPassword={setPassword}
-            handleNextClick={handleNextClick}
-            showPassword={showPassword}
-            handlePasswordInput={handlePasswordInput}
-            setShowPassword={setShowPassword}
-            handleTogglePassword={handleTogglePassword}
-            errorCondition={errorCondition}
-            text={text}
-            handleLanguageSelection={handleLanguageSelection}
-            isImageLoaded={isImageLoaded}
-            userData={userData}
-            
-        />
-    </>
- );
+        <>
+            <VerifyWithPasswordComponent
+                password={password}
+                setPassword={setPassword}
+                handleNextClick={handleNextClick}
+                showPassword={showPassword}
+                handlePasswordInput={handlePasswordInput}
+                setShowPassword={setShowPassword}
+                handleTogglePassword={handleTogglePassword}
+                errorCondition={errorCondition}
+                text={text}
+                handleLanguageSelection={handleLanguageSelection}
+                isImageLoaded={isImageLoaded}
+                userData={userData}
+            />
+        </>
+    );
 };
