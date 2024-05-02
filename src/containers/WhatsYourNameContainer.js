@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { WhatsYourNameComponent } from '../components/WhatsYourNameComponent';
-
-
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFindYourEmailCredentials, findYourEmailCredentials, users, handleIncorrectInfoSearch, handleCorrectInfoSearch }) => {
@@ -35,41 +33,27 @@ export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFind
         console.log('findWith:', findWith);
     }, [findWith]);
 
-    
-
 // Change Language
 
     const handleLanguageSelection = chosenLanguage => updateUser({ language: chosenLanguage})
 
 // First Name
 
-    const onFirstNameInputChange = (e) => {
-        setFirstName(e.target.value.toLowerCase());
-    }
+    const onFirstNameInputChange = e => setFirstName(e.target.value.toLowerCase());
 
 // Last Name
 
-    const onLastNameInputChange = (e) => {
-         setLastName(e.target.value.toLowerCase());
-    }
+    const onLastNameInputChange = e => setLastName(e.target.value.toLowerCase());
 
 // Errors
 
-    const error = error => {
-        setErrorCondition(error);
-    };
+    const error = error => setErrorCondition(error);
 
 // Find With
 
-    const handleFindWithPhoneNumber = () => {
-        setFindWith('phoneNumber');
-    }
+    const handleFindWithPhoneNumber = () => setFindWith('phoneNumber');
 
-    const handleFindWithEmail = () => {
-        setFindWith('email');
-    }
-
-
+    const handleFindWithEmail = () => setFindWith('email');
 
 // Handle Next
 
@@ -151,7 +135,6 @@ export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFind
                 setLastName={setLastName}
                 lastName={lastName}
                 handleNextClick={handleNextClick}
-                
                 onFirstNameInputChange={onFirstNameInputChange}
                 onLastNameInputChange={onLastNameInputChange}
                 errorCondition={errorCondition}
