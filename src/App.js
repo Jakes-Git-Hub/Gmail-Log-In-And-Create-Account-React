@@ -32,9 +32,49 @@ import { VerifyWithPasswordContainer } from "./containers/VerifyWithPasswordCont
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [users, setUsers] = useState([{ id: 0, email: 'jacmatthews7@gmail.com', password: '1234', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143', profileCircleColor: 'blue', day: '28', month: 'April', year:'1993', gender: 'Male', country: 'England', },{ id: 0, email: 'titanfx@gmail.com', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143', profileCircleColor: 'red',},]);
+  const [users, setUsers] = useState(
+    [
+      { 
+        id: 0, 
+        email: 'jacmatthews7@gmail.com', 
+        password: '1234', 
+        firstName: 'Jacob', 
+        lastName: 'Matthews', 
+        phoneNumber: '07720761143', 
+        profileCircleColor: 'blue', 
+        day: '28', 
+        month: 'April', 
+        year:'1993', 
+        gender: 'Male', 
+        countryDetails: {
+          name: 'United Kingdom',
+          abbreviation: 'gb',
+          dialingCode: '+44',
+          svg: 'gb.svg',
+        },
+      },
+      { id: 1, 
+        email: 'otheremail@gmail.com', 
+        firstName: 'Jacob', 
+        lastName: 'Matthews', 
+        phoneNumber: '07720761143', 
+        profileCircleColor: 'red',
+        day: '28', 
+        month: 'April', 
+        year:'1993', 
+        gender: 'Male', 
+        countryDetails: {
+          name: 'United Kingdom',
+          abbreviation: 'gb',
+          dialingCode: '+44',
+          svg: 'gb.svg',
+        },
+      },
+    ]
+  );
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
   const [nextUserId, setNextUserId] = useState(1);
+  // const [intermediateUser, setIntermediateUser] = useState({});
   const [userData, setUserData] = useState({ language: 'en-GB', id: 0, email: 'jacmatthews7@gmail.com', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143', profileCircleColor: 'blue', });
   const [findYourEmailCredentials, setFindYourEmailCredentials] = useState({});
   const [hasSelectedCYNARCountry, setHasSelectedCYNARCountry] = useState(false);

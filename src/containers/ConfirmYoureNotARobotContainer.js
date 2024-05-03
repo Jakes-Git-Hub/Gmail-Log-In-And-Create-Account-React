@@ -5,6 +5,7 @@ import { ConfirmYoureNotARobotComponent } from '../components/ConfirmYoureNotARo
 import axios from 'axios';
 import GBSVG from '../images/flags/gb2.svg';
 import googleWritingSvg from '../images/google-writing-svg.svg';
+import libphonenumber from 'google-libphonenumber';
 
 export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, userIP, handleCYNARCountrySelect, hasSelectedCYNARCountry, text, translatedCountries, IPGeoLocationAPIKey, }) => {
 
@@ -225,7 +226,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
         if (phoneNumber === '') {
             setError('phoneNumberEmpty');
             phoneNumberInput.focus();
-        } else if (/[^0-9]/.test(phoneNumber)) {
+        } else if (!/^\+?[0-9]+$/.test(phoneNumber)) {
             setError('incorrectFormat');
             phoneNumberInput.focus();
         } else {
@@ -235,7 +236,8 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
             } else {
                 if (actualSelectedOption) {
                     setFormattedPhoneNumber(selectedOption.value.dialingCode + phoneNumber);
-                    updateUser({ phoneNumber: selectedOption.value.dialingCode + phoneNumber, countryDetails: selectedOption.value });
+                    updateUser({ phoneNumber: selectedOption.value.dialingCode + phoneNumber, countryDetails: selectedOption.value,  });
+                    console.log('selectedOption:', selectedOption.value);
                     handleCYNARCountrySelect();
                     setError(null);                    
                 } else {
