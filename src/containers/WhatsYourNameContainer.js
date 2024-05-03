@@ -88,7 +88,6 @@ export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFind
     
     const findMatchingUser = () => {
         const matchingUser = users.find(user => {
-            const sequences = generateSequences(findYourEmailCredentials.phoneNumberOrEmail);
             if (
                 user.email === findYourEmailCredentials.phoneNumberOrEmail &&
                 user.firstName.toLowerCase() === findYourEmailCredentials.firstName &&
@@ -96,7 +95,7 @@ export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFind
             ) {
                 return true;
             } else if (
-                sequences.some(sequence => user.phoneNumber.includes(sequence)) &&
+                user.phoneNumber === findYourEmailCredentials.phoneNumberOrEmail &&
                 user.firstName.toLowerCase() === findYourEmailCredentials.firstName &&
                 user.lastName.toLowerCase() === findYourEmailCredentials.lastName
             ) {
@@ -110,19 +109,11 @@ export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFind
             console.log('findYourEmailCredentials.phoneNumberOrEmail', findYourEmailCredentials.phoneNumberOrEmail);
             if (matchingUser.email === findYourEmailCredentials.phoneNumberOrEmail) {
                 handleFindWithEmail();
-            } else if (generateSequences(findYourEmailCredentials.phoneNumberOrEmail).some(sequence => matchingUser.phoneNumber.includes(sequence))) {
+            } else if (matchingUser.phoneNumber === findYourEmailCredentials.phoneNumberOrEmail) {
                 handleFindWithPhoneNumber();
             }
         }
         return matchingUser;
-    };
-
-    const generateSequences = number => {
-        const sequences = [];
-        for (let i = 0; i <= number.length - 7; i++) {
-            sequences.push(number.slice(i, i + 7));
-        }
-        return sequences;
     };
 
     useEffect(() => {

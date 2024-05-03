@@ -23,10 +23,6 @@ export const EnterTheCodeContainer = ({ updateUser, userData, text, }) => {
           setIsImageLoaded(true);
         };
     }, []);
-    
-    useEffect(() => {
-        console.log('userData', userData);
-    }, [userData]);
 
 // Change Language
 
