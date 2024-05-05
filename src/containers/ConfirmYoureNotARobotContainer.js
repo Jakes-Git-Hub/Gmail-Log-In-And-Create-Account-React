@@ -5,6 +5,7 @@ import { ConfirmYoureNotARobotComponent } from '../components/ConfirmYoureNotARo
 import axios from 'axios';
 import GBSVG from '../images/flags/gb2.svg';
 import googleWritingSvg from '../images/google-writing-svg.svg';
+import { generateSequences } from '../utils/generateSequences';
 
 export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, userIP, handleCYNARCountrySelect, hasSelectedCYNARCountry, text, translatedCountries, IPGeoLocationAPIKey, }) => {
 
@@ -225,11 +226,14 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
         if (phoneNumber === '') {
             setError('phoneNumberEmpty');
             phoneNumberInput.focus();
-        } else if (/[^0-9]/.test(phoneNumber)) {
+        } else if (!/^\+?[0-9]+$/.test(phoneNumber)) {
             setError('incorrectFormat');
             phoneNumberInput.focus();
         } else {
-            const isPhoneNumberAlreadyRegistered = users.some(user => user.phoneNumber === phoneNumber);
+            const sequences = generateSequences(phoneNumber);
+            const isPhoneNumberAlreadyRegistered = users.some(user => 
+                sequences.some(sequence => user.phoneNumber.includes(sequence))
+            );
             if (isPhoneNumberAlreadyRegistered) {
                 setError('alreadyRegistered'); 
             } else {
@@ -246,7 +250,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                 }
             }
         }
-    };
+    }
 
 // Send Verification Code When Formatted Phone Number Changes
 

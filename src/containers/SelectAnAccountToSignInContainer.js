@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SelectAnAccountToSignInComponent } from '../components/SelectAnAccountToSignInComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
+import { generateSequences } from '../utils/generateSequences';
 
 export const SelectAnAccountToSignInContainer = ({ userData, updateUser, text, findYourEmailCredentials, users, handleListItemLogIn }) => {
 
@@ -20,7 +21,7 @@ export const SelectAnAccountToSignInContainer = ({ userData, updateUser, text, f
         const image = new Image();
         image.src = googleWritingSvg;
         image.onload = () => {
-          setIsImageLoaded(true);
+            setIsImageLoaded(true);
         };
     }, []);
 
@@ -39,9 +40,10 @@ export const SelectAnAccountToSignInContainer = ({ userData, updateUser, text, f
     useEffect(() => {
         if (users) {
             const matchingUsersForState = users.filter(user => {
+                const sequences = generateSequences(findYourEmailCredentials.phoneNumberOrEmail);
                 return (
                     (user.email === findYourEmailCredentials.phoneNumberOrEmail || 
-                    user.phoneNumber === findYourEmailCredentials.phoneNumberOrEmail) &&
+                    sequences.some(sequence => user.phoneNumber.includes(sequence))) &&
                     user.state === findYourEmailCredentials.state
                 );
             });
