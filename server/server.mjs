@@ -3,7 +3,8 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';  // Added for parsing request bodies
 import twilio from 'twilio';  // Added for Twilio integration
-import sgMail from '@sendgrid/mail'
+import sgMail from '@sendgrid/mail';
+import rateLimit from 'express-rate-limit';
 
 dotenv.config();
 const app = express();
@@ -13,18 +14,15 @@ app.use(bodyParser.urlencoded({ extended: true }));  // Added for parsing URL-en
 app.set('trust proxy', true);
 app.use(cors());
 
-const rateLimit = require('express-rate-limit');
-
 // Configure rate limiter for '/send-verification-code' endpoint
 const limiter = rateLimit({
     windowMs: 30 * 60 * 1000, // 30 minutes in milliseconds
-    max: 5,
+    max: 1,
     message: {
       status: 429,
       error: 'Too many requests. Please try again in 30 minutes.'
     },
-    // Identify user by IP address
-    keyGenerator: (req) => req.ip
+    keyGenerator: (req) => req.headers['x-forwarded-for'] || req.socket.remoteAddress
 });
 
 const port = 3001;

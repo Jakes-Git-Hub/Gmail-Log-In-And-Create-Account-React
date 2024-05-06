@@ -7,6 +7,7 @@ import GBSVG from '../images/flags/gb2.svg';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 import { generateSequences } from '../utils/generateSequences';
 import { PhoneNumberUtil, PhoneNumberFormat } from 'google-libphonenumber';
+import { APIEndPointLimiter } from '../utils/APIEndPointLimiter';
 
 const phoneUtil = PhoneNumberUtil.getInstance();
 
@@ -33,6 +34,8 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
           setIsImageLoaded(true);
         };
     }, []);
+
+    const container1Limiter = APIEndPointLimiter(5, 30 * 60 * 1000);
 
 // Change Language
 
@@ -325,7 +328,11 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
         } catch (error) {
             console.error('Error sending verification code:', error);
             setLoading(false);
-            setError('incorrectNumber');
+            if (error.response.status === 429) {
+                setError('apiLimitReached');
+            } else {
+                setError('incorrectNumber');
+            }
         }
     } 
 
