@@ -6,6 +6,9 @@ import axios from 'axios';
 import GBSVG from '../images/flags/gb2.svg';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 import { generateSequences } from '../utils/generateSequences';
+import { PhoneNumberUtil, PhoneNumberFormat } from 'google-libphonenumber';
+
+const phoneUtil = PhoneNumberUtil.getInstance();
 
 export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, userIP, handleCYNARCountrySelect, hasSelectedCYNARCountry, text, translatedCountries, IPGeoLocationAPIKey, }) => {
 
@@ -33,7 +36,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 
 // Change Language
 
-    const handleLanguageSelection = chosenLanguage => updateUser({ language: chosenLanguage})
+    const handleLanguageSelection = chosenLanguage => updateUser({ language: chosenLanguage })
 
 // Populate the filteredCountries state with the translatedCountries
 
@@ -230,25 +233,57 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
             setError('incorrectFormat');
             phoneNumberInput.focus();
         } else {
-            const sequences = generateSequences(phoneNumber);
-            const isPhoneNumberAlreadyRegistered = users.some(user => 
-                sequences.some(sequence => user.phoneNumber.includes(sequence))
-            );
-            if (isPhoneNumberAlreadyRegistered) {
-                setError('alreadyRegistered'); 
+            if (actualSelectedOption) {
+                const convertedLocalNumber = convertPhoneNumber(phoneNumber, selectedOption.value.abbreviation, PhoneNumberFormat.NATIONAL);
+                console.log('convertedLocalNumber:', convertedLocalNumber);
+                const isLocalNumberAlreadyRegistered = users.some(user => user.phoneNumber.includes(convertedLocalNumber));
+                if (isLocalNumberAlreadyRegistered) {
+                    setError('alreadyRegistered'); 
+                    return;
+                }
             } else {
-                if (actualSelectedOption) {
-                    setFormattedPhoneNumber(selectedOption.value.dialingCode + phoneNumber);
-                    updateUser({ phoneNumber: selectedOption.value.dialingCode + phoneNumber, countryDetails: selectedOption.value });
-                    handleCYNARCountrySelect();
-                    setError(null);                    
-                } else {
-                    setFormattedPhoneNumber(phoneNumber);
-                    updateUser({ phoneNumber: phoneNumber, countryDetails: unitedKingdom });
-                    handleCYNARCountrySelect();
-                    setError(null);
+                const sequences = generateSequences(phoneNumber);
+                const isPhoneNumberAlreadyRegistered = users.some(user => 
+                    sequences.some(sequence => user.phoneNumber.includes(sequence))
+                );
+                if (isPhoneNumberAlreadyRegistered) {
+                    setError('alreadyRegistered'); 
+                    return;
                 }
             }
+            if (actualSelectedOption) {
+                setFormattedPhoneNumber(selectedOption.value.dialingCode + phoneNumber);
+                updateUser({ phoneNumber: selectedOption.value.dialingCode + phoneNumber, countryDetails: selectedOption.value });
+                handleCYNARCountrySelect();
+                setError(null);                    
+            } else {
+                setFormattedPhoneNumber(phoneNumber);
+                updateUser({ phoneNumber: phoneNumber, countryDetails: unitedKingdom });
+                handleCYNARCountrySelect();
+                setError(null);
+            }
+        }
+    }
+
+    function convertPhoneNumber(phoneNumber, region, format) {
+        try {
+            // Parse the phone number with the provided region code.
+            const number = phoneUtil.parseAndKeepRawInput(phoneNumber, region);
+        
+            // Check if the number is valid.
+            if (!phoneUtil.isValidNumber(number)) {
+                throw new Error("Invalid phone number provided.");
+            }
+        
+            // Format the phone number according to the specified format.
+            const formattedNumber = phoneUtil.format(number, format);
+
+            const numberWithoutSpaces = formattedNumber.replace(/\s/g, '');
+
+            return numberWithoutSpaces;
+        } catch (error) {
+            console.error("Error converting phone number:", error.message);
+            return null; // Or handle the error differently
         }
     }
 

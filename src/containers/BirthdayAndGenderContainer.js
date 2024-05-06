@@ -36,7 +36,7 @@ export const BirthdayAndGenderContainer = ({ updateUser, text,  userData, }) => 
 
 // Change Language
 
-    const handleLanguageSelection = chosenLanguage => updateUser({ language: chosenLanguage})
+    const handleLanguageSelection = chosenLanguage => updateUser({ language: chosenLanguage })
 
 // Month
 

@@ -9,7 +9,6 @@ export const AddRecoveryEmailComponent = ({
     recoveryEmail,
     setRecoveryEmail,
     handleNextClick,
-    isImagePreloaded,
     errorCondition,
     handleSkip,
     isImageLoaded,

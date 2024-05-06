@@ -76,7 +76,17 @@ function App() {
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
   const [nextUserId, setNextUserId] = useState(1);
   // const [intermediateUser, setIntermediateUser] = useState({});
-  const [userData, setUserData] = useState({ language: 'en-GB', id: 0, email: 'jacmatthews7@gmail.com', firstName: 'Jacob', lastName: 'Matthews', phoneNumber: '07720761143', profileCircleColor: 'blue', });
+  const [userData, setUserData] = useState(
+    { 
+      language: 'en-GB', 
+      id: 0, 
+      email: 'jacmatthews7@gmail.com', 
+      firstName: 'Jacob', 
+      lastName: 'Matthews', 
+      phoneNumber: '07720761143', 
+      profileCircleColor: 'blue', 
+    }
+  );
   const [findYourEmailCredentials, setFindYourEmailCredentials] = useState({});
   const [hasSelectedCYNARCountry, setHasSelectedCYNARCountry] = useState(false);
   const [text, setText] = useState(textData);
