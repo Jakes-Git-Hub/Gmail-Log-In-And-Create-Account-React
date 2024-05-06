@@ -83,56 +83,130 @@ describe('ConfirmYoureNotARobotContainer', () => {
         });
     });
     describe('handleNextClick', () => {
-        it('handles next click correctly', () => {
-            const setError = jest.fn();
-            const setFormattedPhoneNumber = jest.fn();
-            const updateUser = jest.fn();
-            const handleCYNARCountrySelect = jest.fn();
-    
-            const phoneNumber = '1234567890';
-            const selectedOption = { value: { dialingCode: '+1', name: 'United States' } };
-            const actualSelectedOption = true;
-            const users = [];
-            const unitedKingdom = { dialingCode: '+44', name: 'United Kingdom' };
-    
-            document.getElementById = jest.fn().mockReturnValue({ focus: jest.fn() });
-    
+        const PhoneNumberFormat = {
+            NATIONAL: 'NATIONAL',
+            // Add other formats if needed
+        };
+        const setError = jest.fn();
+        const setFormattedPhoneNumber = jest.fn();
+        const updateUser = jest.fn();
+        const handleCYNARCountrySelect = jest.fn();
+        const convertPhoneNumber = jest.fn().mockReturnValue('1234567890');
+        const generateSequences = jest.fn().mockReturnValue(['123', '456', '7890']);
+
+        const phoneNumber = '1234567890';
+        const selectedOption = { value: { dialingCode: '+1', name: 'United States', abbreviation: 'US' } };
+        const users = [];
+        const unitedKingdom = { dialingCode: '+44', name: 'United Kingdom' };
+
+        document.getElementById = jest.fn().mockReturnValue({ focus: jest.fn() });
+        it('handles next click correctly when actualSelectedOption is false', () => {
+            const actualSelectedOption = false;
             const handleNextClick = () => {
                 const phoneNumberInput = document.getElementById('phoneNumberInput');
                 if (phoneNumber === '') {
                     setError('phoneNumberEmpty');
                     phoneNumberInput.focus();
-                } else if (/[^0-9]/.test(phoneNumber)) {
+                } else if (!/^\+?[0-9]+$/.test(phoneNumber)) {
                     setError('incorrectFormat');
                     phoneNumberInput.focus();
                 } else {
-                    const isPhoneNumberAlreadyRegistered = users.some(user => user.phoneNumber === phoneNumber);
-                    if (isPhoneNumberAlreadyRegistered) {
-                        setError('alreadyRegistered'); 
+                    if (actualSelectedOption) {
+                        const convertedLocalNumber = convertPhoneNumber(phoneNumber, selectedOption.value.abbreviation, PhoneNumberFormat.NATIONAL);
+                        console.log('convertedLocalNumber:', convertedLocalNumber);
+                        const isLocalNumberAlreadyRegistered = users.some(user => user.phoneNumber.includes(convertedLocalNumber));
+                        if (isLocalNumberAlreadyRegistered) {
+                            setError('alreadyRegistered'); 
+                            return;
+                        }
                     } else {
-                        if (actualSelectedOption) {
-                            setFormattedPhoneNumber(selectedOption.value.dialingCode + phoneNumber);
-                            updateUser({ phoneNumber: selectedOption.value.dialingCode + phoneNumber, countryDetails: selectedOption.value });
-                            handleCYNARCountrySelect();
-                            setError(null);                    
-                        } else {
-                            setFormattedPhoneNumber(phoneNumber);
-                            updateUser({ phoneNumber: phoneNumber, countryDetails: unitedKingdom });
-                            handleCYNARCountrySelect();
-                            setError(null);
+                        const sequences = generateSequences(phoneNumber);
+                        const isPhoneNumberAlreadyRegistered = users.some(user => 
+                            sequences.some(sequence => user.phoneNumber.includes(sequence))
+                        );
+                        if (isPhoneNumberAlreadyRegistered) {
+                            setError('alreadyRegistered'); 
+                            return;
                         }
                     }
+                    if (actualSelectedOption) {
+                        setFormattedPhoneNumber(selectedOption.value.dialingCode + phoneNumber);
+                        updateUser({ phoneNumber: selectedOption.value.dialingCode + phoneNumber, countryDetails: selectedOption.value });
+                        handleCYNARCountrySelect();
+                        setError(null);                    
+                    } else {
+                        setFormattedPhoneNumber(phoneNumber);
+                        updateUser({ phoneNumber: phoneNumber, countryDetails: unitedKingdom });
+                        handleCYNARCountrySelect();
+                        setError(null);
+                    }
                 }
-            };
+            }
     
             act(() => {
                 handleNextClick();
             });
     
             expect(setError).toHaveBeenCalledWith(null);
-            expect(setFormattedPhoneNumber).toHaveBeenCalledWith('+11234567890');
-            expect(updateUser).toHaveBeenCalledWith({ phoneNumber: '+11234567890', countryDetails: selectedOption.value });
+            expect(setFormattedPhoneNumber).toHaveBeenCalledWith(phoneNumber);
+            expect(updateUser).toHaveBeenCalledWith({ phoneNumber: phoneNumber, countryDetails: unitedKingdom });
             expect(handleCYNARCountrySelect).toHaveBeenCalled();
+            expect(convertPhoneNumber).not.toHaveBeenCalled();
+            expect(generateSequences).toHaveBeenCalledWith(phoneNumber);
+        });
+        it('handles next click correctly when actualSelectedOption is true', () => {
+            const actualSelectedOption = true;
+            const handleNextClick = () => {
+                const phoneNumberInput = document.getElementById('phoneNumberInput');
+                if (phoneNumber === '') {
+                    setError('phoneNumberEmpty');
+                    phoneNumberInput.focus();
+                } else if (!/^\+?[0-9]+$/.test(phoneNumber)) {
+                    setError('incorrectFormat');
+                    phoneNumberInput.focus();
+                } else {
+                    if (actualSelectedOption) {
+                        const convertedLocalNumber = convertPhoneNumber(phoneNumber, selectedOption.value.abbreviation, PhoneNumberFormat.NATIONAL);
+                        console.log('convertedLocalNumber:', convertedLocalNumber);
+                        const isLocalNumberAlreadyRegistered = users.some(user => user.phoneNumber.includes(convertedLocalNumber));
+                        if (isLocalNumberAlreadyRegistered) {
+                            setError('alreadyRegistered'); 
+                            return;
+                        }
+                    } else {
+                        const sequences = generateSequences(phoneNumber);
+                        const isPhoneNumberAlreadyRegistered = users.some(user => 
+                            sequences.some(sequence => user.phoneNumber.includes(sequence))
+                        );
+                        if (isPhoneNumberAlreadyRegistered) {
+                            setError('alreadyRegistered'); 
+                            return;
+                        }
+                    }
+                    if (actualSelectedOption) {
+                        setFormattedPhoneNumber(selectedOption.value.dialingCode + phoneNumber);
+                        updateUser({ phoneNumber: selectedOption.value.dialingCode + phoneNumber, countryDetails: selectedOption.value });
+                        handleCYNARCountrySelect();
+                        setError(null);                    
+                    } else {
+                        setFormattedPhoneNumber(phoneNumber);
+                        updateUser({ phoneNumber: phoneNumber, countryDetails: unitedKingdom });
+                        handleCYNARCountrySelect();
+                        setError(null);
+                    }
+                }
+            }
+        
+            act(() => {
+                handleNextClick();
+            });
+        
+            expect(setError).toHaveBeenCalledWith(null);
+            expect(setFormattedPhoneNumber).toHaveBeenCalledWith(selectedOption.value.dialingCode + phoneNumber); // Corrected expectation
+            expect(updateUser).toHaveBeenCalledWith({ phoneNumber: selectedOption.value.dialingCode + phoneNumber, countryDetails: selectedOption.value });
+            expect(handleCYNARCountrySelect).toHaveBeenCalled();
+            expect(convertPhoneNumber).toHaveBeenCalledWith(phoneNumber, selectedOption.value.abbreviation, PhoneNumberFormat.NATIONAL); // Corrected expectation
+            expect(generateSequences).not.toHaveBeenCalledWith(phoneNumber);
         });
     });
     describe('sendVerificationCode', () => {
@@ -197,5 +271,68 @@ describe('ConfirmYoureNotARobotContainer', () => {
             expect(navigate).toHaveBeenCalledWith('/enter-the-verification-code');
         });
     });
-    //new test
+    describe('convertPhoneNumber', () => {
+        const phoneUtil = {
+            parseAndKeepRawInput: jest.fn().mockReturnValue({}),
+            isValidNumber: jest.fn().mockReturnValue(true),
+            format: jest.fn().mockReturnValue('123 456 7890'),
+        };
+          
+        it('should return a phone number without spaces', () => {
+            const phoneNumber = '1234567890';
+            const region = 'US';
+            const format = 'NATIONAL';
+          
+            // Mock the phoneUtil functions to return the expected values
+            phoneUtil.parseAndKeepRawInput.mockReturnValue({});
+            phoneUtil.isValidNumber.mockReturnValue(true);
+            phoneUtil.format.mockReturnValue('123 456 7890');
+
+            function convertPhoneNumber(phoneNumber, region, format) {
+                try {
+                    const number = phoneUtil.parseAndKeepRawInput(phoneNumber, region);
+                    if (!phoneUtil.isValidNumber(number)) {
+                        throw new Error("Invalid phone number provided.");
+                    }
+                    const formattedNumber = phoneUtil.format(number, format);
+                    const numberWithoutSpaces = formattedNumber.replace(/\s/g, '');
+                    return numberWithoutSpaces;
+                } catch (error) {
+                    console.error("Error converting phone number:", error.message);
+                    return null;
+                }
+            }
+          
+            const result = convertPhoneNumber(phoneNumber, region, format);
+          
+            expect(result).toBe('1234567890');
+        });
+      
+        it('should return null if the phone number is invalid', () => {
+            const phoneNumber = 'invalid';
+            const region = 'US';
+            const format = 'NATIONAL';
+        
+            phoneUtil.isValidNumber.mockReturnValue(false);
+
+            function convertPhoneNumber(phoneNumber, region, format) {
+                try {
+                    const number = phoneUtil.parseAndKeepRawInput(phoneNumber, region);
+                    if (!phoneUtil.isValidNumber(number)) {
+                        throw new Error("Invalid phone number provided.");
+                    }
+                    const formattedNumber = phoneUtil.format(number, format);
+                    const numberWithoutSpaces = formattedNumber.replace(/\s/g, '');
+                    return numberWithoutSpaces;
+                } catch (error) {
+                    console.error("Error converting phone number:", error.message);
+                    return null;
+                }
+            }
+        
+            const result = convertPhoneNumber(phoneNumber, region, format);
+        
+            expect(result).toBeNull();
+        });
+    });
 });
