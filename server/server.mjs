@@ -13,6 +13,20 @@ app.use(bodyParser.urlencoded({ extended: true }));  // Added for parsing URL-en
 app.set('trust proxy', true);
 app.use(cors());
 
+const rateLimit = require('express-rate-limit');
+
+// Configure rate limiter for '/send-verification-code' endpoint
+const limiter = rateLimit({
+    windowMs: 30 * 60 * 1000, // 30 minutes in milliseconds
+    max: 5,
+    message: {
+      status: 429,
+      error: 'Too many requests. Please try again in 30 minutes.'
+    },
+    // Identify user by IP address
+    keyGenerator: (req) => req.ip
+});
+
 const port = 3001;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
@@ -45,7 +59,7 @@ export const client = twilio(twilioAccountSid, twilioAuthToken);
 
 // Endpoint to send verification code via SMS
 
-app.post('/send-verification-code', async (req, res) => {
+app.post('/send-verification-code', limiter, async (req, res) => {
   console.log('Endpoint reached: /send-verification-code');
   const { formattedPhoneNumber } = req.body;
 
@@ -85,7 +99,7 @@ app.post('/send-verification-code', async (req, res) => {
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-app.post('/send-verification-email', async (req, res) => {
+app.post('/send-verification-email', limiter, async (req, res) => {
   console.log('Endpoint reached: /send-verification-email');
   const { phoneNumberOrEmail } = req.body;
 
