@@ -11,6 +11,7 @@ export const GetAVerificationCodeEmailComponent = ({
     findYourEmailCredentials,    
     handleSendClick,
     errorCondition,
+    loading,
 }) => {
 
     return (
@@ -19,7 +20,7 @@ export const GetAVerificationCodeEmailComponent = ({
 
             <main id='google-container-responsive' data-testid='GAVCE'>
 
-                <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
+                <div className={!isImageLoaded || loading ? 'empty-blue-snake-loader' : 'empty-blue-snake-loader-placeholder'}>
                     <div className='blue-snake-loader'></div>
                 </div>
                 <img src={googleWritingSvg} alt='Google Writing' id='google-writing-BG'/>

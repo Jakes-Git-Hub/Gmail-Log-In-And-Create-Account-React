@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GetAVerificationCodeEmailComponent } from '../components/GetAVerificationCodeEmailComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
-import axios from 'axios';
 import { APIEndPointLimiter } from '../utils/APIEndPointLimiter';
 
 export const GetAVerificationCodeEmailContainer = ({ updateUser, 
@@ -17,6 +16,7 @@ export const GetAVerificationCodeEmailContainer = ({ updateUser,
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [errorCondition, setErrorCondition] = useState(false);
+    const [loading, setLoading] = useState(false);
     
     const navigate = useNavigate();
 
@@ -41,37 +41,45 @@ export const GetAVerificationCodeEmailContainer = ({ updateUser,
 // Send Verification Email
 
     const sendVerificationEmail = async () => {
+        setLoading(true);
         console.log('findYourEmailCredentials.phoneNumberOrEmail', findYourEmailCredentials.phoneNumberOrEmail);
         const container2Limiter = APIEndPointLimiter(5, 30 * 60 * 1000);
-        try {
-            const response = await container2Limiter.post('http://localhost:3001/send-verification-email', {
-                phoneNumberOrEmail: findYourEmailCredentials.phoneNumberOrEmail,
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
+        if (getAVerificationEMailAPILimit < 5) {
+            try {
+                const response = await container2Limiter.post('/send-verification-email', {
+                    phoneNumberOrEmail: findYourEmailCredentials.phoneNumberOrEmail,
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
 
-            const data = response.data;
+                const data = response.data;
 
-            if (data.verificationCode) {
-                // Extract the verification code from the Twilio response
-                const verificationCode = data.verificationCode.toString();
-                console.log('Verification code:', verificationCode);
-                updateFindYourEmailCredentials({ verificationCode: verificationCode });
-                navigate('/enter-the-find-code');    
-            } else {
-                if (data.error) {
-                    console.error('Error sending verification code:', data.error);
+                if (data.verificationCode) {
+                    // Extract the verification code from the Twilio response
+                    const verificationCode = data.verificationCode.toString();
+                    console.log('Verification code:', verificationCode);
+                    updateFindYourEmailCredentials({ verificationCode: verificationCode });
+                    handleGetAVerificationEmailAPILimit();
+                    navigate('/enter-the-find-code');    
                 } else {
-                    console.error('Unknown error sending verification code');
+                    if (data.error) {
+                        console.error('Error sending verification code:', data.error);
+                    } else {
+                        console.error('Unknown error sending verification code');
+                    }
+                }
+            } catch (error) {
+                console.error('Error sending verification code:', error);
+                if (error.response.status === 429) {
+                    setErrorCondition('apiLimitReached');
                 }
             }
-        } catch (error) {
-            console.error('Error sending verification code:', error);
-            if (error.response.status === 429) {
-                setErrorCondition('apiLimitReached');
-            }
+        } else {
+            setErrorCondition('apiLimitReached');
+            setLoading(false);
+            resetGetAVerificationEmailAPILimit();
         }
     } 
 
@@ -90,6 +98,7 @@ export const GetAVerificationCodeEmailContainer = ({ updateUser,
                 findYourEmailCredentials={findYourEmailCredentials}
                 updateFindYourEmailCredentials={updateFindYourEmailCredentials}
                 errorCondition={errorCondition}
+                loading={loading}
             />
         </>
     );
