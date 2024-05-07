@@ -7,6 +7,7 @@ import axios from 'axios';
 export const GetAVerificationCodeEmailContainer = ({ updateUser, text,  userData, findYourEmailCredentials, updateFindYourEmailCredentials}) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
+    const [errorCondition, setErrorCondition] = useState(false);
     
     const navigate = useNavigate();
 
@@ -58,6 +59,9 @@ export const GetAVerificationCodeEmailContainer = ({ updateUser, text,  userData
             }
         } catch (error) {
             console.error('Error sending verification code:', error);
+            if (error.response.status === 429) {
+                setErrorCondition('apiLimitReached');
+            }
         }
     } 
 
@@ -75,6 +79,7 @@ export const GetAVerificationCodeEmailContainer = ({ updateUser, text,  userData
                 userData={userData}
                 findYourEmailCredentials={findYourEmailCredentials}
                 updateFindYourEmailCredentials={updateFindYourEmailCredentials}
+                errorCondition={errorCondition}
             />
         </>
     );

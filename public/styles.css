@@ -522,7 +522,7 @@ form {
   position: relative;
   right: 16.125%;
   margin-top: 5px;
-  margin-bottom: 35px;
+  margin-bottom: 4.5px;
 }
 
 .p-get-a-verification-code {
@@ -550,6 +550,10 @@ form {
   position: relative;
   z-index: 3;
   right: 5%;
+}
+
+.hidden-confirm-error{
+  height: 30.5px;
 }
 
 /* Verify Password */

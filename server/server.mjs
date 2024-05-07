@@ -17,7 +17,7 @@ app.use(cors());
 // Configure rate limiter for '/send-verification-code' endpoint
 const limiter = rateLimit({
     windowMs: 30 * 60 * 1000, // 30 minutes in milliseconds
-    max: 1,
+    max: 0,
     message: {
       status: 429,
       error: 'Too many requests. Please try again in 30 minutes.'
