@@ -25,12 +25,13 @@ describe('GetAVerificationCodeEmailContainer', () => {
         expect(GAVCEComp).toBeInTheDocument();
     });
     describe('sendVerificationEmail', () => {
-        test('either sends verification email successfuly, or catches the error', async () => {
+        test('either sends verification email successfully, or catches the error', async () => {
             const updateFindYourEmailCredentials = jest.fn();
             const navigate = jest.fn();
+            const setErrorCondition = jest.fn();
             const consoleError = jest.spyOn(console, 'error').mockImplementation(() => {});
             const findYourEmailCredentials = { phoneNumberOrEmail: 'jacmatthews7@gmail.com' };
-
+    
             const sendVerificationEmail = async () => {
                 console.log('findYourEmailCredentials.phoneNumberOrEmail', findYourEmailCredentials.phoneNumberOrEmail);
                 try {
@@ -41,9 +42,9 @@ describe('GetAVerificationCodeEmailContainer', () => {
                             'Content-Type': 'application/json',
                         },
                     });
-        
+    
                     const data = response.data;
-        
+    
                     if (data.verificationCode) {
                         // Extract the verification code from the Twilio response
                         const verificationCode = data.verificationCode.toString();
@@ -59,9 +60,12 @@ describe('GetAVerificationCodeEmailContainer', () => {
                     }
                 } catch (error) {
                     console.error('Error sending verification code:', error);
+                    if (error.response && error.response.status === 429) {
+                        setErrorCondition('apiLimitReached');
+                    }
                 }
             } 
-
+    
             // Test with a successful axios post request that returns a verificationCode
             axios.post.mockResolvedValueOnce({ data: { verificationCode: '123456' } });
             await act(async () => {
@@ -69,21 +73,28 @@ describe('GetAVerificationCodeEmailContainer', () => {
             });
             expect(updateFindYourEmailCredentials).toHaveBeenCalledWith({ verificationCode: '123456' });
             expect(navigate).toHaveBeenCalledWith('/enter-the-find-code');
-
+    
             // Test with a successful axios post request that does not return a verificationCode
             axios.post.mockResolvedValueOnce({ data: {} });
             await act(async () => {
                 await sendVerificationEmail();
             });
             expect(consoleError).toHaveBeenCalledWith('Unknown error sending verification code');
-
+    
             // Test with a failed axios post request
             axios.post.mockRejectedValueOnce(new Error('Network error'));
             await act(async () => {
                 await sendVerificationEmail();
             });
             expect(consoleError).toHaveBeenCalledWith('Error sending verification code:', new Error('Network error'));
-
+    
+            // Test with a failed axios post request with status 429
+            axios.post.mockRejectedValueOnce({ response: { status: 429 } });
+            await act(async () => {
+                await sendVerificationEmail();
+            });
+            expect(setErrorCondition).toHaveBeenCalledWith('apiLimitReached');
+    
             consoleError.mockRestore();
         });
     });
