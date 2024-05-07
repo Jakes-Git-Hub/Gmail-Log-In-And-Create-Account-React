@@ -3,11 +3,22 @@ import { useNavigate } from 'react-router-dom';
 import { GetAVerificationCodePhoneComponent } from '../components/GetAVerificationCodePhoneComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 import axios from 'axios';
+import { APIEndPointLimiter } from '../utils/APIEndPointLimiter';
 
-export const GetAVerificationCodePhoneContainer = ({ updateUser, text,  userData, findYourEmailCredentials, updateFindYourEmailCredentials}) => {
+export const GetAVerificationCodePhoneContainer = ({ 
+    updateUser, 
+    text,  
+    userData, 
+    findYourEmailCredentials, 
+    updateFindYourEmailCredentials,
+    getAVerificationPhoneAPILimit,
+    handleGetAVerificationPhoneAPILimit,
+    resetGetAVerificationPhoneAPILimit,
+}) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [errorCondition, setErrorCondition] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -32,35 +43,44 @@ export const GetAVerificationCodePhoneContainer = ({ updateUser, text,  userData
 // Send Verification Text
     
     const sendVerificationSMS = async () => {
-        try {
-            const response = await axios.post('http://localhost:3001/send-verification-code', {
-                formattedPhoneNumber: findYourEmailCredentials.phoneNumberOrEmail,
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
+        setLoading(true);
+        const container3Limiter = APIEndPointLimiter(5, 30 * 60 * 1000);
+        if (getAVerificationPhoneAPILimit < 5) { 
+            try {
+                const response = await container3Limiter.post('/send-verification-code', {
+                    formattedPhoneNumber: findYourEmailCredentials.phoneNumberOrEmail,
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
 
-            const data = response.data;
+                const data = response.data;
 
-            if (data.verificationCode) {
-                // Extract the verification code from the Twilio response
-                const verificationCode = data.verificationCode.toString();
-                console.log('Verification code:', verificationCode);
-                updateFindYourEmailCredentials({ verificationCode: verificationCode });
-                navigate('/enter-the-find-code'); 
-            } else {
-                if (data.error) {
-                    console.error('Error sending verification code:', data.error);
+                if (data.verificationCode) {
+                    // Extract the verification code from the Twilio response
+                    const verificationCode = data.verificationCode.toString();
+                    console.log('Verification code:', verificationCode);
+                    updateFindYourEmailCredentials({ verificationCode: verificationCode });
+                    handleGetAVerificationPhoneAPILimit();
+                    navigate('/enter-the-find-code'); 
                 } else {
-                    console.error('Unknown error sending verification code');
+                    if (data.error) {
+                        console.error('Error sending verification code:', data.error);
+                    } else {
+                        console.error('Unknown error sending verification code');
+                    }
+                }
+            } catch (error) {
+                console.error('Error sending verification code:', error);
+                if (error.response.status === 429) {
+                    setErrorCondition('apiLimitReached');
                 }
             }
-        } catch (error) {
-            console.error('Error sending verification code:', error);
-            if (error.response.status === 429) {
-                setErrorCondition('apiLimitReached');
-            }
+        } else {
+            setErrorCondition('apiLimitReached');
+            setLoading(false);
+            resetGetAVerificationPhoneAPILimit();
         }
     } 
 
@@ -79,6 +99,7 @@ export const GetAVerificationCodePhoneContainer = ({ updateUser, text,  userData
                 findYourEmailCredentials={findYourEmailCredentials}
                 updateFindYourEmailCredentials={updateFindYourEmailCredentials}
                 errorCondition={errorCondition}
+                loading={loading}
             />
         </>
     );

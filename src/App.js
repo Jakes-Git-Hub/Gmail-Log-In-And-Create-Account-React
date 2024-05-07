@@ -40,7 +40,7 @@ function App() {
         password: '1234', 
         firstName: 'Jacob', 
         lastName: 'Matthews', 
-        phoneNumber: '0', 
+        phoneNumber: '07720761143', 
         profileCircleColor: 'blue', 
         day: '28', 
         month: 'April', 
@@ -58,7 +58,7 @@ function App() {
         email: 'jacmatthews7@gmail.com', 
         firstName: 'Jacob', 
         lastName: 'Matthews', 
-        phoneNumber: '0', 
+        phoneNumber: '07720761143', 
         profileCircleColor: 'red',
         day: '28', 
         month: 'April', 
@@ -95,7 +95,8 @@ function App() {
   const [isWrongCredentials, setIsWrongCredentials] = useState(null);
   const [userToVerifyWithPassword, setUserToVerifyWithPassword] = useState('');
   const [confirmYoureNotARobotPhoneAPILimit, setConfirmYoureNotARobotPhoneAPILimit] = useState(0);
-  const [getAVerificationEMailAPILimit, setGetAVerificationEMailAPILimit] = useState(0);
+  const [getAVerificationEmailAPILimit, setgetAVerificationEmailAPILimit] = useState(0);
+  const [getAVerificationPhoneAPILimit, setGetAVerificationPhoneAPILimit] = useState(0);
 
 // Translation
 
@@ -267,11 +268,19 @@ function App() {
     }, 1800000);
   }
 
-  const handleGetAVerificationEmailAPILimit = () => setGetAVerificationEMailAPILimit(prevLimit => prevLimit + 1);
+  const handlegetAVerificationEmailAPILimit = () => setgetAVerificationEmailAPILimit(prevLimit => prevLimit + 1);
 
-  const resetGetAVerificationEmailAPILimit = () => {
+  const resetgetAVerificationEmailAPILimit = () => {
     setTimeout(() => {
-      setGetAVerificationEMailAPILimit(0);
+      setgetAVerificationEmailAPILimit(0);
+    }, 1800000);
+  }
+
+  const handleGetAVerificationPhoneAPILimit = () => setGetAVerificationPhoneAPILimit(prevLimit => prevLimit + 1);
+
+  const resetGetAVerificationPhoneAPILimit = () => {
+    setTimeout(() => {
+      setGetAVerificationPhoneAPILimit(0);
     }, 1800000);
   }
 
@@ -340,9 +349,9 @@ function App() {
               updateUser={updateUser}
               findYourEmailCredentials={findYourEmailCredentials}
               updateFindYourEmailCredentials={updateFindYourEmailCredentials}
-              handleGetAVerificationEmailAPILimit={handleGetAVerificationEmailAPILimit}
-              getAVerificationEMailAPILimit={getAVerificationEMailAPILimit}
-              resetGetAVerificationEmailAPILimit={resetGetAVerificationEmailAPILimit}
+              handlegetAVerificationEmailAPILimit={handlegetAVerificationEmailAPILimit}
+              getAVerificationEmailAPILimit={getAVerificationEmailAPILimit}
+              resetgetAVerificationEmailAPILimit={resetgetAVerificationEmailAPILimit}
             />
           } 
         />
@@ -353,6 +362,9 @@ function App() {
               updateUser={updateUser}
               findYourEmailCredentials={findYourEmailCredentials}
               updateFindYourEmailCredentials={updateFindYourEmailCredentials}
+              getAVerificationPhoneAPILimit={getAVerificationPhoneAPILimit}
+              handleGetAVerificationPhoneAPILimit={handleGetAVerificationPhoneAPILimit}
+              resetGetAVerificationPhoneAPILimit={resetGetAVerificationPhoneAPILimit}
             />
           } 
         />

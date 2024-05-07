@@ -9,9 +9,9 @@ export const GetAVerificationCodeEmailContainer = ({ updateUser,
     userData, 
     findYourEmailCredentials, 
     updateFindYourEmailCredentials, 
-    handleGetAVerificationEmailAPILimit, 
-    resetGetAVerificationEmailAPILimit, 
-    getAVerificationEMailAPILimit,
+    handlegetAVerificationEmailAPILimit, 
+    resetgetAVerificationEmailAPILimit, 
+    getAVerificationEmailAPILimit,
 }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -44,7 +44,7 @@ export const GetAVerificationCodeEmailContainer = ({ updateUser,
         setLoading(true);
         console.log('findYourEmailCredentials.phoneNumberOrEmail', findYourEmailCredentials.phoneNumberOrEmail);
         const container2Limiter = APIEndPointLimiter(5, 30 * 60 * 1000);
-        if (getAVerificationEMailAPILimit < 5) {
+        if (getAVerificationEmailAPILimit < 5) {
             try {
                 const response = await container2Limiter.post('/send-verification-email', {
                     phoneNumberOrEmail: findYourEmailCredentials.phoneNumberOrEmail,
@@ -61,7 +61,7 @@ export const GetAVerificationCodeEmailContainer = ({ updateUser,
                     const verificationCode = data.verificationCode.toString();
                     console.log('Verification code:', verificationCode);
                     updateFindYourEmailCredentials({ verificationCode: verificationCode });
-                    handleGetAVerificationEmailAPILimit();
+                    handlegetAVerificationEmailAPILimit();
                     navigate('/enter-the-find-code');    
                 } else {
                     if (data.error) {
@@ -79,7 +79,7 @@ export const GetAVerificationCodeEmailContainer = ({ updateUser,
         } else {
             setErrorCondition('apiLimitReached');
             setLoading(false);
-            resetGetAVerificationEmailAPILimit();
+            resetgetAVerificationEmailAPILimit();
         }
     } 
 
