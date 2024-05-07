@@ -69,8 +69,6 @@ export const GetAVerificationCodeEmailComponent = ({
                         </CustomNextButton>
                     </div>
 
-                    
-
                 </form>
 
             </main>
