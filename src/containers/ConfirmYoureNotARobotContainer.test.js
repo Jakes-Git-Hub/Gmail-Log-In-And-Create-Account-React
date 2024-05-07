@@ -6,9 +6,11 @@ import textData from '../data/textData'
 import '@testing-library/jest-dom/extend-expect';
 import React from 'react';
 import { act } from 'react-dom/test-utils';
+import { APIEndPointLimiter } from '../utils/APIEndPointLimiter';
 import axios from 'axios';
 
 jest.mock('axios');
+jest.mock('../utils/APIEndPointLimiter');
 
 describe('ConfirmYoureNotARobotContainer', () => {
     const mockUpdateUser = jest.fn();
@@ -210,6 +212,19 @@ describe('ConfirmYoureNotARobotContainer', () => {
         });
     });
     describe('sendVerificationCode', () => {
+        let mockPost;
+    
+        beforeEach(() => {
+            mockPost = jest.fn();
+            APIEndPointLimiter.mockReturnValue({
+                post: mockPost,
+            });
+        });
+    
+        afterEach(() => {
+            jest.clearAllMocks();
+        });
+    
         it('handles verification code sending correctly', async () => {
             const setLoading = jest.fn();
             const updateUser = jest.fn();
@@ -217,8 +232,11 @@ describe('ConfirmYoureNotARobotContainer', () => {
             const setError = jest.fn();
             const formattedPhoneNumber = '1234567890';
             const actualSelectedOption = true;
+            let confirmYoureNotARobotPhoneAPILimit = 4; // Set this to a value less than 5
+            const handleConfirmYoureNotARobotPhoneAPILimit = jest.fn(() => confirmYoureNotARobotPhoneAPILimit++);
+            const resetCYNARPhoneAPILimit = jest.fn(() => confirmYoureNotARobotPhoneAPILimit = 0);
     
-            axios.post.mockResolvedValue({
+            mockPost.mockResolvedValue({
                 data: {
                     verificationCode: '123456',
                 },
@@ -226,21 +244,25 @@ describe('ConfirmYoureNotARobotContainer', () => {
     
             const sendVerificationCode = async () => {
                 setLoading(true);
-                try {
-                    const response = await axios.post('http://localhost:3001/send-verification-code', {
+                const container1Limiter = APIEndPointLimiter(5, 30 * 60 * 1000);
+                if (confirmYoureNotARobotPhoneAPILimit < 5) {
+                  try {
+                    const response = await container1Limiter.post('/send-verification-code', {
                         formattedPhoneNumber: formattedPhoneNumber,
                     }, {
                         headers: {
                             'Content-Type': 'application/json',
                         },
                     });
-    
+        
                     const data = response.data;
-    
+        
                     if (data.verificationCode) {
+                        // Extract the verification code from the Twilio response
                         const verificationCode = data.verificationCode.toString();
                         updateUser({ verificationCode: verificationCode });
                         console.log('actualSelectedOption:', actualSelectedOption);
+                        handleConfirmYoureNotARobotPhoneAPILimit();
                         navigate('/enter-the-verification-code');    
                     } else {
                         setLoading(false);
@@ -250,17 +272,26 @@ describe('ConfirmYoureNotARobotContainer', () => {
                             console.error('Unknown error sending verification code');
                         }
                     }
-                } catch (error) {
-                    console.error('Error sending verification code:', error);
+                    } catch (error) {
+                        console.error('Error sending verification code:', error);
+                        setLoading(false);
+                        if (error.response.status === 429) {
+                            setError('apiLimitReached');
+                        } else {
+                            setError('incorrectNumber');
+                        }
+                    }  
+                } else {
+                    setError('apiLimitReached');
                     setLoading(false);
-                    setError('incorrectNumber');
+                    resetCYNARPhoneAPILimit();
                 }
-            };
+            } 
     
             await sendVerificationCode();
     
             expect(setLoading).toHaveBeenCalledWith(true);
-            expect(axios.post).toHaveBeenCalledWith('http://localhost:3001/send-verification-code', {
+            expect(mockPost).toHaveBeenCalledWith('/send-verification-code', {
                 formattedPhoneNumber: formattedPhoneNumber,
             }, {
                 headers: {

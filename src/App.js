@@ -95,6 +95,7 @@ function App() {
   const [isWrongCredentials, setIsWrongCredentials] = useState(null);
   const [userToVerifyWithPassword, setUserToVerifyWithPassword] = useState('');
   const [confirmYoureNotARobotPhoneAPILimit, setConfirmYoureNotARobotPhoneAPILimit] = useState(0);
+  const [getAVerificationEMailAPILimit, setGetAVerificationEMailAPILimit] = useState(0);
 
 // Translation
 
@@ -266,6 +267,14 @@ function App() {
     }, 1800000);
   }
 
+  const handleGetAVerificationEmailAPILimit = () => setGetAVerificationEMailAPILimit(prevLimit => prevLimit + 1);
+
+  const resetGetAVerificationEmailAPILimit = () => {
+    setTimeout(() => {
+      setGetAVerificationEMailAPILimit(0);
+    }, 1800000);
+  }
+
   return (
     <Router>
       <Routes>
@@ -331,6 +340,9 @@ function App() {
               updateUser={updateUser}
               findYourEmailCredentials={findYourEmailCredentials}
               updateFindYourEmailCredentials={updateFindYourEmailCredentials}
+              handleGetAVerificationEmailAPILimit={handleGetAVerificationEmailAPILimit}
+              getAVerificationEMailAPILimit={getAVerificationEMailAPILimit}
+              resetGetAVerificationEmailAPILimit={resetGetAVerificationEmailAPILimit}
             />
           } 
         />

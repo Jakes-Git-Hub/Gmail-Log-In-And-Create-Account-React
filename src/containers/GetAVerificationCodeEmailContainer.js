@@ -3,8 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import { GetAVerificationCodeEmailComponent } from '../components/GetAVerificationCodeEmailComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 import axios from 'axios';
+import { APIEndPointLimiter } from '../utils/APIEndPointLimiter';
 
-export const GetAVerificationCodeEmailContainer = ({ updateUser, text,  userData, findYourEmailCredentials, updateFindYourEmailCredentials}) => {
+export const GetAVerificationCodeEmailContainer = ({ updateUser, 
+    text,  
+    userData, 
+    findYourEmailCredentials, 
+    updateFindYourEmailCredentials, 
+    handleGetAVerificationEmailAPILimit, 
+    resetGetAVerificationEmailAPILimit, 
+    getAVerificationEMailAPILimit,
+}) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [errorCondition, setErrorCondition] = useState(false);
@@ -33,8 +42,9 @@ export const GetAVerificationCodeEmailContainer = ({ updateUser, text,  userData
 
     const sendVerificationEmail = async () => {
         console.log('findYourEmailCredentials.phoneNumberOrEmail', findYourEmailCredentials.phoneNumberOrEmail);
+        const container2Limiter = APIEndPointLimiter(5, 30 * 60 * 1000);
         try {
-            const response = await axios.post('http://localhost:3001/send-verification-email', {
+            const response = await container2Limiter.post('http://localhost:3001/send-verification-email', {
                 phoneNumberOrEmail: findYourEmailCredentials.phoneNumberOrEmail,
             }, {
                 headers: {
