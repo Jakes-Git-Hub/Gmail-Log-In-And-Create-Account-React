@@ -9,8 +9,6 @@ import { generateSequences } from '../utils/generateSequences';
 import { PhoneNumberUtil, PhoneNumberFormat } from 'google-libphonenumber';
 import { APIEndPointLimiter } from '../utils/APIEndPointLimiter';
 
-const phoneUtil = PhoneNumberUtil.getInstance();
-
 export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, userIP, handleCYNARCountrySelect, hasSelectedCYNARCountry, text, translatedCountries, IPGeoLocationAPIKey, }) => {
 
     const [formattedPhoneNumber, setFormattedPhoneNumber] = useState('');
@@ -35,7 +33,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
         };
     }, []);
 
-    const container1Limiter = APIEndPointLimiter(5, 30 * 60 * 1000);
+    const phoneUtil = PhoneNumberUtil.getInstance();
 
 // Change Language
 
@@ -300,8 +298,9 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 
     const sendVerificationCode = async () => {
         setLoading(true);
+        const container1Limiter = APIEndPointLimiter(0, 30 * 60 * 1000);
         try {
-            const response = await axios.post('http://localhost:3001/send-verification-code', {
+            const response = await container1Limiter.post('/send-verification-code', {
                 formattedPhoneNumber: formattedPhoneNumber,
             }, {
                 headers: {
