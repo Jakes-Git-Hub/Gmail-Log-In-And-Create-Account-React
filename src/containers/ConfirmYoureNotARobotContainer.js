@@ -9,7 +9,20 @@ import { generateSequences } from '../utils/generateSequences';
 import { PhoneNumberUtil, PhoneNumberFormat } from 'google-libphonenumber';
 import { APIEndPointLimiter } from '../utils/APIEndPointLimiter';
 
-export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, userIP, handleCYNARCountrySelect, hasSelectedCYNARCountry, text, translatedCountries, IPGeoLocationAPIKey, }) => {
+export const ConfirmYoureNotARobotContainer = ({ 
+    updateUser, 
+    userData, 
+    users, 
+    userIP, 
+    handleCYNARCountrySelect, 
+    hasSelectedCYNARCountry, 
+    text, 
+    translatedCountries, 
+    IPGeoLocationAPIKey, 
+    handleConfirmYoureNotARobotPhoneAPILimit,
+    confirmYoureNotARobotPhoneAPILimit,
+    resetCYNARPhoneAPILimit,
+}) => {
 
     const [formattedPhoneNumber, setFormattedPhoneNumber] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -298,8 +311,9 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
 
     const sendVerificationCode = async () => {
         setLoading(true);
-        const container1Limiter = APIEndPointLimiter(0, 30 * 60 * 1000);
-        try {
+        const container1Limiter = APIEndPointLimiter(5, 30 * 60 * 1000);
+        if (confirmYoureNotARobotPhoneAPILimit < 5) {
+          try {
             const response = await container1Limiter.post('/send-verification-code', {
                 formattedPhoneNumber: formattedPhoneNumber,
             }, {
@@ -315,6 +329,7 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                 const verificationCode = data.verificationCode.toString();
                 updateUser({ verificationCode: verificationCode });
                 console.log('actualSelectedOption:', actualSelectedOption);
+                handleConfirmYoureNotARobotPhoneAPILimit();
                 navigate('/enter-the-verification-code');    
             } else {
                 setLoading(false);
@@ -324,14 +339,19 @@ export const ConfirmYoureNotARobotContainer = ({ updateUser, userData, users, us
                     console.error('Unknown error sending verification code');
                 }
             }
-        } catch (error) {
-            console.error('Error sending verification code:', error);
+            } catch (error) {
+                console.error('Error sending verification code:', error);
+                setLoading(false);
+                if (error.response.status === 429) {
+                    setError('apiLimitReached');
+                } else {
+                    setError('incorrectNumber');
+                }
+            }  
+        } else {
+            setError('apiLimitReached');
             setLoading(false);
-            if (error.response.status === 429) {
-                setError('apiLimitReached');
-            } else {
-                setError('incorrectNumber');
-            }
+            resetCYNARPhoneAPILimit();
         }
     } 
 

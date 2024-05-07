@@ -94,6 +94,7 @@ function App() {
   const [showPrivacyRow, setShowPrivacyRow] = useState(false);
   const [isWrongCredentials, setIsWrongCredentials] = useState(null);
   const [userToVerifyWithPassword, setUserToVerifyWithPassword] = useState('');
+  const [confirmYoureNotARobotPhoneAPILimit, setConfirmYoureNotARobotPhoneAPILimit] = useState(0);
 
 // Translation
 
@@ -255,6 +256,16 @@ function App() {
     setUserToVerifyWithPassword(registeredUserProfile);
   }
 
+  // Client Side API Throttle
+
+  const handleConfirmYoureNotARobotPhoneAPILimit = () => setConfirmYoureNotARobotPhoneAPILimit(prevLimit => prevLimit + 1);
+  
+  const resetCYNARPhoneAPILimit = () => {
+    setTimeout(() => {
+      setConfirmYoureNotARobotPhoneAPILimit(0);
+    }, 1800000);
+  }
+
   return (
     <Router>
       <Routes>
@@ -399,6 +410,9 @@ function App() {
               text={text}
               translatedCountries={translatedCountries}
               IPGeoLocationAPIKey={IPGeoLocationAPIKey}
+              handleConfirmYoureNotARobotPhoneAPILimit={handleConfirmYoureNotARobotPhoneAPILimit}
+              confirmYoureNotARobotPhoneAPILimit={confirmYoureNotARobotPhoneAPILimit}
+              resetCYNARPhoneAPILimit={resetCYNARPhoneAPILimit}
             />
           } 
         />
