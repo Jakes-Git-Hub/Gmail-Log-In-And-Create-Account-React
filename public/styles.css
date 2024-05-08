@@ -422,6 +422,14 @@ form {
 
 /* Find Email */
 
+.h2-response {
+  margin-top: 10px;
+  margin-bottom: 25px;
+  width: 90%;
+  text-align: center;
+}
+
+
 .button-right-find-email {
   display: flex;
   width: 90%;

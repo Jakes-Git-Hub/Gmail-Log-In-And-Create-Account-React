@@ -30,13 +30,13 @@ export const FindYourEmailComponent = ({
                 <form>
 
                     <h1 className='thin h1-space'>{text.FindYourEmail.h1[userData.language]}</h1>
-                    <h2 className='thin gap'>Enter your phone number or recovery email</h2>
+                    <h2 className='thin gap h2-response'>{text.FindYourEmail.h2[userData.language]}</h2>
 
                     <TextField 
                         className='standard-text-field'
                         error={errorCondition}
                         id='phoneNumberOrEmailInput' 
-                        label='Phone number or email'
+                        label={text.FindYourEmail.phonenumberOrEmail[userData.language]}
                         aria-label='Enter your phone number or recovery email'
                         variant='outlined' 
                         fullWidth
@@ -99,7 +99,7 @@ export const FindYourEmailComponent = ({
                             }}
                         >
                             <div className='next'>
-                                Next
+                                {text.CreateAccount.next[userData.language]}
                             </div>
                         </CustomNextButton>
                     </div>
