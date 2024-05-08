@@ -36,14 +36,14 @@ export const SignInFrontPageComponent = ({
 
                     <h1 className='thin h1-space'>{text.SignIn.h1[userData.language]}</h1>
 
-                    <h2 className='thin gap'>Use your Google Account</h2>
+                    <h2 className='thin gap'>{text.SignIn.h2[userData.language]}</h2>
 
 
                     <TextField 
                         className='standard-text-field'
                         error={errorCondition}
                         id='emailOrPhoneInput' 
-                        label={'Email or phone'}
+                        label={text.SignIn.emailOrPhone[userData.language]}
                         variant='outlined' 
                         fullWidth
                         value={emailOrPhone}
@@ -96,24 +96,24 @@ export const SignInFrontPageComponent = ({
                       
                     <div id='forgot-email-container'>
                         <TransparentSmallButtonSignInPage onClick={handleForgotEmailButtonClick} aria-label='Forgot email button'>
-                            Forgot email?
+                            {text.SignIn.forgotEmail[userData.language]}
                         </TransparentSmallButtonSignInPage>
                     </div>
 
                     <div id='sign-in-guest-mode-container'>
-                        <p className='p-sign-in'>Not your computer? Use Guest mode to sign in privately.</p>
+                        <p className='p-sign-in'>{text.SignIn.notYourComputer[userData.language]}</p>
                         <TransparentSmallButtonSignInPage onClick={handleGuestModeInfoButtonClick} aria-label='Learn more about using guest mode button'>
-                            Learn more about using Guest mode
+                            {text.SignIn.learnMore[userData.language]}
                         </TransparentSmallButtonSignInPage>
                     </div>  
 
                     <div id='create-account-and-next-button-div-sign-in-page'>
                         <SecondaryGreyButton  onClick={handleCreateAccountClick} id='create-account-button-adjust-left' aria-label='Create account button'>
-                            Create account
+                        {text.SignIn.createAccount[userData.language]}
                         </SecondaryGreyButton>
 
                         <CustomNextButton onClick={handleNextClick} aria-label='Next button'>
-                            Next  
+                            {text.CreateAccount.next[userData.language]}  
                         </CustomNextButton>
                     </div>
 
