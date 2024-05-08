@@ -31,7 +31,7 @@ export const WhatsYourNameComponent = ({
                 <form>
 
                     <h1 className='thin h1-space'>{text.WhatsYourName.h1[userData.language]}</h1>
-                    <h2 className='thin gap'>Enter the name on your Google Account</h2>
+                    <h2 className='thin gap'>{text.WhatsYourName.enterTheName[userData.language]}</h2>
 
                     <TextField 
                         className='standard-text-field'
@@ -113,7 +113,7 @@ export const WhatsYourNameComponent = ({
                             }}
                         >
                             <div className='next'>
-                                Next
+                                {text.CreateAccount.next[userData.language]}
                             </div>
                         </CustomNextButton>
                     </div>
