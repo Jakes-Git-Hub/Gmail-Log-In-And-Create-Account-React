@@ -40,7 +40,7 @@ function App() {
         password: '1234', 
         firstName: 'Jacob', 
         lastName: 'Matthews', 
-        phoneNumber: '07720761143', 
+        phoneNumber: '', 
         profileCircleColor: 'blue', 
         day: '28', 
         month: 'April', 
@@ -58,7 +58,7 @@ function App() {
         email: 'jacmatthews7@gmail.com', 
         firstName: 'Jacob', 
         lastName: 'Matthews', 
-        phoneNumber: '07720761143', 
+        phoneNumber: '', 
         profileCircleColor: 'red',
         day: '28', 
         month: 'April', 
@@ -80,11 +80,11 @@ function App() {
     { 
       language: 'en-GB', 
       id: 0, 
-      email: 'jacmatthews7@gmail.com', 
-      firstName: 'Jacob', 
-      lastName: 'Matthews', 
-      phoneNumber: '07720761143', 
-      profileCircleColor: 'blue', 
+      email: '', 
+      firstName: '', 
+      lastName: '', 
+      phoneNumber: '', 
+      profileCircleColor: '', 
     }
   );
   const [findYourEmailCredentials, setFindYourEmailCredentials] = useState({});
@@ -144,7 +144,7 @@ function App() {
       }
   }
 
-  const sanitizeCountryNames = (countries) => {
+  const sanitizeCountryNames = countries => {
     const sanitizedCountries = countries.map(country => ({
       ...country,
       name: country.name.replace(/&#39;/g, "'")
@@ -218,13 +218,9 @@ function App() {
     });
   }
 
-  const handleIncorrectInfoSearch = () => {
-    setIsWrongCredentials(true);
-  }
+  const handleIncorrectInfoSearch = () => setIsWrongCredentials(true);
 
-  const handleCorrectInfoSearch = () => {
-    setIsWrongCredentials(false);
-  }
+  const handleCorrectInfoSearch = () => setIsWrongCredentials(false);
 
 // Add User
 
@@ -254,35 +250,21 @@ function App() {
 
   // Pass user Inputted Email to Verify with Password
 
-  const passFoundUser = registeredUserProfile => {
-    setUserToVerifyWithPassword(registeredUserProfile);
-  }
+  const passFoundUser = registeredUserProfile => setUserToVerifyWithPassword(registeredUserProfile);
 
   // Client Side API Throttle
 
   const handleConfirmYoureNotARobotPhoneAPILimit = () => setConfirmYoureNotARobotPhoneAPILimit(prevLimit => prevLimit + 1);
   
-  const resetCYNARPhoneAPILimit = () => {
-    setTimeout(() => {
-      setConfirmYoureNotARobotPhoneAPILimit(0);
-    }, 1800000);
-  }
+  const resetCYNARPhoneAPILimit = () => setTimeout(() => setConfirmYoureNotARobotPhoneAPILimit(0), 1800000);
 
   const handlegetAVerificationEmailAPILimit = () => setgetAVerificationEmailAPILimit(prevLimit => prevLimit + 1);
 
-  const resetgetAVerificationEmailAPILimit = () => {
-    setTimeout(() => {
-      setgetAVerificationEmailAPILimit(0);
-    }, 1800000);
-  }
+  const resetgetAVerificationEmailAPILimit = () => setTimeout(() => setgetAVerificationEmailAPILimit(0), 1800000);
 
   const handleGetAVerificationPhoneAPILimit = () => setGetAVerificationPhoneAPILimit(prevLimit => prevLimit + 1);
 
-  const resetGetAVerificationPhoneAPILimit = () => {
-    setTimeout(() => {
-      setGetAVerificationPhoneAPILimit(0);
-    }, 1800000);
-  }
+  const resetGetAVerificationPhoneAPILimit = () => setTimeout(() => setGetAVerificationPhoneAPILimit(0), 1800000);
 
   return (
     <Router>

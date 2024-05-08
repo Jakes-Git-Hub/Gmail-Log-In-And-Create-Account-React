@@ -215,6 +215,7 @@ export const CreatePasswordComponent = ({
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
+                text={text}
             />
 
         </>

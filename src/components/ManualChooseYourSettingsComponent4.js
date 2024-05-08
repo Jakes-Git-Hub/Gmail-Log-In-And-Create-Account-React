@@ -140,6 +140,7 @@ export const ManualChooseYourSettingsComponent4 = ({
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
                 aria-label='Change language'
+                text={text}
             />
 
         </>

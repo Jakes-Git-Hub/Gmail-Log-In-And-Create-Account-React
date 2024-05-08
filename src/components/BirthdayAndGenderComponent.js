@@ -8,7 +8,6 @@ import googleWritingSvg from '../images/google-writing-svg.svg';
 import CustomNextButton from './buttons/CustomNextButtonComponent';
 import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
 import LanguageChangerOverflow from './LanguageChanger/LanguageChangerOverflowComponent';
-import ErrorSVG from '../images/error-exclamation-indicator.svg';
 
 export const BirthdayAndGenderComponent = ({
     month, 
@@ -20,7 +19,6 @@ export const BirthdayAndGenderComponent = ({
     gender,
     handleSelectGender,
     handleNextClick,
-    isImagePreloaded,
     genderEmpty,
     errorCondition,
     isImageLoaded,
@@ -44,7 +42,6 @@ export const BirthdayAndGenderComponent = ({
                     <div className='blue-snake-loader'></div>
                 </div>
                 <img src={googleWritingSvg} alt='Google Writing' id='google-writing-BG'/>
-
             
                 <form>
 
@@ -202,7 +199,7 @@ export const BirthdayAndGenderComponent = ({
                             <svg aria-hidden='true' className='error-image' fill='rgb(217, 48, 37)' focusable='false' width='16px' height='16px' viewBox='0 0 24 24' xmlns='https://www.w3.org/2000/svg'>
                                 <path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'></path>
                             </svg>
-                            <p className='input-error-message'>{text.BirthdayAndGender.pleaseEnterVAlidDate[userData.language]}</p>
+                            <p className='input-error-message'>{text.BirthdayAndGender.pleaseEnterValidDate[userData.language]}</p>
                         </div>
                     ) : (
                         <div className='hidden-error-message-container-create-account'></div>
@@ -414,6 +411,7 @@ export const BirthdayAndGenderComponent = ({
                     onChange={handleLanguageSelection}
                     initialLanguage={userData.language}
                     aria-label='Change language'
+                    text={text}
                 />
             )}
 

@@ -5,7 +5,7 @@ import googleWritingSvg from '../images/google-writing-svg.svg';
 
 export const VerifyWithPasswordContainer = ({ updateUser, text,  userData,  handleLogin, userToVerifyWithPassword, }) => {
 
-    const [password, setPassword] =useState('');
+    const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [errorCondition, setErrorCondition] = useState(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false); 
@@ -42,7 +42,6 @@ export const VerifyWithPasswordContainer = ({ updateUser, text,  userData,  hand
     
     const passwordEmpty = () => setErrorCondition('passwordEmpty');
 
-
     const wrongPassword = () => setErrorCondition('wrongPassword');
 
 // Handle Input
@@ -53,7 +52,7 @@ export const VerifyWithPasswordContainer = ({ updateUser, text,  userData,  hand
             passwordEmpty();
             passwordInput.focus();
         }
-        if (password !== userToVerifyWithPassword.password) {
+        else if (password !== userToVerifyWithPassword.password) {
             wrongPassword();
             passwordInput.focus();
         }

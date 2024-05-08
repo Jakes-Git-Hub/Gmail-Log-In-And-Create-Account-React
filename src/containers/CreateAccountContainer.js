@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CreateAccountComponent } from '../components/CreateAccountComponent';
-
 import googleWritingSvg from '../images/google-writing-svg.svg';
-import { error } from 'jquery';
 
 export const CreateAccountContainer = ({ updateUser, text,  userData, }) => {
 
@@ -48,7 +46,7 @@ export const CreateAccountContainer = ({ updateUser, text,  userData, }) => {
 
 // Last Name - Allow Only Letters
 
-    const onLastNameInputChange = (e) => {
+    const onLastNameInputChange = e => {
         if (isLetters(e.target.value)) {
             setLastName(e.target.value);
         }

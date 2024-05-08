@@ -124,7 +124,7 @@ describe('app.js', () => {
       
           expect(result).toEqual(expected);
         });
-      });
+    });
     describe('handleLogin', () => {
         it('Checks if Login Credentials are Correct', () => {
             const handleLogin = jest.fn().mockImplementation((email, password) => {
@@ -220,6 +220,5 @@ describe('app.js', () => {
             expect(result).toEqual(prevFindEmailCreds);
         });
     });
-    
 });
 

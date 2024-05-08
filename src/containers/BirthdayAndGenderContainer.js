@@ -20,6 +20,10 @@ export const BirthdayAndGenderContainer = ({ updateUser, text,  userData, }) => 
 
     const navigate = useNavigate();
 
+    useEffect(() => {
+        console.log('userData', userData);
+    }, [userData]);
+
 // Handle Slow Svg Load
 
     useEffect(() => {
@@ -29,10 +33,6 @@ export const BirthdayAndGenderContainer = ({ updateUser, text,  userData, }) => 
         setIsImageLoaded(true);
         };
     }, []);
-
-    useEffect(() => {
-        console.log('month', month);
-    }, [month])
 
 // Change Language
 
@@ -64,9 +64,12 @@ export const BirthdayAndGenderContainer = ({ updateUser, text,  userData, }) => 
 
     const handleSelectYear = e => {
         const inputYear = e.target.value;
-        setYear(inputYear);
-        if (inputYear.length === 4 && month && day && day.length === 2 && !isNaN(Number(day)) && !isNaN(Number(inputYear))) {
-            setErrorCondition(null);
+        const maxYearLength = 4;
+        if (inputYear.length <= maxYearLength) {
+            setYear(inputYear);
+            if (inputYear.length === 4 && month && day && day.length === 2 && !isNaN(Number(day)) && !isNaN(Number(inputYear))) {
+                setErrorCondition(null);
+            }
         }
     }
 
@@ -122,6 +125,7 @@ export const BirthdayAndGenderContainer = ({ updateUser, text,  userData, }) => 
         } if (isGenderEmpty) {
             genderError();
         } if (!isBirthdayEmpty && !isGenderEmpty && !isNaN(numericDay) && !isNaN(numericYear)) {
+            console.log('triggered');
             updateUser({month: month, day: day, year: year, gender: gender, customGender: customGender, pronoun: pronoun})
             navigate('/choose-your-gmail-address')
         } if (!isBirthdayEmpty && (isNaN(numericDay) || isNaN(numericYear) || year.length < 4 || !isValidDate)) {

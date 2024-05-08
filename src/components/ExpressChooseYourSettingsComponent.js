@@ -376,6 +376,7 @@ export const ExpressChooseYourSettingsComponent = ({
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
                 aria-label='Change language'
+                text={text}
             />
 
         </>                

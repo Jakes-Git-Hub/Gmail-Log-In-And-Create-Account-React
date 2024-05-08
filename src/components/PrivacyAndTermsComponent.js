@@ -137,6 +137,7 @@ export const PrivacyAndTermsComponent = ({
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
                 aria-label='Change language'
+                text={text}
             />
 
         </>

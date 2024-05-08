@@ -184,6 +184,7 @@ export const ConfirmYoureNotARobotComponent = ({
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
                 aria-label='Change language'
+                text={text}
             />
 
         </>            

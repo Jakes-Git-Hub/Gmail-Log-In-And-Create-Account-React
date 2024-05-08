@@ -150,6 +150,7 @@ export const VerifyWithPasswordComponent = ({
                 className='language-changer-div'
                 onChange={handleLanguageSelection}
                 initialLanguage={userData.language}
+                text={text}
             />
 
         </>

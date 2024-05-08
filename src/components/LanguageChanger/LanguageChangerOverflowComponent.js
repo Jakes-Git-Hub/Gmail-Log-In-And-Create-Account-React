@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import FooterGreyButton from '../buttons/FooterGreyButton';
 
-function LanguageChangerOverflow({ onChange, initialLanguage }) {
+function LanguageChangerOverflow({ onChange, initialLanguage, text, }) {
 
     const [selectedValue, setSelectedValue] = useState(initialLanguage || 'en-GB');
     const [open, setOpen] = useState(false);
@@ -154,15 +154,15 @@ function LanguageChangerOverflow({ onChange, initialLanguage }) {
                 </Select>
             </FormControl>
 
-            <nav id='footer-trio-buttons-container'>
+            <nav id='footer-trio-buttons-container' aria-label='Footer links' role='navigation'>
                 <FooterGreyButton role='button' onClick={handleHelpButtonClicked}>
-                    Help
+                    {text.LanguageChanger.help[selectedValue]}
                 </FooterGreyButton>
                 <FooterGreyButton role='button' onClick={handlePrivacyButtonClicked}>
-                    Privacy
+                    {text.LanguageChanger.privacy[selectedValue]}
                 </FooterGreyButton>
                 <FooterGreyButton role='button' onClick={handleTermsButtonClicked}>
-                    Terms
+                    {text.LanguageChanger.terms[selectedValue]}
                 </FooterGreyButton>
             </nav>
 

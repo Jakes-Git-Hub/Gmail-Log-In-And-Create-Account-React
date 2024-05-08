@@ -155,6 +155,7 @@ export const AddRecoveryEmailComponent = ({
                 initialLanguage={userData.language}
                 onChange={handleLanguageSelection}
                 aria-label='Change language'
+                text={text}
             />
 
         </>
