@@ -30,7 +30,7 @@ export const GetAVerificationCodeEmailComponent = ({
                     <h1 className='thin h1-space'>{text.GetAVerificationCode.h1[userData.language]}</h1>
 
                     <div className='width-h2'>
-                        <h2 className='thin gap center h2-line-height'>To help keep your account safe, Google wants to make sure it's really you trying to sign in</h2>
+                        <h2 className='thin gap center h2-line-height'>{text.GetAVerificationCode.h2[userData.language]}</h2>
                     </div>  
 
                     <div className='p17Urb'>
@@ -40,7 +40,7 @@ export const GetAVerificationCodeEmailComponent = ({
 
                     <div className='p-container-gavc'>
                         <p className='p-get-a-verification-code'>
-                            Google will send a verification code to {findYourEmailCredentials.phoneNumberOrEmail ? findYourEmailCredentials.phoneNumberOrEmail : ''}.
+                            {text.GetAVerificationCode.googleWillSend[userData.language]} {findYourEmailCredentials.phoneNumberOrEmail ? findYourEmailCredentials.phoneNumberOrEmail : ''}.
                         </p>
                     </div>
 
@@ -65,7 +65,7 @@ export const GetAVerificationCodeEmailComponent = ({
                             }}
                         >
                             <div className='next'>
-                                Send
+                                {text.GetAVerificationCode.send[userData.language]}
                             </div>
                         </CustomNextButton>
                     </div>
