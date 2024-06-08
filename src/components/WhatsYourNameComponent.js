@@ -118,8 +118,6 @@ export const WhatsYourNameComponent = ({
                         </CustomNextButton>
                     </div>
 
-                    
-
                 </form>
 
             </main>

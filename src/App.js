@@ -75,7 +75,6 @@ function App() {
   );
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
   const [nextUserId, setNextUserId] = useState(1);
-  // const [intermediateUser, setIntermediateUser] = useState({});
   const [userData, setUserData] = useState(
     { 
       language: 'en-GB', 

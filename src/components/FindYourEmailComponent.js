@@ -13,7 +13,6 @@ export const FindYourEmailComponent = ({
     isImageLoaded,
     userData,
     onPhoneNumberOrEmailInputChange,
-
 }) => {
 
     return (

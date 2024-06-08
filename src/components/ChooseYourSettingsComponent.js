@@ -82,7 +82,7 @@ export const ChooseYourSettingsComponent = ({
                                         },
                                         color: errorCondition === 'selectAnOption' ? 'rgb(217,48,37)' : 'default',
                                     }}
-                                    />
+                                />
                             }
                             label={
                                 <div className='writting-container'>

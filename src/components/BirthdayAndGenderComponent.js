@@ -405,6 +405,7 @@ export const BirthdayAndGenderComponent = ({
                     onChange={handleLanguageSelection}
                     initialLanguage={userData.language}
                     aria-label='Change language'
+                    text={text}
                 />
             ) : (
                 <LanguageChanger

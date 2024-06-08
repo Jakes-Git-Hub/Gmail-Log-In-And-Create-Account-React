@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
-import bodyParser from 'body-parser';  // Added for parsing request bodies
+import bodyParser from 'body-parser';  // Added for parsing request 
 import twilio from 'twilio';  // Added for Twilio integration
 import sgMail from '@sendgrid/mail';
 import rateLimit from 'express-rate-limit';
@@ -46,8 +46,6 @@ app.get('/get-user-ip', (request, response) => {
 });
 
 // Twilio API Endpoint
-
-// Twilio credentials
 
 const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID;
 const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN;

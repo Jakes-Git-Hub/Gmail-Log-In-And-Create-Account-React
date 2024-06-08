@@ -9,14 +9,11 @@ export const ConfirmYourSettingsComponent = ({
     handleNextClick,
     isImageLoaded,
     errorCondition,
-    isImagePreloaded,
     handleLanguageSelection,
     text,
     handleBackClick,
     userData,
     showPrivacyRow,
-    
-    
 }) => {
 
     return (

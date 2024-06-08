@@ -143,7 +143,6 @@ export const BirthdayAndGenderContainer = ({ updateUser, text,  userData, }) => 
 
     const handleNextClick = () => validateUserBasicInfo();
 
-
     return (
         <BirthdayAndGenderComponent
             month={month}

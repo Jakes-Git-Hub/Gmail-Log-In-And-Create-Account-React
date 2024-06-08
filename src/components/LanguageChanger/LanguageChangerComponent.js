@@ -20,7 +20,7 @@ function LanguageChanger({ onChange, initialLanguage, text, }) {
         }
     }, [initialLanguage, onChange]);
     
-    const handleChange = (event) => {
+    const handleChange = event => {
         const value = event.target.value;
         setSelectedValue(value);
         onChange(value);
@@ -42,9 +42,7 @@ function LanguageChanger({ onChange, initialLanguage, text, }) {
 
     useEffect(() => {
         handleResize();
-    
         window.addEventListener('resize', handleResize);
-    
         return () => {
             window.removeEventListener('resize', handleResize);
         };
@@ -52,7 +50,7 @@ function LanguageChanger({ onChange, initialLanguage, text, }) {
 
 // Options
 
-    const customOptions = languageOptions.map((language) => ({
+    const customOptions = languageOptions.map(language => ({
         value: language.value,
         label: language.label
     }));
@@ -90,7 +88,6 @@ function LanguageChanger({ onChange, initialLanguage, text, }) {
                         backgroundColor: open ? '#eeeeee' : '',
                         borderRadius: '4px',
                 }}
-                
             >
                 <Select
                     open={open}
