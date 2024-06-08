@@ -17,7 +17,7 @@ const CustomNextAndSkipButton = styled(Button)({
         boxShadow: 'none',    
         '& .MuiTouchRipple-child': {
             color: 'white',
-            backgroundColor: '#1b6ef5b3', // Change this to your desired ripple color
+            backgroundColor: '#1b6ef5b3',
         },
     },
     textTransform: 'none',

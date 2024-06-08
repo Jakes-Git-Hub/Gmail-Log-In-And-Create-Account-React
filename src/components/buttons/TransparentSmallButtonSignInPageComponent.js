@@ -10,7 +10,7 @@ const TransparentSmallButtonSignInPage = styled(Button)({
     borderRadius: '2px',
     '& .MuiTouchRipple-child': {
         color: 'rgb(26,115,232)',
-        backgroundColor: 'transparent', // Change this to your desired ripple color
+        backgroundColor: 'transparent', 
     },
     '&:hover': {
         color: 'rgb(26,115,232)',
@@ -27,7 +27,7 @@ const TransparentSmallButtonSignInPage = styled(Button)({
         color: 'rgb(23,78,166)',
         '& .MuiTouchRipple-child': {
             color: 'rgb(26,115,232)',
-            backgroundColor: 'transparent', // Change this to your desired ripple color
+            backgroundColor: 'transparent', 
         },
     },
     '&:focus': {
@@ -35,7 +35,7 @@ const TransparentSmallButtonSignInPage = styled(Button)({
         backgroundColor: 'rgba(26,115,232,0.149)',
         '& .MuiTouchRipple-child': {
             color: 'rgb(26,115,232)',
-            backgroundColor: 'transparent', // Change this to your desired ripple color
+            backgroundColor: 'transparent', 
         },
     },
 });

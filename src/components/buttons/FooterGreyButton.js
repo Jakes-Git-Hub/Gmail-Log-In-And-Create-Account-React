@@ -14,7 +14,7 @@ const FooterGreyButton = styled(Button)({
     borderRadius: '4px',
     '& .MuiTouchRipple-child': {
         color: 'rgb(26,115,232)',
-        backgroundColor: 'transparent', // Change this to your desired ripple color
+        backgroundColor: 'transparent', 
     },
     '&:hover': {
         backgroundColor: 'transparent',
@@ -29,14 +29,14 @@ const FooterGreyButton = styled(Button)({
     '&:active': {
         '& .MuiTouchRipple-child': {
             color: 'none',
-            backgroundColor: 'transparent', // Change this to your desired ripple color
+            backgroundColor: 'transparent', 
         },
     },
     '&:focus': {
         backgroundColor: '#e0e0e0;',
         '& .MuiTouchRipple-child': {
             color: 'none',
-            backgroundColor: 'transparent', // Change this to your desired ripple color
+            backgroundColor: 'transparent', 
         },
     },
 });
