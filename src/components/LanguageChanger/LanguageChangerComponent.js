@@ -10,6 +10,7 @@ function LanguageChanger({ onChange, initialLanguage, text, }) {
     const [selectedValue, setSelectedValue] = useState(initialLanguage || 'en-GB');
     const [open, setOpen] = useState(false);
     const [maxHeight, setMaxHeight] = useState('500px');  // Default max height
+    const [fontSize, setFontSize] = useState('0.75rem');
 
 // Handle Language Selection
 
@@ -61,7 +62,38 @@ function LanguageChanger({ onChange, initialLanguage, text, }) {
         setOpen(!open);
     };
 
-// Footer Button Links
+// Footer Buttons
+
+    const handleButtonTextCharsBiggerThan8 = () => {
+        const buttonText1Chars = text.LanguageChanger.help[selectedValue].length;
+        const buttonText2Chars = text.LanguageChanger.privacy[selectedValue].length;
+        const buttonText3Chars = text.LanguageChanger.terms[selectedValue].length;
+
+        const arrayOfChars = [buttonText1Chars, buttonText2Chars, buttonText3Chars];
+
+        let longTextCount = 0;
+
+        for (const charCount of arrayOfChars) {
+            if (charCount >= 8) {
+                longTextCount++;
+            }
+        }
+
+        if (longTextCount >= 2) {
+            setFontSize('0.55rem');
+        }
+        else {
+            setFontSize('0.75rem');
+        }
+
+        console.log('buttonText1Chars:', buttonText1Chars);
+        console.log('buttonText2Chars:', buttonText2Chars);
+        console.log('buttonText3Chars:', buttonText3Chars);
+    }
+
+    useEffect(() => {
+        handleButtonTextCharsBiggerThan8();
+    }, [selectedValue]);
 
     const handleHelpButtonClicked = () => {
         window.open('https://support.google.com/accounts?hl=en-GB&visit_id=638451420796909083-2011793641&rd=2&p=account_iph#topic=3382296', '_blank');
@@ -151,13 +183,13 @@ function LanguageChanger({ onChange, initialLanguage, text, }) {
             </FormControl>
 
             <nav id='footer-trio-buttons-container' aria-label='Footer links' role='navigation'>
-                <FooterGreyButton role='button' onClick={handleHelpButtonClicked}>
+                <FooterGreyButton role='button' onClick={handleHelpButtonClicked} style={{fontSize: fontSize}}>
                     {text.LanguageChanger.help[selectedValue]}
                 </FooterGreyButton>
-                <FooterGreyButton role='button' onClick={handlePrivacyButtonClicked}>
+                <FooterGreyButton role='button' onClick={handlePrivacyButtonClicked} style={{fontSize: fontSize}}>
                     {text.LanguageChanger.privacy[selectedValue]}
                 </FooterGreyButton>
-                <FooterGreyButton role='button' onClick={handleTermsButtonClicked}>
+                <FooterGreyButton role='button' onClick={handleTermsButtonClicked} style={{fontSize: fontSize}}>
                     {text.LanguageChanger.terms[selectedValue]}
                 </FooterGreyButton>
             </nav>

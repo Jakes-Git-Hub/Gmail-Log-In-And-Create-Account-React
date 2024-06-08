@@ -2,6 +2,7 @@ import { styled } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 
 const FooterGreyButton = styled(Button)({
+    id: 'footer-button',
     backgroundColor: 'transparent',
     color: '#3c4043',
     fontWeight: '400',

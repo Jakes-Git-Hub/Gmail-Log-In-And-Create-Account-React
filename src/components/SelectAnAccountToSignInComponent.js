@@ -117,6 +117,7 @@ export const SelectAnAccountToSignInComponent = ({
                     onChange={handleLanguageSelection}
                     initialLanguage={userData.language}
                     aria-label='Change language' 
+                    text={text}
                 />
             ) : (
                 <LanguageChangerOverflow 

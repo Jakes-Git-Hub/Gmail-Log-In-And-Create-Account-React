@@ -56,7 +56,7 @@ function App() {
       { 
         id: 1, 
         email: 'jacmatthews7@gmail.com', 
-        firstName: 'Jacob', 
+        firstName: 'Jake', 
         lastName: 'Matthews', 
         phoneNumber: '', 
         profileCircleColor: 'red',
