@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { PrivacyAndTermsComponent } from '../components/PrivacyAndTermsComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
-export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, handleLogin, loggedIn,   }) => {
+export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, handleLogin, loggedIn, }) => {
 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [email, setEmail] = useState(userData.email);
     const [password, setPassword] = useState(userData.password);
     const [nextClicked, setNextClicked] = useState(false);
+    const [tryedLogin, setTryedLogin] = useState(false);
 
     const navigate = useNavigate();
 
@@ -46,13 +47,18 @@ export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, 
     const handleNextClick = e => {
         e.preventDefault();
         repositionViewPortOnNextOrBackClick();
-        addUser();
+        if (email && password) {
+            addUser();
+        }
         setNextClicked(true);
     };
 
     useEffect(() => {
-        if (nextClicked && email && password) {
-            handleLogin(email, password);
+        if (nextClicked) {
+            setTryedLogin(true)
+            if (email && password) {
+                handleLogin(email, password);
+            };
         }
     }, [nextClicked]);
 
@@ -60,9 +66,13 @@ export const PrivacyAndTermsContainer = ({ userData, updateUser, text, addUser, 
         if (loggedIn) {
             document.body.id = 'body';
             navigate('/mockmail');
-        }
-    }, [loggedIn]);
-    
+            console.log('User Logged In');
+        } else if (tryedLogin) {
+            navigate('/create-account');
+            console.log('User not Logged In');
+        }   
+    }, [tryedLogin]);
+
     const handleBackClick = e => {
         e.preventDefault();
         repositionViewPortOnNextOrBackClick();
