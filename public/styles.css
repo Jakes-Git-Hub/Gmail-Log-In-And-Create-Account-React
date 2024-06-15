@@ -583,6 +583,7 @@ form {
   max-width: 100%;
   @media (max-width: 600px) {
     width: 90% !important; 
+    align-self: center;
   }
 }
 
@@ -639,7 +640,7 @@ form {
   }
   @media (max-width: 600px) {
     border: none;
-    width: 100%;
+    width: 90% !important;
   }
 }
 
@@ -2017,7 +2018,6 @@ p-gap-ecys-tight {
 
 #language-changer-footer {
   width: 448.18px;
-  min-width: 448.18px;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
@@ -2038,7 +2038,6 @@ p-gap-ecys-tight {
 
 #language-changer-footer-medium-page {
   width: 448.18px;
-  min-width: 448.18px;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
@@ -2059,7 +2058,6 @@ p-gap-ecys-tight {
 
 #language-changer-footer-overflow {
   width: 448.18px;
-  min-width: 448.18px;
   display: inline-flex;
   align-items: center;
   justify-content: space-between;
