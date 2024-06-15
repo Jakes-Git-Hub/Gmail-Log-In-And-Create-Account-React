@@ -1,7 +1,7 @@
 import RateLimit from 'axios-rate-limit';
 import axios from 'axios';
 
-const baseURL = 'http://localhost:3001'; // Replace with your actual base URL
+const baseURL = 'http://localhost:3001';
 
 export const APIEndPointLimiter = (maxRequests, windowMs) => {
     const axiosInstance = axios.create({

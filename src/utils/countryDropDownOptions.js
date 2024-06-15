@@ -1489,8 +1489,6 @@ const countries = [
     },
 ];
 
-// countries array to big to copy into question 
-
 // Assigning SVG values and Populates in Countries Array
 
 export function populateSvgForCountries(countries) {

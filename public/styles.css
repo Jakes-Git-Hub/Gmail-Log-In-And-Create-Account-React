@@ -346,6 +346,10 @@ form {
   width: 90%;
 }
 
+#learn-more-button {
+  text-align: left;
+}
+
 /* Blue Snake Loader */
   
 .empty-blue-snake-loader {

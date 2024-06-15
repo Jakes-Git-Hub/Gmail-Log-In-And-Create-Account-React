@@ -10,14 +10,13 @@ dotenv.config();
 const app = express();
 
 app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));  // Added for parsing URL-encoded bodies
+app.use(bodyParser.urlencoded({ extended: true }));
 app.set('trust proxy', true);
 app.use(cors());
 
-// Configure rate limiter for '/send-verification-code' endpoint
 const limiter = rateLimit({
-    windowMs: 30 * 60 * 1000, // 30 minutes in milliseconds
-    max: 100, // Limit each IP to 100 requests per windowMs
+    windowMs: 30 * 60 * 1000, 
+    max: 100,
     message: {
       status: 429,
       error: 'Too many requests. Please try again in 30 minutes.'
@@ -36,7 +35,6 @@ app.get('/get-user-ip', (request, response) => {
   console.log('Received request for /get-user-ip');
   const forwardedFor = request.headers['x-forwarded-for'];
   if (forwardedFor) {
-    // Split the header value by commas and take the first IP address
     const ips = forwardedFor.split(',');
     const userIpAddress = ips[0].trim();
     return response.json({ userIpAddress });
