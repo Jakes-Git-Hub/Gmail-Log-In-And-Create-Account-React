@@ -154,7 +154,7 @@ function App() {
 
 // Grab User's IP
 
-  const { userIP } = useUserIP()  
+  const { userIP } = useUserIP();  
 
   useEffect(() => {
     console.log('userIP', userIP);
