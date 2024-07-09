@@ -1,8 +1,8 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import cors from 'cors';
-import bodyParser from 'body-parser';  // Added for parsing request 
-import twilio from 'twilio';  // Added for Twilio integration
+import bodyParser from 'body-parser';
+import twilio from 'twilio';
 import sgMail from '@sendgrid/mail';
 import rateLimit from 'express-rate-limit';
 
