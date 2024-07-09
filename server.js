@@ -1,12 +1,11 @@
-import dotenv from 'dotenv';
-import express from 'express';
-import cors from 'cors';
-import bodyParser from 'body-parser';
-import twilio from 'twilio';
-import sgMail from '@sendgrid/mail';
-import rateLimit from 'express-rate-limit';
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const twilio = require('twilio');
+const sgMail = require('@sendgrid/mail');
+const rateLimit = require('express-rate-limit');
 
-dotenv.config();
 const app = express();
 
 app.use(express.json());
@@ -15,8 +14,8 @@ app.set('trust proxy', true);
 app.use(cors());
 
 const limiter = rateLimit({
-    windowMs: 30 * 60 * 1000, 
-    max: 100,
+    windowMs: 30 * 60 * 1000, // 30 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
     message: {
       status: 429,
       error: 'Too many requests. Please try again in 30 minutes.'
@@ -30,7 +29,6 @@ app.listen(port, () => {
 });
 
 // Endpoint to get user's IP Address
-
 app.get('/get-user-ip', (request, response) => {
   console.log('Received request for /get-user-ip');
   const forwardedFor = request.headers['x-forwarded-for'];
@@ -44,15 +42,13 @@ app.get('/get-user-ip', (request, response) => {
 });
 
 // Twilio API Endpoint
+const twilioAccountSid = process.env.REACT_APP_TWILIO_ACCOUNT_SID;
+const twilioAuthToken = process.env.REACT_APP_TWILIO_AUTH_TOKEN;
+const twilioPhoneNumber = process.env.REACT_APP_TWILIO_PHONE_NUMBER;
 
-const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID;
-const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN;
-const twilioPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
-
-export const client = twilio(twilioAccountSid, twilioAuthToken);
+const client = twilio(twilioAccountSid, twilioAuthToken);
 
 // Endpoint to send verification code via SMS
-
 app.post('/send-verification-code', limiter, async (req, res) => {
   console.log('Endpoint reached: /send-verification-code');
   const { formattedPhoneNumber } = req.body;
@@ -90,8 +86,7 @@ app.post('/send-verification-code', limiter, async (req, res) => {
 });
 
 // SendGrid API Endpoint
-
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+sgMail.setApiKey(process.env.REACT_APP_SENDGRID_API_KEY);
 
 app.post('/send-verification-email', limiter, async (req, res) => {
   console.log('Endpoint reached: /send-verification-email');
@@ -125,4 +120,4 @@ app.post('/send-verification-email', limiter, async (req, res) => {
   }
 });
 
-export default app;
+module.exports = app;
