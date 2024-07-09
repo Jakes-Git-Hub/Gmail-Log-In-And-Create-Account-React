@@ -247,24 +247,24 @@ export const ConfirmYoureNotARobotContainer = ({
             setError('incorrectFormat');
             phoneNumberInput.focus();
         } else {
-            if (actualSelectedOption) {
-                const convertedLocalNumber = convertPhoneNumber(phoneNumber, selectedOption.value.abbreviation, PhoneNumberFormat.NATIONAL);
-                console.log('convertedLocalNumber:', convertedLocalNumber);
-                const isLocalNumberAlreadyRegistered = users.some(user => user.phoneNumber.includes(convertedLocalNumber));
-                if (isLocalNumberAlreadyRegistered) {
-                    setError('alreadyRegistered'); 
-                    return;
-                }
-            } else {
-                const sequences = generateSequences(phoneNumber);
-                const isPhoneNumberAlreadyRegistered = users.some(user => 
-                    sequences.some(sequence => user.phoneNumber.includes(sequence))
-                );
-                if (isPhoneNumberAlreadyRegistered) {
-                    setError('alreadyRegistered'); 
-                    return;
-                }
-            }
+            // if (actualSelectedOption) {
+            //     const convertedLocalNumber = convertPhoneNumber(phoneNumber, selectedOption.value.abbreviation, PhoneNumberFormat.NATIONAL);
+            //     console.log('convertedLocalNumber:', convertedLocalNumber);
+            //     const isLocalNumberAlreadyRegistered = users.some(user => user.phoneNumber.includes(convertedLocalNumber));
+            //     if (isLocalNumberAlreadyRegistered) {
+            //         setError('alreadyRegistered'); 
+            //         return;
+            //     }
+            // } else {
+            //     const sequences = generateSequences(phoneNumber);
+            //     const isPhoneNumberAlreadyRegistered = users.some(user => 
+            //         sequences.some(sequence => user.phoneNumber.includes(sequence))
+            //     );
+            //     if (isPhoneNumberAlreadyRegistered) {
+            //         setError('alreadyRegistered'); 
+            //         return;
+            //     }
+            // }
             if (actualSelectedOption) {
                 setFormattedPhoneNumber(selectedOption.value.dialingCode + phoneNumber);
                 updateUser({ phoneNumber: selectedOption.value.dialingCode + phoneNumber, countryDetails: selectedOption.value });
