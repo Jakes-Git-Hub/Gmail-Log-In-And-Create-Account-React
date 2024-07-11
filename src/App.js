@@ -97,6 +97,20 @@ function App() {
   const [getAVerificationEmailAPILimit, setgetAVerificationEmailAPILimit] = useState(0);
   const [getAVerificationPhoneAPILimit, setGetAVerificationPhoneAPILimit] = useState(0);
 
+  const fetchSecrets = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/api/secrets');
+      const data = await response.json();
+      console.log('data', data);
+    } catch (error) {
+      console.error('Error fetching secrets:', error);
+    }
+  };
+  
+  useEffect(() => {
+    fetchSecrets();
+  }, [])
+
 // Translation
 
   const googleAPIKey = process.env.REACT_APP_GOOGLE_API_KEY;
