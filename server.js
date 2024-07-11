@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const twilio = require('twilio');
 const sgMail = require('@sendgrid/mail');
 const rateLimit = require('express-rate-limit');
+const AWS = require('aws-sdk');
+const { SecretsManagerClient, GetSecretValueCommand } = require('@aws-sdk/client-secrets-manager');
 
 const app = express();
 
@@ -23,101 +25,129 @@ const limiter = rateLimit({
     keyGenerator: (req) => req.headers['x-forwarded-for'] || req.socket.remoteAddress
 });
 
-const port = 3001;
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+// Access the region from the environment variable
+
+  const region = process.env.region;
+  const awsClient = new SecretsManagerClient({ region });
+
+  app.get('/api/secrets', async (req, res) => {
+    try {
+      const response = await awsClient.send(new GetSecretValueCommand({
+        SecretId: 'gmail-keys-and-end-point', // Replace with your secret name
+        VersionStage: 'AWSCURRENT'
+      }));
+
+      const secret = JSON.parse(response.SecretString);
+
+      // Log the retrieved secrets
+      console.log('Retrieved secrets:', secret);
+
+      res.json(secret);
+    } catch (error) {
+      console.error('Error retrieving secrets:', error);
+      res.status(500).json({ error: 'Failed to retrieve secrets' });
+    }
+  });
+
+  const port = 3001;
+  app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+  });
 
 // Endpoint to get user's IP Address
-app.get('/get-user-ip', (request, response) => {
-  console.log('Received request for /get-user-ip');
-  const forwardedFor = request.headers['x-forwarded-for'];
-  if (forwardedFor) {
-    const ips = forwardedFor.split(',');
-    const userIpAddress = ips[0].trim();
+
+  app.get('/get-user-ip', (request, response) => {
+    console.log('Received request for /get-user-ip');
+    const forwardedFor = request.headers['x-forwarded-for'];
+    if (forwardedFor) {
+      const ips = forwardedFor.split(',');
+      const userIpAddress = ips[0].trim();
+      return response.json({ userIpAddress });
+    }
+    const userIpAddress = request.socket.remoteAddress || '';
     return response.json({ userIpAddress });
-  }
-  const userIpAddress = request.socket.remoteAddress || '';
-  return response.json({ userIpAddress });
-});
+  });
 
 // Twilio API Endpoint
-const twilioAccountSid = process.env.REACT_APP_TWILIO_ACCOUNT_SID;
-const twilioAuthToken = process.env.REACT_APP_TWILIO_AUTH_TOKEN;
-const twilioPhoneNumber = process.env.REACT_APP_TWILIO_PHONE_NUMBER;
 
-const client = twilio(twilioAccountSid, twilioAuthToken);
+  const twilioAccountSid = process.env.REACT_APP_TWILIO_ACCOUNT_SID;
+  const twilioAuthToken = process.env.REACT_APP_TWILIO_AUTH_TOKEN;
+  const twilioPhoneNumber = process.env.REACT_APP_TWILIO_PHONE_NUMBER;
+
+  const client = twilio(twilioAccountSid, twilioAuthToken);
 
 // Endpoint to send verification code via SMS
-app.post('/send-verification-code', limiter, async (req, res) => {
-  console.log('Endpoint reached: /send-verification-code');
-  const { formattedPhoneNumber } = req.body;
 
-  // Log the received data
-  console.log('Received request with formattedPhoneNumber:', formattedPhoneNumber);
+  app.post('/send-verification-code', limiter, async (req, res) => {
+    console.log('Endpoint reached: /send-verification-code');
+    const { formattedPhoneNumber } = req.body;
 
-  try {
-    // Generate a random verification code
-    const verificationCode = Math.floor(100000 + Math.random() * 900000);
+    // Log the received data
+    console.log('Received request with formattedPhoneNumber:', formattedPhoneNumber);
 
-    // Send SMS using Twilio
-    await client.messages.create({
-      body: `G-${verificationCode} is your Google verification code.`,
-      from: twilioPhoneNumber,
-      to: formattedPhoneNumber,
-    })
-    .then(message => {
-      console.log('Twilio API call successful:', message.sid);
-      console.log('Verification code:', verificationCode)
-      res.json({ 
-        sid: message.sid,
-        verificationCode: verificationCode,
+    try {
+      // Generate a random verification code
+      const verificationCode = Math.floor(100000 + Math.random() * 900000);
+
+      // Send SMS using Twilio
+      await client.messages.create({
+        body: `G-${verificationCode} is your Google verification code.`,
+        from: twilioPhoneNumber,
+        to: formattedPhoneNumber,
+      })
+      .then(message => {
+        console.log('Twilio API call successful:', message.sid);
+        console.log('Verification code:', verificationCode)
+        res.json({ 
+          sid: message.sid,
+          verificationCode: verificationCode,
+        });
+      })
+      .catch(error => {
+        console.error('Twilio API call error:', error.response ? error.response.data : error);
+        res.status(500).json({ error: 'Internal Server Error' });
       });
-    })
-    .catch(error => {
-      console.error('Twilio API call error:', error.response ? error.response.data : error);
-      res.status(500).json({ error: 'Internal Server Error' });
-    });
 
-  } catch (error) {
-    console.error('Error in try-catch block:', error.response ? error.response.data : error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
+    } catch (error) {
+      console.error('Error in try-catch block:', error.response ? error.response.data : error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
 
 // SendGrid API Endpoint
-sgMail.setApiKey(process.env.REACT_APP_SENDGRID_API_KEY);
 
-app.post('/send-verification-email', limiter, async (req, res) => {
-  console.log('Endpoint reached: /send-verification-email');
-  const { phoneNumberOrEmail } = req.body;
+  sgMail.setApiKey(process.env.REACT_APP_SENDGRID_API_KEY);
 
-  // Log the received data
-  console.log('Received request with email:', phoneNumberOrEmail);
+  app.post('/send-verification-email', limiter, async (req, res) => {
+    console.log('Endpoint reached: /send-verification-email');
+    const { phoneNumberOrEmail } = req.body;
 
-  try {
-    // Generate a random verification code
-    const verificationCode = Math.floor(100000 + Math.random() * 900000);
+    // Log the received data
+    console.log('Received request with email:', phoneNumberOrEmail);
 
-    const msg = {
-      to: phoneNumberOrEmail,
-      from: 'jacmatthews7@gmail.com',
-      subject: 'Verification Code',
-      text: `G-${verificationCode} is your Google verification code.`,
-    };
+    try {
+      // Generate a random verification code
+      const verificationCode = Math.floor(100000 + Math.random() * 900000);
 
-    await sgMail.send(msg);
+      const msg = {
+        to: phoneNumberOrEmail,
+        from: 'jacmatthews7@gmail.com',
+        subject: 'Verification Code',
+        text: `G-${verificationCode} is your Google verification code.`,
+      };
 
-    console.log('Email sent successfully');
-    console.log('Verification code:', verificationCode);
-    res.json({ 
-      verificationCode: verificationCode,
-    });
+      await sgMail.send(msg);
 
-  } catch (error) {
-    console.error('Error sending email:', error);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
+      console.log('Email sent successfully');
+      console.log('Verification code:', verificationCode);
+      res.json({ 
+        verificationCode: verificationCode,
+      });
+
+    } catch (error) {
+      console.error('Error sending email:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
 
 module.exports = app;
