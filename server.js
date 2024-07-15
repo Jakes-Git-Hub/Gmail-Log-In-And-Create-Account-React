@@ -7,17 +7,19 @@ const sgMail = require('@sendgrid/mail');
 const rateLimit = require('express-rate-limit');
 const AWS = require('aws-sdk');
 const { SecretsManagerClient, GetSecretValueCommand } = require('@aws-sdk/client-secrets-manager');
-
+const path = require('path');
 const app = express();
 
-app.use(express.json());
+const staticPath = 'http://gmail-clone-v3.s3-website.eu-west-2.amazonaws.com/';
+
+app.use(express.static(staticPath));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('trust proxy', true);
 app.use(cors());
 
 const limiter = rateLimit({
-    windowMs: 30 * 60 * 1000, // 30 minutes
-    max: 100, // limit each IP to 100 requests per windowMs
+    windowMs: 30 * 60 * 1000, 
+    max: 100, 
     message: {
       status: 429,
       error: 'Too many requests. Please try again in 30 minutes.'
@@ -33,7 +35,7 @@ const limiter = rateLimit({
   app.get('/api/secrets', async (req, res) => {
     try {
       const response = await awsClient.send(new GetSecretValueCommand({
-        SecretId: 'gmail-keys-and-end-point', // Replace with your secret name
+        SecretId: 'gmail-keys-and-end-point',
         VersionStage: 'AWSCURRENT'
       }));
 

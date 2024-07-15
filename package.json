@@ -21,6 +21,7 @@
     "dotenv": "^16.4.4",
     "express": "^4.18.2",
     "express-rate-limit": "^7.2.0",
+    "express-static": "^1.2.6",
     "flag-icons": "^6.11.1",
     "google-libphonenumber": "^3.2.34",
     "googleapis": "^131.0.0",
