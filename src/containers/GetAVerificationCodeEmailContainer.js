@@ -43,7 +43,7 @@ export const GetAVerificationCodeEmailContainer = ({ updateUser,
     const sendVerificationEmail = async () => {
         setLoading(true);
         console.log('findYourEmailCredentials.phoneNumberOrEmail', findYourEmailCredentials.phoneNumberOrEmail);
-        const container2Limiter = await APIEndPointLimiter(5, 30 * 60 * 1000);
+        const container2Limiter = APIEndPointLimiter(5, 30 * 60 * 1000);
         if (getAVerificationEmailAPILimit < 5) {
             try {
                 const response = await container2Limiter.post('/send-verification-email', {

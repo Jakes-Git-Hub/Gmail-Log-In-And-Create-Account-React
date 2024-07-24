@@ -44,7 +44,7 @@ export const GetAVerificationCodePhoneContainer = ({
     
     const sendVerificationSMS = async () => {
         setLoading(true);
-        const container3Limiter = await APIEndPointLimiter(5, 30 * 60 * 1000);
+        const container3Limiter = APIEndPointLimiter(5, 30 * 60 * 1000);
         if (getAVerificationPhoneAPILimit < 5) { 
             try {
                 const response = await container3Limiter.post('/send-verification-code', {
