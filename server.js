@@ -5,17 +5,16 @@ const bodyParser = require('body-parser');
 const twilio = require('twilio');
 const sgMail = require('@sendgrid/mail');
 const rateLimit = require('express-rate-limit');
-
 const app = express();
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.set('trust proxy', true);
+app.set('trust proxy', 1);
 app.use(cors());
 
 const limiter = rateLimit({
-    windowMs: 30 * 60 * 1000, // 30 minutes
-    max: 100, // limit each IP to 100 requests per windowMs
+    windowMs: 30 * 60 * 1000, 
+    max: 100, 
     message: {
       status: 429,
       error: 'Too many requests. Please try again in 30 minutes.'
@@ -23,7 +22,9 @@ const limiter = rateLimit({
     keyGenerator: (req) => req.headers['x-forwarded-for'] || req.socket.remoteAddress
 });
 
-const port = 3001;
+app.get('/health', (req, res) => res.status(200).send('OK'));
+
+const port = process.env.PORT || 3001;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
