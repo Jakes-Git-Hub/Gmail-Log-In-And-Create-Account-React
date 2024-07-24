@@ -9,6 +9,7 @@ export const APIEndPointLimiter = (maxRequests, windowMs) => {
     });
 
     console.log(axiosInstance);
+    console.log(baseURL);
 
     const limiter = RateLimit(axiosInstance, { maxRequests, windowMs });
 
