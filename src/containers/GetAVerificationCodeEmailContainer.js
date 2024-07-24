@@ -46,7 +46,7 @@ export const GetAVerificationCodeEmailContainer = ({ updateUser,
         const container2Limiter = APIEndPointLimiter(5, 30 * 60 * 1000);
         if (getAVerificationEmailAPILimit < 5) {
             try {
-                const response = await container2Limiter.post('/send-verification-email', {
+                const response = await container2Limiter.post('https://GmailCloneTrimmedPackagejson-env.eba-6bumpt24.eu-west-2.elasticbeanstalk.com/send-verification-email', {
                     phoneNumberOrEmail: findYourEmailCredentials.phoneNumberOrEmail,
                 }, {
                     headers: {

@@ -10,7 +10,7 @@ export const useUserIP = () => {
 
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/get-user-ip');
+        const response = await axios.get('https://GmailCloneTrimmedPackagejson-env.eba-6bumpt24.eu-west-2.elasticbeanstalk.com/get-user-ip');
         if (isMounted) {
           setUserIP(response.data.userIpAddress);
           setIsLoading(false); 
