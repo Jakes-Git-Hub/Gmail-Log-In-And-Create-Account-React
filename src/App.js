@@ -96,48 +96,18 @@ function App() {
   const [confirmYoureNotARobotPhoneAPILimit, setConfirmYoureNotARobotPhoneAPILimit] = useState(0);
   const [getAVerificationEmailAPILimit, setgetAVerificationEmailAPILimit] = useState(0);
   const [getAVerificationPhoneAPILimit, setGetAVerificationPhoneAPILimit] = useState(0);
-  const [IPGeoLocationAPIKey, setIPGeoLocationAPIKey] = useState(null);
-  const [googleAPIKey, setGoogleAPIKey] = useState(null);
-
-  const fetchSecrets = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/api/secrets');
-      const data = await response.json();
-      console.log('data', data);
-    } catch (error) {
-      console.error('Error fetching secrets:', error);
-    }
-  };
-  
-  useEffect(() => {
-    fetchSecrets();
-  }, [])
 
 // Translation
 
-  const fetchGoogleAPIKey = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/api/secrets');
-      const data = await response.json();
-      const GoogleAPIKeyFromAWS = data.REACT_APP_GOOGLE_API_KEY;
-      console.log('GoogleAPIKeyFromAWS:', GoogleAPIKeyFromAWS);
-      setGoogleAPIKey(GoogleAPIKeyFromAWS);
-    } catch (error) {
-      console.error('Error fetching API base URL:', error);
-      throw error; 
-    }
-  };
-
-  useEffect(() => {
-    fetchGoogleAPIKey();
-  }, []);
+  const googleAPIKey = process.env.REACT_APP_GOOGLE_API_KEY;
 
   useEffect(() => {
     handleLanguageSelection();
     console.log('chosenLanguage:', userData.language);
-  }, [userData.language, googleAPIKey]);
+  }, [userData.language]);
 
   const handleLanguageSelection = async () => {
+    if (!userData.language) return;
     const chosenLanguage = userData.language;
 
     try {
@@ -190,22 +160,7 @@ function App() {
     console.log('userIP', userIP);
   }, [userIP]);
 
-  const fetchIPGeoLocationAPIKey = async () => {
-    try {
-      const response = await fetch('http://localhost:3001/api/secrets');
-      const data = await response.json();
-      const IPGeoLocationAPIKeyFromAWS = data.REACT_APP_IP_GEO_LOCATION_API_KEY;
-      console.log('IPGeoLocationAPIKeyFromAWS:', IPGeoLocationAPIKeyFromAWS);
-      setIPGeoLocationAPIKey(IPGeoLocationAPIKeyFromAWS);
-    } catch (error) {
-      console.error('Error fetching API base URL:', error);
-      throw error; 
-    }
-  };
-
-  useEffect(() => {
-    fetchIPGeoLocationAPIKey();
-  }, []);
+  const IPGeoLocationAPIKey = process.env.REACT_APP_IP_GEO_LOCATION_API_KEY;
 
 // Handle Log Ins
 
