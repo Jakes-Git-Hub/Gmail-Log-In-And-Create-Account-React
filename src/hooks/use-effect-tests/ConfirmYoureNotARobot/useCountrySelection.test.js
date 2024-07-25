@@ -42,8 +42,8 @@ describe('useCountrySelection', () => {
   
     const { getByText, getByTestId } = render(<TestComponent />);
   
-    mockAxios.onGet(`https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.REACT_APP_IPGEOLOCATION_API_KEY}&ip=102.217.238.0`).reply(200, { country_name: 'countryFromIP' });
-  
+    mockAxios.onGet(`https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.REACT_APP_IPGEOLOCATION_API_KEY}&ip=102.217.238.0`).reply(200, { country_name: 'countryFromIP' });  
+    
     fireEvent.click(getByText('Set Actual Selected Option'));
   
     fireEvent.click(getByText('Change Country Selection'));

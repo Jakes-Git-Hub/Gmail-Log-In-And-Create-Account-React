@@ -314,7 +314,7 @@ export const ConfirmYoureNotARobotContainer = ({
         const container1Limiter = APIEndPointLimiter(5, 30 * 60 * 1000);
         if (confirmYoureNotARobotPhoneAPILimit < 5) {
           try {
-            const response = await container1Limiter.post('https://GmailCloneTrimmedPackagejson-env.eba-6bumpt24.eu-west-2.elasticbeanstalk.com/send-verification-code', {
+            const response = await container1Limiter.post('/send-verification-code', {
                 formattedPhoneNumber: formattedPhoneNumber,
             }, {
                 headers: {

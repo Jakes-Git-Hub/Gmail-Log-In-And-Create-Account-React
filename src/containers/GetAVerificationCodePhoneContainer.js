@@ -47,7 +47,7 @@ export const GetAVerificationCodePhoneContainer = ({
         const container3Limiter = APIEndPointLimiter(5, 30 * 60 * 1000);
         if (getAVerificationPhoneAPILimit < 5) { 
             try {
-                const response = await container3Limiter.post('https://GmailCloneTrimmedPackagejson-env.eba-6bumpt24.eu-west-2.elasticbeanstalk.com/send-verification-code', {
+                const response = await container3Limiter.post('/send-verification-code', {
                     formattedPhoneNumber: findYourEmailCredentials.phoneNumberOrEmail,
                 }, {
                     headers: {

@@ -24,7 +24,7 @@ const limiter = rateLimit({
 
 app.get('/health', (req, res) => res.status(200).send('OK'));
 
-const port = process.env.PORT || 3001;
+const port = process.env.REACT_APP_PORT || 3002;
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
