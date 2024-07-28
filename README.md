@@ -1,0 +1,1 @@
+When testing out API calls to verify user information (forgot email/ confirm your not a robot): please add a new User object to the Users state in App.js with your desired credentials and then test locally afterwards.

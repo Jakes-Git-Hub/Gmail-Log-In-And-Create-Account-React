@@ -24,7 +24,6 @@ export const SignInFrontPageComponent = ({
     return (
 
         <>
-
             <main id='google-container-responsive' data-testid='SIFP'>
 
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>

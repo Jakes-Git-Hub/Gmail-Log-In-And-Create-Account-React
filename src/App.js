@@ -71,6 +71,24 @@ function App() {
           svg: 'gb.svg',
         },
       },
+      { 
+        id: 2, 
+        email: '', 
+        firstName: 'Wendy', 
+        lastName: 'Matthews', 
+        phoneNumber: '07377060086', 
+        profileCircleColor: 'red',
+        day: '', 
+        month: '', 
+        year:'', 
+        gender: 'Female', 
+        countryDetails: {
+          name: 'United Kingdom',
+          abbreviation: 'gb',
+          dialingCode: '+44',
+          svg: 'gb.svg',
+        },
+      },
     ]
   );
   const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);

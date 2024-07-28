@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GetAVerificationCodePhoneComponent } from '../components/GetAVerificationCodePhoneComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
-import axios from 'axios';
 import { APIEndPointLimiter } from '../utils/APIEndPointLimiter';
 
 export const GetAVerificationCodePhoneContainer = ({ 
@@ -73,8 +72,10 @@ export const GetAVerificationCodePhoneContainer = ({
                 }
             } catch (error) {
                 console.error('Error sending verification code:', error);
-                if (error.response.status === 429) {
+                if (error.response && error.response.status === 429) {
                     setErrorCondition('apiLimitReached');
+                } else {
+                    console.error('Unexpected error:', error.message);
                 }
             }
         } else {
@@ -82,7 +83,7 @@ export const GetAVerificationCodePhoneContainer = ({
             setLoading(false);
             resetGetAVerificationPhoneAPILimit();
         }
-    } 
+    }
 
 // Handle Send Click
 
