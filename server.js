@@ -2,13 +2,12 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const twilio = require('twilio');
+const twilio = require('twilio'); 
 const sgMail = require('@sendgrid/mail');
 const rateLimit = require('express-rate-limit');
 const app = express();
+app.use(bodyParser.json());
 
-app.use(express.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 app.set('trust proxy', 1);
 app.use(cors());
 

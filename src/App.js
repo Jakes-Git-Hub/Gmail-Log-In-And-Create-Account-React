@@ -58,7 +58,7 @@ function App() {
         email: 'jacmatthews12@gmail.com', 
         firstName: 'Jake', 
         lastName: 'Matthews', 
-        phoneNumber: '07720761143', 
+        phoneNumber: '07377060086', 
         profileCircleColor: 'red',
         day: '28', 
         month: 'April', 
