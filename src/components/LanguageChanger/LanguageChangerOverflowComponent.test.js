@@ -3,6 +3,7 @@ import { render, fireEvent, screen } from '@testing-library/react'; // Import ne
 import LanguageChangerOverflow from './LanguageChangerOverflowComponent';
 import '@testing-library/jest-dom';
 import languageOptions from '../../utils/languageOptions';
+import textData from '../../data/textData';
 
 const mockUserData = { 
   language: 'en-GB' 
@@ -10,23 +11,31 @@ const mockUserData = {
 
 const mockOnChange = jest.fn();
 
+const mockText = {
+  LanguageChanger: {
+    help: textData.LanguageChanger.help,
+    privacy: textData.LanguageChanger.privacy,
+    terms: textData.LanguageChanger.terms,
+  }
+};
+
 describe('LanguageChangerOverflow component', () => {
   test('renders without crashing', () => {
-    render(<LanguageChangerOverflow initialLanguage={mockUserData.language} onChange={mockOnChange}/>);
+    render(<LanguageChangerOverflow initialLanguage={mockUserData.language} onChange={mockOnChange} text={mockText} />);
     const dropDownComponent = screen.getByTestId('language-changer-dropdown'); // Assuming this is the data-testid of the intended combobox
     expect(dropDownComponent).toBeInTheDocument();
   });
 
   test.each(languageOptions)('selectedValue should be a valid language option or en-GB', ({ value }) => {
-    render(<LanguageChangerOverflow initialLanguage={value} onChange={mockOnChange} />);
-
+    render(<LanguageChangerOverflow initialLanguage={value} onChange={mockOnChange} text={mockText} />);
     let selectElement = screen.getByTestId('language-selector-dropdown');
-    expect(selectElement.value).toBe(value || 'en-GB');
+    const expectedValue = textData.LanguageChanger.help[value] ? value : 'en-GB';
+    expect(selectElement.value).toBe(expectedValue);
   });
 
   test('changes language selection and calls onChange', () => {
     const mockOnChange = jest.fn();
-    render(<LanguageChangerOverflow onChange={mockOnChange} />);
+    render(<LanguageChangerOverflow onChange={mockOnChange} text={mockText} />);
 
     const select = screen.getByTestId('language-selector-dropdown');
     fireEvent.change(select, { target: { value: 'es-ES' } });
@@ -38,7 +47,7 @@ describe('LanguageChangerOverflow component', () => {
   test('handleChange should update selectedValue and call onChange', () => { 
     const valueToSet = 'es-ES';
   
-    render(<LanguageChangerOverflow initialLanguage={mockUserData.language} onChange={mockOnChange}/>);
+    render(<LanguageChangerOverflow initialLanguage={mockUserData.language} onChange={mockOnChange} text={mockText} />);
   
     const select = screen.getByTestId('language-selector-dropdown');
   
@@ -53,7 +62,7 @@ describe('LanguageChangerOverflow component', () => {
   });
 
   test('toggles menu open state when clicked', () => {
-    render(<LanguageChangerOverflow initialLanguage={mockUserData.language} onChange={mockOnChange} />);
+    render(<LanguageChangerOverflow initialLanguage={mockUserData.language} onChange={mockOnChange} text={mockText} />);
     const dropdown = screen.getByTestId('language-changer-dropdown');
 
     // Initially, the menu should be closed
@@ -74,7 +83,7 @@ describe('LanguageChangerOverflow component', () => {
 
   test('opens link in new tab on help button click', () => {
     const mockWindowOpen = jest.spyOn(window, 'open');
-    render(<LanguageChangerOverflow />);
+    render(<LanguageChangerOverflow text={mockText} />);
 
     const helpButton = screen.getByText('Help');
     fireEvent.click(helpButton);
@@ -84,7 +93,7 @@ describe('LanguageChangerOverflow component', () => {
 
   test('opens link in new tab on privacy button click', () => {
     const mockWindowOpen = jest.spyOn(window, 'open');
-    render(<LanguageChangerOverflow />);
+    render(<LanguageChangerOverflow text={mockText} />);
 
     const privacyButton = screen.getByText('Privacy');
     fireEvent.click(privacyButton);
@@ -94,7 +103,7 @@ describe('LanguageChangerOverflow component', () => {
 
   test('opens link in new tab on terms button click', () => {
     const mockWindowOpen = jest.spyOn(window, 'open');
-    render(<LanguageChangerOverflow />);
+    render(<LanguageChangerOverflow text={mockText} />);
 
     const termsButton = screen.getByText('Terms');
     fireEvent.click(termsButton);
