@@ -9,7 +9,7 @@ function LanguageChanger({ onChange, initialLanguage, text, }) {
 
     const [selectedValue, setSelectedValue] = useState(initialLanguage || 'en-GB');
     const [open, setOpen] = useState(false);
-    const [maxHeight, setMaxHeight] = useState('500px');  // Default max height
+    const [maxHeight, setMaxHeight] = useState('500px');  
     const [fontSize, setFontSize] = useState('0.75rem');
 
 // Handle Language Selection

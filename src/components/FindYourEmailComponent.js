@@ -103,8 +103,6 @@ export const FindYourEmailComponent = ({
                         </CustomNextButton>
                     </div>
 
-                    
-
                 </form>
 
             </main>
