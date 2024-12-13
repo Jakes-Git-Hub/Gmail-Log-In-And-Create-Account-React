@@ -3,7 +3,8 @@ module.exports = {
         '^.+\\.jsx?$': 'babel-jest',
         '^.+\\.m?js$': 'babel-jest',
         '^.+\\.js?$': 'babel-jest',
+        '^.+\\.tsx?$': 'ts-jest',
     },
-    extensionsToTreatAsEsm: ['.js'],
+    extensionsToTreatAsEsm: ['.js', 'jsx', 'ts', 'tsx'],
 };
   
