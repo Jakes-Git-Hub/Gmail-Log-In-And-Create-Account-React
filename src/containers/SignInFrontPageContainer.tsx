@@ -1,121 +1,94 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ChangeEvent, MouseEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SignInFrontPageComponent } from '../components/SignInFrontPageComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
 interface User {
-  email: string;
-  phoneNumber: string;
+    email: string;
+    phoneNumber: string;
 }
 
 interface SignInFrontPageContainerProps {
-  users: User[];
-  userData: Record<string, any>;
-  updateUser: (data: { language: string }) => void;
-  text: Record<string, string>;
-  passFoundUser: (user: User) => void;
+    users: User[];
+    userData: any;
+    updateUser: (data: any) => void;
+    text: string;
+    passFoundUser: (user: User) => void;
+    userIP: string;
 }
 
-export const SignInFrontPageContainer: React.FC<SignInFrontPageContainerProps> = ({
-  users,
-  userData,
-  updateUser,
-  text,
-  passFoundUser,
-}) => {
-  const navigate = useNavigate();
+export const SignInFrontPageContainer: React.FC<SignInFrontPageContainerProps> = ({ users, userData, updateUser, text, passFoundUser }) => {
 
-  const [emailOrPhone, setEmailOrPhone] = useState<string>('');
-  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
-  const [errorCondition, setErrorCondition] = useState<string | null>(null);
+    const navigate = useNavigate();
 
-  // Handle Slow Svg Load
-  useEffect(() => {
-    const image = new Image();
-    image.src = googleWritingSvg;
-    image.onload = () => {
-      setIsImageLoaded(true);
-    };
-  }, []);
+    const [emailOrPhone, setEmailOrPhone] = useState<string>('');
+    const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
+    const [errorCondition, setErrorCondition] = useState<string | null>(null);
 
-  // Change Language
-  const handleLanguageSelection = (chosenLanguage: string) => {
-    updateUser({ language: chosenLanguage });
-  };
+    // Handle Slow Svg Load
+    useEffect(() => {
+        const image = new Image();
+        image.src = googleWritingSvg;
+        image.onload = () => {
+            setIsImageLoaded(true);
+        };
+    }, []);
 
-  // Email or Phone
-  const onEmailOrPhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmailOrPhone(e.target.value);
-  };
+    // Change Language
+    const handleLanguageSelection = (chosenLanguage: string) => updateUser({ language: chosenLanguage });
 
-  // Forgot Email
-  const handleForgotEmailButtonClick = () => {
-    navigate('/find-your-email');
-  };
+    // Email or Phone
+    const onEmailOrPhoneChange = (e: ChangeEvent<HTMLInputElement>) => setEmailOrPhone(e.target.value);
 
-  // Guest Mode Info Click
-  const handleGuestModeInfoButtonClick = () => {
-    window.open(
-      'https://support.google.com/chrome/answer/6130773?hl=en',
-      '_blank'
-    );
-  };
+    // Forgot Email
+    const handleForgotEmailButtonClick = () => navigate('/find-your-email');
 
-  // Create Account Click
-  const handleCreateAccountClick = () => {
-    navigate('/create-account');
-  };
+    // Guest Mode Info Click
+    const handleGuestModeInfoButtonClick = () => window.open('https://support.google.com/chrome/answer/6130773?hl=en', '_blank');
 
-  // Error
-  const error = (error: string) => {
-    setErrorCondition(error);
-  };
+    // Create Account Click
+    const handleCreateAccountClick = () => navigate('/create-account');
 
-  // Handle Next
-  const handleNextClick = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (emailOrPhone === '') {
-      error('emailOrPhoneEmpty');
-      const emailOrPhoneInput = document.getElementById(
-        'emailOrPhoneInput'
-      ) as HTMLInputElement;
-      emailOrPhoneInput.focus();
-    } else if (
-      !users.some(
-        (user) => user.email === emailOrPhone || user.phoneNumber === emailOrPhone
-      )
-    ) {
-      error('couldntFindYourAccount');
-      const emailOrPhoneInput = document.getElementById(
-        'emailOrPhoneInput'
-      ) as HTMLInputElement;
-      emailOrPhoneInput.focus();
-    } else {
-      const registeredUser = users.find(
-        (user) => user.email === emailOrPhone || user.phoneNumber === emailOrPhone
-      );
-      if (registeredUser) {
-        passFoundUser(registeredUser);
-        navigate('/verify-with-password');
-      }
+    // Error
+    const error = (error: string) => setErrorCondition(error);
+
+    // Handle Next
+    const handleNextClick = (e: MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        if (emailOrPhone === '') {
+            error('emailOrPhoneEmpty');
+            const emailOrPhoneInput = document.getElementById('emailOrPhoneInput') as HTMLInputElement;
+            emailOrPhoneInput.focus();
+        } else if (!users.some(user => user.email === emailOrPhone || user.phoneNumber === emailOrPhone)) {
+            error('couldntFindYourAccount');
+            const emailOrPhoneInput = document.getElementById('emailOrPhoneInput') as HTMLInputElement;
+            emailOrPhoneInput.focus();
+        } else {
+            const registeredUser = users.find(
+                (user) => user.email === emailOrPhone || user.phoneNumber === emailOrPhone
+            );
+            if (registeredUser) {
+                passFoundUser(registeredUser);
+                navigate('/verify-with-password');
+            }
+        }
     }
-  };
 
-  return (
-    <>
-      <SignInFrontPageComponent
-        userData={userData}
-        handleLanguageSelection={handleLanguageSelection}
-        isImageLoaded={isImageLoaded}
-        errorCondition={errorCondition}
-        emailOrPhone={emailOrPhone}
-        onEmailOrPhoneChange={onEmailOrPhoneChange}
-        handleForgotEmailButtonClick={handleForgotEmailButtonClick}
-        handleGuestModeInfoButtonClick={handleGuestModeInfoButtonClick}
-        handleCreateAccountClick={handleCreateAccountClick}
-        handleNextClick={handleNextClick}
-        text={text}
-      />
-    </>
-  );
+    return (
+        <>
+            <SignInFrontPageComponent
+                userData={userData}
+                handleLanguageSelection={handleLanguageSelection}
+                isImageLoaded={isImageLoaded}
+                errorCondition={errorCondition}
+                emailOrPhone={emailOrPhone}
+                onEmailOrPhoneChange={onEmailOrPhoneChange}
+                handleForgotEmailButtonClick={handleForgotEmailButtonClick}
+                handleGuestModeInfoButtonClick={handleGuestModeInfoButtonClick}
+                handleCreateAccountClick={handleCreateAccountClick}
+                handleNextClick={handleNextClick}
+                text={text}
+            />
+        </>
+    );
 };

@@ -46,29 +46,17 @@ var SignInFrontPageContainer = function (_a) {
         };
     }, []);
     // Change Language
-    var handleLanguageSelection = function (chosenLanguage) {
-        updateUser({ language: chosenLanguage });
-    };
+    var handleLanguageSelection = function (chosenLanguage) { return updateUser({ language: chosenLanguage }); };
     // Email or Phone
-    var onEmailOrPhoneChange = function (e) {
-        setEmailOrPhone(e.target.value);
-    };
+    var onEmailOrPhoneChange = function (e) { return setEmailOrPhone(e.target.value); };
     // Forgot Email
-    var handleForgotEmailButtonClick = function () {
-        navigate('/find-your-email');
-    };
+    var handleForgotEmailButtonClick = function () { return navigate('/find-your-email'); };
     // Guest Mode Info Click
-    var handleGuestModeInfoButtonClick = function () {
-        window.open('https://support.google.com/chrome/answer/6130773?hl=en', '_blank');
-    };
+    var handleGuestModeInfoButtonClick = function () { return window.open('https://support.google.com/chrome/answer/6130773?hl=en', '_blank'); };
     // Create Account Click
-    var handleCreateAccountClick = function () {
-        navigate('/create-account');
-    };
+    var handleCreateAccountClick = function () { return navigate('/create-account'); };
     // Error
-    var error = function (error) {
-        setErrorCondition(error);
-    };
+    var error = function (error) { return setErrorCondition(error); };
     // Handle Next
     var handleNextClick = function (e) {
         e.preventDefault();
