@@ -5,7 +5,6 @@ import { ConfirmYoureNotARobotComponent } from '../components/ConfirmYoureNotARo
 import axios from 'axios';
 import GBSVG from '../images/flags/gb2.svg';
 import googleWritingSvg from '../images/google-writing-svg.svg';
-import { generateSequences } from '../utils/generateSequences';
 import { PhoneNumberUtil, PhoneNumberFormat } from 'google-libphonenumber';
 import { APIEndPointLimiter } from '../utils/APIEndPointLimiter';
 
@@ -247,24 +246,6 @@ export const ConfirmYoureNotARobotContainer = ({
             setError('incorrectFormat');
             phoneNumberInput.focus();
         } else {
-            // if (actualSelectedOption) {
-            //     const convertedLocalNumber = convertPhoneNumber(phoneNumber, selectedOption.value.abbreviation, PhoneNumberFormat.NATIONAL);
-            //     console.log('convertedLocalNumber:', convertedLocalNumber);
-            //     const isLocalNumberAlreadyRegistered = users.some(user => user.phoneNumber.includes(convertedLocalNumber));
-            //     if (isLocalNumberAlreadyRegistered) {
-            //         setError('alreadyRegistered'); 
-            //         return;
-            //     }
-            // } else {
-            //     const sequences = generateSequences(phoneNumber);
-            //     const isPhoneNumberAlreadyRegistered = users.some(user => 
-            //         sequences.some(sequence => user.phoneNumber.includes(sequence))
-            //     );
-            //     if (isPhoneNumberAlreadyRegistered) {
-            //         setError('alreadyRegistered'); 
-            //         return;
-            //     }
-            // }
             if (actualSelectedOption) {
                 setFormattedPhoneNumber(selectedOption.value.dialingCode + phoneNumber);
                 updateUser({ phoneNumber: selectedOption.value.dialingCode + phoneNumber, countryDetails: selectedOption.value });
