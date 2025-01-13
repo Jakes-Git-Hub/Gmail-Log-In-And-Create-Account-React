@@ -24,7 +24,9 @@
         "src/**/*.ts", 
         "src/**/*.tsx",
         "src/**/*.d.ts",
-        "src/global.d.ts"
+        "src/global.d.ts",
+        "src/declarations.d.ts",
+        "src/**/*"
     ],
     "exclude": [
         "node_modules",

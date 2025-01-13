@@ -1,0 +1,121 @@
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { SignInFrontPageComponent } from '../components/SignInFrontPageComponent';
+import googleWritingSvg from '../images/google-writing-svg.svg';
+
+interface User {
+  email: string;
+  phoneNumber: string;
+}
+
+interface SignInFrontPageContainerProps {
+  users: User[];
+  userData: Record<string, any>;
+  updateUser: (data: { language: string }) => void;
+  text: Record<string, string>;
+  passFoundUser: (user: User) => void;
+}
+
+export const SignInFrontPageContainer: React.FC<SignInFrontPageContainerProps> = ({
+  users,
+  userData,
+  updateUser,
+  text,
+  passFoundUser,
+}) => {
+  const navigate = useNavigate();
+
+  const [emailOrPhone, setEmailOrPhone] = useState<string>('');
+  const [isImageLoaded, setIsImageLoaded] = useState<boolean>(false);
+  const [errorCondition, setErrorCondition] = useState<string | null>(null);
+
+  // Handle Slow Svg Load
+  useEffect(() => {
+    const image = new Image();
+    image.src = googleWritingSvg;
+    image.onload = () => {
+      setIsImageLoaded(true);
+    };
+  }, []);
+
+  // Change Language
+  const handleLanguageSelection = (chosenLanguage: string) => {
+    updateUser({ language: chosenLanguage });
+  };
+
+  // Email or Phone
+  const onEmailOrPhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmailOrPhone(e.target.value);
+  };
+
+  // Forgot Email
+  const handleForgotEmailButtonClick = () => {
+    navigate('/find-your-email');
+  };
+
+  // Guest Mode Info Click
+  const handleGuestModeInfoButtonClick = () => {
+    window.open(
+      'https://support.google.com/chrome/answer/6130773?hl=en',
+      '_blank'
+    );
+  };
+
+  // Create Account Click
+  const handleCreateAccountClick = () => {
+    navigate('/create-account');
+  };
+
+  // Error
+  const error = (error: string) => {
+    setErrorCondition(error);
+  };
+
+  // Handle Next
+  const handleNextClick = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (emailOrPhone === '') {
+      error('emailOrPhoneEmpty');
+      const emailOrPhoneInput = document.getElementById(
+        'emailOrPhoneInput'
+      ) as HTMLInputElement;
+      emailOrPhoneInput.focus();
+    } else if (
+      !users.some(
+        (user) => user.email === emailOrPhone || user.phoneNumber === emailOrPhone
+      )
+    ) {
+      error('couldntFindYourAccount');
+      const emailOrPhoneInput = document.getElementById(
+        'emailOrPhoneInput'
+      ) as HTMLInputElement;
+      emailOrPhoneInput.focus();
+    } else {
+      const registeredUser = users.find(
+        (user) => user.email === emailOrPhone || user.phoneNumber === emailOrPhone
+      );
+      if (registeredUser) {
+        passFoundUser(registeredUser);
+        navigate('/verify-with-password');
+      }
+    }
+  };
+
+  return (
+    <>
+      <SignInFrontPageComponent
+        userData={userData}
+        handleLanguageSelection={handleLanguageSelection}
+        isImageLoaded={isImageLoaded}
+        errorCondition={errorCondition}
+        emailOrPhone={emailOrPhone}
+        onEmailOrPhoneChange={onEmailOrPhoneChange}
+        handleForgotEmailButtonClick={handleForgotEmailButtonClick}
+        handleGuestModeInfoButtonClick={handleGuestModeInfoButtonClick}
+        handleCreateAccountClick={handleCreateAccountClick}
+        handleNextClick={handleNextClick}
+        text={text}
+      />
+    </>
+  );
+};
