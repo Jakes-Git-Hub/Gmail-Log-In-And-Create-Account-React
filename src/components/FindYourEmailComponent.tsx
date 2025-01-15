@@ -4,7 +4,37 @@ import CustomNextButton from './buttons/CustomNextButtonComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
 
-export const FindYourEmailComponent = ({ 
+interface FindYourEmailComponentProps {
+    phoneNumberOrEmail: string;
+    handleNextClick: () => void;
+    errorCondition: string | null;
+    handleLanguageSelection: (chosenLanguage: string) => void;
+    text: any;
+    isImageLoaded: boolean;
+    userData: {
+        language: string;
+        id: number;
+        email: string;
+        password: string;
+        firstName: string;
+        lastName: string;
+        phoneNumber: string;
+        profileCircleColor: string;
+        day: string;
+        month: string;
+        year: string;
+        gender: string;
+        countryDetails: {
+            name: string;
+            abbreviation: string;
+            dialingCode: string;
+            svg: string;
+        };
+    };
+    onPhoneNumberOrEmailInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+export const FindYourEmailComponent: React.FC<FindYourEmailComponentProps> = ({ 
     phoneNumberOrEmail,
     handleNextClick,
     errorCondition,
@@ -33,7 +63,7 @@ export const FindYourEmailComponent = ({
 
                     <TextField 
                         className='standard-text-field'
-                        error={errorCondition}
+                        error={!!errorCondition}
                         id='phoneNumberOrEmailInput' 
                         label={text.FindYourEmail.phonenumberOrEmail[userData.language]}
                         aria-label='Enter your phone number or recovery email'
