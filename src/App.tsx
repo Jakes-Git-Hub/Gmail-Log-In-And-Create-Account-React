@@ -367,8 +367,6 @@ function App() {
             <MockMailContainer   
               loggedIn={loggedIn}
               currentLoggedInUser={currentLoggedInUser}
-              text={text}
-              userData={userData}
             />
           } 
         />
