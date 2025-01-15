@@ -12,7 +12,22 @@ interface SignInFrontPageContainerProps {
     users: User[];
     userData: any;
     updateUser: (data: any) => void;
-    text: string;
+    text: {
+        SignIn: {
+            h1: { [key: string]: string };
+            h2: { [key: string]: string };
+            emailOrPhone: { [key: string]: string };
+            enterAnEmail: { [key: string]: string };
+            couldntFindYour: { [key: string]: string };
+            forgotEmail: { [key: string]: string };
+            notYourComputer: { [key: string]: string };
+            learnMore: { [key: string]: string };
+            createAccount: { [key: string]: string };
+        };
+        CreateAccount: {
+            next: { [key: string]: string };
+        };
+    };
     passFoundUser: (user: User) => void;
     userIP: string;
 }
@@ -35,8 +50,8 @@ export const SignInFrontPageContainer: React.FC<SignInFrontPageContainerProps> =
     }, []);
 
     // Change Language
-    const handleLanguageSelection = (chosenLanguage: string) => updateUser({ language: chosenLanguage });
-
+    const handleLanguageSelection = (event: ChangeEvent<HTMLSelectElement>) => updateUser({ language: event.target.value });
+    
     // Email or Phone
     const onEmailOrPhoneChange = (e: ChangeEvent<HTMLInputElement>) => setEmailOrPhone(e.target.value);
 
