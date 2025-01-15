@@ -3,20 +3,56 @@ import { useNavigate } from 'react-router-dom';
 import { WhatsYourNameComponent } from '../components/WhatsYourNameComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
-export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFindYourEmailCredentials, findYourEmailCredentials, users, handleIncorrectInfoSearch, handleCorrectInfoSearch }) => {
+interface User {
+    id: number;
+    email: string;
+    password: string | null;
+    firstName: string;
+    lastName: string;
+    phoneNumber: string;
+    profileCircleColor: string;
+    day: string;
+    month: string;
+    year: string;
+    gender: string;
+    countryDetails: {
+        name: string;
+        abbreviation: string;
+        dialingCode: string;
+        svg: string;
+    };
+}
+
+interface FindYourEmailCredentials {
+    phoneNumberOrEmail: string;
+    firstName: string;
+    lastName: string;
+}
+
+interface WhatsYourNameContainerProps {
+    updateUser: (user: { language: string }) => void;
+    text: any;
+    userData: User;
+    updateFindYourEmailCredentials: (credentials: { firstName: string; lastName: string }) => void;
+    findYourEmailCredentials: FindYourEmailCredentials;
+    users: User[];
+    handleIncorrectInfoSearch: () => void;
+    handleCorrectInfoSearch: () => void;
+}
+
+export const WhatsYourNameContainer: React.FC<WhatsYourNameContainerProps> = ({ updateUser, text, userData, updateFindYourEmailCredentials, findYourEmailCredentials, users, handleIncorrectInfoSearch, handleCorrectInfoSearch }) => {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [errorCondition, setErrorCondition] = useState(null);
+    const [errorCondition, setErrorCondition] = useState<string | null>(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [proceedWithFindUser, setProceedWithFindUser] = useState(false);
     const [findWith, setFindWith] = useState('');
-    const [foundMatchingUser, setfoundMatchingUser] = useState(false);
+    const [foundMatchingUser, setFoundMatchingUser] = useState(false);
 
     const navigate = useNavigate();
 
-// Handle Slow Svg Load
-
+    // Handle Slow Svg Load
     useEffect(() => {
         const image = new Image();
         image.src = googleWritingSvg;
@@ -33,32 +69,25 @@ export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFind
         console.log('findWith:', findWith);
     }, [findWith]);
 
-// Change Language
+    // Change Language
+    const handleLanguageSelection = (chosenLanguage: string) => updateUser({ language: chosenLanguage });
 
-    const handleLanguageSelection = chosenLanguage => updateUser({ language: chosenLanguage })
+    // First Name
+    const onFirstNameInputChange = (e: React.ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value.toLowerCase());
 
-// First Name
+    // Last Name
+    const onLastNameInputChange = (e: React.ChangeEvent<HTMLInputElement>) => setLastName(e.target.value.toLowerCase());
 
-    const onFirstNameInputChange = e => setFirstName(e.target.value.toLowerCase());
+    // Errors
+    const error = (error: string | null) => setErrorCondition(error);
 
-// Last Name
-
-    const onLastNameInputChange = e => setLastName(e.target.value.toLowerCase());
-
-// Errors
-
-    const error = error => setErrorCondition(error);
-
-// Find With
-
+    // Find With
     const handleFindWithPhoneNumber = () => setFindWith('phoneNumber');
-
     const handleFindWithEmail = () => setFindWith('email');
 
-// Handle Next
-
+    // Handle Next
     const handleNextClick = () => {
-        const firstNameInput = document.getElementById('firstNameInput');
+        const firstNameInput = document.getElementById('firstNameInput') as HTMLInputElement | null;
         if (firstName === '') {
             error('firstNameEmpty');
             if (firstNameInput) {
@@ -76,7 +105,7 @@ export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFind
         if (proceedWithFindUser) {
             const matchingUser = findMatchingUser();
             if (matchingUser) {
-                setfoundMatchingUser(true);
+                setFoundMatchingUser(true);
             } else {
                 handleIncorrectInfoSearch();
                 navigate('/find-your-email');
@@ -84,8 +113,7 @@ export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFind
         } 
     }, [proceedWithFindUser]);
 
-// findMatchingUser
-    
+    // findMatchingUser
     const findMatchingUser = () => {
         const matchingUser = users.find(user => {
             const sequences = generateSequences(findYourEmailCredentials.phoneNumberOrEmail);
@@ -117,8 +145,8 @@ export const WhatsYourNameContainer = ({ updateUser, text,  userData, updateFind
         return matchingUser;
     };
 
-    const generateSequences = number => {
-        const sequences = [];
+    const generateSequences = (number: string): string[] => {
+        const sequences: string[] = [];
         for (let i = 0; i <= number.length - 7; i++) {
             sequences.push(number.slice(i, i + 7));
         }

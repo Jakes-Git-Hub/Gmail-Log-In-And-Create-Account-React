@@ -1,5 +1,5 @@
 import { MockMail } from '../components/MockMailComponent';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 type User = {
     id: number;
