@@ -151,8 +151,6 @@ export const WhatsYourNameContainer: React.FC<WhatsYourNameProps> = ({ updateUse
         <>
             <WhatsYourNameComponent
                 firstName={firstName}
-                setFirstName={setFirstName}
-                setLastName={setLastName}
                 lastName={lastName}
                 handleNextClick={handleNextClick}
                 onFirstNameInputChange={onFirstNameInputChange}
