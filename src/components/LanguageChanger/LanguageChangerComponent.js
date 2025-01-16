@@ -1,202 +1,163 @@
-import React, { useState, useEffect } from 'react';
-import languageOptions from '../../utils/languageOptions';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import FooterGreyButton from '../buttons/FooterGreyButton';
-
-function LanguageChanger({ onChange, initialLanguage, text, }) {
-
-    const [selectedValue, setSelectedValue] = useState(initialLanguage || 'en-GB');
-    const [open, setOpen] = useState(false);
-    const [maxHeight, setMaxHeight] = useState('500px');  
-    const [fontSize, setFontSize] = useState('0.75rem');
-
-// Handle Language Selection
-
-    useEffect(() => {
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importStar(require("react"));
+var languageOptions_1 = __importDefault(require("../../utils/languageOptions"));
+var Select_1 = __importDefault(require("@mui/material/Select"));
+var MenuItem_1 = __importDefault(require("@mui/material/MenuItem"));
+var FormControl_1 = __importDefault(require("@mui/material/FormControl"));
+var FooterGreyButton_1 = __importDefault(require("../buttons/FooterGreyButton"));
+var LanguageChanger = function (_a) {
+    var onChange = _a.onChange, initialLanguage = _a.initialLanguage, text = _a.text, id = _a.id, className = _a.className, ariaLabel = _a["aria-label"];
+    var _b = (0, react_1.useState)(initialLanguage || 'en-GB'), selectedValue = _b[0], setSelectedValue = _b[1];
+    var _c = (0, react_1.useState)(false), open = _c[0], setOpen = _c[1];
+    var _d = (0, react_1.useState)('500px'), maxHeight = _d[0], setMaxHeight = _d[1];
+    var _e = (0, react_1.useState)('0.75rem'), fontSize = _e[0], setFontSize = _e[1];
+    // Handle Language Selection
+    (0, react_1.useEffect)(function () {
         if (initialLanguage) {
             setSelectedValue(initialLanguage);
             onChange(initialLanguage);
         }
     }, [initialLanguage, onChange]);
-    
-    const handleChange = event => {
-        const value = event.target.value;
+    var handleChange = function (event) {
+        var value = event.target.value;
         setSelectedValue(value);
         onChange(value);
         console.log('value:', value);
     };
-
-// Handles Dynamic Dropdown Menu Height
-
-    const handleResize = () => {
-        const dropdown = document.getElementById('language-changer-dropdown');
+    // Handles Dynamic Dropdown Menu Height
+    var handleResize = function () {
+        var dropdown = document.getElementById('language-changer-dropdown');
         if (dropdown) {
-            const rect = dropdown.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
-            const dynamicDifference = viewportHeight - rect.top + 33;
-            const dynamicMaxheight = viewportHeight - dynamicDifference;
+            var rect = dropdown.getBoundingClientRect();
+            var viewportHeight = window.innerHeight;
+            var dynamicDifference = viewportHeight - rect.top + 33;
+            var dynamicMaxheight = viewportHeight - dynamicDifference;
             setMaxHeight(dynamicMaxheight + 'px');
         }
     };
-
-    useEffect(() => {
+    (0, react_1.useEffect)(function () {
         handleResize();
         window.addEventListener('resize', handleResize);
-        return () => {
+        return function () {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
-
-// Options
-
-    const customOptions = languageOptions.map(language => ({
+    // Options
+    var customOptions = languageOptions_1.default.map(function (language) { return ({
         value: language.value,
-        label: language.label
-    }));
-
-// Menu Open/ Close
-
-    const toggleMenu = () => {
+        label: language.label,
+    }); });
+    // Menu Open/ Close
+    var toggleMenu = function () {
         setOpen(!open);
     };
-
-// Footer Buttons
-
-    const handleButtonTextCharsBiggerThan8 = () => {
-        const buttonText1Chars = text.LanguageChanger.help[selectedValue].length;
-        const buttonText2Chars = text.LanguageChanger.privacy[selectedValue].length;
-        const buttonText3Chars = text.LanguageChanger.terms[selectedValue].length;
-
-        const arrayOfChars = [buttonText1Chars, buttonText2Chars, buttonText3Chars];
-
-        let longTextCount = 0;
-
-        for (const charCount of arrayOfChars) {
+    // Footer Buttons
+    var handleButtonTextCharsBiggerThan8 = function () {
+        var buttonText1Chars = text.LanguageChanger.help[selectedValue].length;
+        var buttonText2Chars = text.LanguageChanger.privacy[selectedValue].length;
+        var buttonText3Chars = text.LanguageChanger.terms[selectedValue].length;
+        var arrayOfChars = [buttonText1Chars, buttonText2Chars, buttonText3Chars];
+        var longTextCount = 0;
+        for (var _i = 0, arrayOfChars_1 = arrayOfChars; _i < arrayOfChars_1.length; _i++) {
+            var charCount = arrayOfChars_1[_i];
             if (charCount >= 8) {
                 longTextCount++;
             }
         }
-
         if (longTextCount >= 2) {
             setFontSize('0.55rem');
         }
         else {
             setFontSize('0.75rem');
         }
-
         console.log('buttonText1Chars:', buttonText1Chars);
         console.log('buttonText2Chars:', buttonText2Chars);
         console.log('buttonText3Chars:', buttonText3Chars);
-    }
-
-    useEffect(() => {
+    };
+    (0, react_1.useEffect)(function () {
         handleButtonTextCharsBiggerThan8();
     }, [selectedValue]);
-
-    const handleHelpButtonClicked = () => {
+    var handleHelpButtonClicked = function () {
         window.open('https://support.google.com/accounts?hl=en-GB&visit_id=638451420796909083-2011793641&rd=2&p=account_iph#topic=3382296', '_blank');
     };
-
-    const handlePrivacyButtonClicked = () => {
+    var handlePrivacyButtonClicked = function () {
         window.open('https://policies.google.com/privacy?gl=GB&hl=en-GB', '_blank');
     };
-
-    const handleTermsButtonClicked = () => {
+    var handleTermsButtonClicked = function () {
         window.open('https://policies.google.com/terms?gl=GB&hl=en-GB', '_blank');
     };
-
-    return (
-
-        <div id='language-changer-footer'>
-            <FormControl 
-                role='combobox'
-                onClick={toggleMenu}
-                id='language-changer-dropdown'
-                aria-expanded={open}
-                data-testid='language-changer-dropdown'
-                sx={{
-                        backgroundColor: open ? '#eeeeee' : '',
-                        borderRadius: '4px',
-                }}
-            >
-                <Select
-                    open={open}
-                    onClose={() => setOpen(false)} 
-                    onOpen={() => setOpen(true)} 
-                    onChange={handleChange}
-                    displayEmpty={true}
-                    value={selectedValue}
-                    aria-label='Select text language'
-                    inputProps={{
-                        'data-testid': 'language-selector-dropdown',
-                    }}
-                    MenuProps={{
-                        anchorOrigin: {
-                            vertical: 'top',
-                            horizontal: 'left'
-                            },
-                        transformOrigin: {
-                            vertical: 'bottom',
-                            horizontal: 'left'
+    return (react_1.default.createElement("div", { id: id, className: className },
+        react_1.default.createElement(FormControl_1.default, { role: 'combobox', onClick: toggleMenu, id: 'language-changer-dropdown', "aria-expanded": open, "data-testid": 'language-changer-dropdown', sx: {
+                backgroundColor: open ? '#eeeeee' : '',
+                borderRadius: '4px',
+            } },
+            react_1.default.createElement(Select_1.default, { open: open, onClose: function () { return setOpen(false); }, onOpen: function () { return setOpen(true); }, onChange: handleChange, displayEmpty: true, value: selectedValue, "aria-label": ariaLabel, inputProps: {
+                    'data-testid': 'language-selector-dropdown',
+                }, MenuProps: {
+                    anchorOrigin: {
+                        vertical: 'top',
+                        horizontal: 'left',
+                    },
+                    transformOrigin: {
+                        vertical: 'bottom',
+                        horizontal: 'left',
+                    },
+                    PaperProps: {
+                        style: {
+                            maxHeight: maxHeight,
                         },
-                        getContentAnchorEl: () => document.getElementById('language-changer-dropdown'),
-                        PaperProps: {
-                            style: {
-                                maxHeight: maxHeight,
-                            },
-                        },
-                    }}
-                    sx={{
-                        '& .MuiSelect-icon': {
-                            color: '#202124',
-                        },
-                        fontSize: '12px',   
-                        boxShadow: 'none',
-                        '.MuiOutlinedInput-notchedOutline': { 
-                            border: 0 
-                        },
-                        '&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
-                            border: 0,
-                        },
-                        '&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
-                            border: 0,
-                        },
-                        paddingRight: '25px',
-                    }}
-                >
-                    {customOptions.map(option => (
-                        <MenuItem 
-                            key={option.value} 
-                            value={option.value}
-                            sx={{
-                                fontSize: '12px',
-                                padding: '14px',
-                                color: 'rgb(60,64,67)',
-                            }}
-                        >
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                </Select>
-            </FormControl>
-
-            <nav id='footer-trio-buttons-container' aria-label='Footer links' role='navigation'>
-                <FooterGreyButton role='button' onClick={handleHelpButtonClicked} style={{fontSize: fontSize}}>
-                    {text.LanguageChanger.help[selectedValue]}
-                </FooterGreyButton>
-                <FooterGreyButton role='button' onClick={handlePrivacyButtonClicked} style={{fontSize: fontSize}}>
-                    {text.LanguageChanger.privacy[selectedValue]}
-                </FooterGreyButton>
-                <FooterGreyButton role='button' onClick={handleTermsButtonClicked} style={{fontSize: fontSize}}>
-                    {text.LanguageChanger.terms[selectedValue]}
-                </FooterGreyButton>
-            </nav>
-
-        </div>
-
-    );
-}
-
-export default LanguageChanger;
+                    },
+                }, sx: {
+                    '& .MuiSelect-icon': {
+                        color: '#202124',
+                    },
+                    fontSize: '12px',
+                    boxShadow: 'none',
+                    '.MuiOutlinedInput-notchedOutline': {
+                        border: 0,
+                    },
+                    '&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
+                        border: 0,
+                    },
+                    '&.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                        border: 0,
+                    },
+                    paddingRight: '25px',
+                } }, customOptions.map(function (option) { return (react_1.default.createElement(MenuItem_1.default, { key: option.value, value: option.value, sx: {
+                    fontSize: '12px',
+                    padding: '14px',
+                    color: 'rgb(60,64,67)',
+                } }, option.label)); }))),
+        react_1.default.createElement("nav", { id: 'footer-trio-buttons-container', "aria-label": 'Footer links', role: 'navigation' },
+            react_1.default.createElement(FooterGreyButton_1.default, { role: 'button', onClick: handleHelpButtonClicked, style: { fontSize: fontSize } }, text.LanguageChanger.help[selectedValue]),
+            react_1.default.createElement(FooterGreyButton_1.default, { role: 'button', onClick: handlePrivacyButtonClicked, style: { fontSize: fontSize } }, text.LanguageChanger.privacy[selectedValue]),
+            react_1.default.createElement(FooterGreyButton_1.default, { role: 'button', onClick: handleTermsButtonClicked, style: { fontSize: fontSize } }, text.LanguageChanger.terms[selectedValue]))));
+};
+exports.default = LanguageChanger;

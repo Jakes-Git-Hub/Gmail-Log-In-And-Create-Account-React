@@ -50,7 +50,7 @@ export const SignInFrontPageContainer: React.FC<SignInFrontPageContainerProps> =
     }, []);
 
     // Change Language
-    const handleLanguageSelection = (event: ChangeEvent<HTMLSelectElement>) => updateUser({ language: event.target.value });
+    const handleLanguageSelection = (language: string) => updateUser({ language });
     
     // Email or Phone
     const onEmailOrPhoneChange = (e: ChangeEvent<HTMLInputElement>) => setEmailOrPhone(e.target.value);

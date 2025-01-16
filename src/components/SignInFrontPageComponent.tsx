@@ -8,7 +8,7 @@ import SecondaryGreyButton from './buttons/SecondaryGreyButtonComponent';
 
 interface SignInFrontPageComponentProps {
     isImageLoaded: boolean;
-    handleLanguageSelection: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+    handleLanguageSelection: (language: string) => void;
     handleCreateAccountClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
     userData: {
         language: string;
