@@ -3,44 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import { WhatsYourNameComponent } from '../components/WhatsYourNameComponent';
 import googleWritingSvg from '../images/google-writing-svg.svg';
 
-interface User {
-    id: number;
-    email: string;
-    password: string | null;
-    firstName: string;
-    lastName: string;
-    phoneNumber: string;
-    profileCircleColor: string;
-    day: string;
-    month: string;
-    year: string;
-    gender: string;
-    countryDetails: {
-        name: string;
-        abbreviation: string;
-        dialingCode: string;
-        svg: string;
-    };
-}
-
-interface FindYourEmailCredentials {
-    phoneNumberOrEmail: string;
-    firstName: string;
-    lastName: string;
-}
-
-interface WhatsYourNameContainerProps {
+interface WhatsYourNameProps {
     updateUser: (user: { language: string }) => void;
-    text: any;
-    userData: User;
+    text: string;
+    userData: any;
     updateFindYourEmailCredentials: (credentials: { firstName: string; lastName: string }) => void;
-    findYourEmailCredentials: FindYourEmailCredentials;
-    users: User[];
+    findYourEmailCredentials: { phoneNumberOrEmail: string; firstName: string; lastName: string };
+    users: Array<{ email: string; firstName: string; lastName: string; phoneNumber: string }>;
     handleIncorrectInfoSearch: () => void;
     handleCorrectInfoSearch: () => void;
-}
+  }
 
-export const WhatsYourNameContainer: React.FC<WhatsYourNameContainerProps> = ({ updateUser, text, userData, updateFindYourEmailCredentials, findYourEmailCredentials, users, handleIncorrectInfoSearch, handleCorrectInfoSearch }) => {
+export const WhatsYourNameContainer: React.FC<WhatsYourNameProps> = ({ updateUser, text,  userData, updateFindYourEmailCredentials, findYourEmailCredentials, users, handleIncorrectInfoSearch, handleCorrectInfoSearch }) => {
 
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -48,11 +22,12 @@ export const WhatsYourNameContainer: React.FC<WhatsYourNameContainerProps> = ({ 
     const [isImageLoaded, setIsImageLoaded] = useState(false);
     const [proceedWithFindUser, setProceedWithFindUser] = useState(false);
     const [findWith, setFindWith] = useState('');
-    const [foundMatchingUser, setFoundMatchingUser] = useState(false);
+    const [foundMatchingUser, setfoundMatchingUser] = useState(false);
 
     const navigate = useNavigate();
 
-    // Handle Slow Svg Load
+// Handle Slow Svg Load
+
     useEffect(() => {
         const image = new Image();
         image.src = googleWritingSvg;
@@ -69,25 +44,32 @@ export const WhatsYourNameContainer: React.FC<WhatsYourNameContainerProps> = ({ 
         console.log('findWith:', findWith);
     }, [findWith]);
 
-    // Change Language
-    const handleLanguageSelection = (chosenLanguage: string) => updateUser({ language: chosenLanguage });
+// Change Language
 
-    // First Name
+    const handleLanguageSelection = (chosenLanguage: string) => updateUser({ language: chosenLanguage })
+
+// First Name
+
     const onFirstNameInputChange = (e: React.ChangeEvent<HTMLInputElement>) => setFirstName(e.target.value.toLowerCase());
 
-    // Last Name
+// Last Name
+
     const onLastNameInputChange = (e: React.ChangeEvent<HTMLInputElement>) => setLastName(e.target.value.toLowerCase());
 
-    // Errors
-    const error = (error: string | null) => setErrorCondition(error);
+// Errors
 
-    // Find With
+    const error = (error: string) => setErrorCondition(error);
+
+// Find With
+
     const handleFindWithPhoneNumber = () => setFindWith('phoneNumber');
+
     const handleFindWithEmail = () => setFindWith('email');
 
-    // Handle Next
+// Handle Next
+
     const handleNextClick = () => {
-        const firstNameInput = document.getElementById('firstNameInput') as HTMLInputElement | null;
+        const firstNameInput = document.getElementById('firstNameInput') as HTMLInputElement;
         if (firstName === '') {
             error('firstNameEmpty');
             if (firstNameInput) {
@@ -105,7 +87,7 @@ export const WhatsYourNameContainer: React.FC<WhatsYourNameContainerProps> = ({ 
         if (proceedWithFindUser) {
             const matchingUser = findMatchingUser();
             if (matchingUser) {
-                setFoundMatchingUser(true);
+                setfoundMatchingUser(true);
             } else {
                 handleIncorrectInfoSearch();
                 navigate('/find-your-email');
@@ -113,7 +95,8 @@ export const WhatsYourNameContainer: React.FC<WhatsYourNameContainerProps> = ({ 
         } 
     }, [proceedWithFindUser]);
 
-    // findMatchingUser
+// findMatchingUser
+    
     const findMatchingUser = () => {
         const matchingUser = users.find(user => {
             const sequences = generateSequences(findYourEmailCredentials.phoneNumberOrEmail);
@@ -145,7 +128,7 @@ export const WhatsYourNameContainer: React.FC<WhatsYourNameContainerProps> = ({ 
         return matchingUser;
     };
 
-    const generateSequences = (number: string): string[] => {
+    const generateSequences = (number: string) => {
         const sequences: string[] = [];
         for (let i = 0; i <= number.length - 7; i++) {
             sequences.push(number.slice(i, i + 7));

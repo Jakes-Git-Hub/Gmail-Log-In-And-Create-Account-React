@@ -39,7 +39,7 @@ var WhatsYourNameContainer = function (_a) {
     var _e = (0, react_1.useState)(false), isImageLoaded = _e[0], setIsImageLoaded = _e[1];
     var _f = (0, react_1.useState)(false), proceedWithFindUser = _f[0], setProceedWithFindUser = _f[1];
     var _g = (0, react_1.useState)(''), findWith = _g[0], setFindWith = _g[1];
-    var _h = (0, react_1.useState)(false), foundMatchingUser = _h[0], setFoundMatchingUser = _h[1];
+    var _h = (0, react_1.useState)(false), foundMatchingUser = _h[0], setfoundMatchingUser = _h[1];
     var navigate = (0, react_router_dom_1.useNavigate)();
     // Handle Slow Svg Load
     (0, react_1.useEffect)(function () {
@@ -85,7 +85,7 @@ var WhatsYourNameContainer = function (_a) {
         if (proceedWithFindUser) {
             var matchingUser = findMatchingUser();
             if (matchingUser) {
-                setFoundMatchingUser(true);
+                setfoundMatchingUser(true);
             }
             else {
                 handleIncorrectInfoSearch();

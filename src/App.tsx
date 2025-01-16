@@ -138,7 +138,11 @@ function App() {
       },
     }
   );
-  const [findYourEmailCredentials, setFindYourEmailCredentials] = useState({});
+  const [findYourEmailCredentials, setFindYourEmailCredentials] = useState({
+    phoneNumberOrEmail: '',
+    firstName: '',
+    lastName: '',
+  });
   const [hasSelectedCYNARCountry, setHasSelectedCYNARCountry] = useState(false);
   const [text, setText] = useState(textData);
   const [translatedCountries, setTranslatedCountries] = useState(filteredCountriesFromUtil);
