@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -33,7 +44,7 @@ var MenuItem_1 = __importDefault(require("@mui/material/MenuItem"));
 var FormControl_1 = __importDefault(require("@mui/material/FormControl"));
 var FooterGreyButton_1 = __importDefault(require("../buttons/FooterGreyButton"));
 var LanguageChanger = function (_a) {
-    var onChange = _a.onChange, initialLanguage = _a.initialLanguage, text = _a.text, id = _a.id, className = _a.className, ariaLabel = _a["aria-label"];
+    var onChange = _a.onChange, initialLanguage = _a.initialLanguage, text = _a.text;
     var _b = (0, react_1.useState)(initialLanguage || 'en-GB'), selectedValue = _b[0], setSelectedValue = _b[1];
     var _c = (0, react_1.useState)(false), open = _c[0], setOpen = _c[1];
     var _d = (0, react_1.useState)('500px'), maxHeight = _d[0], setMaxHeight = _d[1];
@@ -72,7 +83,7 @@ var LanguageChanger = function (_a) {
     // Options
     var customOptions = languageOptions_1.default.map(function (language) { return ({
         value: language.value,
-        label: language.label,
+        label: language.label
     }); });
     // Menu Open/ Close
     var toggleMenu = function () {
@@ -113,35 +124,33 @@ var LanguageChanger = function (_a) {
     var handleTermsButtonClicked = function () {
         window.open('https://policies.google.com/terms?gl=GB&hl=en-GB', '_blank');
     };
-    return (react_1.default.createElement("div", { id: id, className: className },
+    return (react_1.default.createElement("div", { id: 'language-changer-footer' },
         react_1.default.createElement(FormControl_1.default, { role: 'combobox', onClick: toggleMenu, id: 'language-changer-dropdown', "aria-expanded": open, "data-testid": 'language-changer-dropdown', sx: {
                 backgroundColor: open ? '#eeeeee' : '',
                 borderRadius: '4px',
             } },
-            react_1.default.createElement(Select_1.default, { open: open, onClose: function () { return setOpen(false); }, onOpen: function () { return setOpen(true); }, onChange: handleChange, displayEmpty: true, value: selectedValue, "aria-label": ariaLabel, inputProps: {
+            react_1.default.createElement(Select_1.default, { open: open, onClose: function () { return setOpen(false); }, onOpen: function () { return setOpen(true); }, onChange: handleChange, displayEmpty: true, value: selectedValue, "aria-label": 'Select text language', inputProps: {
                     'data-testid': 'language-selector-dropdown',
-                }, MenuProps: {
-                    anchorOrigin: {
+                }, MenuProps: __assign(__assign({ anchorOrigin: {
                         vertical: 'top',
-                        horizontal: 'left',
-                    },
-                    transformOrigin: {
+                        horizontal: 'left'
+                    }, transformOrigin: {
                         vertical: 'bottom',
-                        horizontal: 'left',
-                    },
-                    PaperProps: {
+                        horizontal: 'left'
+                    } }, (typeof document !== 'undefined' && {
+                    getContentAnchorEl: function () { return document.getElementById('language-changer-dropdown'); }
+                })), { PaperProps: {
                         style: {
                             maxHeight: maxHeight,
                         },
-                    },
-                }, sx: {
+                    } }), sx: {
                     '& .MuiSelect-icon': {
                         color: '#202124',
                     },
                     fontSize: '12px',
                     boxShadow: 'none',
                     '.MuiOutlinedInput-notchedOutline': {
-                        border: 0,
+                        border: 0
                     },
                     '&.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline': {
                         border: 0,
