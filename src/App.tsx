@@ -216,7 +216,7 @@ function App() {
     console.log('userIP', userIP);
   }, [userIP]);
 
-  const IPGeoLocationAPIKey = process.env.REACT_APP_IP_GEO_LOCATION_API_KEY;
+  const IPGeoLocationAPIKey = process.env.REACT_APP_IP_GEOLOCATION_API_KEY || '';
 
 // Handle Log Ins
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { components } from 'react-select';
+import { components, SingleValueProps } from 'react-select';
 import { useNavigate } from 'react-router-dom';
 import { ConfirmYoureNotARobotComponent } from '../components/ConfirmYoureNotARobotComponent';
 import axios from 'axios';
@@ -8,7 +8,27 @@ import googleWritingSvg from '../images/google-writing-svg.svg';
 import { PhoneNumberUtil, PhoneNumberFormat } from 'google-libphonenumber';
 import { APIEndPointLimiter } from '../utils/APIEndPointLimiter';
 
-export const ConfirmYoureNotARobotContainer = ({ 
+interface ConfirmYoureNotARobotContainerProps {
+    updateUser: (user: any) => void;
+    userData: any;
+    users: any[];
+    userIP: string;
+    handleCYNARCountrySelect: (country: any) => void;
+    hasSelectedCYNARCountry: boolean;
+    text: string;
+    translatedCountries: any[];
+    IPGeoLocationAPIKey: string;
+    handleConfirmYoureNotARobotPhoneAPILimit: () => void;
+    confirmYoureNotARobotPhoneAPILimit: number;
+    resetCYNARPhoneAPILimit: () => void;
+}
+
+interface OptionType {
+    value: any;
+    label: string;
+}
+
+export const ConfirmYoureNotARobotContainer: React.FC<ConfirmYoureNotARobotContainerProps> = ({ 
     updateUser, 
     userData, 
     users, 
@@ -29,8 +49,8 @@ export const ConfirmYoureNotARobotContainer = ({
     const [isImageLoaded, setIsImageLoaded] = useState(false);  
     const [usersCountryFlagSVG, setUsersCountryFlagSVG] = useState(hasSelectedCYNARCountry ? userData.countryDetails.svg : '');
     const [countryFromAPIOrSelection, setCountryFromAPIOrSelection] = useState(hasSelectedCYNARCountry ? userData.countryDetails.name : {});
-    const [selectedOption, setSelectedOption] = useState(null);
-    const [actualSelectedOption, setActualSelectedOption] = useState(null);
+    const [selectedOption, setSelectedOption] = useState<OptionType | null>(null);
+    const [actualSelectedOption, setActualSelectedOption] = useState<boolean | null>(null);
     const [filteredCountries, setFilteredCountries] = useState(translatedCountries);
     const [topOption, setTopOption] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -185,7 +205,7 @@ export const ConfirmYoureNotARobotContainer = ({
 
 // Chosen Country Flag Image Placeholder    
 
-    const chosenCountryFlagImage = ({ children, ...props }) => {
+    const chosenCountryFlagImage = (props: SingleValueProps<OptionType, false>) => {
         return (
             <components.SingleValue {...props}>
                 {props.data && props.data.value ? (
@@ -238,29 +258,29 @@ export const ConfirmYoureNotARobotContainer = ({
 // Handle Next Click
 
     const handleNextClick = () => {
-        const phoneNumberInput = document.getElementById('phoneNumberInput');
+        const phoneNumberInput = document.getElementById('phoneNumberInput') as HTMLInputElement | null;
         if (phoneNumber === '') {
             setError('phoneNumberEmpty');
-            phoneNumberInput.focus();
+            phoneNumberInput?.focus();
         } else if (!/^\+?[0-9]+$/.test(phoneNumber)) {
             setError('incorrectFormat');
-            phoneNumberInput.focus();
+            phoneNumberInput?.focus();
         } else {
-            if (actualSelectedOption) {
+            if (actualSelectedOption && selectedOption) {
                 setFormattedPhoneNumber(selectedOption.value.dialingCode + phoneNumber);
                 updateUser({ phoneNumber: selectedOption.value.dialingCode + phoneNumber, countryDetails: selectedOption.value });
-                handleCYNARCountrySelect();
+                handleCYNARCountrySelect(selectedOption.value); // Pass the appropriate argument
                 setError(null);                    
             } else {
                 setFormattedPhoneNumber(phoneNumber);
                 updateUser({ phoneNumber: phoneNumber, countryDetails: unitedKingdom });
-                handleCYNARCountrySelect();
+                handleCYNARCountrySelect(unitedKingdom); // Pass the appropriate argument
                 setError(null);
             }
         }
     }
 
-    function convertPhoneNumber(phoneNumber, region, format) {
+    function convertPhoneNumber(phoneNumber: string, region: string, format: any) {
         try {
             // Parse the phone number with the provided region code.
             const number = phoneUtil.parseAndKeepRawInput(phoneNumber, region);
@@ -277,7 +297,11 @@ export const ConfirmYoureNotARobotContainer = ({
 
             return numberWithoutSpaces;
         } catch (error) {
-            console.error("Error converting phone number:", error.message);
+            if (error instanceof Error) {
+                console.error("Error converting phone number:", error.message);
+            } else {
+                console.error("Unknown error converting phone number");
+            }
             return null; // Or handle the error differently
         }
     }
@@ -323,12 +347,12 @@ export const ConfirmYoureNotARobotContainer = ({
             } catch (error) {
                 console.error('Error sending verification code:', error);
                 setLoading(false);
-                if (error.response.status === 429) {
+                if (axios.isAxiosError(error) && error.response && error.response.status === 429) {
                     setError('apiLimitReached');
                 } else {
                     setError('incorrectNumber');
                 }
-            }  
+            } 
         } else {
             setError('apiLimitReached');
             setLoading(false);
