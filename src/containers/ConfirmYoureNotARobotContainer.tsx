@@ -25,7 +25,8 @@ interface ConfirmYoureNotARobotContainerProps {
 
 interface OptionType {
     value: any;
-    label: string;
+    label: React.ReactNode;
+    isDisabled?: boolean;
 }
 
 export const ConfirmYoureNotARobotContainer: React.FC<ConfirmYoureNotARobotContainerProps> = ({ 
@@ -149,7 +150,7 @@ export const ConfirmYoureNotARobotContainer: React.FC<ConfirmYoureNotARobotConta
         console.log('topOption:', topOption);
     }, [topOption])
 
-    const customOptions = [
+    const customOptions: OptionType[] = [
         // Top Option
         {
             value: topOption === undefined ? unitedKingdom : topOption,
@@ -475,8 +476,8 @@ const customStyles = {
     return (
         <>
             <ConfirmYoureNotARobotComponent
-                value={phoneNumber}
-                setValue={setPhoneNumber}
+                phoneNumber={phoneNumber}
+                // setPhoneNumber={setPhoneNumber}
                 handleNextClick={handleNextClick}
                 customOptions={customOptions}
                 customStyles={customStyles}
