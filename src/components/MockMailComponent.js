@@ -19,6 +19,7 @@ export const MockMail = ({ loggedIn, currentLoggedInUser, }) => {
                         {currentLoggedInUser.customGender && <li>Custom Gender: {currentLoggedInUser.customGender}</li>}
                         {currentLoggedInUser.pronoun && <li>Pronoun: {currentLoggedInUser.pronoun}</li>}
                         {currentLoggedInUser.email && <li>Email: {currentLoggedInUser.email}</li>}
+                        {currentLoggedInUser.recoveryEmail && <li>Recovery Email: {currentLoggedInUser.recoveryEmail}</li>}
                         {currentLoggedInUser.phoneNumber && <li>Phone Number: {currentLoggedInUser.phoneNumber}</li>}
                         {currentLoggedInUser.countryDetails && <li>Country: {currentLoggedInUser.countryDetails.name}</li>}
                         {currentLoggedInUser.manualSetting1 && <li>Manual Setting 1: {currentLoggedInUser.manualSetting1}</li>}
