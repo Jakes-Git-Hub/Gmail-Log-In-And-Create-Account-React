@@ -4,10 +4,35 @@ import CustomNextButton from './buttons/CustomNextButtonComponent';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Radio from '@mui/material/Radio';
-
 import LanguageChanger from './LanguageChanger/LanguageChangerComponent';
 
-export const ChooseYourSettingsComponent = ({ 
+interface LanguageStrings {
+    [key: string]: string;
+}
+
+interface NestedTextObject {
+    [key: string]: LanguageStrings;
+}
+
+interface TextData {
+    [key: string]: NestedTextObject;
+}
+
+interface ChooseYourSettingsComponentProps {
+    handleNextClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
+    isImageLoaded: boolean;
+    handleRadioChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    setting: string;
+    errorCondition: string;
+    handleLanguageSelection: (chosenLanguage: string) => void;
+    text: TextData;
+    userData: {
+        language: string;
+        [key: string]: any;
+    };
+}
+
+export const ChooseYourSettingsComponent: React.FC<ChooseYourSettingsComponentProps> = ({ 
     handleNextClick,
     isImageLoaded,
     handleRadioChange,
@@ -16,15 +41,11 @@ export const ChooseYourSettingsComponent = ({
     handleLanguageSelection,
     text,
     userData,
-    
 }) => {
 
     return (
-
         <>
-
             <main className='google-container-flexible-ryai' data-testid='CYS'>
-
                 <div className={isImageLoaded ? 'empty-blue-snake-loader-placeholder' : 'empty-blue-snake-loader'}>
                     <div className='blue-snake-loader'></div>
                 </div>
@@ -128,9 +149,7 @@ export const ChooseYourSettingsComponent = ({
                             {text.ChooseYourSettings.next[userData.language]}
                         </div>
                     </CustomNextButton>                
-                    
                 </div>
-
             </main>
 
             <LanguageChanger 
@@ -139,7 +158,6 @@ export const ChooseYourSettingsComponent = ({
                 initialLanguage={userData.language}
                 text={text}
             />
-
         </>
     );
 }
