@@ -317,7 +317,7 @@ export const ConfirmYoureNotARobotContainer: React.FC<ConfirmYoureNotARobotConta
 
     const sendVerificationCode = async () => {
         setLoading(true);
-        const container1Limiter = APIEndPointLimiter(5, 30 * 60 * 1000);
+        const container1Limiter = APIEndPointLimiter({ maxRequests: 5, perMilliseconds: 30 * 60 * 1000 });
         if (confirmYoureNotARobotPhoneAPILimit < 5) {
           try {
             const response = await container1Limiter.post('/send-verification-code', {
