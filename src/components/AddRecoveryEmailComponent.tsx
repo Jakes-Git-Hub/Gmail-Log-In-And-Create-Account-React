@@ -20,7 +20,7 @@ interface TextData {
 interface AddRecoveryEmailComponentProps {
     recoveryEmail: string;
     setRecoveryEmail: (email: string) => void;
-    handleNextClick: () => void;
+    handleNextClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
     errorCondition: string | null;
     handleSkip: () => void;
     isImageLoaded: boolean;

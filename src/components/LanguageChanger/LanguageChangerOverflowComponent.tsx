@@ -9,9 +9,10 @@ interface LanguageChangerOverflowProps {
   onChange: (language: string) => void;
   initialLanguage: string;
   text: any;
+  className?: string;
 }
 
-const LanguageChangerOverflow: React.FC<LanguageChangerOverflowProps> = ({ onChange, initialLanguage, text }) => {
+const LanguageChangerOverflow: React.FC<LanguageChangerOverflowProps> = ({ onChange, initialLanguage, text, className }) => {
   const [selectedValue, setSelectedValue] = useState<string>(initialLanguage || 'en-GB');
   const [open, setOpen] = useState<boolean>(false);
   const [maxHeight, setMaxHeight] = useState<string>('500px');

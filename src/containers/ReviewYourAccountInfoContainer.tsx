@@ -18,6 +18,10 @@ interface TextData {
 interface ReviewYourAccountInfoContainerProps {
     userData: {
         profileCircleColor?: string;
+        firstName?: string;
+        lastName?: string;
+        email?: string;
+        language: string;
         [key: string]: any;
     };
     updateUser: (data: { [key: string]: any }) => void;
